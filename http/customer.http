@@ -1,0 +1,43 @@
+###
+
+GET http://localhost:8080/customers
+Accept: application/json
+
+###
+
+GET http://localhost:8080/customers/1
+Accept: application/json
+
+###
+
+POST http://localhost:8080/customers
+Content-Type: application/json
+Accept: application/json
+
+{
+  "title": "heer",
+  "firstName": "Niels",
+  "infix": "der",
+  "lastName": "Achternaam",
+  "address": "Straat 123",
+  "zipcode": "2323JA",
+  "country": "Nederland",
+  "city": "Alkmaar"
+}
+
+###
+
+PUT http://localhost:8080/customers/1
+Content-Type: application/json
+Accept: application/json
+
+{
+  "firstName": "Luukk"
+}
+
+###
+
+DELETE http://localhost:8080/customers/3
+Accept: application/json
+
+###

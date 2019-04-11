@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 @RestController
 public class CustomerController {
@@ -21,7 +22,12 @@ public class CustomerController {
         return customerRepository.findAll(pageable);
     }
 
-    @PostMapping("/questions")
+    @GetMapping("/customers/{customerId}")
+    public Optional<Customer> getSpecifiedCustomer(@PathVariable  Long customerId) {
+        return customerRepository.findById(customerId);
+    }
+
+    @PostMapping("/customers")
     public Customer createCustomer(@Valid @RequestBody Customer customer) {
         return customerRepository.save(customer);
     }

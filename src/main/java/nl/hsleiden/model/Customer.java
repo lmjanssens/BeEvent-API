@@ -9,46 +9,47 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "customer")
 public class Customer {
-    @NotNull
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "customerid", columnDefinition = "serial")
     private Long id;
 
     @Length(max = 10)
-    @Column(columnDefinition = "title")
+    @Column(name = "title")
     private String title;
 
     @NotNull
     @Length(max = 30)
-    @Column(columnDefinition = "first_name")
+    @Column(name = "first_name")
     private String firstName;
 
     @Length(max = 15)
-    @Column(columnDefinition = "infix")
+    @Column(name = "infix")
     private String infix;
 
     @NotNull
     @Length(max = 30)
-    @Column(columnDefinition = "last_name")
+    @Column(name = "last_name")
     private String lastName;
 
     @NotNull
     @Length(max = 50)
-    @Column(columnDefinition = "address")
+    @Column(name = "address")
     private String address;
 
     @NotNull
     @Length(max = 10)
-    @Column(columnDefinition = "zipcode")
+    @Column(name = "zipcode")
     private String zipcode;
 
     @NotNull
     @Length(max = 50)
-    @Column(columnDefinition = "country")
+    @Column(name = "country")
     private String country;
 
     @NotNull
     @Length(max = 50)
-    @Column(columnDefinition = "city")
+    @Column(name = "city")
     private String city;
 
     public Customer(Long id, String title, String firstName, String infix, String lastName, String address,
@@ -62,6 +63,10 @@ public class Customer {
         this.zipcode = zipcode;
         this.country = country;
         this.city = city;
+    }
+
+    public Customer() {
+
     }
 
     public Long getId() {
