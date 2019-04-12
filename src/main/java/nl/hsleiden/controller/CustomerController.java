@@ -3,6 +3,8 @@ package nl.hsleiden.controller;
 import nl.hsleiden.exception.ResourceNotFoundException;
 import nl.hsleiden.model.Customer;
 import nl.hsleiden.repository.CustomerRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,6 +16,8 @@ import java.util.Optional;
 
 @RestController
 public class CustomerController {
+    private final Logger LOGGER = LoggerFactory.getLogger(CustomerController.class);
+
     @Autowired
     private CustomerRepository customerRepository;
 
@@ -24,16 +28,19 @@ public class CustomerController {
 
     @GetMapping("/customers/{customerId}")
     public Optional<Customer> getSpecifiedCustomer(@PathVariable  Long customerId) {
+        LOGGER.info("Fetching customer with id: "  + customerId);
         return customerRepository.findById(customerId);
     }
 
     @PostMapping("/customers")
     public Customer createCustomer(@Valid @RequestBody Customer customer) {
+        LOGGER.info("Creating new customer.");
         return customerRepository.save(customer);
     }
 
     @PutMapping("/customers/{customerId}")
     public Customer updateCustomer(@PathVariable Long customerId, @Valid @RequestBody Customer updatedCustomer) {
+        LOGGER.info("Updating customer with id: " + customerId);
         return customerRepository.findById(customerId).map(customer -> {
             customer.setAddress(updatedCustomer.getAddress());
             customer.setCity(updatedCustomer.getCity());
@@ -49,6 +56,7 @@ public class CustomerController {
 
     @DeleteMapping("/customers/{customerId}")
     public ResponseEntity<?> deleteCustomer(@PathVariable Long customerId) {
+        LOGGER.info("Deleting customer with id: " + customerId);
         return customerRepository.findById(customerId).map(customer -> {
             customerRepository.delete(customer);
             return ResponseEntity.ok().build();

@@ -27,17 +27,24 @@ Accept: application/json
 
 ###
 
-PUT http://localhost:8080/customers/1
+PUT http://localhost:8080/customers/5
 Content-Type: application/json
 Accept: application/json
 
 {
-  "firstName": "Luukk"
+  "title": "heer",
+  "firstName": "Niels",
+  "infix": "der",
+  "lastName": "lastName",
+  "address": "Straat 123",
+  "zipcode": "2323JA",
+  "country": "Nederland",
+  "city": "Alkmaar"
 }
 
 ###
 
-DELETE http://localhost:8080/customers/3
+DELETE http://localhost:8080/customers/5
 Accept: application/json
 
 ###
