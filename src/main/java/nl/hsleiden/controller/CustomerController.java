@@ -45,9 +45,11 @@ public class CustomerController {
             customer.setAddress(updatedCustomer.getAddress());
             customer.setCity(updatedCustomer.getCity());
             customer.setCountry(updatedCustomer.getCountry());
+            customer.setEmail(updatedCustomer.getEmail());
             customer.setFirstName(updatedCustomer.getFirstName());
             customer.setInfix(updatedCustomer.getInfix());
             customer.setLastName(updatedCustomer.getLastName());
+            customer.setPhoneNumber(updatedCustomer.getPhoneNumber());
             customer.setTitle(updatedCustomer.getTitle());
             customer.setZipcode(updatedCustomer.getZipcode());
             return customerRepository.save(customer);

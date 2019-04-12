@@ -22,12 +22,14 @@ Accept: application/json
   "address": "Straat 123",
   "zipcode": "2323JA",
   "country": "Nederland",
-  "city": "Alkmaar"
+  "city": "Alkmaar",
+  "phoneNumber": "0624258472",
+  "email": "idk@live.nl"
 }
 
 ###
 
-PUT http://localhost:8080/customers/5
+PUT http://localhost:8080/customers/6
 Content-Type: application/json
 Accept: application/json
 
@@ -39,12 +41,14 @@ Accept: application/json
   "address": "Straat 123",
   "zipcode": "2323JA",
   "country": "Nederland",
-  "city": "Alkmaar"
+  "city": "Alkmaar",
+  "phoneNumber": "0653351789",
+  "email": "luukjanssens2009@live.nl"
 }
 
 ###
 
-DELETE http://localhost:8080/customers/5
+DELETE http://localhost:8080/customers/6
 Accept: application/json
 
 ###

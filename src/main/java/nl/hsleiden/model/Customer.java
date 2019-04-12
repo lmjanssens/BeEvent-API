@@ -52,8 +52,18 @@ public class Customer {
     @Column(name = "city")
     private String city;
 
+    @NotNull
+    @Length(max = 15)
+    @Column(name = "phonenumber")
+    private String phoneNumber;
+
+    @NotNull
+    @Length(max = 50)
+    @Column(name = "email")
+    private String email;
+
     public Customer(Long id, String title, String firstName, String infix, String lastName, String address,
-                    String zipcode, String country, String city) {
+                    String zipcode, String country, String city, String phoneNumber, String email) {
         this.id = id;
         this.title = title;
         this.firstName = firstName;
@@ -63,6 +73,8 @@ public class Customer {
         this.zipcode = zipcode;
         this.country = country;
         this.city = city;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
     }
 
     public Customer() {
@@ -139,5 +151,21 @@ public class Customer {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
