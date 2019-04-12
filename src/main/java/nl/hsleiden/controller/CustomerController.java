@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Collection;
 import java.util.Optional;
 
 @RestController
@@ -21,24 +22,24 @@ public class CustomerController {
     @Autowired
     private CustomerRepository customerRepository;
 
-    @GetMapping("/customers")
-    public Page<Customer> getCustomers(Pageable pageable) {
-        return customerRepository.findAll(pageable);
+    @GetMapping("/api/customers")
+    public Collection<Customer> getCustomers() {
+        return customerRepository.findAll();
     }
 
-    @GetMapping("/customers/{customerId}")
+    @GetMapping("/api/customers/{customerId}")
     public Optional<Customer> getSpecifiedCustomer(@PathVariable  Long customerId) {
         LOGGER.info("Fetching customer with id: "  + customerId);
         return customerRepository.findById(customerId);
     }
 
-    @PostMapping("/customers")
+    @PostMapping("/api/customers")
     public Customer createCustomer(@Valid @RequestBody Customer customer) {
         LOGGER.info("Creating new customer.");
         return customerRepository.save(customer);
     }
 
-    @PutMapping("/customers/{customerId}")
+    @PutMapping("/api/customers/{customerId}")
     public Customer updateCustomer(@PathVariable Long customerId, @Valid @RequestBody Customer updatedCustomer) {
         LOGGER.info("Updating customer with id: " + customerId);
         return customerRepository.findById(customerId).map(customer -> {
@@ -56,7 +57,7 @@ public class CustomerController {
         }).orElseThrow(() -> new ResourceNotFoundException("Customer not found with id " + customerId));
     }
 
-    @DeleteMapping("/customers/{customerId}")
+    @DeleteMapping("/api/customers/{customerId}")
     public ResponseEntity<?> deleteCustomer(@PathVariable Long customerId) {
         LOGGER.info("Deleting customer with id: " + customerId);
         return customerRepository.findById(customerId).map(customer -> {
