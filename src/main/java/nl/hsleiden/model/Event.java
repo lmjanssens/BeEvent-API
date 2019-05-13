@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
  */
 
 @Entity
-@Table(name = "Event")
+@Table(name = "event")
 public class Event {
 
     @Id
@@ -40,16 +40,14 @@ public class Event {
     @Column(name = "description")
     private String description;
 
-    // At that moment, this property has a datatype of Object due to implementation of a database.
     @Column(name = "program")
-    private Object program;
+    private String program;
 
     @Column(name = "duration")
     private double duration;
 
-    // At that moment, this property has a datatype of Object due to implementation of a database.
     @Column(name = "options")
-    private Object options;
+    private String options;
 
     @Column(name = "pricePp")
     private double pricePerPerson;
@@ -76,7 +74,7 @@ public class Event {
      * @param btw
      * @param buyNotes
      */
-    public Event(boolean ownEvent, @Length(max = 30) String name, String description, Object program, double duration, Object options, double pricePerPerson, double priceBuyPerPerson, double btw, String buyNotes) {
+    public Event(boolean ownEvent, @Length(max = 30) String name, String description, String program, double duration, String options, double pricePerPerson, double priceBuyPerPerson, double btw, String buyNotes) {
         this.ownEvent = ownEvent;
         this.name = name;
         this.description = description;
@@ -127,11 +125,11 @@ public class Event {
         this.description = description;
     }
 
-    public Object getProgram() {
+    public String getProgram() {
         return program;
     }
 
-    public void setProgram(Object program) {
+    public void setProgram(String program) {
         this.program = program;
     }
 
@@ -143,11 +141,11 @@ public class Event {
         this.duration = duration;
     }
 
-    public Object getOptions() {
+    public String getOptions() {
         return options;
     }
 
-    public void setOptions(Object options) {
+    public void setOptions(String options) {
         this.options = options;
     }
 
