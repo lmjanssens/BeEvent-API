@@ -40,12 +40,14 @@ public class Event {
     @Column(name = "description")
     private String description;
 
+    // At that moment, this property has a datatype of Object due to implementation of a database.
     @Column(name = "program")
     private Object program;
 
     @Column(name = "duration")
     private double duration;
 
+    // At that moment, this property has a datatype of Object due to implementation of a database.
     @Column(name = "options")
     private Object options;
 
