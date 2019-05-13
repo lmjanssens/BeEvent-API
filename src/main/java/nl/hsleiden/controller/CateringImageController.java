@@ -21,7 +21,7 @@ public class CateringImageController {
     private CateringImageRepository cateringImageRepository;
 
     @GetMapping("/api/cateringimage")
-    public Collection<CateringImage> getCatering() { return cateringImageRepository.findAll(); }
+    public Collection<CateringImage> getCateringImages() { return cateringImageRepository.findAll(); }
 
     @GetMapping("/api/cateringimage/{cateringId}")
     public Optional<CateringImage> getSpecifiedCateringImage(@PathVariable Long cateringId) {
@@ -30,7 +30,7 @@ public class CateringImageController {
     }
 
     @PostMapping("/api/cateringimage")
-    public CateringImage createCatering(@Valid @RequestBody CateringImage cateringImage) {
+    public CateringImage createCateringImage(@Valid @RequestBody CateringImage cateringImage) {
         LOGGER.info("Creating new catering");
         return cateringImageRepository.save(cateringImage);
     }
