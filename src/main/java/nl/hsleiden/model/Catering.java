@@ -10,11 +10,12 @@ public class Catering {
     @Column(name = "cateringid", columnDefinition = "serial")
     private Long id;
 
+    //TODO: Add lengths and other details, wait for databasestructure
     @Column(name = "supplierid")
     private Long supplierId;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "cateringName")
+    private String cateringName;
 
     @Column(name = "contactperson")
     private String contactPerson;
@@ -37,10 +38,10 @@ public class Catering {
     @Column(name = "note")
     private String note;
 
-    public Catering(Long supplierId, String name, String contactPerson, String zipcode, String address,
+    public Catering(Long supplierId, String cateringName, String contactPerson, String zipcode, String address,
                     String city, String phone, int cateringPrice, String note) {
         this.supplierId = supplierId;
-        this.name = name;
+        this.cateringName = cateringName;
         this.contactPerson = contactPerson;
         this.zipcode = zipcode;
         this.address = address;
@@ -70,12 +71,12 @@ public class Catering {
         this.supplierId = supplierId;
     }
 
-    public String getName() {
-        return name;
+    public String getCateringName() {
+        return cateringName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCateringName(String cateringName) {
+        this.cateringName = cateringName;
     }
 
     public String getContactPerson() {

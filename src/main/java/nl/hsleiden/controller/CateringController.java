@@ -36,14 +36,14 @@ public class CateringController {
     }
 
     @PutMapping("/api/catering/{cateringId}")
-    public Catering upcateCatering(@PathVariable Long cateringId, @Valid @RequestBody Catering updatedCatering) {
+    public Catering updateCatering(@PathVariable Long cateringId, @Valid @RequestBody Catering updatedCatering) {
         LOGGER.info("Updating catering with id: " + cateringId);
         return cateringRepository.findById(cateringId).map(catering -> {
             catering.setAddress(updatedCatering.getAddress());
             catering.setCateringPrice(updatedCatering.getCateringPrice());
             catering.setCity(updatedCatering.getCity());
             catering.setContactPerson(updatedCatering.getContactPerson());
-            catering.setName(updatedCatering.getName());
+            catering.setCateringName(updatedCatering.getCateringName());
             catering.setNote(updatedCatering.getNote());
             catering.setPhone(updatedCatering.getPhone());
             catering.setSupplierId(updatedCatering.getSupplierId());
@@ -55,7 +55,7 @@ public class CateringController {
     @DeleteMapping("/api/catering/{cateringId}")
     public ResponseEntity<?> deleteCatering(@PathVariable Long cateringId) {
         LOGGER.info("Deleting catering with id: " + cateringId);
-        return  cateringRepository.findById(cateringId).map(catering -> {
+        return cateringRepository.findById(cateringId).map(catering -> {
             cateringRepository.delete(catering);
             return ResponseEntity.ok().build();
         }).orElseThrow(() -> new ResourceNotFoundException("Catering not found with id: " + cateringId));
