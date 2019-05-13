@@ -23,4 +23,46 @@ public class EventController {
 
     @Autowired
     private EventRepository eventRepo;
+
+    @GetMapping("/api/events")
+    public Collection<Event> getEvents() { return eventRepo.findAll(); }
+
+    public Optional<Event> getSpecifiedEvents(@PathVariable Long eventId) {
+        LOGGER.info("Fetching event object with id: " + eventId);
+        return eventRepo.findById(eventId);
+    }
+
+    @PostMapping("/api/events")
+    public Event createEvent(@Valid @RequestBody Event event){
+        LOGGER.info("Creating event");
+        return eventRepo.save(event);
+    }
+
+    @PutMapping
+    public Event updateEvent(@PathVariable Long eventId, @Valid @RequestBody Event updatedEvent) {
+        return eventRepo.findById(eventId).map(event -> {
+            event.setOwnEvent(updatedEvent.isOwnEvent());
+            event.setName(updatedEvent.getName());
+            event.setDescription(updatedEvent.getDescription());
+            event.setProgram(updatedEvent.getProgram());
+            event.setDuration(updatedEvent.getDuration());
+            event.setOptions(updatedEvent.getOptions());
+            event.setPricePerPerson(updatedEvent.getPricePerPerson());
+            event.setPriceBuyPerPerson(updatedEvent.getPriceBuyPerPerson());
+            event.setBtw(updatedEvent.getBtw());
+            event.setBuyNotes(updatedEvent.getBuyNotes());
+            return eventRepo.save(event);
+        }).orElseThrow(() -> new ResourceNotFoundException("Event not found with id " + eventId));
+    }
+
+    @DeleteMapping
+    public ResponseEntity<?> deleteEvents(@PathVariable Long eventId) {
+        LOGGER.info("Deleting event with id: " + eventId);
+        return eventRepo.findById(eventId).map(event -> {
+            eventRepo.delete(event);
+            return ResponseEntity.ok().build();
+        }).orElseThrow(() -> new ResourceNotFoundException("No event found with id " + eventId));
+    }
+
+
 }
