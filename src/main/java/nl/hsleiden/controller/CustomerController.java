@@ -6,8 +6,6 @@ import nl.hsleiden.repository.CustomerRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,7 +26,7 @@ public class CustomerController {
     }
 
     @GetMapping("/api/customers/{customerId}")
-    public Optional<Customer> getSpecifiedCustomer(@PathVariable  Long customerId) {
+    public Optional<Customer> getSpecifiedCustomer(@PathVariable Long customerId) {
         LOGGER.info("Fetching customer with id: "  + customerId);
         return customerRepository.findById(customerId);
     }
