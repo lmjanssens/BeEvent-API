@@ -22,12 +22,12 @@ public class Event {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "supplierId", columnDefinition = "serial")
+    @Column(name = "supplierId", columnDefinition = "integer")
     private Long supplierId;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "locationId", columnDefinition = "serial")
+    @Column(name = "locationId", columnDefinition = "integer")
     private Long locationId;
 
     @Column(name = "ownEvent", nullable = false,columnDefinition = "boolean default true")
