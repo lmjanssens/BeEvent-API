@@ -38,4 +38,52 @@ public class Employee {
 
     @OneToMany(mappedBy = "employee")
     private Set<EmployeePhone> phones;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getInfix() {
+        return infix;
+    }
+
+    public void setInfix(String infix) {
+        this.infix = infix;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public Set<EmployeeEmail> getEmails() {
+        return emails;
+    }
+
+    public void setEmails(Set<EmployeeEmail> emails) {
+        this.emails = emails;
+    }
+
+    public Set<EmployeePhone> getPhones() {
+        return phones;
+    }
+
+    public void setPhones(Set<EmployeePhone> phones) {
+        this.phones = phones;
+    }
 }
