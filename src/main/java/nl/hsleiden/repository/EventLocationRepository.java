@@ -4,8 +4,9 @@ import nl.hsleiden.model.EventLocation;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface EventLocationRepository extends JpaRepository<EventLocation, Long> {
-    List<EventLocation> findLocationById();
+    Optional<EventLocation> findLocationById(Long locationId);
     List<EventLocation> findAll();
 }

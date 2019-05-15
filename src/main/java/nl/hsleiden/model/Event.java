@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Set;
 
 /**
  * Event Model Class
@@ -17,64 +18,67 @@ public class Event {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "eventId", columnDefinition = "SERIAL")
+    @Column(name = "eventID", columnDefinition = "SERIAL")
     private Long id;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "supplierId", columnDefinition = "integer")
+    @Column(name = "supplierID", columnDefinition = "integer")
     private Long supplierId;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "locationId", columnDefinition = "integer")
-    private Long locationId;
+    @ManyToOne
+    @JoinColumn(name = "locationID", nullable = false)
+    private EventLocation eventLocation;
+
+    @OneToMany(mappedBy = "event")
+    private Set<RegisteredEvent> registeredEvents;
+
+    @OneToMany(mappedBy = "event")
+    private Set<EventImage> eventImages;
 
     @Column(name = "ownEvent", nullable = false,columnDefinition = "boolean default true")
     private boolean ownEvent;
 
+    @NotNull
     @Length(max = 30)
     @Column(name = "name")
     private String name;
 
+    @NotNull
     @Column(name = "description")
     private String description;
 
+    @NotNull
     @Column(name = "program")
     private String program;
 
+    @NotNull
     @Column(name = "duration")
     private double duration;
 
     @Column(name = "options")
     private String options;
 
+    @NotNull
     @Column(name = "pricePp")
     private double pricePerPerson;
 
+    @NotNull
     @Column(name = "priceBuyPp")
     private double priceBuyPerPerson;
 
+    @NotNull
     @Column(name = "btw")
     private double btw;
 
+    @NotNull
     @Column(name = "buyNotes")
     private String buyNotes;
 
-    /**
-     * A Constructor for creating an Event object
-     * @param ownEvent
-     * @param name
-     * @param description
-     * @param program
-     * @param duration
-     * @param options
-     * @param pricePerPerson
-     * @param priceBuyPerPerson
-     * @param btw
-     * @param buyNotes
-     */
-    public Event(boolean ownEvent, @Length(max = 30) String name, String description, String program, double duration, String options, double pricePerPerson, double priceBuyPerPerson, double btw, String buyNotes) {
+    public Event(EventLocation eventLocation, Set<RegisteredEvent> registeredEvents, Set<EventImage> eventImages, boolean ownEvent, @NotNull @Length(max = 30) String name, @NotNull String description, @NotNull String program, @NotNull double duration, String options, @NotNull double pricePerPerson, @NotNull double priceBuyPerPerson, @NotNull double btw, @NotNull String buyNotes) {
+        this.eventLocation = eventLocation;
+        this.registeredEvents = registeredEvents;
+        this.eventImages = eventImages;
         this.ownEvent = ownEvent;
         this.name = name;
         this.description = description;
@@ -87,11 +91,7 @@ public class Event {
         this.buyNotes = buyNotes;
     }
 
-    public Event(){ }
-
-    /**
-     * Here are the getters and setters for obtaining event properties
-     */
+    public Event() { }
 
     public Long getId() {
         return id;
@@ -99,6 +99,30 @@ public class Event {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public EventLocation getEventLocation() {
+        return eventLocation;
+    }
+
+    public void setEventLocation(EventLocation eventLocation) {
+        this.eventLocation = eventLocation;
+    }
+
+    public Set<RegisteredEvent> getRegisteredEvents() {
+        return registeredEvents;
+    }
+
+    public void setRegisteredEvents(Set<RegisteredEvent> registeredEvents) {
+        this.registeredEvents = registeredEvents;
+    }
+
+    public Set<EventImage> getEventImages() {
+        return eventImages;
+    }
+
+    public void setEventImages(Set<EventImage> eventImages) {
+        this.eventImages = eventImages;
     }
 
     public boolean isOwnEvent() {

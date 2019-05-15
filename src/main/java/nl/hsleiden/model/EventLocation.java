@@ -3,6 +3,7 @@ package nl.hsleiden.model;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
+import java.util.Set;
 
 /**
  * Event model class
@@ -17,6 +18,9 @@ public class EventLocation {
     @Column(name = "location_id", columnDefinition = "SERIAL")
     private Long id;
 
+    @OneToMany(mappedBy = "event_location")
+    private Set<Event> events;
+
     @Length(max = 30)
     @Column(name = "name")
     private String name;
@@ -29,30 +33,30 @@ public class EventLocation {
     @Column(name = "routepicture")
     private String routepicture;
 
-    /**
-     * Constructor for creating eventlocation object.
-     * @param name
-     * @param description
-     * @param routepicture
-     */
-    public EventLocation(@Length(max = 30) String name, @Length(max = 255) String description, @Length(max = 255) String routepicture) {
+    public EventLocation(Set<Event> events, @Length(max = 30) String name, @Length(max = 255) String description, @Length(max = 255) String routepicture) {
+        this.events = events;
         this.name = name;
         this.description = description;
         this.routepicture = routepicture;
     }
 
-    public EventLocation() { }
+    public EventLocation() {}
 
-    /**
-     * Getters and setters
-     *
-     */
     public Long getId() {
+
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Set<Event> getEvents() {
+        return events;
+    }
+
+    public void setEvents(Set<Event> events) {
+        this.events = events;
     }
 
     public String getName() {

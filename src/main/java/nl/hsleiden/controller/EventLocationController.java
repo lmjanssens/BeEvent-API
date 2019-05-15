@@ -28,7 +28,7 @@ public class EventLocationController {
     @GetMapping("/api/eventlocation/{locationId}")
     public Optional<EventLocation> getSpecifiedEventlocation(@PathVariable  Long locationId) {
         LOGGER.info("Fetching event location with id: "  + locationId);
-        return eventLocationRepository.findById(locationId);
+        return eventLocationRepository.findLocationById(locationId);
     }
 
     @PostMapping("/api/eventlocation")
@@ -40,7 +40,7 @@ public class EventLocationController {
     @PutMapping("/api/eventlocation/{locationId}")
     public EventLocation updateEventLocation(@PathVariable Long locationId, @Valid @RequestBody EventLocation updatedEventLocation) {
         LOGGER.info("Updating eventlocation with id: " + locationId);
-        return eventLocationRepository.findById(locationId).map(eventLocation -> {
+        return eventLocationRepository.findLocationById(locationId).map(eventLocation -> {
             eventLocation.setName(updatedEventLocation.getName());
             eventLocation.setDescription(eventLocation.getDescription());
             eventLocation.setRoutepicture(eventLocation.getRoutepicture());
@@ -51,7 +51,7 @@ public class EventLocationController {
     @DeleteMapping("/api/eventlocation/{locationId}")
     public ResponseEntity<?> deleteEventLocation(@PathVariable Long locationId) {
         LOGGER.info("Deleting event location with id " + locationId);
-        return eventLocationRepository.findById(locationId).map(eventLocation -> {
+        return eventLocationRepository.findLocationById(locationId).map(eventLocation -> {
             eventLocationRepository.delete(eventLocation);
             return ResponseEntity.ok().build();
         }).orElseThrow(() -> new ResourceNotFoundException("Event location not found with id" + locationId));

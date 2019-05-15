@@ -29,7 +29,7 @@ public class EventController {
 
     public Optional<Event> getSpecifiedEvents(@PathVariable Long eventId) {
         LOGGER.info("Fetching event object with id: " + eventId);
-        return eventRepo.findById(eventId);
+        return eventRepo.findEventById(eventId);
     }
 
     @PostMapping("/api/events")
@@ -40,7 +40,7 @@ public class EventController {
 
     @PutMapping("/api/events/{eventId}")
     public Event updateEvent(@PathVariable Long eventId, @Valid @RequestBody Event updatedEvent) {
-        return eventRepo.findById(eventId).map(event -> {
+        return eventRepo.findEventById(eventId).map(event -> {
             event.setOwnEvent(updatedEvent.isOwnEvent());
             event.setName(updatedEvent.getName());
             event.setDescription(updatedEvent.getDescription());
@@ -58,7 +58,7 @@ public class EventController {
     @DeleteMapping("/api/events/{eventId}")
     public ResponseEntity<?> deleteEvents(@PathVariable Long eventId) {
         LOGGER.info("Deleting event with id: " + eventId);
-        return eventRepo.findById(eventId).map(event -> {
+        return eventRepo.findEventById(eventId).map(event -> {
             eventRepo.delete(event);
             return ResponseEntity.ok().build();
         }).orElseThrow(() -> new ResourceNotFoundException("No event found with id " + eventId));
