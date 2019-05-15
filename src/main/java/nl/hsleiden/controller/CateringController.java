@@ -31,7 +31,7 @@ public class CateringController {
 
     @PostMapping("/api/catering")
     public Catering createCatering(@Valid @RequestBody Catering catering) {
-        LOGGER.info("Creating new catering");
+        LOGGER.info("Creating new catering...");
         return cateringRepository.save(catering);
     }
 
