@@ -1,5 +1,7 @@
 package nl.hsleiden.model;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.beans.factory.annotation.Value;
 
@@ -28,6 +30,7 @@ public class Event {
 
     @ManyToOne
     @JoinColumn(name = "locationID", nullable = false)
+    @OnDelete(action = OnDeleteAction.NO_ACTION)
     private EventLocation eventLocation;
 
     @OneToMany(mappedBy = "event")

@@ -1,5 +1,8 @@
 package nl.hsleiden.model;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 
 /**
@@ -12,6 +15,7 @@ public class RegisteredEvent {
 
     @ManyToOne
     @JoinColumn(name = "eventID", nullable = false)
+    @OnDelete(action = OnDeleteAction.NO_ACTION)
     private Event event;
 
     public RegisteredEvent(Event event) {

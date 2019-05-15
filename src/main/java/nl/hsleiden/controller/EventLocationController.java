@@ -22,21 +22,41 @@ public class EventLocationController {
     @Autowired
     private EventLocationRepository eventLocationRepository;
 
+    /**
+     * For retrieving a list of locations
+     * @return a list of locations
+     */
     @GetMapping("/api/eventlocation")
     private Collection<EventLocation> getEventLocations() { return eventLocationRepository.findAll(); }
 
+    /**
+     * For getting a specific location from a database
+     * @param locationId id of location
+     * @return a single location object
+     */
     @GetMapping("/api/eventlocation/{locationId}")
     public Optional<EventLocation> getSpecifiedEventlocation(@PathVariable  Long locationId) {
         LOGGER.info("Fetching event location with id: "  + locationId);
         return eventLocationRepository.findLocationById(locationId);
     }
 
+    /**
+     * For inserting a location object to the database
+     * @param location a JSON-object obtained from the frontend ready to be inserted in the database.
+     * @return an inserted event location object
+     */
     @PostMapping("/api/eventlocation")
     public EventLocation createEventLocation(@Valid @RequestBody EventLocation location) {
         LOGGER.info("Creating new eventlocation.");
         return eventLocationRepository.save(location);
     }
 
+    /**
+     * For updating a location object
+     * @param locationId id of location
+     * @param updatedEventLocation a JSON-object obtained from the frontend ready to be updated in the database
+     * @return an updated location object
+     */
     @PutMapping("/api/eventlocation/{locationId}")
     public EventLocation updateEventLocation(@PathVariable Long locationId, @Valid @RequestBody EventLocation updatedEventLocation) {
         LOGGER.info("Updating eventlocation with id: " + locationId);
@@ -48,6 +68,11 @@ public class EventLocationController {
         }).orElseThrow(() -> new ResourceNotFoundException("Event location not found with id " + locationId));
     }
 
+    /**
+     * For deleting a single location object
+     * @param locationId id of a location
+     * @return response
+     */
     @DeleteMapping("/api/eventlocation/{locationId}")
     public ResponseEntity<?> deleteEventLocation(@PathVariable Long locationId) {
         LOGGER.info("Deleting event location with id " + locationId);

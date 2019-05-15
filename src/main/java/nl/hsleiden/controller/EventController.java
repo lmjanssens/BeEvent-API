@@ -2,7 +2,10 @@ package nl.hsleiden.controller;
 
 import nl.hsleiden.exception.ResourceNotFoundException;
 import nl.hsleiden.model.Event;
+import nl.hsleiden.model.EventLocation;
 import nl.hsleiden.repository.CustomerRepository;
+import nl.hsleiden.repository.EventImageRepository;
+import nl.hsleiden.repository.EventLocationRepository;
 import nl.hsleiden.repository.EventRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +19,11 @@ import javax.validation.Valid;
 import java.util.Collection;
 import java.util.Optional;
 
+/**
+ * Event Controller class
+ * @author Robin Silverio
+ */
+
 @RestController
 public class EventController {
 
@@ -24,20 +32,53 @@ public class EventController {
     @Autowired
     private EventRepository eventRepo;
 
+    @Autowired
+    private EventLocationRepository eventLocationRepo;
+
+    @Autowired
+    private EventImageRepository eventImageRepo;
+
+    /**
+     * This is for getting all events from database.
+     * @return a list of events
+     */
     @GetMapping("/api/events")
     public Collection<Event> getEvents() { return eventRepo.findAll(); }
 
-    public Optional<Event> getSpecifiedEvents(@PathVariable Long eventId) {
+    /**
+     * Retrieve a specific event by id
+     * @param eventId id of event
+     * @return a single specific event
+     */
+    @GetMapping("/api/events/{eventId}")
+    public Optional<Event> getSpecifiedEvents(@PathVariable(value = "eventId") Long eventId) {
         LOGGER.info("Fetching event object with id: " + eventId);
         return eventRepo.findEventById(eventId);
     }
 
-    @PostMapping("/api/events")
-    public Event createEvent(@Valid @RequestBody Event event){
+    /**
+     * This is for inserting an event object to a database
+     * @param eventLocationId id of a eventlocation stored in the database
+     * @param event id of event stored in the database
+     * @return an inserted event object
+     */
+    @PostMapping("/api/events/{eventLocationId}/{eventImageId}")
+    public Event createEvent(@PathVariable(value = "eventLocationId") Long eventLocationId,
+                             @Valid @RequestBody Event event){
+
         LOGGER.info("Creating event");
-        return eventRepo.save(event);
+        return eventLocationRepo.findLocationById(eventLocationId).map(eventLocation -> {
+            event.setEventLocation(eventLocation);
+            return eventRepo.save(event);
+        }).orElseThrow(()-> new ResourceNotFoundException("No eventlocation found."));
     }
 
+    /**
+     * This is for updating data of event in the database
+     * @param eventId id of event stored in database
+     * @param updatedEvent a JSON-object obtained from the frontend ready to be inserted to the database
+     * @return an updated event object
+     */
     @PutMapping("/api/events/{eventId}")
     public Event updateEvent(@PathVariable Long eventId, @Valid @RequestBody Event updatedEvent) {
         return eventRepo.findEventById(eventId).map(event -> {
@@ -55,6 +96,11 @@ public class EventController {
         }).orElseThrow(() -> new ResourceNotFoundException("Event not found with id " + eventId));
     }
 
+    /**
+     * This is for deleting a specific event object
+     * @param eventId id of an event stored in the database
+     * @return response
+     */
     @DeleteMapping("/api/events/{eventId}")
     public ResponseEntity<?> deleteEvents(@PathVariable Long eventId) {
         LOGGER.info("Deleting event with id: " + eventId);
