@@ -54,4 +54,92 @@ public class Supplier {
 
     @OneToMany(mappedBy = "supplier")
     private Set<SupplierContract> contracts;
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getInfix() {
+        return infix;
+    }
+
+    public void setInfix(String infix) {
+        this.infix = infix;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getContactPerson() {
+        return contactPerson;
+    }
+
+    public void setContactPerson(String contactPerson) {
+        this.contactPerson = contactPerson;
+    }
+
+    public String getSupervisor() {
+        return supervisor;
+    }
+
+    public void setSupervisor(String supervisor) {
+        this.supervisor = supervisor;
+    }
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public Set<SupplierEmail> getEmails() {
+        return emails;
+    }
+
+    public void setEmails(Set<SupplierEmail> emails) {
+        this.emails = emails;
+    }
+
+    public Set<SupplierPhone> getPhones() {
+        return phones;
+    }
+
+    public void setPhones(Set<SupplierPhone> phones) {
+        this.phones = phones;
+    }
+
+    public Set<SupplierContract> getContracts() {
+        return contracts;
+    }
+
+    public void setContracts(Set<SupplierContract> contracts) {
+        this.contracts = contracts;
+    }
 }
