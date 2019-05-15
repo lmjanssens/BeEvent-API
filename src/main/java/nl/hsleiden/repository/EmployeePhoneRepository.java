@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface EmployeePhoneRepository extends JpaRepository<EmployeePhone, Long> {
-    List<EmployeePhone> findCustomerById(Long employeePhoneId);
+    List<EmployeePhone> findEmployeePhoneByEmployeeId(Long employeePhoneId);
 
     @Override
     List<EmployeePhone> findAll();

@@ -3,6 +3,7 @@ package nl.hsleiden.model;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -19,6 +20,7 @@ public class EmployeeEmail {
     private Employee employee;
 
     @NotNull
+    @Email
     @Length(max = 150)
     @Column(name = "email")
     private String email;
