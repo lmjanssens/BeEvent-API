@@ -8,6 +8,9 @@ import org.springframework.data.repository.query.Param;
 import java.util.Optional;
 
 public interface CustomerPhoneRepository extends JpaRepository<CustomerPhone, Long> {
-    @Query("SELECT c.phone FROM customer c WHERE c.phone = :phone")
+    @Query(value = "SELECT p.phonenumber " +
+            "FROM customer_phone p " +
+            "JOIN customer c ON p.customerid = c.customerid" +
+            "WHERE p.phone = :phone", nativeQuery = true)
     Optional<CustomerPhone> findPhoneByNumber(@Param("phone") String phone);
 }

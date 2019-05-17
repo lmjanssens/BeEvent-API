@@ -5,17 +5,15 @@ import javax.persistence.*;
 @Entity
 @Table(name = "customerorder")
 public class CustomerOrder {
-    //TODO: Kijk of dit een goede implementatie is, moet misschien veranderd worden in de database
+    //TODO: Kijk of dit een goede implementatie is, moet misschien veranderd worden in de database, maak composite primary key
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "customerorderid", columnDefinition = "serial")
     private Long customerOrderId;
 
-    @Id
     @Column(name = "customerid")
     private Long customerId;
 
-    @Id
     @Column(name = "orderid")
     private Long orderId;
 
