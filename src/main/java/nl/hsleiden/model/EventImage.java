@@ -2,18 +2,20 @@ package nl.hsleiden.model;
 
 import org.hibernate.validator.constraints.Length;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "event_image")
 public class EventImage {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "eventimageid")
+    private Long id;
+
     @ManyToOne
-    @JoinColumn(name = "eventID", nullable = false)
+    @JoinColumn(name = "eventid", nullable = false)
     private Event event;
 
     @NotNull
@@ -25,8 +27,13 @@ public class EventImage {
         this.imagePath = imagePath;
     }
 
-    public EventImage() {}
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public Event getEvent() {
         return event;

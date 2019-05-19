@@ -13,16 +13,30 @@ import javax.persistence.*;
 @Table(name = "registered_event")
 public class RegisteredEvent {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "eventregid")
+    private Long id;
+
     @ManyToOne
     @JoinColumn(name = "eventID", nullable = false)
-    @OnDelete(action = OnDeleteAction.NO_ACTION)
     private Event event;
+
+//    private Instructor instructor; For that we need first a instructor model
+
 
     public RegisteredEvent(Event event) {
         this.event = event;
     }
 
-    public RegisteredEvent() {}
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public Event getEvent() {
         return event;

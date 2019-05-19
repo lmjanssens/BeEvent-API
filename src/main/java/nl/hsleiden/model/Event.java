@@ -23,15 +23,12 @@ public class Event {
     @Column(name = "eventID", columnDefinition = "SERIAL")
     private Long id;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "supplierID", columnDefinition = "integer")
+
     private Long supplierId;
 
     @ManyToOne
-    @JoinColumn(name = "locationID", nullable = false)
-    @OnDelete(action = OnDeleteAction.NO_ACTION)
-    private EventLocation eventLocation;
+    @JoinColumn(name = "locationid")
+    private EventLocation location;
 
     @OneToMany(mappedBy = "event")
     private Set<RegisteredEvent> registeredEvents;
@@ -78,8 +75,9 @@ public class Event {
     @Column(name = "buyNotes")
     private String buyNotes;
 
-    public Event(EventLocation eventLocation, Set<RegisteredEvent> registeredEvents, Set<EventImage> eventImages, boolean ownEvent, @NotNull @Length(max = 30) String name, @NotNull String description, @NotNull String program, @NotNull double duration, String options, @NotNull double pricePerPerson, @NotNull double priceBuyPerPerson, @NotNull double btw, @NotNull String buyNotes) {
-        this.eventLocation = eventLocation;
+    public Event(Long supplierId, EventLocation location, Set<RegisteredEvent> registeredEvents, Set<EventImage> eventImages, boolean ownEvent, @NotNull @Length(max = 30) String name, @NotNull String description, @NotNull String program, @NotNull double duration, String options, @NotNull double pricePerPerson, @NotNull double priceBuyPerPerson, @NotNull double btw, @NotNull String buyNotes) {
+        this.supplierId = supplierId;
+        this.location = location;
         this.registeredEvents = registeredEvents;
         this.eventImages = eventImages;
         this.ownEvent = ownEvent;
@@ -94,8 +92,6 @@ public class Event {
         this.buyNotes = buyNotes;
     }
 
-    public Event() { }
-
     public Long getId() {
         return id;
     }
@@ -104,12 +100,12 @@ public class Event {
         this.id = id;
     }
 
-    public EventLocation getEventLocation() {
-        return eventLocation;
+    public EventLocation getLocation() {
+        return location;
     }
 
-    public void setEventLocation(EventLocation eventLocation) {
-        this.eventLocation = eventLocation;
+    public void setLocation(EventLocation location) {
+        this.location = location;
     }
 
     public Set<RegisteredEvent> getRegisteredEvents() {

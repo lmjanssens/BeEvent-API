@@ -9,8 +9,5 @@ import java.util.List;
  * @author Robin Silverio
  */
 public interface RegisteredEventRepository extends JpaRepository<RegisteredEvent, Long> {
-
-    List<RegisteredEvent> findRegisteredEventById(Long eventId);
-
     List<RegisteredEvent> findAll();
 }

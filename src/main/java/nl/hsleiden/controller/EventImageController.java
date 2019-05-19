@@ -40,7 +40,7 @@ public class EventImageController {
     @GetMapping("/api/eventimage/{eventimageid}")
     public Optional<EventImage> getSpecificEventImage(@PathVariable Long eventImageId) {
         LOGGER.info("Fetching event image of id " + eventImageId);
-        return eventImageRepo.findEventImageById(eventImageId);
+        return eventImageRepo.findById(eventImageId);
     }
 
     /**
@@ -54,7 +54,7 @@ public class EventImageController {
                                        @Valid @RequestBody EventImage eventImage)
     {
         LOGGER.info("Creating event image");
-        return eventRepo.findEventById(eventId).map(event -> {
+        return eventRepo.findById(eventId).map(event -> {
             eventImage.setEvent(event);
             return eventImageRepo.save(eventImage);
         }).orElseThrow(() -> new ResourceNotFoundException("No event found with id " + eventId));
@@ -67,7 +67,7 @@ public class EventImageController {
      */
     @DeleteMapping("/api/eventimage/{eventImageId}")
     public ResponseEntity<?> deleteEventImage(@PathVariable Long eventImageId) {
-        return eventImageRepo.findEventImageById(eventImageId).map(eventImage -> {
+        return eventImageRepo.findById(eventImageId).map(eventImage -> {
             eventImageRepo.delete(eventImage);
             return ResponseEntity.ok().build();
         }).orElseThrow(() -> new ResourceNotFoundException("No event image found with id " + eventImageId));

@@ -2,16 +2,11 @@ package nl.hsleiden.controller;
 
 import nl.hsleiden.exception.ResourceNotFoundException;
 import nl.hsleiden.model.Event;
-import nl.hsleiden.model.EventLocation;
-import nl.hsleiden.repository.CustomerRepository;
-import nl.hsleiden.repository.EventImageRepository;
 import nl.hsleiden.repository.EventLocationRepository;
 import nl.hsleiden.repository.EventRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,8 +30,7 @@ public class EventController {
     @Autowired
     private EventLocationRepository eventLocationRepo;
 
-    @Autowired
-    private EventImageRepository eventImageRepo;
+
 
     /**
      * This is for getting all events from database.
@@ -53,7 +47,7 @@ public class EventController {
     @GetMapping("/api/events/{eventId}")
     public Optional<Event> getSpecifiedEvents(@PathVariable(value = "eventId") Long eventId) {
         LOGGER.info("Fetching event object with id: " + eventId);
-        return eventRepo.findEventById(eventId);
+        return eventRepo.findById(eventId);
     }
 
     /**
@@ -67,8 +61,8 @@ public class EventController {
                              @Valid @RequestBody Event event){
 
         LOGGER.info("Creating event");
-        return eventLocationRepo.findLocationById(eventLocationId).map(eventLocation -> {
-            event.setEventLocation(eventLocation);
+        return eventLocationRepo.findById(eventLocationId).map(eventLocation -> {
+            event.setLocation(eventLocation);
             return eventRepo.save(event);
         }).orElseThrow(()-> new ResourceNotFoundException("No eventlocation found."));
     }
@@ -81,7 +75,7 @@ public class EventController {
      */
     @PutMapping("/api/events/{eventId}")
     public Event updateEvent(@PathVariable Long eventId, @Valid @RequestBody Event updatedEvent) {
-        return eventRepo.findEventById(eventId).map(event -> {
+        return eventRepo.findById(eventId).map(event -> {
             event.setOwnEvent(updatedEvent.isOwnEvent());
             event.setName(updatedEvent.getName());
             event.setDescription(updatedEvent.getDescription());
@@ -104,7 +98,7 @@ public class EventController {
     @DeleteMapping("/api/events/{eventId}")
     public ResponseEntity<?> deleteEvents(@PathVariable Long eventId) {
         LOGGER.info("Deleting event with id: " + eventId);
-        return eventRepo.findEventById(eventId).map(event -> {
+        return eventRepo.findById(eventId).map(event -> {
             eventRepo.delete(event);
             return ResponseEntity.ok().build();
         }).orElseThrow(() -> new ResourceNotFoundException("No event found with id " + eventId));

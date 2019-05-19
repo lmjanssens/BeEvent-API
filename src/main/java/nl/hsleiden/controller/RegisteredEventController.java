@@ -56,7 +56,7 @@ public class RegisteredEventController {
     @PostMapping("/api/registeredevents/{eventId}")
     public RegisteredEvent createRegisteredEvent(@PathVariable Long eventId,@Valid @RequestBody RegisteredEvent event){
         LOGGER.info("Creating registered event");
-        return eventRepo.findEventById(eventId).map(event1 -> {
+        return eventRepo.findById(eventId).map(event1 -> {
             event.setEvent(event1);
             return registeredEventRepo.save(event);
         }).orElseThrow(() -> new ResourceNotFoundException("No event found with id " + eventId));
