@@ -15,7 +15,7 @@ public class Instructor {
     @Column(name = "employeeID", columnDefinition = "serial")
     private Long id;
 
-    @OneToOne(mappedBy = "user")
+    @OneToOne
     @JoinColumn(name = "userID", nullable = false)
     private User user;
 
