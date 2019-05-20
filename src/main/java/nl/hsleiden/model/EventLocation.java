@@ -36,6 +36,10 @@ public class EventLocation {
         this.routePicture = routePicture;
     }
 
+    public EventLocation() {
+
+    }
+
     public Long getId() {
         return id;
     }

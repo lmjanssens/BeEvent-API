@@ -6,6 +6,7 @@ import nl.hsleiden.repository.EventLocationRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -44,7 +45,7 @@ public class EventLocationController {
      * @param location a JSON-object obtained from the frontend ready to be inserted in the database.
      * @return an inserted event location object
      */
-    @PostMapping("/api/eventlocation")
+    @PostMapping(value = "/api/eventlocation", consumes = MediaType.APPLICATION_JSON_VALUE)
     public EventLocation createEventLocation(@Valid @RequestBody EventLocation location) {
         LOGGER.info("Creating new eventlocation.");
         return eventLocationRepository.save(location);
@@ -56,7 +57,7 @@ public class EventLocationController {
      * @param updatedEventLocation a JSON-object obtained from the frontend ready to be updated in the database
      * @return an updated location object
      */
-    @PutMapping("/api/eventlocation/{locationId}")
+    @PutMapping(value = "/api/eventlocation/{locationId}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public EventLocation updateEventLocation(@PathVariable Long locationId, @Valid @RequestBody EventLocation updatedEventLocation) {
         LOGGER.info("Updating eventlocation with id: " + locationId);
         return eventLocationRepository.findById(locationId).map(eventLocation -> {
