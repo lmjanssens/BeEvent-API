@@ -1,5 +1,7 @@
 package nl.hsleiden.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.hibernate.FetchMode;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
@@ -17,26 +19,32 @@ public class Employee {
 
     @OneToOne
     @JoinColumn(name = "userID", nullable = false)
+    @JsonProperty("user_id")
     private User user;
 
     @NotNull
     @Length(max = 100)
     @Column(name = "first_name")
+    @JsonProperty("first_name")
     private String firstName;
 
     @Length(max = 20)
     @Column(name = "infix")
+    @JsonProperty("infix")
     private String infix;
 
     @NotNull
     @Length(max = 100)
     @Column(name = "last_name")
+    @JsonProperty("last_name")
     private String lastName;
 
-    @OneToMany(mappedBy = "employee")
+    @OneToMany(mappedBy = "employee", fetch = FetchType.LAZY)
+    @JsonProperty("email_addresses")
     private Set<EmployeeEmail> emails;
 
-    @OneToMany(mappedBy = "employee")
+    @OneToMany(mappedBy = "employee", fetch = FetchType.LAZY)
+    @JsonProperty("phone_numbers")
     private Set<EmployeePhone> phones;
 
     public User getUser() {

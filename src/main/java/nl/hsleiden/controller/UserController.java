@@ -29,10 +29,10 @@ public class UserController {
         return userRepository.findAll();
     }
 
-    @GetMapping("/api/users/{employeeId}")
-    public Optional<User> getEmployee(@PathVariable Long employeeId) {
-        LOGGER.info("Fetching users with id" + employeeId);
-        return userRepository.findById(employeeId);
+    @GetMapping("/api/users/{userId}")
+    public Optional<User> getEmployee(@PathVariable Long userId) {
+        LOGGER.info("Fetching users with id" + userId);
+        return userRepository.findById(userId);
     }
 
     @PostMapping("/api/users")
@@ -41,26 +41,23 @@ public class UserController {
         return userRepository.save(users);
     }
 
-    @PutMapping("/api/users/{employeeId}")
-    public User updateEmployee(@PathVariable Long employeeId, @Valid @RequestBody User updatedEmployee) {
-        LOGGER.info("Updating users with id: " + employeeId);
-        return userRepository.findById(employeeId).map(users -> {
-//            users.setFirstName(updatedEmployee.getFirstName());
-//            users.setInfix(updatedEmployee.getInfix());
-//            users.setLastName(updatedEmployee.getLastName());
-//            users.setEmails(updatedEmployee.getEmails());
-//            users.setPhones(updatedEmployee.getPhones());
+    @PutMapping("/api/users/{userId}")
+    public User updateEmployee(@PathVariable Long userId, @Valid @RequestBody User updatedUser) {
+        LOGGER.info("Updating users with id: " + userId);
+        return userRepository.findById(userId).map(user -> {
+            user.setPassword(updatedUser.getPassword());
+            user.setActions(updatedUser.getActions());
 
-            return userRepository.save(users);
-        }).orElseThrow(() -> new ResourceNotFoundException("User not found with id " + employeeId));
+            return userRepository.save(user);
+        }).orElseThrow(() -> new ResourceNotFoundException("User not found with id " + userId));
     }
 
-    @DeleteMapping("/api/users/{employeeId}")
-    public ResponseEntity<?> deleteEmployee(@PathVariable Long employeeId) {
-        LOGGER.info("Deleting customer with id: " + employeeId);
-        return userRepository.findById(employeeId).map(users -> {
-            userRepository.delete(users);
+    @DeleteMapping("/api/users/{userId}")
+    public ResponseEntity<?> deleteEmployee(@PathVariable Long userId) {
+        LOGGER.info("Deleting customer with id: " + userId);
+        return userRepository.findById(userId).map(user -> {
+            userRepository.delete(user);
             return ResponseEntity.ok().build();
-        }).orElseThrow(() -> new ResourceNotFoundException("User not found with id" + employeeId));
+        }).orElseThrow(() -> new ResourceNotFoundException("User not found with id" + userId));
     }
 }

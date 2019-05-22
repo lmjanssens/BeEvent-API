@@ -15,7 +15,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "userID", columnDefinition = "serial")
+    @Column(name = "userid", columnDefinition = "serial")
     private Long id;
 
     @NotNull
@@ -33,4 +33,34 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private Set<UserAction> actions;
+
+    public User() {}
+
+    public User(Long id) {
+        this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Set<UserAction> getActions() {
+        return actions;
+    }
+
+    public void setActions(Set<UserAction> actions) {
+        this.actions = actions;
+    }
 }
