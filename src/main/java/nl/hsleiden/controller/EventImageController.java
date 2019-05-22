@@ -7,6 +7,7 @@ import nl.hsleiden.repository.EventRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,7 +38,7 @@ public class EventImageController {
      * @param eventImageId id of event image
      * @return a specific event image object
      */
-    @GetMapping("/api/eventimage/{eventimageid}")
+    @GetMapping("/api/eventimage/{eventImageId}")
     public Optional<EventImage> getSpecificEventImage(@PathVariable Long eventImageId) {
         LOGGER.info("Fetching event image of id " + eventImageId);
         return eventImageRepo.findById(eventImageId);
@@ -49,7 +50,7 @@ public class EventImageController {
      * @param eventImage a JSON-object obtained from the frontend ready to be inserted to the database
      * @return an inserted event image object
      */
-    @PostMapping("/api/eventImage/{eventId}")
+    @PostMapping(value = "/api/eventimage/{eventId}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public EventImage createEventImage(@PathVariable(value = "eventId") Long eventId,
                                        @Valid @RequestBody EventImage eventImage)
     {
@@ -58,6 +59,21 @@ public class EventImageController {
             eventImage.setEvent(event);
             return eventImageRepo.save(eventImage);
         }).orElseThrow(() -> new ResourceNotFoundException("No event found with id " + eventId));
+    }
+
+    /**
+     * For updating an event image object
+     * @param eventImageId id of event image
+     * @param eventImage JSON-object retrieved from the backend ready to be updated to the database
+     * @return An updated event image object
+     */
+    @PutMapping(value = "/api/eventimage/{eventImageId}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public EventImage updateEventImage(@PathVariable Long eventImageId, @Valid @RequestBody EventImage eventImage) {
+        LOGGER.info("Updating event image of id " + eventImageId);
+        return eventImageRepo.findById(eventImageId).map(updateEventImage -> {
+            updateEventImage.setImagePath(eventImage.getImagePath());
+            return eventImageRepo.save(updateEventImage);
+        }).orElseThrow(() -> new ResourceNotFoundException("Cannot find an event image of id " + eventImageId));
     }
 
     /**

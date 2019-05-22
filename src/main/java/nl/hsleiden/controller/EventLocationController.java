@@ -62,8 +62,8 @@ public class EventLocationController {
         LOGGER.info("Updating eventlocation with id: " + locationId);
         return eventLocationRepository.findById(locationId).map(eventLocation -> {
             eventLocation.setName(updatedEventLocation.getName());
-            eventLocation.setDescription(eventLocation.getDescription());
-            eventLocation.setRoutePicture(eventLocation.getRoutePicture());
+            eventLocation.setDescription(updatedEventLocation.getDescription());
+            eventLocation.setRoutePicture(updatedEventLocation.getRoutePicture());
             return eventLocationRepository.save(eventLocation);
         }).orElseThrow(() -> new ResourceNotFoundException("Event location not found with id " + locationId));
     }

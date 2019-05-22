@@ -1,9 +1,9 @@
 package nl.hsleiden.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.validator.constraints.Length;
-import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -15,15 +15,16 @@ import java.util.Set;
  */
 
 @Entity
-@Table(name = "event")
+@Table(name = "events")
 public class Event {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "eventID", columnDefinition = "SERIAL")
+    @Column(name = "eventid", columnDefinition = "SERIAL")
     private Long id;
 
-
+    @Column(name = "supplierid")
+    @JsonIgnore
     private Long supplierId;
 
     @ManyToOne
@@ -36,12 +37,12 @@ public class Event {
     @OneToMany(mappedBy = "event")
     private Set<EventImage> eventImages;
 
-    @Column(name = "ownEvent", nullable = false,columnDefinition = "boolean default true")
+    @Column(name = "ownevent", nullable = false,columnDefinition = "boolean default true")
     private boolean ownEvent;
 
     @NotNull
     @Length(max = 30)
-    @Column(name = "name")
+    @Column(name = "eventname")
     private String name;
 
     @NotNull
@@ -49,33 +50,32 @@ public class Event {
     private String description;
 
     @NotNull
-    @Column(name = "program")
+    @Column(name = "eventprogram")
     private String program;
 
     @NotNull
     @Column(name = "duration")
-    private double duration;
+    private String duration;
 
     @Column(name = "options")
     private String options;
 
     @NotNull
-    @Column(name = "pricePp")
+    @Column(name = "pricepp")
     private double pricePerPerson;
 
     @NotNull
-    @Column(name = "priceBuyPp")
+    @Column(name = "pricebuypp")
     private double priceBuyPerPerson;
 
     @NotNull
     @Column(name = "btw")
     private double btw;
 
-    @NotNull
-    @Column(name = "buyNotes")
-    private String buyNotes;
+    @Column(name = "note")
+    private String note;
 
-    public Event(Long supplierId, EventLocation location, Set<RegisteredEvent> registeredEvents, Set<EventImage> eventImages, boolean ownEvent, @NotNull @Length(max = 30) String name, @NotNull String description, @NotNull String program, @NotNull double duration, String options, @NotNull double pricePerPerson, @NotNull double priceBuyPerPerson, @NotNull double btw, @NotNull String buyNotes) {
+    public Event(Long supplierId, EventLocation location, Set<RegisteredEvent> registeredEvents, Set<EventImage> eventImages, boolean ownEvent, @NotNull @Length(max = 30) String name, @NotNull String description, @NotNull String program, @NotNull String duration, String options, @NotNull double pricePerPerson, @NotNull double priceBuyPerPerson, @NotNull double btw, @NotNull String note) {
         this.supplierId = supplierId;
         this.location = location;
         this.registeredEvents = registeredEvents;
@@ -89,8 +89,10 @@ public class Event {
         this.pricePerPerson = pricePerPerson;
         this.priceBuyPerPerson = priceBuyPerPerson;
         this.btw = btw;
-        this.buyNotes = buyNotes;
+        this.note = note;
     }
+
+    public Event() {}
 
     public Long getId() {
         return id;
@@ -156,11 +158,11 @@ public class Event {
         this.program = program;
     }
 
-    public double getDuration() {
+    public String getDuration() {
         return duration;
     }
 
-    public void setDuration(double duration) {
+    public void setDuration(String duration) {
         this.duration = duration;
     }
 
@@ -196,11 +198,11 @@ public class Event {
         this.btw = btw;
     }
 
-    public String getBuyNotes() {
-        return buyNotes;
+    public String getNote() {
+        return note;
     }
 
-    public void setBuyNotes(String buyNotes) {
-        this.buyNotes = buyNotes;
+    public void setNote(String note) {
+        this.note = note;
     }
 }
