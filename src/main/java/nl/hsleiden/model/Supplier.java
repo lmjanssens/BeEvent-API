@@ -1,5 +1,6 @@
 package nl.hsleiden.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
@@ -11,72 +12,56 @@ import java.util.Set;
 public class Supplier {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "supplierID", columnDefinition = "serial")
+    @Column(name = "supplierid", columnDefinition = "serial")
     private Long id;
 
     @NotNull
     @Length(max = 100)
-    @Column(name = "first_name")
-    private String firstName;
-
-    @Length(max = 20)
-    @Column(name = "infix")
-    private String infix;
+    @Column(name = "suppliername")
+    @JsonProperty("name")
+    private String name;
 
     @NotNull
-    @Length(max = 100)
-    @Column(name = "last_name")
-    private String lastName;
-
-    @NotNull
-    @Column(name = "contact_person")
+    @Column(name = "contactperson")
+    @JsonProperty("contact_person")
     private String contactPerson;
 
     @NotNull
-    @Column(name = "contact_person")
+    @Column(name = "supervisor")
+    @JsonProperty("supervisor")
     private String supervisor;
 
     @Length(max = 150)
     @Column(name = "website")
+    @JsonProperty("website")
     private String website;
 
     @Column(name = "note")
+    @JsonProperty("note")
     private String note;
 
     @Column(name = "image")
+    @JsonProperty("image")
     private String image;
 
     @OneToMany(mappedBy = "supplier")
+    @JsonProperty("email_addresses")
     private Set<SupplierEmail> emails;
 
     @OneToMany(mappedBy = "supplier")
+    @JsonProperty("phone_numbers")
     private Set<SupplierPhone> phones;
 
     @OneToMany(mappedBy = "supplier")
+    @JsonProperty("contracts")
     private Set<SupplierContract> contracts;
 
-    public String getFirstName() {
-        return firstName;
+    public String getName() {
+        return name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getInfix() {
-        return infix;
-    }
-
-    public void setInfix(String infix) {
-        this.infix = infix;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getContactPerson() {

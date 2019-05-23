@@ -1,0 +1,31 @@
+###
+
+
+POST http://localhost:8080/api/suppliers
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "Hoboken",
+  "contact_person": "Hoboken45",
+  "supervisor": "Hoboken45",
+  "email_addresses": [
+    { "email": "sushi45@example.com" }
+  ],
+  "phone_numbers": [
+    { "phone": "+31 6 12345666" }
+  ],
+  "contracts": [
+    {
+      "type": true,
+      "title": "Inkoop",
+      "description": "Sushi rolls verkoop contract",
+      "inclubtw": "Sushi rolls | 20-;",
+      "percentage": 21,
+      "pre_conditions": "Minimaal 500 sushi rolls afnemen",
+      "insurance": "Geen",
+      "responsibility": "Artemis",
+      "extras": "5 sushi rolls gratis bij een afname van 1000 sushi rolls"
+    }
+  ]
+}
