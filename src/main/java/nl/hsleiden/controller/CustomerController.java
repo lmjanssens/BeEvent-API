@@ -64,6 +64,7 @@ public class CustomerController {
     @PutMapping("/api/customers/{customerId}")
     public Customer updateCustomer(@PathVariable Long customerId, @Valid @RequestBody Customer updatedCustomer) {
         LOGGER.info("Updating customer with id: " + customerId);
+
         return customerRepository.findById(customerId).map(customer -> {
             customer.setAddress(updatedCustomer.getAddress());
             customer.setCity(updatedCustomer.getCity());

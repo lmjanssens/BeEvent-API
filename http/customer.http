@@ -16,9 +16,9 @@ Accept: application/json
 
 {
   "title": "mevrouw",
-  "firstName": "Nina",
+  "first_name": "Nina",
   "infix": "van der",
-  "lastName": "Hulde",
+  "last_name": "Hulde",
   "address": "Bloemenlaan 57",
   "zipcode": "9284WL",
   "country": "Nederland",
@@ -40,19 +40,19 @@ Accept: application/json
 
 {
   "title": "heer",
-  "firstName": "Niels",
+  "first_name": "Niels",
   "infix": "der",
-  "lastName": "achternaam",
+  "last_name": "achternaam",
   "address": "Straat 123",
   "zipcode": "2323JA",
   "country": "Nederland",
   "city": "Alkmaar",
   "gender": "m",
   "email_addresses": [
-    { "email": "test@test.com" }
+    { "email": "test12@test.com" }
   ],
   "phone_numbers": [
-    { "phonenumber": "06-43430303" }
+    { "phonenumber": "06-43430309" }
   ]
 }
 

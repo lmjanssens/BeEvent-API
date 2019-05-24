@@ -58,7 +58,6 @@ public class Customer {
     private String country;
 
     @NotNull
-    @Length(max = 1)
     @Column(name = "gender")
     @JsonProperty("gender")
     private char gender;
