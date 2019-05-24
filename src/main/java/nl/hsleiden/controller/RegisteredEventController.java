@@ -3,6 +3,7 @@ package nl.hsleiden.controller;
 import nl.hsleiden.exception.ResourceNotFoundException;
 import nl.hsleiden.model.RegisteredEvent;
 import nl.hsleiden.repository.EventRepository;
+import nl.hsleiden.repository.InstructorRepository;
 import nl.hsleiden.repository.RegisteredEventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -29,6 +30,9 @@ public class RegisteredEventController {
     @Autowired
     private EventRepository eventRepo;
 
+    @Autowired
+    private InstructorRepository instructorRepo;
+
     /**
      * For retrieving a list of registered events stored in the database
      * @return a list of registered events
@@ -50,16 +54,23 @@ public class RegisteredEventController {
     /**
      * For inserting an event object to a database
      * @param eventId id of event
-     * @param event a JSON-object obtained from the frontend ready to be inserted to the database.
+     * @param registeredEvent a JSON-object obtained from the frontend ready to be inserted to the database.
      * @return an inserted registered event object
      */
-    @PostMapping("/api/registeredevents/{eventId}")
-    public RegisteredEvent createRegisteredEvent(@PathVariable Long eventId,@Valid @RequestBody RegisteredEvent event){
+    @PostMapping("/api/registeredevents/{eventId}/{instructorId}")
+    public RegisteredEvent createRegisteredEvent(@PathVariable Long eventId,
+                                                        @PathVariable Long instructorId,
+                                                        @Valid @RequestBody RegisteredEvent registeredEvent){
         LOGGER.info("Creating registered event");
+
         return eventRepo.findById(eventId).map(event1 -> {
-            event.setEvent(event1);
-            return registeredEventRepo.save(event);
-        }).orElseThrow(() -> new ResourceNotFoundException("No event found with id " + eventId));
+            registeredEvent.setEvent(event1);
+            return instructorRepo.findById(instructorId).map(instructor -> {
+                registeredEvent.setInstructor(instructor);
+                return registeredEventRepo.save(registeredEvent);
+            }).orElseThrow(() -> new ResourceNotFoundException("No instructor found of id " + instructorId));
+        }).orElseThrow(() -> new ResourceNotFoundException("No event found of id " + eventId));
+
     }
 
     /**

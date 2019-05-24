@@ -15,20 +15,23 @@ public class RegisteredEvent {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "eventregid")
+    @Column(name = "registeredeventid")
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "eventID", nullable = false)
+    @JoinColumn(name = "eventid", nullable = false)
     private Event event;
 
-//    private Instructor instructor; For that we need first a instructor model
+    @ManyToOne
+    @JoinColumn(name = "instructorid", nullable = false)
+    private Instructor instructor;
 
-
-    public RegisteredEvent(Event event) {
+    public RegisteredEvent(Event event, Instructor instructor) {
         this.event = event;
+        this.instructor = instructor;
     }
 
+    public RegisteredEvent() {}
 
     public Long getId() {
         return id;
@@ -45,4 +48,13 @@ public class RegisteredEvent {
     public void setEvent(Event event) {
         this.event = event;
     }
+
+    public Instructor getInstructor() {
+        return instructor;
+    }
+
+    public void setInstructor(Instructor instructor) {
+        this.instructor = instructor;
+    }
+
 }

@@ -56,8 +56,9 @@ public class EventController {
      * @param event id of event stored in the database
      * @return an inserted event object
      */
-    @PostMapping("/api/events/{eventLocationId}/{eventImageId}")
+    @PostMapping("/api/events/{supplierId}/{eventLocationId}")
     public Event createEvent(@PathVariable(value = "eventLocationId") Long eventLocationId,
+                             @PathVariable Long supplierId,
                              @Valid @RequestBody Event event){
 
         LOGGER.info("Creating event");

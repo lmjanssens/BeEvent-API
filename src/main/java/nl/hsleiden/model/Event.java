@@ -23,18 +23,22 @@ public class Event {
     @Column(name = "eventid", columnDefinition = "SERIAL")
     private Long id;
 
-    @Column(name = "supplierid")
+    @ManyToOne
+    @JoinColumn(name = "supplierid")
     @JsonIgnore
-    private Long supplierId;
+    private Supplier supplier;
 
     @ManyToOne
     @JoinColumn(name = "locationid")
+    @JsonIgnore
     private EventLocation location;
 
     @OneToMany(mappedBy = "event")
+    @JsonIgnore
     private Set<RegisteredEvent> registeredEvents;
 
     @OneToMany(mappedBy = "event")
+    @JsonIgnore
     private Set<EventImage> eventImages;
 
     @Column(name = "ownevent", nullable = false,columnDefinition = "boolean default true")
@@ -75,8 +79,8 @@ public class Event {
     @Column(name = "note")
     private String note;
 
-    public Event(Long supplierId, EventLocation location, Set<RegisteredEvent> registeredEvents, Set<EventImage> eventImages, boolean ownEvent, @NotNull @Length(max = 30) String name, @NotNull String description, @NotNull String program, @NotNull String duration, String options, @NotNull double pricePerPerson, @NotNull double priceBuyPerPerson, @NotNull double btw, @NotNull String note) {
-        this.supplierId = supplierId;
+    public Event(Supplier supplier, EventLocation location, Set<RegisteredEvent> registeredEvents, Set<EventImage> eventImages, boolean ownEvent, @NotNull @Length(max = 30) String name, @NotNull String description, @NotNull String program, @NotNull String duration, String options, @NotNull double pricePerPerson, @NotNull double priceBuyPerPerson, @NotNull double btw, String note) {
+        this.supplier = supplier;
         this.location = location;
         this.registeredEvents = registeredEvents;
         this.eventImages = eventImages;
@@ -92,7 +96,9 @@ public class Event {
         this.note = note;
     }
 
-    public Event() {}
+    public Event() {
+
+    }
 
     public Long getId() {
         return id;
@@ -100,6 +106,14 @@ public class Event {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Supplier getSupplier() {
+        return supplier;
+    }
+
+    public void setSupplier(Supplier supplier) {
+        this.supplier = supplier;
     }
 
     public EventLocation getLocation() {
