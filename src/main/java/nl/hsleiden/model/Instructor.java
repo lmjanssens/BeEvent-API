@@ -12,11 +12,11 @@ public class Instructor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "employeeID", columnDefinition = "serial")
+    @Column(name = "instructorid", columnDefinition = "serial")
     private Long id;
 
     @OneToOne
-    @JoinColumn(name = "userID", nullable = false)
+    @JoinColumn(name = "userid", nullable = false)
     private User user;
 
     @NotNull
@@ -35,7 +35,7 @@ public class Instructor {
 
     @NotNull
     @Length(min = 10, max = 20)
-    @Column(name = "phoneNumber")
+    @Column(name = "phonenumber")
     private String phoneNumber;
 
     @NotNull

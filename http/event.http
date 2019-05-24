@@ -1,0 +1,62 @@
+###
+
+
+GET http://localhost:8080/api/users
+Accept: application:json
+
+###
+
+GET http://localhost:8080/api/users/1
+Accept: application/json
+
+###
+
+POST http://localhost:8080/api/events
+Content-Type: application/json
+Accept: application/json###
+
+
+GET http://localhost:8080/api/events
+Accept: application:json
+
+###
+
+GET http://localhost:8080/api/events/1
+Accept: application/json
+
+###
+
+POST http://localhost:8080/api/events
+Content-Type: application/json
+Accept: application/json
+
+{
+  "ownEvent": true,
+  "name": "Be On ICE",
+  "description": "This is a great event",
+  "program": "Glope Ijsspelen",
+  "duration": "1:30",
+  "options": null,
+  "pricePerPerson": 130.5,
+  "priceBuyPerPerson": 0,
+  "btw": 0.21,
+  "note": null
+}
+
+###
+
+PUT http://localhost:8080/api/users/1
+Content-Type: application/json
+Accept: application/json
+
+{
+  "password": "newpassword"
+}
+
+###
+
+DELETE http://localhost:8080/api/users/1
+Accept: application/json
+
+###
+
