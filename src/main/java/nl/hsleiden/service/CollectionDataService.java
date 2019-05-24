@@ -1,8 +1,6 @@
 package nl.hsleiden.service;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.ConcurrentModificationException;
+import java.util.*;
 
 public class CollectionDataService<T> {
     public Collection<T> getToBeDeleted(Collection<T> oldCollection, Collection<T> newCollection) {
@@ -29,7 +27,7 @@ public class CollectionDataService<T> {
         return this.getToBeDeleted(newCollection, oldCollection);
     }
 
-    public Collection<T> mergedCollection(Collection<T> collection1, Collection<T> collection2) {
+    private Collection<T> mergeCollection(Collection<T> collection1, Collection<T> collection2) {
         ArrayList<T> list = new ArrayList<>();
 
         try {
@@ -49,7 +47,7 @@ public class CollectionDataService<T> {
         return list;
     }
 
-    public Collection<T> substractCollection(Collection<T> collection1, Collection<T> collection2) {
+    private Collection<T> substractCollection(Collection<T> collection1, Collection<T> collection2) {
         Collection<T> tmpCollection = collection1;
 
         try {
@@ -60,5 +58,21 @@ public class CollectionDataService<T> {
         }
 
         return tmpCollection;
+    }
+
+    /**
+     * Create the correct Set to store in the entity model
+     * @param collection
+     * @param toBeSaved
+     * @param toBeDeleted
+     * @return
+     */
+    public Set<T> getDefinitiveCollection(Collection<T> collection, Collection<T> toBeSaved, Collection<T> toBeDeleted) {
+        return new HashSet<T>(
+                mergeCollection(
+                        substractCollection(collection, toBeDeleted),
+                        toBeSaved
+                )
+        );
     }
 }

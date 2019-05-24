@@ -50,11 +50,8 @@ public class EmployeeController {
         LOGGER.info("Creating employee.");
         Employee savedEmployee = employeeRepository.save(employee);
 
-        Collection<EmployeeEmail> employeeEmails = employee.getEmails();
-        Collection<EmployeePhone> employeePhones = employee.getPhones();
-
-        this.saveEmailAddresses(savedEmployee, employeeEmails);
-        this.savePhoneNumbers(savedEmployee, employeePhones);
+        this.saveEmailAddresses(savedEmployee, employee.getEmails());
+        this.savePhoneNumbers(savedEmployee, employee.getPhones());
 
         return savedEmployee;
     }
@@ -67,32 +64,24 @@ public class EmployeeController {
             employee.setInfix(updatedEmployee.getInfix());
             employee.setLastName(updatedEmployee.getLastName());
 
-            Collection<EmployeeEmail> emailsToSave = emailCollectionDataService.getToBeSaved(employee.getEmails(), updatedEmployee.getEmails());
-            Collection<EmployeeEmail> emailsToDelete = emailCollectionDataService.getToBeDeleted(employee.getEmails(), updatedEmployee.getEmails());
+            Collection<EmployeeEmail> emailsToSaved = emailCollectionDataService.getToBeSaved(employee.getEmails(), updatedEmployee.getEmails());
+            Collection<EmployeeEmail> emailsToDeletes = emailCollectionDataService.getToBeDeleted(employee.getEmails(), updatedEmployee.getEmails());
 
-            Collection<EmployeePhone> phonesToSave = phoneCollectionDataService.getToBeSaved(employee.getPhones(), updatedEmployee.getPhones());
-            Collection<EmployeePhone> phonesToDelete = phoneCollectionDataService.getToBeDeleted(employee.getPhones(), updatedEmployee.getPhones());
+            Collection<EmployeePhone> phonesToSaved = phoneCollectionDataService.getToBeSaved(employee.getPhones(), updatedEmployee.getPhones());
+            Collection<EmployeePhone> phonesToDeleted = phoneCollectionDataService.getToBeDeleted(employee.getPhones(), updatedEmployee.getPhones());
 
-            saveEmailAddresses(employee, emailsToSave);
-            deleteEmailAddresses(emailsToDelete);
+            saveEmailAddresses(employee, emailsToSaved);
+            deleteEmailAddresses(emailsToDeletes);
 
-            savePhoneNumbers(employee, phonesToSave);
-            deletePhoneNumbers(phonesToDelete);
+            savePhoneNumbers(employee, phonesToSaved);
+            deletePhoneNumbers(phonesToDeleted);
 
-            Set<EmployeeEmail> employeeEmails = new HashSet<>(emailCollectionDataService.mergedCollection(
-                    emailCollectionDataService.substractCollection(
-                            employee.getEmails(), emailsToDelete
-                    ), emailsToSave
-            ));
-
-            Set<EmployeePhone> employeePhones = new HashSet<>(phoneCollectionDataService.mergedCollection(
-                    phoneCollectionDataService.substractCollection(
-                            employee.getPhones(), phonesToDelete
-                    ), phonesToSave
-            ));
-
-            employee.setEmails(employeeEmails);
-            employee.setPhones(employeePhones);
+            employee.setEmails(
+                    emailCollectionDataService.getDefinitiveCollection(employee.getEmails(), emailsToSaved, emailsToDeletes)
+            );
+            employee.setPhones(
+                    phoneCollectionDataService.getDefinitiveCollection(employee.getPhones(), phonesToSaved, phonesToDeleted)
+            );
 
             return employeeRepository.save(employee);
         }).orElseThrow(() -> new ResourceNotFoundException("Employee not found with id " + employeeId));
