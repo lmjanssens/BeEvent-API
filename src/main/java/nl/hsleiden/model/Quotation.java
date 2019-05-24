@@ -1,6 +1,11 @@
 package nl.hsleiden.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.hibernate.validator.constraints.Length;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.sql.Date;
 
 @Entity
 @Table(name = "quotation")
@@ -11,31 +16,30 @@ public class Quotation {
     private Long quotationNumber;
 
     @Column(name = "orderid")
+    @JsonProperty("orderid")
+    @NotNull
     private long orderId;
 
     @Column(name = "datequotation")
-    private String dateQuotation;
+    @JsonProperty("datequotation")
+    @NotNull
+    private Date dateQuotation;
 
     @Column(name = "bankaccount")
+    @Length(max = 255)
+    @JsonProperty("bankaccount")
+    @NotNull
     private String bankAccount;
 
     @Column(name = "pricebtw")
-    private int priceBtw;
+    @JsonProperty("pricebtw")
+    @NotNull
+    private double priceBtw;
 
     @Column(name = "pricepp")
-    private int pricePp;
-
-    public Quotation(long orderId, String dateQuotation, String bankAccount, int priceBtw, int pricePp) {
-        this.orderId = orderId;
-        this.dateQuotation = dateQuotation;
-        this.bankAccount = bankAccount;
-        this.priceBtw = priceBtw;
-        this.pricePp = pricePp;
-    }
-
-    public Quotation() {
-
-    }
+    @JsonProperty("pricepp")
+    @NotNull
+    private double pricePp;
 
     public Long getQuotationNumber() {
         return quotationNumber;
@@ -53,11 +57,11 @@ public class Quotation {
         this.orderId = orderId;
     }
 
-    public String getDateQuotation() {
+    public Date getDateQuotation() {
         return dateQuotation;
     }
 
-    public void setDateQuotation(String dateQuotation) {
+    public void setDateQuotation(Date dateQuotation) {
         this.dateQuotation = dateQuotation;
     }
 
@@ -69,19 +73,19 @@ public class Quotation {
         this.bankAccount = bankAccount;
     }
 
-    public int getPriceBtw() {
+    public double getPriceBtw() {
         return priceBtw;
     }
 
-    public void setPriceBtw(int priceBtw) {
+    public void setPriceBtw(double priceBtw) {
         this.priceBtw = priceBtw;
     }
 
-    public int getPricePp() {
+    public double getPricePp() {
         return pricePp;
     }
 
-    public void setPricePp(int pricePp) {
+    public void setPricePp(double pricePp) {
         this.pricePp = pricePp;
     }
 }

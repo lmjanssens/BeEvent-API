@@ -15,7 +15,7 @@ import java.util.Optional;
 
 @RestController
 public class QuotationController {
-    private final Logger LOGGER = LoggerFactory.getLogger(CustomerController.class);
+    private final Logger LOGGER = LoggerFactory.getLogger(QuotationController.class);
 
     @Autowired
     private QuotationRepository quotationRepository;

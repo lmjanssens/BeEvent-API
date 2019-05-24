@@ -15,7 +15,7 @@ import java.util.Optional;
 
 @RestController
 public class CateringController {
-    private final Logger LOGGER = LoggerFactory.getLogger(CustomerController.class);
+    private final Logger LOGGER = LoggerFactory.getLogger(CateringController.class);
 
     @Autowired
     private CateringRepository cateringRepository;

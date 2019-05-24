@@ -1,6 +1,10 @@
 package nl.hsleiden.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.hibernate.validator.constraints.Length;
+
 import javax.persistence.*;
+import java.sql.Date;
 
 @Entity
 @Table(name = "invoice")
@@ -11,69 +15,62 @@ public class Invoice {
     private Long invoiceNumber;
 
     @Column(name = "orderid")
+    @JsonProperty("orderid")
     private long orderId;
 
     @Column(name = "dateinvoice")
-    private String dateInvoice;
+    @JsonProperty("dateinvoice")
+    private Date dateInvoice;
 
     @Column(name = "paymentextras")
+    @Length(max = 255)
+    @JsonProperty("paymentextras")
     private String paymentExtras;
 
     @Column(name = "pricepp")
+    @JsonProperty("pricepp")
     private int pricePp;
 
     @Column(name = "pricebtw")
+    @JsonProperty("pricebtw")
     private int priceBtw;
 
     @Column(name = "othercosts")
-    private int otherCosts;
+    @JsonProperty("othercosts")
+    private double otherCosts;
 
     @Column(name = "othercostsbtw")
-    private int otherCostsBtw;
+    @JsonProperty("othercostsbtw")
+    private double otherCostsBtw;
 
     @Column(name = "tobepaid")
-    private int toBePaid;
+    @JsonProperty("tobepaid")
+    private double toBePaid;
 
     @Column(name = "paid")
-    private int paid;
+    @JsonProperty("paid")
+    private double paid;
 
     @Column(name = "datepartpaid")
-    private String datePartPaid;
+    @JsonProperty("datepartpaid")
+    private Date datePartPaid;
 
     @Column(name = "datefullpaid")
-    private String dateFullPaid;
+    @JsonProperty("datefullpaid")
+    private Date dateFullPaid;
 
     @Column(name = "bankaccount")
+    @Length(max = 255)
+    @JsonProperty("bankaccount")
     private String bankAccount;
 
-    @Column(name = "dateinvoicemailsent")
-    private String dateInvoiceMailSent;
+    @Column(name = "dateinvoicemailsend")
+    @JsonProperty("dateinvoicemailsend")
+    private Date dateInvoiceMailSent;
 
     @Column(name = "excludefrominvoicealert")
-    private String excludeFromInvoiceAlert;
-
-    public Invoice(long orderId, String dateInvoice, String paymentExtras, int pricePp, int priceBtw, int otherCosts,
-                   int otherCostsBtw, int toBePaid, int paid, String datePartPaid, String dateFullPaid,
-                   String bankAccount, String dateInvoiceMailSent, String excludeFromInvoiceAlert) {
-        this.orderId = orderId;
-        this.dateInvoice = dateInvoice;
-        this.paymentExtras = paymentExtras;
-        this.pricePp = pricePp;
-        this.priceBtw = priceBtw;
-        this.otherCosts = otherCosts;
-        this.otherCostsBtw = otherCostsBtw;
-        this.toBePaid = toBePaid;
-        this.paid = paid;
-        this.datePartPaid = datePartPaid;
-        this.dateFullPaid = dateFullPaid;
-        this.bankAccount = bankAccount;
-        this.dateInvoiceMailSent = dateInvoiceMailSent;
-        this.excludeFromInvoiceAlert = excludeFromInvoiceAlert;
-    }
-
-    public Invoice() {
-
-    }
+    @JsonProperty("excludefrominvoicealert")
+    private boolean excludeFromInvoiceAlert;
 
     public Long getInvoiceNumber() {
         return invoiceNumber;
@@ -89,14 +86,6 @@ public class Invoice {
 
     public void setOrderId(long orderId) {
         this.orderId = orderId;
-    }
-
-    public String getDateInvoice() {
-        return dateInvoice;
-    }
-
-    public void setDateInvoice(String dateInvoice) {
-        this.dateInvoice = dateInvoice;
     }
 
     public String getPaymentExtras() {
@@ -123,52 +112,36 @@ public class Invoice {
         this.priceBtw = priceBtw;
     }
 
-    public int getOtherCosts() {
+    public double getOtherCosts() {
         return otherCosts;
     }
 
-    public void setOtherCosts(int otherCosts) {
+    public void setOtherCosts(double otherCosts) {
         this.otherCosts = otherCosts;
     }
 
-    public int getOtherCostsBtw() {
+    public double getOtherCostsBtw() {
         return otherCostsBtw;
     }
 
-    public void setOtherCostsBtw(int otherCostsBtw) {
+    public void setOtherCostsBtw(double otherCostsBtw) {
         this.otherCostsBtw = otherCostsBtw;
     }
 
-    public int getToBePaid() {
+    public double getToBePaid() {
         return toBePaid;
     }
 
-    public void setToBePaid(int toBePaid) {
+    public void setToBePaid(double toBePaid) {
         this.toBePaid = toBePaid;
     }
 
-    public int getPaid() {
+    public double getPaid() {
         return paid;
     }
 
-    public void setPaid(int paid) {
+    public void setPaid(double paid) {
         this.paid = paid;
-    }
-
-    public String getDatePartPaid() {
-        return datePartPaid;
-    }
-
-    public void setDatePartPaid(String datePartPaid) {
-        this.datePartPaid = datePartPaid;
-    }
-
-    public String getDateFullPaid() {
-        return dateFullPaid;
-    }
-
-    public void setDateFullPaid(String dateFullPaid) {
-        this.dateFullPaid = dateFullPaid;
     }
 
     public String getBankAccount() {
@@ -179,19 +152,43 @@ public class Invoice {
         this.bankAccount = bankAccount;
     }
 
-    public String getDateInvoiceMailSent() {
-        return dateInvoiceMailSent;
-    }
-
-    public void setDateInvoiceMailSent(String dateInvoiceMailSent) {
-        this.dateInvoiceMailSent = dateInvoiceMailSent;
-    }
-
-    public String getExcludeFromInvoiceAlert() {
+    public boolean getExcludeFromInvoiceAlert() {
         return excludeFromInvoiceAlert;
     }
 
-    public void setExcludeFromInvoiceAlert(String excludeFromInvoiceAlert) {
+    public void setExcludeFromInvoiceAlert(boolean excludeFromInvoiceAlert) {
         this.excludeFromInvoiceAlert = excludeFromInvoiceAlert;
+    }
+
+    public Date getDateInvoice() {
+        return dateInvoice;
+    }
+
+    public void setDateInvoice(Date dateInvoice) {
+        this.dateInvoice = dateInvoice;
+    }
+
+    public Date getDatePartPaid() {
+        return datePartPaid;
+    }
+
+    public void setDatePartPaid(Date datePartPaid) {
+        this.datePartPaid = datePartPaid;
+    }
+
+    public Date getDateFullPaid() {
+        return dateFullPaid;
+    }
+
+    public void setDateFullPaid(Date dateFullPaid) {
+        this.dateFullPaid = dateFullPaid;
+    }
+
+    public Date getDateInvoiceMailSent() {
+        return dateInvoiceMailSent;
+    }
+
+    public void setDateInvoiceMailSent(Date dateInvoiceMailSent) {
+        this.dateInvoiceMailSent = dateInvoiceMailSent;
     }
 }

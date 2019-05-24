@@ -1,0 +1,62 @@
+###
+
+GET http://localhost:8080/api/invoice
+Accept: application/json
+
+###
+
+GET http://localhost:8080/api/invoice/1
+Accept: application/json
+
+###
+
+POST http://localhost:8080/api/invoice
+Content-Type: application/json
+Accept: application/json
+
+{
+  "orderid": 1,
+  "dateinvoice": "2019-01-10T13:37:42",
+  "paymentextras": "dit kost te veel",
+  "pricepp": 1242.99,
+  "pricebtw": 12453,
+  "othercosts": 120,
+  "othercostsbtw": 190,
+  "tobepaid": 1242,
+  "paid": 4,
+  "datepartpaid": "2019-01-10T13:37:42",
+  "datefullpaid": "2019-01-10T13:37:42",
+  "bankaccount": "INGB13371337",
+  "dateinvoicemailsend": "2019-01-10T13:37:42",
+  "excludefrominvoicealert": true
+}
+
+###
+
+PUT http://localhost:8080/api/invoice/1
+Content-Type: application/json
+Accept: application/json
+
+{
+  "orderid": 1,
+  "dateinvoice": "2019-01-10T13:37:42",
+  "paymentextras": "dit kost veel te veel",
+  "pricepp": 1542.99,
+  "pricebtw": 12453,
+  "othercosts": 420,
+  "othercostsbtw": 190,
+  "tobepaid": 1242,
+  "paid": 4,
+  "datepartpaid": "2019-01-10T13:37:42",
+  "datefullpaid": "2019-01-10T13:37:42",
+  "bankaccount": "INGB13371337",
+  "dateinvoicemailsend": "2019-01-10T13:37:42",
+  "excludefrominvoicealert": true
+}
+
+###
+
+DELETE http://localhost:8080/api/invoice/6
+Accept: application/json
+
+###

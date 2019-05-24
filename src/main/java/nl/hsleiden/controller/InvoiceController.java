@@ -15,7 +15,7 @@ import java.util.Optional;
 
 @RestController
 public class InvoiceController {
-    private final Logger LOGGER = LoggerFactory.getLogger(CustomerController.class);
+    private final Logger LOGGER = LoggerFactory.getLogger(InvoiceController.class);
 
     @Autowired
     private InvoiceRepository invoiceRepository;
@@ -29,7 +29,7 @@ public class InvoiceController {
         return invoiceRepository.findById(invoiceNumber);
     }
 
-    @PostMapping("/api/invoiceNumber")
+    @PostMapping("/api/invoice")
     public Invoice createInvoice(@Valid @RequestBody Invoice invoice) {
         LOGGER.info("Creating new invoice...");
         return invoiceRepository.save(invoice);
