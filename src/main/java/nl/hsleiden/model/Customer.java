@@ -1,9 +1,11 @@
 package nl.hsleiden.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Set;
 
 
 @Entity
@@ -12,63 +14,72 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "customerid", columnDefinition = "serial")
+    @JsonProperty("customerId")
     private Long id;
 
     @Length(max = 10)
     @Column(name = "title")
+    @JsonProperty("title")
     private String title;
 
     @NotNull
     @Length(max = 30)
     @Column(name = "first_name")
+    @JsonProperty("first_name")
     private String firstName;
 
     @Length(max = 15)
     @Column(name = "infix")
+    @JsonProperty("infix")
     private String infix;
 
     @NotNull
     @Length(max = 30)
     @Column(name = "last_name")
+    @JsonProperty("last_name")
     private String lastName;
 
     @NotNull
     @Length(max = 50)
     @Column(name = "address")
+    @JsonProperty("address")
     private String address;
 
     @NotNull
     @Length(max = 10)
     @Column(name = "zipcode")
+    @JsonProperty("zipcode")
     private String zipcode;
 
     @NotNull
     @Length(max = 50)
     @Column(name = "country")
+    @JsonProperty("country")
     private String country;
+
+    @NotNull
+    @Length(max = 1)
+    @Column(name = "gender")
+    @JsonProperty("gender")
+    private char gender;
 
     @NotNull
     @Length(max = 50)
     @Column(name = "city")
+    @JsonProperty("city")
     private String city;
 
+    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
+    @JsonProperty("email_addresses")
+    private Set<CustomerEmail> emails;
 
-    public Customer(Long id, String title, String firstName, String infix, String lastName, String address,
-                    String zipcode, String country, String city) {
-        this.id = id;
-        this.title = title;
-        this.firstName = firstName;
-        this.infix = infix;
-        this.lastName = lastName;
-        this.address = address;
-        this.zipcode = zipcode;
-        this.country = country;
-        this.city = city;
-    }
+    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
+    @JsonProperty("customer_orders")
+    private Set<CustomerOrder> orders;
 
-    public Customer() {
-
-    }
+    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
+    @JsonProperty("phone_numbers")
+    private Set<CustomerPhone> phones;
 
     public Long getId() {
         return id;
@@ -140,5 +151,37 @@ public class Customer {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public Set<CustomerEmail> getEmails() {
+        return emails;
+    }
+
+    public void setEmails(Set<CustomerEmail> emails) {
+        this.emails = emails;
+    }
+
+    public Set<CustomerOrder> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Set<CustomerOrder> orders) {
+        this.orders = orders;
+    }
+
+    public Set<CustomerPhone> getPhones() {
+        return phones;
+    }
+
+    public void setPhones(Set<CustomerPhone> phones) {
+        this.phones = phones;
+    }
+
+    public char getGender() {
+        return gender;
+    }
+
+    public void setGender(char gender) {
+        this.gender = gender;
     }
 }

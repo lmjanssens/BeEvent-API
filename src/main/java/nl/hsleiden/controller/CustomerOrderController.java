@@ -40,8 +40,8 @@ public class CustomerOrderController {
                                              @Valid @RequestBody CustomerOrder updatedCustomerOrder) {
         LOGGER.info("Updating customer order with id: " + customerOrderId);
         return customerOrderRepository.findById(customerOrderId).map(customerOrder -> {
-            customerOrder.setCustomerId(updatedCustomerOrder.getCustomerId());
-            customerOrder.setOrderId(updatedCustomerOrder.getOrderId());
+//            customerOrder.setCustomerId(updatedCustomerOrder.getCustomerId());
+//            customerOrder.setOrderId(updatedCustomerOrder.getOrderId());
             return customerOrderRepository.save(customerOrder);
         }).orElseThrow(() -> new ResourceNotFoundException("Customer order not found with id: " + customerOrderId));
     }
