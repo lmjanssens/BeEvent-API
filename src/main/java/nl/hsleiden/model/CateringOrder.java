@@ -1,9 +1,14 @@
 package nl.hsleiden.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.hibernate.validator.constraints.Length;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.sql.Date;
 
 @Entity
-@Table(name = "cateringorder")
+@Table(name = "catering_order")
 public class CateringOrder {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -11,49 +16,45 @@ public class CateringOrder {
     private Long id;
 
     @Column(name = "orderid")
+    @JsonProperty("orderid")
+    @NotNull
     private Long orderId;
 
     @Column(name = "cateringid")
+    @JsonProperty("cateringid")
+    @NotNull
     private Long cateringId;
 
     @Column(name = "datecateringoptions")
-    private String dateCateringOptions;
+    @JsonProperty("datecateringoptions")
+    private Date dateCateringOptions;
 
     @Column(name = "datecateringdefinite")
-    private String dateCateringDefinite;
+    @JsonProperty("datecateringdefinite")
+    private Date dateCateringDefinite;
 
-    @Column(name = "datecateringsent")
-    private String dateCateringSent;
+    @Column(name = "datecateringsend")
+    @JsonProperty("datecateringsend")
+    private Date dateCateringSend;
 
     @Column(name = "contactcateringoption")
+    @Length(max = 255)
+    @JsonProperty("contactcateringoption")
     private String contactCateringOption;
 
     @Column(name = "contactcateringdefinite")
+    @Length(max = 255)
+    @JsonProperty("contactcateringdefinite")
     private String contactCateringDefinite;
 
-    @Column(name = "contactcateringsent")
-    private String contactCateringSent;
+    @Column(name = "contactcateringsend")
+    @Length(max = 255)
+    @JsonProperty("contactcateringsend")
+    private String contactCateringSend;
 
     @Column(name = "note")
+    @JsonProperty("note")
     private String note;
-
-    public CateringOrder(Long orderId, Long cateringId, String dateCateringOptions, String dateCateringDefinite,
-                         String dateCateringSent, String contactCateringOption, String contactCateringDefinite,
-                         String contactCateringSent, String note) {
-        this.orderId = orderId;
-        this.cateringId = cateringId;
-        this.dateCateringOptions = dateCateringOptions;
-        this.dateCateringDefinite = dateCateringDefinite;
-        this.dateCateringSent = dateCateringSent;
-        this.contactCateringOption = contactCateringOption;
-        this.contactCateringDefinite = contactCateringDefinite;
-        this.contactCateringSent = contactCateringSent;
-        this.note = note;
-    }
-
-    public CateringOrder() {
-
-    }
 
     public Long getId() {
         return id;
@@ -79,49 +80,59 @@ public class CateringOrder {
         this.cateringId = cateringId;
     }
 
-    public String getDateCateringOptions() {
+    public Date getDateCateringOptions() {
         return dateCateringOptions;
     }
 
-    public void setDateCateringOptions(String dateCateringOptions) {
+    public void setDateCateringOptions(Date dateCateringOptions) {
         this.dateCateringOptions = dateCateringOptions;
     }
 
-    public String getDateCateringDefinite() {
+    public Date getDateCateringDefinite() {
         return dateCateringDefinite;
     }
 
-    public void setDateCateringDefinite(String dateCateringDefinite) { this.dateCateringDefinite = dateCateringDefinite; }
-
-    public String getDateCateringSent() {
-        return dateCateringSent;
+    public void setDateCateringDefinite(Date dateCateringDefinite) {
+        this.dateCateringDefinite = dateCateringDefinite;
     }
 
-    public void setDateCateringSent(String dateCateringSent) {
-        this.dateCateringSent = dateCateringSent;
+    public Date getDateCateringSend() {
+        return dateCateringSend;
+    }
+
+    public void setDateCateringSend(Date dateCateringSend) {
+        this.dateCateringSend = dateCateringSend;
     }
 
     public String getContactCateringOption() {
         return contactCateringOption;
     }
 
-    public void setContactCateringOption(String contactCateringOption) { this.contactCateringOption = contactCateringOption; }
+    public void setContactCateringOption(String contactCateringOption) {
+        this.contactCateringOption = contactCateringOption;
+    }
 
     public String getContactCateringDefinite() {
         return contactCateringDefinite;
     }
 
-    public void setContactCateringDefinite(String contactCateringDefinite) { this.contactCateringDefinite = contactCateringDefinite; }
-
-    public String getContactCateringSent() {
-        return contactCateringSent;
+    public void setContactCateringDefinite(String contactCateringDefinite) {
+        this.contactCateringDefinite = contactCateringDefinite;
     }
 
-    public void setContactCateringSent(String contactCateringSent) {
-        this.contactCateringSent = contactCateringSent;
+    public String getContactCateringSend() {
+        return contactCateringSend;
     }
 
-    public String getNote() { return note; }
+    public void setContactCateringSend(String contactCateringSend) {
+        this.contactCateringSend = contactCateringSend;
+    }
 
-    public void setNote(String note) { this.note = note; }
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
 }

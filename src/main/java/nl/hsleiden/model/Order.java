@@ -1,9 +1,13 @@
 package nl.hsleiden.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
+import java.sql.Date;
+import java.sql.Timestamp;
 
 @Entity
-@Table(name = "order")
+@Table(name = "orders")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -11,48 +15,36 @@ public class Order {
     private Long orderId;
 
     @Column(name = "eventid")
+    @JsonProperty("eventid")
     private Long eventId;
 
     @Column(name = "customerid")
+    @JsonProperty("customerid")
     private Long customerId;
 
-    @Column(name = "invoicenumber")
-    private Long invoiceNumber;
-
-    @Column(name = "quotationid")
-    private Long quotationId;
-
     @Column(name = "dateorder")
-    private String dateOrder;
+    @JsonProperty("dateorder")
+    private Date dateOrder;
 
     @Column(name = "dateevent")
+    @JsonProperty("dateevent")
     private String dateEvent;
 
     @Column(name = "note")
+    @JsonProperty("note")
     private String note;
 
     @Column(name = "starttime")
-    private String startTime;
+    @JsonProperty("starttime")
+    private Timestamp startTime;
 
     @Column(name = "endtime")
-    private String endTime;
+    @JsonProperty("endtime")
+    private Timestamp endTime;
 
-    public Order(Long eventId, Long customerId, Long invoiceNumber, Long quotationId, String dateOrder,
-                 String dateEvent, String note, String startTime, String endTime) {
-        this.eventId = eventId;
-        this.customerId = customerId;
-        this.invoiceNumber = invoiceNumber;
-        this.quotationId = quotationId;
-        this.dateOrder = dateOrder;
-        this.dateEvent = dateEvent;
-        this.note = note;
-        this.startTime = startTime;
-        this.endTime = endTime;
-    }
-
-    public Order() {
-
-    }
+    @Column(name = "maxinstructors")
+    @JsonProperty("maxinstructors")
+    private int maxInstructors;
 
     public Long getOrderId() {
         return orderId;
@@ -78,27 +70,11 @@ public class Order {
         this.customerId = customerId;
     }
 
-    public Long getInvoiceNumber() {
-        return invoiceNumber;
-    }
-
-    public void setInvoiceNumber(Long invoiceNumber) {
-        this.invoiceNumber = invoiceNumber;
-    }
-
-    public Long getQuotationId() {
-        return quotationId;
-    }
-
-    public void setQuotationId(Long quotationId) {
-        this.quotationId = quotationId;
-    }
-
-    public String getDateOrder() {
+    public Date getDateOrder() {
         return dateOrder;
     }
 
-    public void setDateOrder(String dateOrder) {
+    public void setDateOrder(Date dateOrder) {
         this.dateOrder = dateOrder;
     }
 
@@ -118,19 +94,27 @@ public class Order {
         this.note = note;
     }
 
-    public String getStartTime() {
+    public Timestamp getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(String startTime) {
+    public void setStartTime(Timestamp startTime) {
         this.startTime = startTime;
     }
 
-    public String getEndTime() {
+    public Timestamp getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(String endTime) {
+    public void setEndTime(Timestamp endTime) {
         this.endTime = endTime;
+    }
+
+    public int getMaxInstructors() {
+        return maxInstructors;
+    }
+
+    public void setMaxInstructors(int maxInstructors) {
+        this.maxInstructors = maxInstructors;
     }
 }

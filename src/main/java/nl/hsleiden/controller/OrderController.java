@@ -44,9 +44,8 @@ public class OrderController {
             order.setDateOrder(updatedOrder.getDateOrder());
             order.setEndTime(updatedOrder.getEndTime());
             order.setEventId(updatedOrder.getEventId());
-            order.setInvoiceNumber(updatedOrder.getInvoiceNumber());
+            order.setMaxInstructors(updatedOrder.getMaxInstructors());
             order.setNote(updatedOrder.getNote());
-            order.setQuotationId(updatedOrder.getQuotationId());
             order.setStartTime(updatedOrder.getStartTime());
             return orderRepository.save(order);
         }).orElseThrow(() -> new ResourceNotFoundException("Order not found with id: " + orderId));

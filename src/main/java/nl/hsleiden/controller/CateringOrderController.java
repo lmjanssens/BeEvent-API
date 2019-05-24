@@ -42,10 +42,10 @@ public class CateringOrderController {
         return cateringOrderRepository.findById(cateringOrderId).map(cateringOrder -> {
             cateringOrder.setContactCateringDefinite(updatedCateringOrder.getContactCateringDefinite());
             cateringOrder.setContactCateringOption(updatedCateringOrder.getContactCateringOption());
-            cateringOrder.setContactCateringSent(updatedCateringOrder.getContactCateringSent());
+            cateringOrder.setContactCateringSend(updatedCateringOrder.getContactCateringSend());
             cateringOrder.setDateCateringDefinite(updatedCateringOrder.getDateCateringDefinite());
             cateringOrder.setDateCateringOptions(updatedCateringOrder.getDateCateringOptions());
-            cateringOrder.setDateCateringSent(updatedCateringOrder.getDateCateringSent());
+            cateringOrder.setDateCateringSend(updatedCateringOrder.getDateCateringSend());
             cateringOrder.setCateringId(updatedCateringOrder.getCateringId());
             cateringOrder.setNote(updatedCateringOrder.getNote());
             cateringOrder.setOrderId(updatedCateringOrder.getOrderId());
