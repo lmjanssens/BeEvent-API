@@ -4,6 +4,7 @@ import nl.hsleiden.exception.ResourceNotFoundException;
 import nl.hsleiden.model.Event;
 import nl.hsleiden.repository.EventLocationRepository;
 import nl.hsleiden.repository.EventRepository;
+import nl.hsleiden.repository.SupplierRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,9 @@ public class EventController {
 
     @Autowired
     private EventLocationRepository eventLocationRepo;
+
+    @Autowired
+    private SupplierRepository supplierRepository;
 
 
 
@@ -64,7 +68,10 @@ public class EventController {
         LOGGER.info("Creating event");
         return eventLocationRepo.findById(eventLocationId).map(eventLocation -> {
             event.setLocation(eventLocation);
-            return eventRepo.save(event);
+            return supplierRepository.findById(supplierId).map(supplier -> {
+                event.setSupplier(supplier);
+                return eventRepo.save(event);
+            }).orElseThrow(() -> new ResourceNotFoundException("No supplier found of id " + supplierId));
         }).orElseThrow(()-> new ResourceNotFoundException("No eventlocation found."));
     }
 
