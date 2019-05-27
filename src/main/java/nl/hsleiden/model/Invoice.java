@@ -1,5 +1,6 @@
 package nl.hsleiden.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.validator.constraints.Length;
 
@@ -14,9 +15,10 @@ public class Invoice {
     @Column(name = "invoicenumber", columnDefinition = "serial")
     private Long invoiceNumber;
 
-    @Column(name = "orderid")
-    @JsonProperty("orderid")
-    private long orderId;
+    @ManyToOne
+    @JoinColumn(name = "orderid", nullable = false)
+    @JsonIgnore
+    private Order order;
 
     @Column(name = "dateinvoice")
     @JsonProperty("dateinvoice")
@@ -78,14 +80,6 @@ public class Invoice {
 
     public void setInvoiceNumber(Long invoiceNumber) {
         this.invoiceNumber = invoiceNumber;
-    }
-
-    public long getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(long orderId) {
-        this.orderId = orderId;
     }
 
     public String getPaymentExtras() {
@@ -190,5 +184,13 @@ public class Invoice {
 
     public void setDateInvoiceMailSent(Date dateInvoiceMailSent) {
         this.dateInvoiceMailSent = dateInvoiceMailSent;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
     }
 }

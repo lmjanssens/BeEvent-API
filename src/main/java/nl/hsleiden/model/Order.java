@@ -3,8 +3,10 @@ package nl.hsleiden.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
+import java.awt.*;
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.Set;
 
 @Entity
 @Table(name = "orders")
@@ -14,11 +16,7 @@ public class Order {
     @Column(name = "orderid", columnDefinition = "serial")
     private Long orderId;
 
-    @Column(name = "eventid")
-    @JsonProperty("eventid")
-    private Long eventId;
-
-    @Column(name = "customerid")
+    @Column(name = "customerid") //TODO: bij customer verwerken
     @JsonProperty("customerid")
     private Long customerId;
 
@@ -46,20 +44,22 @@ public class Order {
     @JsonProperty("maxinstructors")
     private int maxInstructors;
 
+    @OneToMany(mappedBy = "orders", fetch = FetchType.LAZY)
+    @JsonProperty("catering_orders")
+    private Set<CateringOrder> cateringOrders;
+
+    @OneToMany(mappedBy = "orders", fetch = FetchType.LAZY)
+    @JsonProperty("invoices")
+    private Set<Invoice> invoices;
+
+    //TODO: add events
+
     public Long getOrderId() {
         return orderId;
     }
 
     public void setOrderId(Long orderId) {
         this.orderId = orderId;
-    }
-
-    public Long getEventId() {
-        return eventId;
-    }
-
-    public void setEventId(Long eventId) {
-        this.eventId = eventId;
     }
 
     public Long getCustomerId() {
@@ -116,5 +116,21 @@ public class Order {
 
     public void setMaxInstructors(int maxInstructors) {
         this.maxInstructors = maxInstructors;
+    }
+
+    public Set<CateringOrder> getCateringOrders() {
+        return cateringOrders;
+    }
+
+    public void setCateringOrders(Set<CateringOrder> cateringOrders) {
+        this.cateringOrders = cateringOrders;
+    }
+
+    public Set<Invoice> getInvoices() {
+        return invoices;
+    }
+
+    public void setInvoices(Set<Invoice> invoices) {
+        this.invoices = invoices;
     }
 }

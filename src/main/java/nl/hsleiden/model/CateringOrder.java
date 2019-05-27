@@ -1,5 +1,6 @@
 package nl.hsleiden.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.validator.constraints.Length;
 
@@ -15,10 +16,10 @@ public class CateringOrder {
     @Column(name = "cateringorderid", columnDefinition = "serial")
     private Long id;
 
-    @Column(name = "orderid")
-    @JsonProperty("orderid")
-    @NotNull
-    private Long orderId;
+    @ManyToOne
+    @JoinColumn(name = "orderid", nullable = false)
+    @JsonIgnore
+    private Order order;
 
     @Column(name = "cateringid")
     @JsonProperty("cateringid")
@@ -62,14 +63,6 @@ public class CateringOrder {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(Long orderId) {
-        this.orderId = orderId;
     }
 
     public Long getCateringId() {
@@ -134,5 +127,13 @@ public class CateringOrder {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
     }
 }
