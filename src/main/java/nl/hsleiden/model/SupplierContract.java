@@ -23,6 +23,11 @@ public class SupplierContract {
     @JsonIgnore
     private Supplier supplier;
 
+    @ManyToOne
+    @JoinColumn(name = "cateringid")
+    @JsonIgnore
+    private Catering catering;
+
     @NotNull
     @Column(name = "type_contract")
     @JsonProperty("type")
