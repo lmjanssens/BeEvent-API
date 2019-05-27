@@ -16,34 +16,44 @@ Accept: application/json
 
 {
   "title": "mevrouw",
-  "firstName": "Nina",
+  "first_name": "Nina",
   "infix": "van der",
-  "lastName": "Hulde",
+  "last_name": "Hulde",
   "address": "Bloemenlaan 57",
   "zipcode": "9284WL",
   "country": "Nederland",
   "city": "Nijmegen",
-  "phoneNumber": "0692862647",
-  "email": "ninahaarmail@outlook.com"
+  "gender": "v",
+  "email_addresses": [
+    { "email": "test@test.com" }
+  ],
+  "phone_numbers": [
+    { "phonenumber": "06-43430303" }
+  ]
 }
 
 ###
 
-PUT http://localhost:8080/api/customers/6
+PUT http://localhost:8080/api/customers/1
 Content-Type: application/json
 Accept: application/json
 
 {
   "title": "heer",
-  "firstName": "Niels",
+  "first_name": "Niels",
   "infix": "der",
-  "lastName": "lastName",
+  "last_name": "achternaam",
   "address": "Straat 123",
   "zipcode": "2323JA",
   "country": "Nederland",
   "city": "Alkmaar",
-  "phoneNumber": "0653351789",
-  "email": "luukjanssens2009@live.nl"
+  "gender": "m",
+  "email_addresses": [
+    { "email": "test12@test.com" }
+  ],
+  "phone_numbers": [
+    { "phonenumber": "06-43430309" }
+  ]
 }
 
 ###
