@@ -13,9 +13,19 @@ public class CustomerOrder {
     private Long customerOrderId;
 
     @ManyToOne
+    @JoinColumn(name = "orderid")
+    @JsonIgnore
+    private Order order;
+
+    @ManyToOne
     @JoinColumn(name = "customerid", nullable = false)
     @JsonIgnore
     private Customer customer;
+
+    public CustomerOrder(Order order, Customer customer) {
+        this.order = order;
+        this.customer = customer;
+    }
 
     public Long getCustomerOrderId() {
         return customerOrderId;
@@ -23,6 +33,14 @@ public class CustomerOrder {
 
     public void setCustomerOrderId(Long customerOrderId) {
         this.customerOrderId = customerOrderId;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
     }
 
     public Customer getCustomer() {

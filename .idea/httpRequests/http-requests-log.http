@@ -1,3 +1,61 @@
+POST http://localhost:8080/api/customerOrder/1/1
+Content-Type: application/json
+Accept: application/json
+
+{
+
+}
+
+<> 2019-05-27T040605.200.json
+
+###
+
+POST http://localhost:8080/api/customerOrder/1/1
+Content-Type: application/json
+Accept: application/json
+
+{
+
+}
+
+<> 2019-05-27T040543.500.json
+
+###
+
+POST http://localhost:8080/api/customerOrder/1/1
+Content-Type: application/json
+Accept: application/json
+
+{
+
+}
+
+<> 2019-05-27T040515.500.json
+
+###
+
+POST http://localhost:8080/api/customerorder/1/1
+Content-Type: application/json
+Accept: application/json
+
+{
+
+}
+
+<> 2019-05-27T040443.404.json
+
+###
+
+POST http://localhost:8080/api/customerorder/1/1
+Content-Type: application/json
+Accept: application/json
+
+{
+
+}
+
+###
+
 POST http://localhost:8080/api/orders
 Content-Type: application/json
 Accept: application/json

@@ -3,6 +3,8 @@ package nl.hsleiden.controller;
 import nl.hsleiden.exception.ResourceNotFoundException;
 import nl.hsleiden.model.CustomerOrder;
 import nl.hsleiden.repository.CustomerOrderRepository;
+import nl.hsleiden.repository.CustomerRepository;
+import nl.hsleiden.repository.OrderRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +17,17 @@ import java.util.Optional;
 
 @RestController
 public class CustomerOrderController {
+
     private final Logger LOGGER = LoggerFactory.getLogger(CustomerController.class);
 
     @Autowired
     private CustomerOrderRepository customerOrderRepository;
+
+    @Autowired
+    private OrderRepository orderRepository;
+
+    @Autowired
+    private CustomerRepository customerRepository;
 
     @GetMapping("/api/customerOrder")
     public Collection<CustomerOrder> getCustomerOrder() { return customerOrderRepository.findAll(); }
@@ -29,10 +38,16 @@ public class CustomerOrderController {
         return customerOrderRepository.findById(customerOrderId);
     }
 
-    @PostMapping("/api/customerOrder")
-    public CustomerOrder createCustomerOrder(@Valid @RequestBody CustomerOrder customerOrder) {
+    @PostMapping("/api/customerOrder/{orderId}/{customerId}")
+    public CustomerOrder createCustomerOrder(@PathVariable Long orderId, @PathVariable Long customerId,@Valid @RequestBody CustomerOrder customerOrder) {
         LOGGER.info("Creating new customer order...");
-        return customerOrderRepository.save(customerOrder);
+        return orderRepository.findById(orderId).map(order -> {
+            return customerRepository.findById(customerId).map(customer -> {
+                customerOrder.setOrder(order);
+                customerOrder.setCustomer(customer);
+                return customerOrderRepository.save(customerOrder);
+            }).orElseThrow(() -> new ResourceNotFoundException("No customer found of id " + customerId));
+        }).orElseThrow(() -> new ResourceNotFoundException("No order object found of id " + orderId));
     }
 
     @PutMapping("/api/customerOrder/{customerOrderId}")
