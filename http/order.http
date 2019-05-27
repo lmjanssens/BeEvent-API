@@ -15,7 +15,51 @@ Content-Type: application/json
 Accept: application/json
 
 {
-  "dateinvoice": "2019-01-10T13:37:42"
+  "dateorder": "2019-01-10T13:37:42",
+  "dateevent": "2019-01-10T13:37:42",
+  "note": "test note",
+  "starttime": "2019-01-10T13:37:42",
+  "endtime": "2019-01-10T13:37:42",
+  "maxinstructors": 4,
+  "quotations": [
+    {
+      "datequotation": "2019-01-10T13:37:42",
+      "bankaccount": "ABNA4200982",
+      "pricebtw": 1212,
+      "pricepp": 40
+    }
+  ],
+  "invoices": [
+    {
+      "dateinvoice": "2019-01-10T13:37:42",
+      "paymentextras": "dit kost te veel",
+      "pricepp": 1242.99,
+      "pricebtw": 12453,
+      "othercosts": 120,
+      "othercostsbtw": 190,
+      "tobepaid": 1242,
+      "paid": 4,
+      "datepartpaid": "2019-01-10T13:37:42",
+      "datefullpaid": "2019-01-10T13:37:42",
+      "bankaccount": "INGB13371337",
+      "dateinvoicemailsend": "2019-01-10T13:37:42",
+      "excludefrominvoicealert": true
+    }
+  ],
+  "events": [
+    {
+      "ownEvent": true,
+      "name": "Be On ICE",
+      "description": "This is a great event",
+      "program": "Glope Ijsspelen",
+      "duration": "1:30",
+      "options": null,
+      "pricePerPerson": 130.5,
+      "priceBuyPerPerson": 0,
+      "btw": 0.21,
+      "note": null
+    }
+  ]
 }
 
 ###

@@ -45,7 +45,7 @@ public class InvoiceController {
             invoice.setDateInvoiceMailSent(updatedInvoice.getDateInvoiceMailSent());
             invoice.setDatePartPaid(updatedInvoice.getDatePartPaid());
             invoice.setExcludeFromInvoiceAlert(updatedInvoice.getExcludeFromInvoiceAlert());
-            invoice.setOrderId(updatedInvoice.getOrderId());
+//            invoice.setOrderId(updatedInvoice.getOrderId());
             invoice.setOtherCosts(updatedInvoice.getOtherCosts());
             invoice.setOtherCostsBtw(updatedInvoice.getOtherCostsBtw());
             invoice.setPaid(updatedInvoice.getPaid());

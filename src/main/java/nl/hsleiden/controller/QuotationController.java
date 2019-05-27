@@ -42,7 +42,7 @@ public class QuotationController {
         return quotationRepository.findById(quotationNumber).map(quotation -> {
             quotation.setBankAccount(updatedQuotation.getBankAccount());
             quotation.setDateQuotation(updatedQuotation.getDateQuotation());
-            quotation.setOrderId(updatedQuotation.getOrderId());
+//            quotation.setOrderId(updatedQuotation.getOrderId());
             quotation.setPriceBtw(updatedQuotation.getPriceBtw());
             quotation.setPricePp(updatedQuotation.getPricePp());
             return quotationRepository.save(quotation);

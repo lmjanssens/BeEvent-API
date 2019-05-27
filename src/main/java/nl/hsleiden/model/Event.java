@@ -79,26 +79,10 @@ public class Event {
     @Column(name = "note")
     private String note;
 
-    public Event(Supplier supplier, EventLocation location, Set<RegisteredEvent> registeredEvents, Set<EventImage> eventImages, boolean ownEvent, @NotNull @Length(max = 30) String name, @NotNull String description, @NotNull String program, @NotNull String duration, String options, @NotNull double pricePerPerson, @NotNull double priceBuyPerPerson, @NotNull double btw, String note) {
-        this.supplier = supplier;
-        this.location = location;
-        this.registeredEvents = registeredEvents;
-        this.eventImages = eventImages;
-        this.ownEvent = ownEvent;
-        this.name = name;
-        this.description = description;
-        this.program = program;
-        this.duration = duration;
-        this.options = options;
-        this.pricePerPerson = pricePerPerson;
-        this.priceBuyPerPerson = priceBuyPerPerson;
-        this.btw = btw;
-        this.note = note;
-    }
-
-    public Event() {
-
-    }
+    @ManyToOne
+    @JoinColumn(name = "orderid", nullable = false)
+    @JsonIgnore
+    private Order order;
 
     public Long getId() {
         return id;
@@ -218,5 +202,13 @@ public class Event {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
     }
 }

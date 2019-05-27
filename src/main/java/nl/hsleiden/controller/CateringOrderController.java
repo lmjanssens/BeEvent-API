@@ -48,7 +48,7 @@ public class CateringOrderController {
             cateringOrder.setDateCateringSend(updatedCateringOrder.getDateCateringSend());
             cateringOrder.setCateringId(updatedCateringOrder.getCateringId());
             cateringOrder.setNote(updatedCateringOrder.getNote());
-            cateringOrder.setOrderId(updatedCateringOrder.getOrderId());
+//            cateringOrder.setOrderId(updatedCateringOrder.getOrderId());
             return cateringOrderRepository.save(cateringOrder);
         }).orElseThrow(() -> new ResourceNotFoundException("Catering order not found with id: " + cateringOrderId));
     }

@@ -58,13 +58,13 @@ public class CustomerController {
         LOGGER.info("Creating new customer...");
         Customer savedCustomer = customerRepository.save(customer);
 
-        Collection<Order> orders = customer.getOrders();
-        Collection<CustomerEmail> customerEmails = customer.getEmails();
-        Collection<CustomerPhone> customerPhones = customer.getPhones();
-
-        this.saveOrders(savedCustomer, orders);
-        this.saveEmailAddresses(savedCustomer, customerEmails);
-        this.savePhoneNumbers(savedCustomer, customerPhones);
+//        Collection<Order> orders = customer.getOrders();
+//        Collection<CustomerEmail> customerEmails = customer.getEmails();
+//        Collection<CustomerPhone> customerPhones = customer.getPhones();
+//
+//        this.saveOrders(savedCustomer, orders);
+//        this.saveEmailAddresses(savedCustomer, customerEmails);
+//        this.savePhoneNumbers(savedCustomer, customerPhones);
 
         return savedCustomer;
     }
@@ -83,34 +83,34 @@ public class CustomerController {
             customer.setTitle(updatedCustomer.getTitle());
             customer.setZipcode(updatedCustomer.getZipcode());
             
-            Collection<CustomerEmail> emailsToSave = emailCollectionDataService.getToBeSaved(customer.getEmails(), updatedCustomer.getEmails());
-            Collection<CustomerEmail> emailsToDelete = emailCollectionDataService.getToBeDeleted(customer.getEmails(), updatedCustomer.getEmails());
+//            Collection<CustomerEmail> emailsToSave = emailCollectionDataService.getToBeSaved(customer.getEmails(), updatedCustomer.getEmails());
+//            Collection<CustomerEmail> emailsToDelete = emailCollectionDataService.getToBeDeleted(customer.getEmails(), updatedCustomer.getEmails());
+//
+//            Collection<CustomerPhone> phonesToSave = phoneCollectionDataService.getToBeSaved(customer.getPhones(), updatedCustomer.getPhones());
+//            Collection<CustomerPhone> phonesToDelete = phoneCollectionDataService.getToBeDeleted(customer.getPhones(), updatedCustomer.getPhones());
+//
+//            Collection<Order> ordersToSave = orderCollectionDataService.getToBeSaved(customer.getOrders(),updatedCustomer.getOrders());
+//            Collection<Order> ordersToDelete = orderCollectionDataService.getToBeDeleted(customer.getOrders(), updatedCustomer.getOrders());
+//
+//            saveOrders(customer, ordersToSave);
+//            deleteOrders(ordersToDelete);
+//
+//            saveEmailAddresses(customer, emailsToSave);
+//            deleteEmailAddresses(emailsToDelete);
+//
+//            savePhoneNumbers(customer, phonesToSave);
+//            deletePhoneNumbers(phonesToDelete);
+//
+//            customer.setEmails(
+//                    emailCollectionDataService.getDefinitiveCollection(customer.getEmails(), emailsToSave, emailsToDelete)
+//            );
+//            customer.setPhones(
+//                    phoneCollectionDataService.getDefinitiveCollection(customer.getPhones(), phonesToSave, phonesToDelete)
+//            );
+//            customer.setOrders(
+//                    orderCollectionDataService.getDefinitiveCollection(customer.getOrders(), ordersToSave, ordersToDelete)
+//            );
 
-            Collection<CustomerPhone> phonesToSave = phoneCollectionDataService.getToBeSaved(customer.getPhones(), updatedCustomer.getPhones());
-            Collection<CustomerPhone> phonesToDelete = phoneCollectionDataService.getToBeDeleted(customer.getPhones(), updatedCustomer.getPhones());
-
-            Collection<Order> ordersToSave = orderCollectionDataService.getToBeSaved(customer.getOrders(),updatedCustomer.getOrders());
-            Collection<Order> ordersToDelete = orderCollectionDataService.getToBeDeleted(customer.getOrders(), updatedCustomer.getOrders());
-
-            saveOrders(customer, ordersToSave);
-            deleteOrders(ordersToDelete);
-
-            saveEmailAddresses(customer, emailsToSave);
-            deleteEmailAddresses(emailsToDelete);
-
-            savePhoneNumbers(customer, phonesToSave);
-            deletePhoneNumbers(phonesToDelete);
-
-            customer.setEmails(
-                    emailCollectionDataService.getDefinitiveCollection(customer.getEmails(), emailsToSave, emailsToDelete)
-            );
-            customer.setPhones(
-                    phoneCollectionDataService.getDefinitiveCollection(customer.getPhones(), phonesToSave, phonesToDelete)
-            );
-            customer.setOrders(
-                    orderCollectionDataService.getDefinitiveCollection(customer.getOrders(), ordersToSave, ordersToDelete)
-            );
-            
             return customerRepository.save(customer);
         }).orElseThrow(() -> new ResourceNotFoundException("Customer not found with id " + customerId));
     }
@@ -170,7 +170,7 @@ public class CustomerController {
         LOGGER.info("Saving orders...");
         try {
             for (Order order : toBeSaved)
-                order.setCustomer(customer);
+//                order.setCustomer(customer);
 
             orderRepository.saveAll(toBeSaved);
         } catch (NullPointerException exception) {

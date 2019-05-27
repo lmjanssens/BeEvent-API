@@ -1,5 +1,6 @@
 package nl.hsleiden.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.validator.constraints.Length;
 
@@ -15,10 +16,10 @@ public class Quotation {
     @Column(name = "quotationnumber", columnDefinition = "serial")
     private Long quotationNumber;
 
-    @Column(name = "orderid")
-    @JsonProperty("orderid")
-    @NotNull
-    private long orderId;
+    @ManyToOne
+    @JoinColumn(name = "orderid", nullable = false)
+    @JsonIgnore
+    private Order order;
 
     @Column(name = "datequotation")
     @JsonProperty("datequotation")
@@ -47,14 +48,6 @@ public class Quotation {
 
     public void setQuotationNumber(Long quotationNumber) {
         this.quotationNumber = quotationNumber;
-    }
-
-    public long getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(long orderId) {
-        this.orderId = orderId;
     }
 
     public Date getDateQuotation() {
@@ -87,5 +80,13 @@ public class Quotation {
 
     public void setPricePp(double pricePp) {
         this.pricePp = pricePp;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
     }
 }

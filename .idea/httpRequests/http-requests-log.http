@@ -1,0 +1,693 @@
+POST http://localhost:8080/api/orders
+Content-Type: application/json
+Accept: application/json
+
+{
+  "dateorder": "2019-01-10T13:37:42",
+  "dateevent": "2019-01-10T13:37:42",
+  "note": "test note",
+  "starttime": "2019-01-10T13:37:42",
+  "endtime": "2019-01-10T13:37:42",
+  "maxinstructors": 4,
+  "quotations": [
+    {
+      "datequotation": "2019-01-10T13:37:42",
+      "bankaccount": "ABNA4200982",
+      "pricebtw": 1212,
+      "pricepp": 40
+    }
+  ],
+  "invoices": [
+    {
+      "dateinvoice": "2019-01-10T13:37:42",
+      "paymentextras": "dit kost te veel",
+      "pricepp": 1242.99,
+      "pricebtw": 12453,
+      "othercosts": 120,
+      "othercostsbtw": 190,
+      "tobepaid": 1242,
+      "paid": 4,
+      "datepartpaid": "2019-01-10T13:37:42",
+      "datefullpaid": "2019-01-10T13:37:42",
+      "bankaccount": "INGB13371337",
+      "dateinvoicemailsend": "2019-01-10T13:37:42",
+      "excludefrominvoicealert": true
+    }
+  ],
+  "events": [
+    {
+      "ownEvent": true,
+      "name": "Be On ICE",
+      "description": "This is a great event",
+      "program": "Glope Ijsspelen",
+      "duration": "1:30",
+      "options": null,
+      "pricePerPerson": 130.5,
+      "priceBuyPerPerson": 0,
+      "btw": 0.21,
+      "note": null
+    }
+  ]
+}
+
+<> 2019-05-27T033805.200.json
+
+###
+
+POST http://localhost:8080/api/orders
+Content-Type: application/json
+Accept: application/json
+
+{
+  "dateorder": "2019-01-10T13:37:42",
+  "dateevent": "2019-01-10T13:37:42",
+  "note": "test note",
+  "starttime": "2019-01-10T13:37:42",
+  "endtime": "2019-01-10T13:37:42",
+  "maxinstructors": 4,
+  "quotations": [
+    {
+      "datequotation": "2019-01-10T13:37:42",
+      "bankaccount": "ABNA4200982",
+      "pricebtw": 1212,
+      "pricepp": 40
+    }
+  ],
+  "invoices": [
+    {
+      "dateinvoice": "2019-01-10T13:37:42",
+      "paymentextras": "dit kost te veel",
+      "pricepp": 1242.99,
+      "pricebtw": 12453,
+      "othercosts": 120,
+      "othercostsbtw": 190,
+      "tobepaid": 1242,
+      "paid": 4,
+      "datepartpaid": "2019-01-10T13:37:42",
+      "datefullpaid": "2019-01-10T13:37:42",
+      "bankaccount": "INGB13371337",
+      "dateinvoicemailsend": "2019-01-10T13:37:42",
+      "excludefrominvoicealert": true
+    }
+  ],
+  "events": [
+    {
+      "ownEvent": true,
+      "name": "Be On ICE",
+      "description": "This is a great event",
+      "program": "Glope Ijsspelen",
+      "duration": "1:30",
+      "options": null,
+      "pricePerPerson": 130.5,
+      "priceBuyPerPerson": 0,
+      "btw": 0.21,
+      "note": null
+    }
+  ]
+}
+
+<> 2019-05-27T033155.200.json
+
+###
+
+POST http://localhost:8080/api/orders
+Content-Type: application/json
+Accept: application/json
+
+{
+  "dateorder": "2019-01-10T13:37:42",
+  "dateevent": "2019-01-10T13:37:42",
+  "note": "test note",
+  "starttime": "2019-01-10T13:37:42",
+  "endtime": "2019-01-10T13:37:42",
+  "maxinstructors": 4,
+  "quotations": [
+    {
+      "datequotation": "2019-01-10T13:37:42",
+      "bankaccount": "ABNA4200982",
+      "pricebtw": 1212,
+      "pricepp": 40
+    }
+  ],
+  "invoices": [
+    {
+      "dateinvoice": "2019-01-10T13:37:42",
+      "paymentextras": "dit kost te veel",
+      "pricepp": 1242.99,
+      "pricebtw": 12453,
+      "othercosts": 120,
+      "othercostsbtw": 190,
+      "tobepaid": 1242,
+      "paid": 4,
+      "datepartpaid": "2019-01-10T13:37:42",
+      "datefullpaid": "2019-01-10T13:37:42",
+      "bankaccount": "INGB13371337",
+      "dateinvoicemailsend": "2019-01-10T13:37:42",
+      "excludefrominvoicealert": true
+    }
+  ],
+  "events": [
+    {
+      "ownEvent": true,
+      "name": "Be On ICE",
+      "description": "This is a great event",
+      "program": "Glope Ijsspelen",
+      "duration": "1:30",
+      "options": null,
+      "pricePerPerson": 130.5,
+      "priceBuyPerPerson": 0,
+      "btw": 0.21,
+      "note": null
+    }
+  ]
+}
+
+<> 2019-05-27T033114.200.json
+
+###
+
+PUT http://localhost:8080/api/orders/1
+Content-Type: application/json
+Accept: application/json
+
+{
+  "orderid": 1,
+  "dateinvoice": "2019-01-10T13:37:42",
+  "paymentextras": "dit kost veel te veel",
+  "pricepp": 1542.99,
+  "pricebtw": 12453,
+  "othercosts": 420,
+  "othercostsbtw": 190,
+  "tobepaid": 1242,
+  "paid": 4,
+  "datepartpaid": "2019-01-10T13:37:42",
+  "datefullpaid": "2019-01-10T13:37:42",
+  "bankaccount": "INGB13371337",
+  "dateinvoicemailsend": "2019-01-10T13:37:42",
+  "excludefrominvoicealert": true
+}
+
+<> 2019-05-27T033014.500.json
+
+###
+
+POST http://localhost:8080/api/orders
+Content-Type: application/json
+Accept: application/json
+
+{
+  "dateorder": "2019-01-10T13:37:42",
+  "dateevent": "2019-01-10T13:37:42",
+  "note": "test note",
+  "starttime": "2019-01-10T13:37:42",
+  "endtime": "2019-01-10T13:37:42",
+  "maxinstructors": 4,
+  "quotations": [
+    {
+      "datequotation": "2019-01-10T13:37:42",
+      "bankaccount": "ABNA4200982",
+      "pricebtw": 1212,
+      "pricepp": 40
+    }
+  ]
+}
+
+<> 2019-05-27T032704.500.json
+
+###
+
+POST http://localhost:8080/api/orders
+Content-Type: application/json
+Accept: application/json
+
+{
+  "dateorder": "2019-01-10T13:37:42",
+  "dateevent": "2019-01-10T13:37:42",
+  "note": "test note",
+  "starttime": "2019-01-10T13:37:42",
+  "endtime": "2019-01-10T13:37:42",
+  "maxinstructors": 4,
+  "quotations": [
+    {
+      "orderid": 1,
+      "datequotation": "2019-01-10T13:37:42",
+      "bankaccount": "ABNA4200982",
+      "pricebtw": 1212,
+      "pricepp": 40
+    }
+  ]
+}
+
+<> 2019-05-27T032506.500.json
+
+###
+
+POST http://localhost:8080/api/orders
+Content-Type: application/json
+Accept: application/json
+
+{
+  "dateorder": "2019-01-10T13:37:42",
+  "dateevent": "2019-01-10T13:37:42",
+  "note": "test note",
+  "starttime": "2019-01-10T13:37:42",
+  "endtime": "2019-01-10T13:37:42",
+  "maxinstructors": 4,
+  "quotations": [
+    {
+      "orderid": 1,
+      "datequotation": "2019-01-10T13:37:42",
+      "bankaccount": "ABNA4200982",
+      "pricebtw": 1212,
+      "pricepp": 40
+    }
+  ]
+}
+
+<> 2019-05-27T032153.500.json
+
+###
+
+POST http://localhost:8080/api/orders
+Content-Type: application/json
+Accept: application/json
+
+{
+  "dateorder": "2019-01-10T13:37:42",
+  "dateevent": "2019-01-10T13:37:42",
+  "note": "test note",
+  "starttime": "2019-01-10T13:37:42",
+  "endtime": "2019-01-10T13:37:42",
+  "maxinstructors": 4,
+  "quotations": [
+    {
+      "orderid": 1,
+      "datequotation": "2019-01-10T13:37:42",
+      "bankaccount": "ABNA4200982",
+      "pricebtw": 1212,
+      "pricepp": 40
+    }
+  ]
+}
+
+<> 2019-05-27T032044.500.json
+
+###
+
+POST http://localhost:8080/api/orders
+Content-Type: application/json
+Accept: application/json
+
+{
+  "dateorder": "2019-01-10T13:37:42",
+  "dateevent": "2019-01-10T13:37:42",
+  "note": "test note",
+  "starttime": "2019-01-10T13:37:42",
+  "endtime": "2019-01-10T13:37:42",
+  "maxinstructors": 4,
+  "quotations": [
+    {
+      "orderid": 1,
+      "datequotation": "2019-01-10T13:37:42",
+      "bankaccount": "ABNA4200982",
+      "pricebtw": 1212,
+      "pricepp": 40
+    }
+  ]
+}
+
+<> 2019-05-27T031515.500.json
+
+###
+
+POST http://localhost:8080/api/orders
+Content-Type: application/json
+Accept: application/json
+
+{
+  "dateorder": "2019-01-10T13:37:42",
+  "dateevent": "2019-01-10T13:37:42",
+  "note": "test note",
+  "starttime": "2019-01-10T13:37:42",
+  "endtime": "2019-01-10T13:37:42",
+  "maxinstructors": 4,
+  "invoices": [
+    {
+      "dateinvoice": "2019-01-10T13:37:42",
+      "paymentextras": "dit kost te veel",
+      "pricepp": 1242.99,
+      "pricebtw": 12453,
+      "othercosts": 120,
+      "othercostsbtw": 190,
+      "tobepaid": 1242,
+      "paid": 4,
+      "datepartpaid": "2019-01-10T13:37:42",
+      "datefullpaid": "2019-01-10T13:37:42",
+      "bankaccount": "INGB13371337",
+      "dateinvoicemailsend": "2019-01-10T13:37:42",
+      "excludefrominvoicealert": true
+    }
+  ]
+}
+
+<> 2019-05-27T031102.500.json
+
+###
+
+POST http://localhost:8080/api/orders
+Content-Type: application/json
+Accept: application/json
+
+{
+  "dateorder": "2019-01-10T13:37:42",
+  "dateevent": "2019-01-10T13:37:42",
+  "note": "test note",
+  "starttime": "2019-01-10T13:37:42",
+  "endtime": "2019-01-10T13:37:42",
+  "maxinstructors": 4,
+  "invoices": [
+    {
+      "dateinvoice": "2019-01-10T13:37:42",
+      "paymentextras": "dit kost te veel",
+      "pricepp": 1242.99,
+      "pricebtw": 12453,
+      "othercosts": 120,
+      "othercostsbtw": 190,
+      "tobepaid": 1242,
+      "paid": 4,
+      "datepartpaid": "2019-01-10T13:37:42",
+      "datefullpaid": "2019-01-10T13:37:42",
+      "bankaccount": "INGB13371337",
+      "dateinvoicemailsend": "2019-01-10T13:37:42",
+      "excludefrominvoicealert": true
+    }
+  ],
+}
+
+<> 2019-05-27T031049.400.json
+
+###
+
+POST http://localhost:8080/api/orders
+Content-Type: application/json
+Accept: application/json
+
+{
+  "dateorder": "2019-01-10T13:37:42",
+  "dateevent": "2019-01-10T13:37:42",
+  "note": "test note",
+  "starttime": "2019-01-10T13:37:42",
+  "endtime": "2019-01-10T13:37:42",
+  "maxinstructors": 4,
+  "invoices": [
+    {
+      "dateinvoice": "2019-01-10T13:37:42",
+      "paymentextras": "dit kost te veel",
+      "pricepp": 1242.99,
+      "pricebtw": 12453,
+      "othercosts": 120,
+      "othercostsbtw": 190,
+      "tobepaid": 1242,
+      "paid": 4,
+      "datepartpaid": "2019-01-10T13:37:42",
+      "datefullpaid": "2019-01-10T13:37:42",
+      "bankaccount": "INGB13371337",
+      "dateinvoicemailsend": "2019-01-10T13:37:42",
+      "excludefrominvoicealert": true
+    }
+  ],
+  "events": [
+    {
+      "ownEvent": true,
+      "name": "Be On ICE",
+      "description": "This is a great event",
+      "program": "Glope Ijsspelen",
+      "duration": "1:30",
+      "options": null,
+      "pricePerPerson": 130.5,
+      "priceBuyPerPerson": 0,
+      "btw": 0.21,
+      "note": null
+    }
+  ]
+}
+
+<> 2019-05-27T031037.500.json
+
+###
+
+POST http://localhost:8080/api/orders
+Content-Type: application/json
+Accept: application/json
+
+{
+  "dateorder": "2019-01-10T13:37:42",
+  "dateevent": "2019-01-10T13:37:42",
+  "note": "test note",
+  "starttime": "2019-01-10T13:37:42",
+  "endtime": "2019-01-10T13:37:42",
+  "maxinstructors": 4,
+  "events": [
+    {
+      "ownEvent": true,
+      "name": "Be On ICE",
+      "description": "This is a great event",
+      "program": "Glope Ijsspelen",
+      "duration": "1:30",
+      "options": null,
+      "pricePerPerson": 130.5,
+      "priceBuyPerPerson": 0,
+      "btw": 0.21,
+      "note": null
+    }
+  ]
+}
+
+<> 2019-05-27T030741.500.json
+
+###
+
+POST http://localhost:8080/api/orders
+Content-Type: application/json
+Accept: application/json
+
+{
+  "dateorder": "2019-01-10T13:37:42",
+  "dateevent": "2019-01-10T13:37:42",
+  "note": "test note",
+  "starttime": "2019-01-10T13:37:42",
+  "endtime": "2019-01-10T13:37:42",
+  "maxinstructors": 4
+}
+
+<> 2019-05-27T030542.200.json
+
+###
+
+POST http://localhost:8080/api/orders
+Content-Type: application/json
+Accept: application/json
+
+{
+  "dateorder": "'2019-01-10T13:37:42'::date",
+  "dateevent": "'2019-01-10T13:37:42'::date",
+  "note": "test note",
+  "starttime": "'2019-01-10T13:37:42'::date",
+  "endtime": "'2019-01-10T13:37:42'::date",
+  "maxinstructors": 4
+}
+
+<> 2019-05-27T030239.400.json
+
+###
+
+POST http://localhost:8080/api/orders
+Content-Type: application/json
+Accept: application/json
+
+{
+  "dateorder": "2019-01-10T13:37:42::date",
+  "dateevent": "2019-01-10T13:37:42::date",
+  "note": "test note",
+  "starttime": "2019-01-10T13:37:42::date",
+  "endtime": "2019-01-10T13:37:42::date",
+  "maxinstructors": 4
+}
+
+<> 2019-05-27T030029.400.json
+
+###
+
+POST http://localhost:8080/api/orders
+Content-Type: application/json
+Accept: application/json
+
+{
+  "dateorder": "2019-01-10T13:37:42",
+  "dateevent": "2019-01-10T13:37:42",
+  "note": "test note",
+  "starttime": "2019-01-10T13:37:42",
+  "endtime": "2019-01-10T13:37:42",
+  "maxinstructors": 4
+}
+
+<> 2019-05-27T025703.500.json
+
+###
+
+POST http://localhost:8080/api/orders
+Content-Type: application/json
+Accept: application/json
+
+{
+  "dateorder": "2016-01-21 00:00",
+  "dateevent": "2016-01-21 00:00",
+  "note": "test note",
+  "starttime": "2016-01-21 00:00",
+  "endtime": "2016-01-21 00:00",
+  "maxinstructors": 4
+}
+
+<> 2019-05-27T025526.400.json
+
+###
+
+POST http://localhost:8080/api/orders
+Content-Type: application/json
+Accept: application/json
+
+{
+  "dateorder": "2019-01-10T13:37:42",
+  "dateevent": "2019-01-10T13:37:42",
+  "note": "test note",
+  "starttime": "2019-01-10T13:37:42",
+  "endtime": "2019-01-10T13:37:42",
+  "maxinstructors": 4
+}
+
+<> 2019-05-27T025350.500.json
+
+###
+
+GET http://localhost:8080/api/orders/1
+Accept: application/json
+
+<> 2019-05-27T025326.200.json
+
+###
+
+GET http://localhost:8080/api/orders
+Accept: application/json
+
+<> 2019-05-27T025323.200.json
+
+###
+
+GET http://localhost:8080/api/users
+Accept: application:json
+
+###
+
+POST http://localhost:8080/api/events
+Content-Type: application/json
+Accept: application/json
+
+{
+  "ownEvent": true,
+  "name": "Be On ICE",
+  "description": "This is a great event",
+  "program": "Glope Ijsspelen",
+  "duration": "1:30",
+  "options": null,
+  "pricePerPerson": 130.5,
+  "priceBuyPerPerson": 0,
+  "btw": 0.21,
+  "note": null
+}
+
+<> 2019-05-27T025234.405.json
+
+###
+
+POST http://localhost:8080/api/orders
+Content-Type: application/json
+Accept: application/json
+
+{
+  "dateorder": "2019-01-10",
+  "dateevent": "2019-01-10",
+  "note": "test note",
+  "starttime": "2019-01-10T13:37:42",
+  "endtime": "2019-01-10T13:37:42",
+  "maxinstructors": 4
+}
+
+<> 2019-05-27T024854.500.json
+
+###
+
+POST http://localhost:8080/api/orders
+Content-Type: application/json
+Accept: application/json
+
+{
+  "dateorder": "2019-01-10",
+  "dateevent": "2019-01-10T13",
+  "note": "test note",
+  "starttime": "2019-01-10T13:37:42",
+  "endtime": "2019-01-10T13:37:42",
+  "maxinstructors": 4
+}
+
+<> 2019-05-27T024842.500.json
+
+###
+
+POST http://localhost:8080/api/orders
+Content-Type: application/json
+Accept: application/json
+
+{
+  "dateorder": "2019-01-10T13:37:42",
+  "dateevent": "2019-01-10T13:37:42",
+  "note": "test note",
+  "starttime": "2019-01-10T13:37:42",
+  "endtime": "2019-01-10T13:37:42",
+  "maxinstructors": 4
+}
+
+<> 2019-05-27T023643.500.json
+
+###
+
+POST http://localhost:8080/api/orders
+Content-Type: application/json
+Accept: application/json
+
+{
+  "dateorder": "2019-01-10T13:37:42",
+  "dateevent": "2019-01-10T13:37:42",
+  "note": "test note",
+  "starttime": "2019-01-10T13:37:42",
+  "endtime": "2019-01-10T13:37:42",
+  "maxinstructors": 4
+}
+
+<> 2019-05-27T023452.404.json
+
+###
+
+GET http://localhost:8080/api/orders/1
+Accept: application/json
+
+<> 2019-05-27T020509.404.json
+
+###
+
+GET http://localhost:8080/api/orders
+Accept: application/json
+
+<> 2019-05-27T020505.404.json
+
+###
+

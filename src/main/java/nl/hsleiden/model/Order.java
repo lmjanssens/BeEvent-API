@@ -17,10 +17,10 @@ public class Order {
     @Column(name = "orderid", columnDefinition = "serial")
     private Long orderId;
 
-    @ManyToOne
-    @JoinColumn(name = "orderid", nullable = false)
-    @JsonIgnore
-    private Customer customer;
+//    @ManyToOne
+//    @JoinColumn(name = "orderid", nullable = false, insertable = false, updatable = false)
+//    @JsonIgnore
+//    private Customer customer;
 
     @Column(name = "dateorder")
     @JsonProperty("dateorder")
@@ -28,7 +28,7 @@ public class Order {
 
     @Column(name = "dateevent")
     @JsonProperty("dateevent")
-    private String dateEvent;
+    private Date dateEvent;
 
     @Column(name = "note")
     @JsonProperty("note")
@@ -46,15 +46,23 @@ public class Order {
     @JsonProperty("maxinstructors")
     private int maxInstructors;
 
-    @OneToMany(mappedBy = "orders", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
     @JsonProperty("catering_orders")
     private Set<CateringOrder> cateringOrders;
 
-    @OneToMany(mappedBy = "orders", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
     @JsonProperty("invoices")
     private Set<Invoice> invoices;
 
-    //TODO: add events, many to many with customers
+    @OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
+    @JsonProperty("events")
+    private Set<Event> events;
+
+    @OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
+    @JsonProperty("quotations")
+    private Set<Quotation> quotations;
+
+    //TODO: add many to many with customers
 
     public Long getOrderId() {
         return orderId;
@@ -72,11 +80,11 @@ public class Order {
         this.dateOrder = dateOrder;
     }
 
-    public String getDateEvent() {
+    public Date getDateEvent() {
         return dateEvent;
     }
 
-    public void setDateEvent(String dateEvent) {
+    public void setDateEvent(Date dateEvent) {
         this.dateEvent = dateEvent;
     }
 
@@ -128,11 +136,27 @@ public class Order {
         this.invoices = invoices;
     }
 
-    public Customer getCustomer() {
-        return customer;
+//    public Customer getCustomer() {
+//        return customer;
+//    }
+//
+//    public void setCustomer(Customer customer) {
+//        this.customer = customer;
+//    }
+
+    public Set<Event> getEvents() {
+        return events;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setEvents(Set<Event> events) {
+        this.events = events;
+    }
+
+    public Set<Quotation> getQuotations() {
+        return quotations;
+    }
+
+    public void setQuotations(Set<Quotation> quotations) {
+        this.quotations = quotations;
     }
 }
