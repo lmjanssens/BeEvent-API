@@ -4,9 +4,11 @@ import nl.hsleiden.exception.ResourceNotFoundException;
 import nl.hsleiden.model.Customer;
 import nl.hsleiden.model.CustomerEmail;
 import nl.hsleiden.model.CustomerPhone;
+import nl.hsleiden.model.Order;
 import nl.hsleiden.repository.CustomerEmailRepository;
 import nl.hsleiden.repository.CustomerPhoneRepository;
 import nl.hsleiden.repository.CustomerRepository;
+import nl.hsleiden.repository.OrderRepository;
 import nl.hsleiden.service.CollectionDataService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,10 +33,14 @@ public class CustomerController {
     private CustomerEmailRepository customerEmailRepository;
 
     @Autowired
-    CustomerPhoneRepository customerPhoneRepository;
+    private CustomerPhoneRepository customerPhoneRepository;
+
+    @Autowired
+    private OrderRepository orderRepository;
 
     CollectionDataService<CustomerEmail> emailCollectionDataService = new CollectionDataService<>();
     CollectionDataService<CustomerPhone> phoneCollectionDataService = new CollectionDataService<>();
+    CollectionDataService<Order> orderCollectionDataService = new CollectionDataService<>();
 
     @GetMapping("/api/customers")
     public Collection<Customer> getCustomers() {
@@ -52,9 +58,11 @@ public class CustomerController {
         LOGGER.info("Creating new customer...");
         Customer savedCustomer = customerRepository.save(customer);
 
+        Collection<Order> orders = customer.getOrders();
         Collection<CustomerEmail> customerEmails = customer.getEmails();
         Collection<CustomerPhone> customerPhones = customer.getPhones();
 
+        this.saveOrders(savedCustomer, orders);
         this.saveEmailAddresses(savedCustomer, customerEmails);
         this.savePhoneNumbers(savedCustomer, customerPhones);
 
@@ -81,26 +89,27 @@ public class CustomerController {
             Collection<CustomerPhone> phonesToSave = phoneCollectionDataService.getToBeSaved(customer.getPhones(), updatedCustomer.getPhones());
             Collection<CustomerPhone> phonesToDelete = phoneCollectionDataService.getToBeDeleted(customer.getPhones(), updatedCustomer.getPhones());
 
+            Collection<Order> ordersToSave = orderCollectionDataService.getToBeSaved(customer.getOrders(),updatedCustomer.getOrders());
+            Collection<Order> ordersToDelete = orderCollectionDataService.getToBeDeleted(customer.getOrders(), updatedCustomer.getOrders());
+
+            saveOrders(customer, ordersToSave);
+            deleteOrders(ordersToDelete);
+
             saveEmailAddresses(customer, emailsToSave);
             deleteEmailAddresses(emailsToDelete);
 
             savePhoneNumbers(customer, phonesToSave);
             deletePhoneNumbers(phonesToDelete);
 
-            Set<CustomerEmail> customerEmails = new HashSet<>(emailCollectionDataService.mergedCollection(
-                    emailCollectionDataService.substractCollection(
-                            customer.getEmails(), emailsToDelete
-                    ), emailsToSave
-            ));
-
-            Set<CustomerPhone> customerPhones = new HashSet<>(phoneCollectionDataService.mergedCollection(
-                    phoneCollectionDataService.substractCollection(
-                            customer.getPhones(), phonesToDelete
-                    ), phonesToSave
-            ));
-
-            customer.setEmails(customerEmails);
-            customer.setPhones(customerPhones);
+            customer.setEmails(
+                    emailCollectionDataService.getDefinitiveCollection(customer.getEmails(), emailsToSave, emailsToDelete)
+            );
+            customer.setPhones(
+                    phoneCollectionDataService.getDefinitiveCollection(customer.getPhones(), phonesToSave, phonesToDelete)
+            );
+            customer.setOrders(
+                    orderCollectionDataService.getDefinitiveCollection(customer.getOrders(), ordersToSave, ordersToDelete)
+            );
             
             return customerRepository.save(customer);
         }).orElseThrow(() -> new ResourceNotFoundException("Customer not found with id " + customerId));
@@ -116,6 +125,7 @@ public class CustomerController {
     }
 
     private void saveEmailAddresses(Customer customer, Collection<CustomerEmail> toBeSaved) {
+        LOGGER.info("Saving email addresses...");
         try {
             for (CustomerEmail email : toBeSaved)
                 email.setCustomer(customer);
@@ -127,6 +137,7 @@ public class CustomerController {
     }
 
     private void deleteEmailAddresses(Collection<CustomerEmail> toBeDeleted) {
+        LOGGER.info("Deleting email addresses...");
         try {
             customerEmailRepository.deleteAll(toBeDeleted);
         } catch (NullPointerException exception) {
@@ -135,6 +146,7 @@ public class CustomerController {
     }
 
     private void savePhoneNumbers(Customer customer, Collection<CustomerPhone> toBeSaved) {
+        LOGGER.info("Saving phone numbers...");
         try {
             for (CustomerPhone phone : toBeSaved)
                 phone.setCustomer(customer);
@@ -146,10 +158,32 @@ public class CustomerController {
     }
 
     private void deletePhoneNumbers(Collection<CustomerPhone> toBeDeleted) {
+        LOGGER.info("Deleting phone numbers...");
         try {
             customerPhoneRepository.deleteAll(toBeDeleted);
         } catch (NullPointerException exception) {
             LOGGER.info("Unable to delete phone numbers");
+        }
+    }
+
+    private void saveOrders(Customer customer, Collection<Order> toBeSaved) {
+        LOGGER.info("Saving orders...");
+        try {
+            for (Order order : toBeSaved)
+                order.setCustomer(customer);
+
+            orderRepository.saveAll(toBeSaved);
+        } catch (NullPointerException exception) {
+            LOGGER.info("Unable to orders");
+        }
+    }
+
+    private void deleteOrders(Collection<Order> toBeDeleted) {
+        LOGGER.info("Deleting orders...");
+        try {
+            orderRepository.deleteAll(toBeDeleted);
+        } catch (NullPointerException exception) {
+            LOGGER.info("Unable to delete orders");
         }
     }
 }

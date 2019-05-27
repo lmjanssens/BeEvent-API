@@ -1,5 +1,6 @@
 package nl.hsleiden.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
@@ -16,9 +17,10 @@ public class Order {
     @Column(name = "orderid", columnDefinition = "serial")
     private Long orderId;
 
-    @Column(name = "customerid") //TODO: bij customer verwerken
-    @JsonProperty("customerid")
-    private Long customerId;
+    @ManyToOne
+    @JoinColumn(name = "orderid", nullable = false)
+    @JsonIgnore
+    private Customer customer;
 
     @Column(name = "dateorder")
     @JsonProperty("dateorder")
@@ -52,7 +54,7 @@ public class Order {
     @JsonProperty("invoices")
     private Set<Invoice> invoices;
 
-    //TODO: add events
+    //TODO: add events, many to many with customers
 
     public Long getOrderId() {
         return orderId;
@@ -60,14 +62,6 @@ public class Order {
 
     public void setOrderId(Long orderId) {
         this.orderId = orderId;
-    }
-
-    public Long getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(Long customerId) {
-        this.customerId = customerId;
     }
 
     public Date getDateOrder() {
@@ -132,5 +126,13 @@ public class Order {
 
     public void setInvoices(Set<Invoice> invoices) {
         this.invoices = invoices;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 }

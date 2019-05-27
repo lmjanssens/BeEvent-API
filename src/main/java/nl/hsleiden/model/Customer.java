@@ -74,11 +74,15 @@ public class Customer {
 
     @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
     @JsonProperty("customer_orders")
-    private Set<CustomerOrder> orders;
+    private Set<CustomerOrder> customerOrders;
 
     @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
     @JsonProperty("phone_numbers")
     private Set<CustomerPhone> phones;
+
+    @OneToMany(mappedBy = "customers", fetch = FetchType.LAZY)
+    @JsonProperty("orders")
+    private Set<Order> orders;
 
     public Long getId() {
         return id;
@@ -160,14 +164,6 @@ public class Customer {
         this.emails = emails;
     }
 
-    public Set<CustomerOrder> getOrders() {
-        return orders;
-    }
-
-    public void setOrders(Set<CustomerOrder> orders) {
-        this.orders = orders;
-    }
-
     public Set<CustomerPhone> getPhones() {
         return phones;
     }
@@ -182,5 +178,21 @@ public class Customer {
 
     public void setGender(char gender) {
         this.gender = gender;
+    }
+
+    public Set<CustomerOrder> getCustomerOrders() {
+        return customerOrders;
+    }
+
+    public void setCustomerOrders(Set<CustomerOrder> customerOrders) {
+        this.customerOrders = customerOrders;
+    }
+
+    public Set<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
     }
 }

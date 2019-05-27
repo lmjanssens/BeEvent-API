@@ -12,8 +12,6 @@ public class CustomerOrder {
     @Column(name = "customerorderid", columnDefinition = "serial")
     private Long customerOrderId;
 
-    //TODO: add order, moet dit in de order controller of customer controller?
-
     @ManyToOne
     @JoinColumn(name = "customerid", nullable = false)
     @JsonIgnore
