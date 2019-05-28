@@ -20,7 +20,7 @@ import java.util.*;
 @RestController
 public class EmployeeController {
 
-    private final Logger LOGGER = LoggerFactory.getLogger(CustomerController.class);
+    private final Logger LOGGER = LoggerFactory.getLogger(EmployeeController.class);
 
     @Autowired
     private EmployeeRepository employeeRepository;

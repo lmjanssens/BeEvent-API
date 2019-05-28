@@ -1,0 +1,44 @@
+###
+
+GET http://localhost:8080/api/quotation
+Accept: application/json
+
+###
+
+GET http://localhost:8080/api/quotation/1
+Accept: application/json
+
+###
+
+POST http://localhost:8080/api/quotation
+Content-Type: application/json
+Accept: application/json
+
+{
+  "orderid": 1,
+  "datequotation": "2019-01-10T13:37:42",
+  "bankaccount": "ABNA4200982",
+  "pricebtw": 1212,
+  "pricepp": 40
+}
+
+###
+
+PUT http://localhost:8080/api/quotation/1
+Content-Type: application/json
+Accept: application/json
+
+{
+  "orderid": 1,
+  "datequotation": "2019-01-10T13:37:42",
+  "bankaccount": "ABNB4200982",
+  "pricebtw": 1900,
+  "pricepp": 80
+}
+
+###
+
+DELETE http://localhost:8080/api/quotation/1
+Accept: application/json
+
+###

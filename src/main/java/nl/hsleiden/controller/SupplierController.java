@@ -22,7 +22,7 @@ import java.util.Optional;
 
 @RestController
 public class SupplierController {
-    private final Logger LOGGER = LoggerFactory.getLogger(CustomerController.class);
+    private final Logger LOGGER = LoggerFactory.getLogger(SupplierController.class);
 
     @Autowired
     private SupplierRepository supplierRepository;
