@@ -68,21 +68,17 @@ public class Customer {
     @JsonProperty("city")
     private String city;
 
-//    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
-//    @JsonProperty("email_addresses")
-//    private Set<CustomerEmail> emails;
-//
-//    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
-//    @JsonProperty("customer_orders")
-//    private Set<CustomerOrder> customerOrders;
-//
-//    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
-//    @JsonProperty("phone_numbers")
-//    private Set<CustomerPhone> phones;
-//
-//    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
-//    @JsonProperty("orders")
-//    private Set<Order> orders;
+    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
+    @JsonProperty("email_addresses")
+    private Set<CustomerEmail> emails;
+
+    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
+    @JsonProperty("customer_orders")
+    private Set<CustomerOrder> customerOrders;
+
+    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
+    @JsonProperty("phone_numbers")
+    private Set<CustomerPhone> phones;
 
     public Long getId() {
         return id;
@@ -156,43 +152,35 @@ public class Customer {
         this.city = city;
     }
 
-//    public Set<CustomerEmail> getEmails() {
-//        return emails;
-//    }
-//
-//    public void setEmails(Set<CustomerEmail> emails) {
-//        this.emails = emails;
-//    }
-//
-//    public Set<CustomerPhone> getPhones() {
-//        return phones;
-//    }
-//
-//    public void setPhones(Set<CustomerPhone> phones) {
-//        this.phones = phones;
-//    }
-//
-//    public char getGender() {
-//        return gender;
-//    }
-//
-//    public void setGender(char gender) {
-//        this.gender = gender;
-//    }
-//
-//    public Set<CustomerOrder> getCustomerOrders() {
-//        return customerOrders;
-//    }
-//
-//    public void setCustomerOrders(Set<CustomerOrder> customerOrders) {
-//        this.customerOrders = customerOrders;
-//    }
-//
-//    public Set<Order> getOrders() {
-//        return orders;
-//    }
-//
-//    public void setOrders(Set<Order> orders) {
-//        this.orders = orders;
-//    }
+    public Set<CustomerEmail> getEmails() {
+        return emails;
+    }
+
+    public void setEmails(Set<CustomerEmail> emails) {
+        this.emails = emails;
+    }
+
+    public Set<CustomerPhone> getPhones() {
+        return phones;
+    }
+
+    public void setPhones(Set<CustomerPhone> phones) {
+        this.phones = phones;
+    }
+
+    public char getGender() {
+        return gender;
+    }
+
+    public void setGender(char gender) {
+        this.gender = gender;
+    }
+
+    public Set<CustomerOrder> getCustomerOrders() {
+        return customerOrders;
+    }
+
+    public void setCustomerOrders(Set<CustomerOrder> customerOrders) {
+        this.customerOrders = customerOrders;
+    }
 }

@@ -17,10 +17,10 @@ public class Order {
     @Column(name = "orderid", columnDefinition = "serial")
     private Long orderId;
 
-//    @ManyToOne
-//    @JoinColumn(name = "orderid", nullable = false, insertable = false, updatable = false)
-//    @JsonIgnore
-//    private Customer customer;
+    @ManyToOne
+    @JoinColumn(name = "orderid", nullable = false, insertable = false, updatable = false)
+    @JsonIgnore
+    private Customer customer;
 
     @Column(name = "dateorder")
     @JsonProperty("dateorder")
@@ -136,13 +136,13 @@ public class Order {
         this.invoices = invoices;
     }
 
-//    public Customer getCustomer() {
-//        return customer;
-//    }
-//
-//    public void setCustomer(Customer customer) {
-//        this.customer = customer;
-//    }
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
 
     public Set<Event> getEvents() {
         return events;
