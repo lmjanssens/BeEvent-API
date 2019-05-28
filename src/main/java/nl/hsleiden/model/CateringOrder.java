@@ -5,12 +5,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.sql.Date;
 
 @Entity
 @Table(name = "catering_order")
 public class CateringOrder {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cateringorderid", columnDefinition = "serial")
@@ -21,10 +21,9 @@ public class CateringOrder {
     @JsonIgnore
     private Order order;
 
-    @Column(name = "cateringid")
-    @JsonProperty("cateringid")
-    @NotNull
-    private Long cateringId;
+    @ManyToOne
+    @JoinColumn(name = "cateringid", nullable = false)
+    private Catering catering;
 
     @Column(name = "datecateringoptions")
     @JsonProperty("datecateringoptions")
@@ -57,6 +56,10 @@ public class CateringOrder {
     @JsonProperty("note")
     private String note;
 
+    public CateringOrder() {
+
+    }
+
     public Long getId() {
         return id;
     }
@@ -65,12 +68,12 @@ public class CateringOrder {
         this.id = id;
     }
 
-    public Long getCateringId() {
-        return cateringId;
+    public Catering getCatering() {
+        return catering;
     }
 
-    public void setCateringId(Long cateringId) {
-        this.cateringId = cateringId;
+    public void setCatering(Catering catering) {
+        this.catering = catering;
     }
 
     public Date getDateCateringOptions() {
