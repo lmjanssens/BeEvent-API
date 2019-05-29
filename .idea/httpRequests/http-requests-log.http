@@ -1,3 +1,142 @@
+GET http://localhost:8080/api/customers
+Accept: application/json
+
+<> 2019-05-28T102148.200.json
+
+###
+
+POST http://localhost:8080/api/customers
+Content-Type: application/json
+Accept: application/json
+
+{
+  "title": "mevrouw",
+  "first_name": "Nina",
+  "infix": "van der",
+  "last_name": "Hulde",
+  "address": "Bloemenlaan 57",
+  "zipcode": "9284WL",
+  "country": "Nederland",
+  "city": "Nijmegen",
+  "gender": "v",
+  "email_addresses": [
+    { "email": "test@test.com" }
+  ],
+  "phone_numbers": [
+    { "phonenumber": "06-43430303" }
+  ]
+}
+
+<> 2019-05-28T102145.200.json
+
+###
+
+GET http://localhost:8080/api/customers/1
+Accept: application/json
+
+<> 2019-05-28T102136.200.json
+
+###
+
+GET http://localhost:8080/api/customers
+Accept: application/json
+
+<> 2019-05-28T102132.200.json
+
+###
+
+GET http://localhost:8080/api/customers
+Accept: application/json
+
+<> 2019-05-28T101948.500.json
+
+###
+
+GET http://localhost:8080/api/customers/1
+Accept: application/json
+
+<> 2019-05-28T101944.500.json
+
+###
+
+GET http://localhost:8080/api/customers
+Accept: application/json
+
+<> 2019-05-28T101932.500.json
+
+###
+
+DELETE http://localhost:8080/api/customers/2
+Accept: application/json
+
+###
+
+DELETE http://localhost:8080/api/customers/2
+Accept: application/json
+
+<> 2019-05-28T101739.500.json
+
+###
+
+DELETE http://localhost:8080/api/customers/2
+Accept: application/json
+
+<> 2019-05-28T101329.500.json
+
+###
+
+PUT http://localhost:8080/api/customers/2
+Content-Type: application/json
+Accept: application/json
+
+{
+  "title": "heer",
+  "first_name": "Niels",
+  "infix": "der",
+  "last_name": "achternaam",
+  "address": "Straat 123",
+  "zipcode": "2323JA",
+  "country": "Nederland",
+  "city": "Alkmaar",
+  "gender": "m",
+  "email_addresses": [
+    { "email": "test12@test.com" }
+  ],
+  "phone_numbers": [
+    { "phonenumber": "06-43430309" }
+  ]
+}
+
+<> 2019-05-28T101312.200.json
+
+###
+
+POST http://localhost:8080/api/customers
+Content-Type: application/json
+Accept: application/json
+
+{
+  "title": "mevrouw",
+  "first_name": "Nina",
+  "infix": "van der",
+  "last_name": "Hulde",
+  "address": "Bloemenlaan 57",
+  "zipcode": "9284WL",
+  "country": "Nederland",
+  "city": "Nijmegen",
+  "gender": "v",
+  "email_addresses": [
+    { "email": "test@test.com" }
+  ],
+  "phone_numbers": [
+    { "phonenumber": "06-43430303" }
+  ]
+}
+
+<> 2019-05-28T101224.200.json
+
+###
+
 POST http://localhost:8080/api/customerOrder/1/1
 Content-Type: application/json
 Accept: application/json

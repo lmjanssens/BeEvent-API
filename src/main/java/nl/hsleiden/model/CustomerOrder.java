@@ -27,6 +27,10 @@ public class CustomerOrder {
         this.customer = customer;
     }
 
+    public CustomerOrder() {
+
+    }
+
     public Long getCustomerOrderId() {
         return customerOrderId;
     }
