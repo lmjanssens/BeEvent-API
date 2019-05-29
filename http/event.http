@@ -28,7 +28,7 @@ Accept: application/json
 
 ###
 
-POST http://localhost:8080/api/events
+POST http://localhost:8080/api/events/1/39
 Content-Type: application/json
 Accept: application/json
 
@@ -52,3 +52,14 @@ Accept: application/json
 
 ###
 
+POST http://localhost:8080/api/eventlocation
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name" : "Den Haag",
+  "description" : "It is also a nice place",
+  "routePicture" : "image/denhaag.jpg"
+}
+
+###
