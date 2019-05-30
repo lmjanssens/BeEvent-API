@@ -75,6 +75,7 @@ public class CustomerController {
             customer.setCity(updatedCustomer.getCity());
             customer.setCountry(updatedCustomer.getCountry());
             customer.setFirstName(updatedCustomer.getFirstName());
+            customer.setGender(updatedCustomer.getGender());
             customer.setInfix(updatedCustomer.getInfix());
             customer.setLastName(updatedCustomer.getLastName());
             customer.setTitle(updatedCustomer.getTitle());

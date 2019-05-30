@@ -40,6 +40,10 @@ public class CustomerPhone {
         this.customer = customer;
     }
 
+    public CustomerPhone(@NotNull String phone) {
+        this.phone = phone;
+    }
+
     @Override
     public boolean equals(Object object) {
         CustomerPhone phone = (CustomerPhone) object;
