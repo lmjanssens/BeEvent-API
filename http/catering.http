@@ -1,0 +1,37 @@
+###
+
+
+POST http://localhost:8080/api/caterings/5
+Content-Type: application/json
+Accept: application/json
+
+{
+  "cateringName" : "AH",
+  "contactPerson" : "Joost",
+  "zipcode" : "1234KL",
+  "address" : "teststraat 50",
+  "city" : "Den Haag",
+  "phone" : "0123456789",
+  "cateringPrice" : 130.50,
+  "note" : null
+}
+
+###
+
+POST http://localhost:8080/api/cateringimages/18
+Content-Type: application/json
+Accept: application/json
+
+{
+"image" : "image/ah.jpg"
+}
+
+###
+DELETE http://localhost:8080/api/cateringimages/3
+Accept: application/json
+
+###
+DELETE http://localhost:8080/api/caterings/18
+Accept: application/json
+
+###

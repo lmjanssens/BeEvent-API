@@ -1,14 +1,8 @@
 package nl.hsleiden.controller;
 
 import nl.hsleiden.exception.ResourceNotFoundException;
-import nl.hsleiden.model.Supplier;
-import nl.hsleiden.model.SupplierContract;
-import nl.hsleiden.model.SupplierEmail;
-import nl.hsleiden.model.SupplierPhone;
-import nl.hsleiden.repository.SupplierContractRepository;
-import nl.hsleiden.repository.SupplierEmailRepository;
-import nl.hsleiden.repository.SupplierPhoneRepository;
-import nl.hsleiden.repository.SupplierRepository;
+import nl.hsleiden.model.*;
+import nl.hsleiden.repository.*;
 import nl.hsleiden.service.CollectionDataService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,9 +30,13 @@ public class SupplierController {
     @Autowired
     private SupplierPhoneRepository supplierPhoneRepository;
 
+    @Autowired
+    private SupplierAddressRepository supplierAddressRepo;
+
     private CollectionDataService<SupplierContract> supplierContractCollectionDataService = new CollectionDataService<>();
     private CollectionDataService<SupplierEmail> supplierEmailCollectionDataService = new CollectionDataService<>();
     private CollectionDataService<SupplierPhone> supplierPhoneCollectionDataService = new CollectionDataService<>();
+    private CollectionDataService<SupplierAddress> supplierAddressCollectionDataService = new CollectionDataService<>();
 
     @GetMapping("/api/suppliers")
     public Collection<Supplier> getSuppliers() {
@@ -59,6 +57,7 @@ public class SupplierController {
         saveContracts(savedSupplier, supplier.getContracts());
         saveEmails(savedSupplier, supplier.getEmails());
         savePhones(savedSupplier, supplier.getPhones());
+        saveAddresses(savedSupplier, supplier.getAddresses());
 
         return supplierRepository.save(supplier);
     }
@@ -86,6 +85,9 @@ public class SupplierController {
             Collection<SupplierPhone> supplierPhonesToBeSaved = supplierPhoneCollectionDataService.getToBeSaved(supplier.getPhones(), updatedSupplier.getPhones());
             Collection<SupplierPhone> supplierPhonesToBeDeleted = supplierPhoneCollectionDataService.getToBeDeleted(supplier.getPhones(), updatedSupplier.getPhones());
 
+            Collection<SupplierAddress> supplierAddressesToBeSaved = supplierAddressCollectionDataService.getToBeSaved(supplier.getAddresses(), updatedSupplier.getAddresses());
+            Collection<SupplierAddress> supplierAddressesToBeDeleted = supplierAddressCollectionDataService.getToBeDeleted(supplier.getAddresses(), updatedSupplier.getAddresses());
+
             // TODO
             saveContracts(supplier, supplierContractsToBeSaved);
             deleteContracts(supplierContractsToBeDeleted);
@@ -96,9 +98,13 @@ public class SupplierController {
             savePhones(supplier, supplierPhonesToBeSaved);
             deletePhones(supplierPhonesToBeDeleted);
 
+            saveAddresses(supplier, supplierAddressesToBeSaved);
+            deleteAddresses(supplierAddressesToBeDeleted);
+
             supplier.setContracts(supplierContractCollectionDataService.getDefinitiveCollection(supplier.getContracts(), supplierContractsToBeSaved, supplierContractsToBeDeleted));
             supplier.setEmails(supplierEmailCollectionDataService.getDefinitiveCollection(supplier.getEmails(), supplierEmailsToBeSaved, supplierEmailsToBeDeleted));
             supplier.setPhones(supplierPhoneCollectionDataService.getDefinitiveCollection(supplier.getPhones(), supplierPhonesToBeSaved, supplierPhonesToBeDeleted));
+            supplier.setAddresses(supplierAddressCollectionDataService.getDefinitiveCollection(supplier.getAddresses(), supplierAddressesToBeSaved, supplierAddressesToBeDeleted));
 
             return supplierRepository.save(supplier);
         }).orElseThrow(() -> new ResourceNotFoundException("Supplier not found with id: " + supplierId));
@@ -167,6 +173,35 @@ public class SupplierController {
             supplierPhoneRepository.deleteAll(toBeDeleted);
         } catch (NullPointerException exception) {
             LOGGER.info("Unable to delete contracts");
+        }
+    }
+
+    /**
+     * For saving multiple addresses of one supplier.
+     * @param supplier id of a supplier
+     * @param toBeSaved JSON-object obtained ready to be stored in the database
+     * @author Robin Silverio
+     */
+    private void saveAddresses(Supplier supplier, Collection<SupplierAddress> toBeSaved) {
+        try{
+            for (SupplierAddress address : toBeSaved)
+                address.setSupplier(supplier);
+            supplierAddressRepo.saveAll(toBeSaved);
+        } catch (NullPointerException e) {
+            LOGGER.info("Unable to save addresses");
+        }
+    }
+
+    /**
+     * For deleting set of addresses of one supplier
+     * @param toBeDeleted JSON-object containing a list of addresses ready to be deleted
+     * @author Robin Silverio
+     */
+    private void deleteAddresses(Collection<SupplierAddress> toBeDeleted) {
+        try {
+            supplierAddressRepo.deleteAll(toBeDeleted);
+        } catch (NullPointerException e){
+            LOGGER.info("Unable to delete addresses");
         }
     }
 }

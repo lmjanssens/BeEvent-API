@@ -56,6 +56,10 @@ public class Supplier {
     @JsonProperty("contracts")
     private Set<SupplierContract> contracts;
 
+    @OneToMany(mappedBy = "supplier")
+    @JsonProperty("addresses")
+    private Set<SupplierAddress> addresses;
+
     public String getName() {
         return name;
     }
@@ -127,4 +131,8 @@ public class Supplier {
     public void setContracts(Set<SupplierContract> contracts) {
         this.contracts = contracts;
     }
+
+    public Set<SupplierAddress> getAddresses() { return addresses; }
+
+    public void setAddresses(Set<SupplierAddress> addresses) { this.addresses = addresses; }
 }
