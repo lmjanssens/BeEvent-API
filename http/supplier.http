@@ -9,6 +9,9 @@ Accept: application/json
   "name": "Hoboken",
   "contact_person": "Hoboken45",
   "supervisor": "Hoboken45",
+  "website" : "hoboken.nl",
+  "note" : null,
+  "image" : "image/hoboken.jpg",
   "email_addresses": [
     { "email": "sushi45@example.com" }
   ],
@@ -27,5 +30,14 @@ Accept: application/json
       "responsibility": "Artemis",
       "extras": "5 sushi rolls gratis bij een afname van 1000 sushi rolls"
     }
+  ],
+  "addresses" : [
+    {
+      "address" : "Teststraat 138",
+      "city" : "Delft",
+      "zipcode" : "1234KL"
+    }
   ]
 }
+
+###

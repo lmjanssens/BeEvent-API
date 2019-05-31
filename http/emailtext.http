@@ -1,0 +1,39 @@
+###
+
+
+GET http://localhost:8080/api/emailtexts
+Accept: application:json
+
+###
+
+GET http://localhost:8080/api/emailtexts/1
+Accept: application/json
+
+###
+
+POST http://localhost:8080/api/emailtexts
+Content-Type: application/json
+Accept: application/json
+
+{
+  "emailType": "Offerte goedgekeurd",
+  "emailText": "Geachte <klant>, \nUw factuur is zojuist aangemaakt.\nMet vriendelijke groeten Arthur Bol"
+}
+
+###
+
+PUT http://localhost:8080/api/emailtexts/1
+Content-Type: application/json
+Accept: application/json
+
+{
+  "emailType": "Aanmaning betalingsachterstand",
+  "emailText": "Geachte <klant>, \nHierbij moeten we u mededelen dat u nog een openstaande rekening hebt die betaald moet worden. U kunt kiezen om per termijn te betalen of direct in een keer. \nMet vriendelijke groeten Arthur Bol"
+}
+
+###
+
+DELETE http://localhost:8080/api/emailtexts/1
+Accept: application/json
+
+###
