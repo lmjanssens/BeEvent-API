@@ -31,11 +31,11 @@ public class Catering {
     private Set<SupplierContract> supplierContracts;
 
     @NotNull
-    @Column(name = "cateringname")
+    @Column(name = "catering_name")
     private String cateringName;
 
     @NotNull
-    @Column(name = "contactperson")
+    @Column(name = "contact_person")
     private String contactPerson;
 
     @NotNull
@@ -55,7 +55,7 @@ public class Catering {
     private String phone;
 
     @NotNull
-    @Column(name = "cateringprice")
+    @Column(name = "catering_price")
     private double cateringPrice;
 
     @Column(name = "note")

@@ -13,6 +13,7 @@ public class Invoice {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "invoicenumber", columnDefinition = "serial")
+    @JsonProperty("invoiceNumber")
     private Long invoiceNumber;
 
     @ManyToOne

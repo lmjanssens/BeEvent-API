@@ -1,8 +1,7 @@
 ###
 
-
 GET http://localhost:8080/api/emailtexts
-Accept: application:json
+Accept: application/json
 
 ###
 
