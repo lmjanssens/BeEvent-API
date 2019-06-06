@@ -1,5 +1,6 @@
 package nl.hsleiden.controller;
 
+import nl.hsleiden.auth.Role;
 import nl.hsleiden.exception.ResourceNotFoundException;
 import nl.hsleiden.model.Instructor;
 import nl.hsleiden.model.Instructor;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
 import java.util.Collection;
 import java.util.Optional;
@@ -23,23 +25,27 @@ public class InstructorController {
     private InstructorRepository instructorRepository;
 
     @GetMapping("/api/instructors")
+    @RolesAllowed(Role.ADMIN)
     public Collection<Instructor> getInstructors() {
         return instructorRepository.findAll();
     }
 
     @GetMapping("/api/instructors/{instructorId}")
+    @RolesAllowed(Role.ADMIN)
     public Optional<Instructor> getInstructor(@PathVariable Long instructorId) {
         LOGGER.info("Fetching instructor with id" + instructorId);
         return instructorRepository.findById(instructorId);
     }
 
     @PostMapping("/api/instructors")
+    @RolesAllowed(Role.ADMIN)
     public Instructor createInstructor(@Valid @RequestBody Instructor instructor) {
         LOGGER.info("Creating instructor.");
         return instructorRepository.save(instructor);
     }
 
     @PutMapping("/api/instructors/{instructorId}")
+    @RolesAllowed(Role.ADMIN)
     public Instructor updateInstructor(@PathVariable Long instructorId, @Valid @RequestBody Instructor updatedInstructor) {
         LOGGER.info("Updating instructor with id: " + instructorId);
         return instructorRepository.findById(instructorId).map(instructor -> {
@@ -54,6 +60,7 @@ public class InstructorController {
     }
 
     @DeleteMapping("/api/instructors/{instructorId}")
+    @RolesAllowed(Role.ADMIN)
     public ResponseEntity<?> deleteInstructor(@PathVariable Long instructorId) {
         LOGGER.info("Deleting instructor with id: " + instructorId);
         return instructorRepository.findById(instructorId).map(instructor -> {

@@ -1,5 +1,6 @@
 package nl.hsleiden.controller;
 
+import nl.hsleiden.auth.Role;
 import nl.hsleiden.exception.ResourceNotFoundException;
 import nl.hsleiden.model.*;
 import nl.hsleiden.repository.*;
@@ -8,8 +9,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
 import java.util.Collection;
 import java.util.Optional;
@@ -39,15 +42,18 @@ public class OrderController {
     CollectionDataService<Quotation> quotationCollectionDataService = new CollectionDataService<>();
 
     @GetMapping("/api/orders")
+    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
     public Collection<Order> getOrders() { return orderRepository.findAll(); }
 
     @GetMapping("/api/orders/{orderId}")
+    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
     public Optional<Order> getSpecifiedCatering(@PathVariable Long orderId) {
         LOGGER.info("Fetching order with id: " + orderId);
         return orderRepository.findById(orderId);
     }
 
     @PostMapping("/api/orders")
+    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
     public Order createOrder(@Valid @RequestBody Order order) {
         LOGGER.info("Creating new order...");
         Order savedOrder = orderRepository.save(order);
@@ -61,6 +67,7 @@ public class OrderController {
     }
 
     @PutMapping("/api/orders/{orderId}")
+    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
     public Order updateOrder(@PathVariable Long orderId, @Valid @RequestBody Order updatedOrder) {
         LOGGER.info("Updating order with id: " + orderId);
         return orderRepository.findById(orderId).map(order -> {
@@ -113,6 +120,7 @@ public class OrderController {
     }
 
     @DeleteMapping("/api/orders/{orderId}")
+    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
     public ResponseEntity<?> deleteOrder(@PathVariable Long orderId) {
         LOGGER.info("Deleting order with id: " + orderId);
         return orderRepository.findById(orderId).map(order -> {
