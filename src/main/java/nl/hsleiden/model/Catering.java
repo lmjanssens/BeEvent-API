@@ -26,10 +26,6 @@ public class Catering {
     @JsonIgnore
     private Supplier supplier;
 
-    @OneToMany(mappedBy = "catering")
-    @JsonIgnore
-    private Set<SupplierContract> supplierContracts;
-
     @NotNull
     @Column(name = "catering_name")
     private String cateringName;
@@ -61,9 +57,8 @@ public class Catering {
     @Column(name = "note")
     private String note;
 
-    public Catering(Supplier supplier, Set<SupplierContract> supplierContracts, String cateringName, String contactPerson, String zipcode, String address, String city, String phone, double cateringPrice, String note) {
+    public Catering(Supplier supplier, String cateringName, String contactPerson, String zipcode, String address, String city, String phone, double cateringPrice, String note) {
         this.supplier = supplier;
-        this.supplierContracts = supplierContracts;
         this.cateringName = cateringName;
         this.contactPerson = contactPerson;
         this.zipcode = zipcode;
@@ -90,14 +85,6 @@ public class Catering {
 
     public void setSupplier(Supplier supplier) {
         this.supplier = supplier;
-    }
-
-    public Set<SupplierContract> getSupplierContracts() {
-        return supplierContracts;
-    }
-
-    public void setSupplierContracts(Set<SupplierContract> supplierContracts) {
-        this.supplierContracts = supplierContracts;
     }
 
     public String getCateringName() {
