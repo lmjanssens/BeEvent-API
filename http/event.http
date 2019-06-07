@@ -13,7 +13,7 @@ Authorization: Basic Arthur abc
 
 ###
 
-POST http://localhost:8080/api/events/7/38
+POST http://localhost:8080/api/events/1/39
 Content-Type: application/json
 Accept: application/json
 Authorization: Basic Arthur abc
@@ -29,6 +29,16 @@ Authorization: Basic Arthur abc
   "priceBuyPerPerson": 0,
   "btw": 0.21,
   "note": null
+}
+
+###
+POST http://localhost:8080/api/eventimage/1
+Content-Type: application/json
+Accept: application/json
+Authorization: Basic Arthur abc
+
+{
+  "imagePath": "image/expeditiehelloworld.jpg"
 }
 
 ###

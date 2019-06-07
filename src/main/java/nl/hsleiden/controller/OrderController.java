@@ -59,6 +59,19 @@ public class OrderController {
         Order savedOrder = orderRepository.save(order);
 
         this.saveCateringOrders(savedOrder, order.getCateringOrders());
+        /**
+         * Luuk Luister eens voor altijd. In tabel events is er GEEN FUCKING foreign key genaamd ORDERID
+         * in tabel events. Ik word er helemaal moe van wanneer iemand aan mijn feature (events) zit te vernagelen.
+         * Ik zou het appreciëren deze te corrigeren. Dit is precies hetzelfde akkefietje met die contractId in cateringtabel en
+         * gerelateerde tabellen.
+         *
+         * Groet,
+         * Robin
+         *
+         * PS:: Sorry voor die rantingmode. Plus moest heel wat aanpassen aan je code in dit bestand om te voor
+         * zorgen dat de applicatie geen nieuwe kolom creëert op het moment dat het opstart. Daarna heb ik weer in oude staat gezet.
+         * Corrigeer deze fout aub.
+         */
         this.saveEvents(savedOrder, order.getEvents());
         this.saveInvoices(savedOrder, order.getInvoices());
         this.saveQuotations(savedOrder, order.getQuotations());
