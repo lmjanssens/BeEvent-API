@@ -1,5 +1,7 @@
 package nl.hsleiden.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
@@ -16,6 +18,7 @@ public class Instructor {
     private Long id;
 
     @OneToOne
+    @JsonProperty("user_id")
     @JoinColumn(name = "userid", nullable = false)
     private User user;
 
@@ -35,7 +38,7 @@ public class Instructor {
 
     @NotNull
     @Length(min = 10, max = 20)
-    @Column(name = "phonenumber")
+    @Column(name = "phone_number")
     private String phoneNumber;
 
     @NotNull

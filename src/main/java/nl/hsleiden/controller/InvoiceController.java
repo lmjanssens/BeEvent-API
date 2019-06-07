@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.RolesAllowed;
@@ -23,25 +24,25 @@ public class InvoiceController {
     private InvoiceRepository invoiceRepository;
 
     @GetMapping("/api/invoice")
-    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public Collection<Invoice> getInvoices() { return invoiceRepository.findAll(); }
 
     @GetMapping("/api/invoice/{invoiceNumber}")
-    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public Optional<Invoice> getSpecifiedInvoice(@PathVariable Long invoiceNumber) {
         LOGGER.info("Fetching invoice with number: " + invoiceNumber);
         return invoiceRepository.findById(invoiceNumber);
     }
 
     @PostMapping("/api/invoice")
-    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public Invoice createInvoice(@Valid @RequestBody Invoice invoice) {
         LOGGER.info("Creating new invoice...");
         return invoiceRepository.save(invoice);
     }
 
     @PutMapping("/api/invoice/{invoiceNumber}")
-    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public Invoice updateInvoice(@PathVariable Long invoiceNumber, @Valid @RequestBody Invoice updatedInvoice) {
         LOGGER.info("Updating invoice with number: " + invoiceNumber);
         return invoiceRepository.findById(invoiceNumber).map(invoice -> {
@@ -64,7 +65,7 @@ public class InvoiceController {
     }
 
     @DeleteMapping("/api/invoice/{invoiceNumber}")
-    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public ResponseEntity<?> deleteInvoice(@PathVariable Long invoiceNumber) {
         LOGGER.info("Deleting invoice with number: " + invoiceNumber);
         return invoiceRepository.findById(invoiceNumber).map(invoice -> {

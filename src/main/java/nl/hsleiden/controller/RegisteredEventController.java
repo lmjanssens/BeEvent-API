@@ -8,6 +8,7 @@ import nl.hsleiden.repository.InstructorRepository;
 import nl.hsleiden.repository.RegisteredEventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.RolesAllowed;
@@ -40,7 +41,7 @@ public class RegisteredEventController {
      * @return a list of registered events
      */
     @GetMapping("/api/registeredevents")
-    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public Collection<RegisteredEvent> getRegisteredEvents() { return registeredEventRepo.findAll(); }
 
     /**
@@ -49,7 +50,7 @@ public class RegisteredEventController {
      * @return a specific event object
      */
     @GetMapping("/api/registeredevents/{eventId}")
-    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public Optional<RegisteredEvent> getRegisteredEventById (@PathVariable Long eventId) {
         LOGGER.info("Fetching registered event with id " +  eventId);
         return registeredEventRepo.findById(eventId);
@@ -62,7 +63,7 @@ public class RegisteredEventController {
      * @return an inserted registered event object
      */
     @PostMapping("/api/registeredevents/{eventId}/{instructorId}")
-    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public RegisteredEvent createRegisteredEvent(@PathVariable Long eventId,
                                                         @PathVariable Long instructorId,
                                                         @Valid @RequestBody RegisteredEvent registeredEvent){
@@ -84,7 +85,7 @@ public class RegisteredEventController {
      * @return response
      */
     @DeleteMapping("/api/registeredevents/{eventId}")
-    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public ResponseEntity<?> deleteEvents(@PathVariable Long eventId){
         LOGGER.info("Deleting registered event with id " + eventId);
         return registeredEventRepo.findById(eventId).map(event -> {

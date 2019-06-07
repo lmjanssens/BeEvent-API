@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.RolesAllowed;
@@ -32,18 +33,18 @@ public class CateringOrderController {
     private CateringRepository cateringRepo;
 
     @GetMapping("/api/cateringorder")
-    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public Collection<CateringOrder> getCateringOrders() { return this.cateringOrderRepo.findAll(); }
 
     @GetMapping("/api/cateringorder/{id}")
-    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public Optional<CateringOrder> getSpecificCateringOrder(@PathVariable Long id) {
         LOGGER.info("Fetching catering order object of id " + id);
         return cateringOrderRepo.findById(id);
     }
 
     @PostMapping("/api/cateringorder/{orderId}/{cateringId}")
-    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public CateringOrder createCateringOrder(@PathVariable Long orderId,
                                              @PathVariable Long cateringId,
                                              @Valid @RequestBody CateringOrder cateringOrder) {
@@ -59,7 +60,7 @@ public class CateringOrderController {
     }
 
     @PutMapping("/api/cateringorder/{id}")
-    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public CateringOrder updateCateringOrder(@PathVariable Long id,
                                              @Valid @RequestBody CateringOrder updatedCateringOrder) {
         LOGGER.info("Updating catering order object of id " + id);
@@ -78,7 +79,7 @@ public class CateringOrderController {
     }
 
     @DeleteMapping("/api/cateringorder/{id}")
-    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public ResponseEntity<?> deleteCateringOrder(@PathVariable Long id) {
         LOGGER.info("Deleting a catering order object of id " + id);
         return cateringOrderRepo.findById(id).map(cateringOrder -> {

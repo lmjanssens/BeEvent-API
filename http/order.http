@@ -2,11 +2,13 @@
 
 GET http://localhost:8080/api/orders
 Accept: application/json
+Authorization: Basic Arthur abc
 
 ###
 
 GET http://localhost:8080/api/orders/37
 Accept: application/json
+Authorization: Basic Arthur abc
 
 ###
 
@@ -16,7 +18,7 @@ Accept: application/json
 Authorization: Basic Arthur abc
 
 {
-  "customerid": 4,
+  "customerid": 1,
   "dateorder": "2019-01-10T13:37:42",
   "dateevent": "2019-01-10T13:37:42",
   "note": "test note",
@@ -66,12 +68,14 @@ Authorization: Basic Arthur abc
 
 ###
 
-PUT http://localhost:8080/api/orders/1
+PUT http://localhost:8080/api/orders/43
 Content-Type: application/json
 Accept: application/json
+Authorization: Basic Arthur abc
 
 {
-  "orderid": 1,
+  "orderid": 43,
+  "dateorder": "2019-01-10T13:37:42",
   "dateinvoice": "2019-01-10T13:37:42",
   "paymentextras": "dit kost veel te veel",
   "pricepp": 1542.99,
@@ -91,5 +95,6 @@ Accept: application/json
 
 DELETE http://localhost:8080/api/orders/1
 Accept: application/json
+Authorization: Basic Arthur abc
 
 ###

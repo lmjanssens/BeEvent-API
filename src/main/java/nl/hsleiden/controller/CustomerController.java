@@ -15,6 +15,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.RolesAllowed;
@@ -44,19 +45,20 @@ public class CustomerController {
     CollectionDataService<CustomerPhone> phoneCollectionDataService = new CollectionDataService<>();
 
     @GetMapping("/api/customers")
-    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public Collection<Customer> getCustomers() {
         return customerRepository.findAll();
     }
 
     @GetMapping("/api/customers/{customerId}")
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public Optional<Customer> getSpecifiedCustomer(@PathVariable Long customerId) {
         LOGGER.info("Fetching customer with id: " + customerId);
         return customerRepository.findById(customerId);
     }
 
     @PostMapping("/api/customers")
-    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public Customer createCustomer(@Valid @RequestBody Customer customer) {
         LOGGER.info("Creating new customer...");
         Customer savedCustomer = customerRepository.save(customer);
@@ -71,7 +73,7 @@ public class CustomerController {
     }
 
     @PutMapping("/api/customers/{customerId}")
-    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public Customer updateCustomer(@PathVariable Long customerId, @Valid @RequestBody Customer updatedCustomer) {
         LOGGER.info("Updating customer with id: " + customerId);
 
@@ -84,7 +86,7 @@ public class CustomerController {
             customer.setLastName(updatedCustomer.getLastName());
             customer.setTitle(updatedCustomer.getTitle());
             customer.setZipcode(updatedCustomer.getZipcode());
-            
+
             Collection<CustomerEmail> emailsToSave = emailCollectionDataService.getToBeSaved(customer.getEmails(), updatedCustomer.getEmails());
             Collection<CustomerEmail> emailsToDelete = emailCollectionDataService.getToBeDeleted(customer.getEmails(), updatedCustomer.getEmails());
 
@@ -109,7 +111,7 @@ public class CustomerController {
     }
 
     @DeleteMapping("/api/customers/{customerId}")
-    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public ResponseEntity<?> deleteCustomer(@PathVariable Long customerId) {
         LOGGER.info("Deleting customer with id: " + customerId);
         return customerRepository.findById(customerId).map(customer -> {

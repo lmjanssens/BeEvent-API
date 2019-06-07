@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.RolesAllowed;
@@ -23,25 +24,25 @@ public class QuotationController {
     private QuotationRepository quotationRepository;
 
     @GetMapping("/api/quotation")
-    @RolesAllowed(Role.EMPLOYEE)
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public Collection<Quotation> getQuotations() { return quotationRepository.findAll(); }
 
     @GetMapping("/api/quotation/{quotationNumber}")
-    @RolesAllowed(Role.EMPLOYEE)
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public Optional<Quotation> getSpecifiedQuotation(@PathVariable Long quotationNumber) {
         LOGGER.info("Fetching quotation with number: " + quotationNumber);
         return quotationRepository.findById(quotationNumber);
     }
 
     @PostMapping("/api/quotation")
-    @RolesAllowed(Role.EMPLOYEE)
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public Quotation createQuotation(@Valid @RequestBody Quotation quotation) {
         LOGGER.info("Creating new quotation...");
         return quotationRepository.save(quotation);
     }
 
     @PutMapping("/api/quotation/{quotationNumber}")
-    @RolesAllowed(Role.EMPLOYEE)
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public Quotation updateQuotation(@PathVariable Long quotationNumber,
                                      @Valid @RequestBody Quotation updatedQuotation) {
         LOGGER.info("Updating quotation with number: " + quotationNumber);
@@ -56,7 +57,7 @@ public class QuotationController {
     }
 
     @DeleteMapping("/api/quotation/{quotationNumber}")
-    @RolesAllowed(Role.EMPLOYEE)
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public ResponseEntity<?> deleteQuotation(@PathVariable Long quotationNumber) {
         LOGGER.info("Deleting quotation with id: " + quotationNumber);
         return quotationRepository.findById(quotationNumber).map(quotation -> {

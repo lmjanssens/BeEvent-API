@@ -2,17 +2,20 @@
 
 GET http://localhost:8080/api/customers
 Accept: application/json
+Authorization: Basic Arthur abc
 
 ###
 
 GET http://localhost:8080/api/customers/4
 Accept: application/json
+Authorization: Basic Arthur abc
 
 ###
 
 POST http://localhost:8080/api/customers
 Content-Type: application/json
 Accept: application/json
+Authorization: Basic Arthur abc
 
 {
   "title": "mevrouw",
@@ -37,6 +40,7 @@ Accept: application/json
 PUT http://localhost:8080/api/customers/4
 Content-Type: application/json
 Accept: application/json
+Authorization: Basic Arthur abc
 
 {
   "title": "heer",
@@ -60,5 +64,6 @@ Accept: application/json
 
 DELETE http://localhost:8080/api/customers/3
 Accept: application/json
+Authorization: Basic Arthur abc
 
 ###

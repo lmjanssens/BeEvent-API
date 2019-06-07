@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.RolesAllowed;
@@ -32,16 +33,18 @@ public class CustomerOrderController {
     private CustomerRepository customerRepository;
 
     @GetMapping("/api/customerOrder")
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public Collection<CustomerOrder> getCustomerOrder() { return customerOrderRepository.findAll(); }
 
     @GetMapping("/api/customerOrder/{customerOrderId}")
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public Optional<CustomerOrder> getSpecifiedCustomerOrder(@PathVariable Long customerOrderId) {
         LOGGER.info("Fetching customer order with id: " + customerOrderId);
         return customerOrderRepository.findById(customerOrderId);
     }
 
     @PostMapping("/api/customerOrder/{orderId}/{customerId}")
-    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public CustomerOrder createCustomerOrder(@PathVariable Long orderId, @PathVariable Long customerId,@Valid @RequestBody CustomerOrder customerOrder) {
         LOGGER.info("Creating new customer order...");
         return orderRepository.findById(orderId).map(order -> {
@@ -54,7 +57,7 @@ public class CustomerOrderController {
     }
 
     @PutMapping("/api/customerOrder/{customerOrderId}")
-    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public CustomerOrder updateCustomerOrder(@PathVariable Long customerOrderId,
                                              @Valid @RequestBody CustomerOrder updatedCustomerOrder) {
         LOGGER.info("Updating customer order with id: " + customerOrderId);
@@ -66,7 +69,7 @@ public class CustomerOrderController {
     }
 
     @DeleteMapping("/api/customerOrder/{customerOrderId}")
-    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public ResponseEntity<?> deleteCustomerOrder(@PathVariable Long customerOrderId) {
         LOGGER.info("Deleting customer order with id: " + customerOrderId);
         return customerOrderRepository.findById(customerOrderId).map(customerOrder -> {
