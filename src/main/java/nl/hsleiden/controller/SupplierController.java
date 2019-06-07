@@ -1,5 +1,6 @@
 package nl.hsleiden.controller;
 
+import nl.hsleiden.auth.Role;
 import nl.hsleiden.exception.ResourceNotFoundException;
 import nl.hsleiden.model.*;
 import nl.hsleiden.repository.*;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
 import java.util.Collection;
 import java.util.Optional;
@@ -39,17 +41,20 @@ public class SupplierController {
     private CollectionDataService<SupplierAddress> supplierAddressCollectionDataService = new CollectionDataService<>();
 
     @GetMapping("/api/suppliers")
+    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
     public Collection<Supplier> getSuppliers() {
         return supplierRepository.findAll();
     }
 
     @GetMapping("/api/suppliers/{supplierId}")
+    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
     public Optional<Supplier> getSupplier(@PathVariable Long supplierId) {
         LOGGER.info("Fetching supplier by id: " + supplierId);
         return supplierRepository.findById(supplierId);
     }
 
     @PostMapping("/api/suppliers")
+    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
     public Supplier createSupplier(@Valid @RequestBody Supplier supplier) {
         LOGGER.info("Creating supplier.");
         Supplier savedSupplier = supplierRepository.save(supplier);
@@ -63,6 +68,7 @@ public class SupplierController {
     }
 
     @PutMapping("/api/suppliers/{supplierId}")
+    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
     public Supplier updateSupplier(@PathVariable Long supplierId, @Valid @RequestBody Supplier updatedSupplier) {
         LOGGER.info("Updating supplier with id: " + supplierId);
         return supplierRepository.findById(supplierId).map(supplier -> {
@@ -111,6 +117,7 @@ public class SupplierController {
     }
 
     @DeleteMapping("/api/suppliers/{supplierId}")
+    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
     public ResponseEntity<?> deleteSupplier(@PathVariable Long supplierId) {
         LOGGER.info("Deleting supplier with id: " + supplierId);
         return supplierRepository.findById(supplierId).map(supplier -> {

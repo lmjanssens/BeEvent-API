@@ -1,5 +1,6 @@
 package nl.hsleiden.controller;
 
+import nl.hsleiden.auth.Role;
 import nl.hsleiden.exception.ResourceNotFoundException;
 import nl.hsleiden.model.CateringOrder;
 import nl.hsleiden.repository.CateringOrderRepository;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
 import java.util.Collection;
 import java.util.Optional;
@@ -30,15 +32,18 @@ public class CateringOrderController {
     private CateringRepository cateringRepo;
 
     @GetMapping("/api/cateringorder")
+    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
     public Collection<CateringOrder> getCateringOrders() { return this.cateringOrderRepo.findAll(); }
 
     @GetMapping("/api/cateringorder/{id}")
+    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
     public Optional<CateringOrder> getSpecificCateringOrder(@PathVariable Long id) {
         LOGGER.info("Fetching catering order object of id " + id);
         return cateringOrderRepo.findById(id);
     }
 
     @PostMapping("/api/cateringorder/{orderId}/{cateringId}")
+    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
     public CateringOrder createCateringOrder(@PathVariable Long orderId,
                                              @PathVariable Long cateringId,
                                              @Valid @RequestBody CateringOrder cateringOrder) {
@@ -54,6 +59,7 @@ public class CateringOrderController {
     }
 
     @PutMapping("/api/cateringorder/{id}")
+    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
     public CateringOrder updateCateringOrder(@PathVariable Long id,
                                              @Valid @RequestBody CateringOrder updatedCateringOrder) {
         LOGGER.info("Updating catering order object of id " + id);
@@ -72,6 +78,7 @@ public class CateringOrderController {
     }
 
     @DeleteMapping("/api/cateringorder/{id}")
+    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
     public ResponseEntity<?> deleteCateringOrder(@PathVariable Long id) {
         LOGGER.info("Deleting a catering order object of id " + id);
         return cateringOrderRepo.findById(id).map(cateringOrder -> {

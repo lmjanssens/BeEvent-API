@@ -1,5 +1,6 @@
 package nl.hsleiden.controller;
 
+import nl.hsleiden.auth.Role;
 import nl.hsleiden.exception.ResourceNotFoundException;
 import nl.hsleiden.model.Quotation;
 import nl.hsleiden.repository.QuotationRepository;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
 import java.util.Collection;
 import java.util.Optional;
@@ -21,21 +23,25 @@ public class QuotationController {
     private QuotationRepository quotationRepository;
 
     @GetMapping("/api/quotation")
+    @RolesAllowed(Role.EMPLOYEE)
     public Collection<Quotation> getQuotations() { return quotationRepository.findAll(); }
 
     @GetMapping("/api/quotation/{quotationNumber}")
+    @RolesAllowed(Role.EMPLOYEE)
     public Optional<Quotation> getSpecifiedQuotation(@PathVariable Long quotationNumber) {
         LOGGER.info("Fetching quotation with number: " + quotationNumber);
         return quotationRepository.findById(quotationNumber);
     }
 
     @PostMapping("/api/quotation")
+    @RolesAllowed(Role.EMPLOYEE)
     public Quotation createQuotation(@Valid @RequestBody Quotation quotation) {
         LOGGER.info("Creating new quotation...");
         return quotationRepository.save(quotation);
     }
 
     @PutMapping("/api/quotation/{quotationNumber}")
+    @RolesAllowed(Role.EMPLOYEE)
     public Quotation updateQuotation(@PathVariable Long quotationNumber,
                                      @Valid @RequestBody Quotation updatedQuotation) {
         LOGGER.info("Updating quotation with number: " + quotationNumber);
@@ -50,6 +56,7 @@ public class QuotationController {
     }
 
     @DeleteMapping("/api/quotation/{quotationNumber}")
+    @RolesAllowed(Role.EMPLOYEE)
     public ResponseEntity<?> deleteQuotation(@PathVariable Long quotationNumber) {
         LOGGER.info("Deleting quotation with id: " + quotationNumber);
         return quotationRepository.findById(quotationNumber).map(quotation -> {

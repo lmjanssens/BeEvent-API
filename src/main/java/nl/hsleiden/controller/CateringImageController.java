@@ -1,5 +1,6 @@
 package nl.hsleiden.controller;
 
+import nl.hsleiden.auth.Role;
 import nl.hsleiden.exception.ResourceNotFoundException;
 import nl.hsleiden.model.CateringImage;
 import nl.hsleiden.repository.CateringImageRepository;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
 import java.util.Collection;
 import java.util.Optional;
@@ -26,15 +28,18 @@ public class CateringImageController {
     private CateringRepository cateringRepo;
 
     @GetMapping("/api/cateringimages")
+    @RolesAllowed(Role.EMPLOYEE)
     public Collection<CateringImage> getCateringImages() { return this.cateringImageRepo.findAll(); }
 
     @GetMapping("/api/cateringimages/{id}")
+    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
     public Optional<CateringImage> getSpecificCateringImage(@PathVariable Long id) {
         LOGGER.info("Fetching cateringimage object of id " + id);
         return cateringImageRepo.findById(id);
     }
 
     @PostMapping("/api/cateringimages/{id}")
+    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
     public CateringImage createCateringImage(@PathVariable Long id, @Valid @RequestBody CateringImage cateringImage) {
         LOGGER.info("Creating a new catering image");
         return cateringRepo.findById(id).map(catering -> {
@@ -44,6 +49,7 @@ public class CateringImageController {
     }
 
     @PutMapping("/api/cateringimages/{id}")
+    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
     public CateringImage updateCateringImage(@PathVariable Long id, @Valid @RequestBody CateringImage updatedCateringImage) {
         LOGGER.info("Updating catering image object of id " + id);
         return cateringImageRepo.findById(id).map(cateringImage -> {
@@ -53,6 +59,7 @@ public class CateringImageController {
     }
 
     @DeleteMapping("/api/cateringimages/{id}")
+    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
     public ResponseEntity<?> deleteCateringImage(@PathVariable Long id) {
         LOGGER.info("Deleting cateringobject of id " + id);
         return cateringImageRepo.findById(id).map(cateringImage -> {
