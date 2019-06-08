@@ -55,15 +55,14 @@ public class Order {
     @JsonProperty("invoices")
     private Set<Invoice> invoices;
 
-    @OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
-    @JsonProperty("events")
-    private Set<Event> events;
+    @OneToOne
+    @Column(name = "eventid")
+    @JsonProperty("eventid")
+    private Event event;
 
     @OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
     @JsonProperty("quotations")
     private Set<Quotation> quotations;
-
-    //TODO: add many to many with customers
 
     public Long getOrderId() {
         return orderId;
@@ -145,19 +144,19 @@ public class Order {
         this.customer = customer;
     }
 
-    public Set<Event> getEvents() {
-        return events;
-    }
-
-    public void setEvents(Set<Event> events) {
-        this.events = events;
-    }
-
     public Set<Quotation> getQuotations() {
         return quotations;
     }
 
     public void setQuotations(Set<Quotation> quotations) {
         this.quotations = quotations;
+    }
+
+    public Event getEvent() {
+        return event;
+    }
+
+    public void setEvent(Event event) {
+        this.event = event;
     }
 }
