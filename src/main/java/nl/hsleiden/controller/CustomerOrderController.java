@@ -1,5 +1,6 @@
 package nl.hsleiden.controller;
 
+import nl.hsleiden.auth.Role;
 import nl.hsleiden.exception.ResourceNotFoundException;
 import nl.hsleiden.model.CustomerOrder;
 import nl.hsleiden.repository.CustomerOrderRepository;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
 import java.util.Collection;
 import java.util.Optional;
@@ -39,6 +41,7 @@ public class CustomerOrderController {
     }
 
     @PostMapping("/api/customerOrder/{orderId}/{customerId}")
+    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
     public CustomerOrder createCustomerOrder(@PathVariable Long orderId, @PathVariable Long customerId,@Valid @RequestBody CustomerOrder customerOrder) {
         LOGGER.info("Creating new customer order...");
         return orderRepository.findById(orderId).map(order -> {
@@ -51,6 +54,7 @@ public class CustomerOrderController {
     }
 
     @PutMapping("/api/customerOrder/{customerOrderId}")
+    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
     public CustomerOrder updateCustomerOrder(@PathVariable Long customerOrderId,
                                              @Valid @RequestBody CustomerOrder updatedCustomerOrder) {
         LOGGER.info("Updating customer order with id: " + customerOrderId);
@@ -62,6 +66,7 @@ public class CustomerOrderController {
     }
 
     @DeleteMapping("/api/customerOrder/{customerOrderId}")
+    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
     public ResponseEntity<?> deleteCustomerOrder(@PathVariable Long customerOrderId) {
         LOGGER.info("Deleting customer order with id: " + customerOrderId);
         return customerOrderRepository.findById(customerOrderId).map(customerOrder -> {

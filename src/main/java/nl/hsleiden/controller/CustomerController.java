@@ -1,5 +1,6 @@
 package nl.hsleiden.controller;
 
+import nl.hsleiden.auth.Role;
 import nl.hsleiden.exception.ResourceNotFoundException;
 import nl.hsleiden.model.Customer;
 import nl.hsleiden.model.CustomerEmail;
@@ -16,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
 import java.util.Collection;
 import java.util.HashSet;
@@ -42,6 +44,7 @@ public class CustomerController {
     CollectionDataService<CustomerPhone> phoneCollectionDataService = new CollectionDataService<>();
 
     @GetMapping("/api/customers")
+    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
     public Collection<Customer> getCustomers() {
         return customerRepository.findAll();
     }
@@ -53,6 +56,7 @@ public class CustomerController {
     }
 
     @PostMapping("/api/customers")
+    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
     public Customer createCustomer(@Valid @RequestBody Customer customer) {
         LOGGER.info("Creating new customer...");
         Customer savedCustomer = customerRepository.save(customer);
@@ -67,6 +71,7 @@ public class CustomerController {
     }
 
     @PutMapping("/api/customers/{customerId}")
+    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
     public Customer updateCustomer(@PathVariable Long customerId, @Valid @RequestBody Customer updatedCustomer) {
         LOGGER.info("Updating customer with id: " + customerId);
 
@@ -104,6 +109,7 @@ public class CustomerController {
     }
 
     @DeleteMapping("/api/customers/{customerId}")
+    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
     public ResponseEntity<?> deleteCustomer(@PathVariable Long customerId) {
         LOGGER.info("Deleting customer with id: " + customerId);
         return customerRepository.findById(customerId).map(customer -> {

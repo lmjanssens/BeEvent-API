@@ -1,5 +1,6 @@
 package nl.hsleiden.controller;
 
+import nl.hsleiden.auth.Role;
 import nl.hsleiden.exception.ResourceNotFoundException;
 import nl.hsleiden.model.Catering;
 import nl.hsleiden.repository.CateringRepository;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
 import java.util.Collection;
 import java.util.Optional;
@@ -26,15 +28,18 @@ public class CateringController {
     private SupplierRepository supplierRepo;
 
     @GetMapping("/api/caterings")
+    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
     private Collection<Catering> getCaterings() { return this.cateringRepo.findAll(); }
 
     @GetMapping("/api/caterings/{cateringId}")
+    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
     public Optional<Catering> getSpecificCatering(@PathVariable Long cateringId) {
         LOGGER.info("Fetching catering of id " + cateringId);
         return cateringRepo.findById(cateringId);
     }
 
     @PostMapping("/api/caterings/{supplierId}")
+    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
     private Catering createCatering(@PathVariable Long supplierId, @Valid @RequestBody Catering catering) {
         LOGGER.info("Creating catering object");
 
@@ -45,6 +50,7 @@ public class CateringController {
     }
 
     @PutMapping("/api/caterings/{id}")
+    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
     public Catering updateCatering(@PathVariable Long id, @RequestBody Catering updatedCatering) {
 
         LOGGER.info("Updating catering object of id " + id);
@@ -65,6 +71,7 @@ public class CateringController {
     }
 
     @DeleteMapping("/api/caterings/{id}")
+    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
     public ResponseEntity<?> deleteCatering(@PathVariable Long id) {
 
         LOGGER.info("Deleting catering object of id " + id);
