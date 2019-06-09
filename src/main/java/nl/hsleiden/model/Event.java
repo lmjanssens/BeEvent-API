@@ -33,11 +33,6 @@ public class Event {
     @JsonIgnore
     private EventLocation location;
 
-    @ManyToOne
-    @JoinColumn(name = "orderid", nullable = false)
-    @JsonIgnore
-    private Order order;
-
     @OneToMany(mappedBy = "event")
     @JsonIgnore
     private Set<RegisteredEvent> registeredEvents;
@@ -202,13 +197,5 @@ public class Event {
 
     public void setNote(String note) {
         this.note = note;
-    }
-
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
     }
 }
