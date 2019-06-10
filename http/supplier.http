@@ -13,6 +13,7 @@ Accept: application/json
 POST http://localhost:8080/api/suppliers
 Content-Type: application/json
 Accept: application/json
+Authorization: Basic Liselot abc
 
 {
   "name": "Hoboken",
