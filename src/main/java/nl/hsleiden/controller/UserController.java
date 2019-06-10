@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import nl.hsleiden.View;
 import nl.hsleiden.auth.Role;
 import nl.hsleiden.exception.ResourceNotFoundException;
+import nl.hsleiden.model.LoginUser;
 import nl.hsleiden.model.User;
 import nl.hsleiden.repository.UserRepository;
 import org.slf4j.Logger;
@@ -11,6 +12,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
@@ -70,6 +75,22 @@ public class UserController {
             userRepository.delete(user);
             return ResponseEntity.ok().build();
         }).orElseThrow(() -> new ResourceNotFoundException("User not found with id" + userId));
+    }
+
+    @GetMapping("/api/users/me")
+    public LoginUser login () {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = null;
+        String authority = null;
+
+        if (!(authentication instanceof AnonymousAuthenticationToken)) {
+            username = authentication.getName();
+            for (GrantedAuthority a : authentication.getAuthorities()){
+                authority = a.toString();
+            }
+        }
+
+        return new LoginUser(username, authority);
     }
 
     private PasswordEncoder bCryptPasswordEncoder() {
