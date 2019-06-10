@@ -46,6 +46,9 @@ public class CustomerEmail {
         this.email = email;
     }
 
+    public CustomerEmail() {
+    }
+
     @Override
     public boolean equals(Object object) {
         CustomerEmail email = (CustomerEmail) object;

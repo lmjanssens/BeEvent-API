@@ -25,6 +25,11 @@ public class CateringController {
     @Autowired
     private SupplierRepository supplierRepo;
 
+    public CateringController(CateringRepository cateringRepo, SupplierRepository supplierRepo) {
+        this.cateringRepo = cateringRepo;
+        this.supplierRepo = supplierRepo;
+    }
+
     @GetMapping("/api/caterings")
     private Collection<Catering> getCaterings() { return this.cateringRepo.findAll(); }
 

@@ -1,6 +1,5 @@
 ###
 
-
 POST http://localhost:8080/api/suppliers
 Content-Type: application/json
 Accept: application/json
@@ -29,3 +28,10 @@ Accept: application/json
     }
   ]
 }
+
+###
+
+GET http://localhost:8080/api/suppliers
+Accept: application/json
+
+###

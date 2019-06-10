@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 
-@Repository("customerEmailRepository")
+@Repository
 public interface CustomerEmailRepository extends JpaRepository<CustomerEmail, Long> {
     @Query(value = "SELECT e.email " +
             "FROM customer_email e " +

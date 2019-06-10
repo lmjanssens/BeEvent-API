@@ -80,6 +80,28 @@ public class Customer {
     @JsonProperty("phone_numbers")
     private Set<CustomerPhone> phones;
 
+    public Customer(@Length(max = 10) String title, @NotNull @Length(max = 30) String firstName,
+                    @Length(max = 15) String infix, @NotNull @Length(max = 30) String lastName,
+                    @NotNull @Length(max = 50) String address, @NotNull @Length(max = 10) String zipcode,
+                    @NotNull @Length(max = 50) String country, @NotNull char gender,
+                    @NotNull @Length(max = 50) String city, Set<CustomerEmail> emails, Set<CustomerPhone> phones) {
+        this.title = title;
+        this.firstName = firstName;
+        this.infix = infix;
+        this.lastName = lastName;
+        this.address = address;
+        this.zipcode = zipcode;
+        this.country = country;
+        this.gender = gender;
+        this.city = city;
+        this.emails = emails;
+        this.phones = phones;
+    }
+
+    public Customer() {
+
+    }
+
     public Long getId() {
         return id;
     }

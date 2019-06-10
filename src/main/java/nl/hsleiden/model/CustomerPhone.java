@@ -44,6 +44,10 @@ public class CustomerPhone {
         this.phone = phone;
     }
 
+    public CustomerPhone() {
+
+    }
+
     @Override
     public boolean equals(Object object) {
         CustomerPhone phone = (CustomerPhone) object;
