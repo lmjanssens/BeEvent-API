@@ -79,6 +79,12 @@ public class Event {
     @Column(name = "note")
     private String note;
 
+    public Event(){ }
+
+    public Event(Long id) {
+        this.id = id;
+    }
+
     public Long getId() {
         return id;
     }

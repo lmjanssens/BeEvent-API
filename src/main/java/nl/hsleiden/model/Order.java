@@ -3,6 +3,8 @@ package nl.hsleiden.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonView;
+import nl.hsleiden.repository.EventRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 import java.awt.*;
@@ -13,6 +15,7 @@ import java.util.Set;
 @Entity
 @Table(name = "orders")
 public class Order {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "orderid", columnDefinition = "serial")
@@ -56,7 +59,7 @@ public class Order {
     private Set<Invoice> invoices;
 
     @OneToOne
-    @Column(name = "eventid")
+    @JoinColumn(name = "eventid")
     @JsonProperty("eventid")
     private Event event;
 
