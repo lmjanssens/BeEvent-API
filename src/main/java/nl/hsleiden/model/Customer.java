@@ -80,6 +80,17 @@ public class Customer {
     @JsonProperty("phone_numbers")
     private Set<CustomerPhone> phones;
 
+    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
+    private Set<Order> orders;
+
+    public Customer() {
+
+    }
+
+    public Customer(Long customerid) {
+        this.id = customerid;
+    }
+
     public Long getId() {
         return id;
     }
@@ -182,5 +193,13 @@ public class Customer {
 
     public void setCustomerOrders(Set<CustomerOrder> customerOrders) {
         this.customerOrders = customerOrders;
+    }
+
+    public Set<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
     }
 }

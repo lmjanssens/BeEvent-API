@@ -2,6 +2,7 @@ package nl.hsleiden.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonView;
 
 import javax.persistence.*;
 import java.awt.*;
@@ -18,8 +19,8 @@ public class Order {
     private Long orderId;
 
     @ManyToOne
-    @JoinColumn(name = "orderid", nullable = false, insertable = false, updatable = false)
-    @JsonIgnore
+    @JoinColumn(name = "customerid", nullable = false , updatable = false)
+    @JsonProperty("customerid")
     private Customer customer;
 
     @Column(name = "dateorder")
