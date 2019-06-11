@@ -17,8 +17,8 @@ public class Instructor {
     private Long id;
 
     @OneToOne
-    @JoinColumn(name = "userid", nullable = false)
     @JsonProperty("user_id")
+    @JoinColumn(name = "userid", nullable = false)
     private User user;
 
     @NotNull

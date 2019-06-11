@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.RolesAllowed;
@@ -28,18 +29,18 @@ public class CateringImageController {
     private CateringRepository cateringRepo;
 
     @GetMapping("/api/cateringimages")
-    @RolesAllowed(Role.EMPLOYEE)
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public Collection<CateringImage> getCateringImages() { return this.cateringImageRepo.findAll(); }
 
     @GetMapping("/api/cateringimages/{id}")
-    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public Optional<CateringImage> getSpecificCateringImage(@PathVariable Long id) {
         LOGGER.info("Fetching cateringimage object of id " + id);
         return cateringImageRepo.findById(id);
     }
 
     @PostMapping("/api/cateringimages/{id}")
-    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public CateringImage createCateringImage(@PathVariable Long id, @Valid @RequestBody CateringImage cateringImage) {
         LOGGER.info("Creating a new catering image");
         return cateringRepo.findById(id).map(catering -> {
@@ -49,7 +50,7 @@ public class CateringImageController {
     }
 
     @PutMapping("/api/cateringimages/{id}")
-    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public CateringImage updateCateringImage(@PathVariable Long id, @Valid @RequestBody CateringImage updatedCateringImage) {
         LOGGER.info("Updating catering image object of id " + id);
         return cateringImageRepo.findById(id).map(cateringImage -> {
@@ -59,7 +60,7 @@ public class CateringImageController {
     }
 
     @DeleteMapping("/api/cateringimages/{id}")
-    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public ResponseEntity<?> deleteCateringImage(@PathVariable Long id) {
         LOGGER.info("Deleting cateringobject of id " + id);
         return cateringImageRepo.findById(id).map(cateringImage -> {

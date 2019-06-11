@@ -1,28 +1,15 @@
-###
-
-GET http://localhost:8080/api/users
-Accept: application:json
-
-###
-
-GET http://localhost:8080/api/users/1
-Accept: application/json
-
-###
-
-POST http://localhost:8080/api/events
-Content-Type: application/json
-Accept: application/json
 
 ###
 
 GET http://localhost:8080/api/events
 Accept: application/json
+Authorization: Basic Arthur abc
 
 ###
 
-GET http://localhost:8080/api/events/49
+GET http://localhost:8080/api/events/52
 Accept: application/json
+Authorization: Basic Arthur abc
 
 ###
 
@@ -33,9 +20,9 @@ Authorization: Basic Liselot abc
 
 {
   "ownEvent": true,
-  "name": "Be On ICE",
+  "name": "Expeditie Hello World",
   "description": "This is a great event",
-  "program": "Glope Ijsspelen",
+  "program": "Fietstocht",
   "duration": "1:30",
   "options": null,
   "pricePerPerson": 130.5,
@@ -45,9 +32,20 @@ Authorization: Basic Liselot abc
 }
 
 ###
+POST http://localhost:8080/api/eventimage/1
+Content-Type: application/json
+Accept: application/json
+Authorization: Basic Arthur abc
+
+{
+  "imagePath": "image/expeditiehelloworld.jpg"
+}
+
+###
 
 DELETE http://localhost:8080/api/events/49
 Accept: application/json
+Authorization: Basic Arthur abc
 
 ###
 
@@ -57,8 +55,8 @@ Accept: application/json
 Authorization: Basic Liselot abc
 
 {
-  "name" : "Den Haag",
-  "description" : "It is also a nice place",
+  "name" : "Delft",
+  "description" : "It is a nice place",
   "routePicture" : "image/denhaag.jpg"
 }
 

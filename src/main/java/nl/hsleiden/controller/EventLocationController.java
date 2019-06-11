@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.RolesAllowed;
@@ -29,7 +30,7 @@ public class EventLocationController {
      * @return a list of locations
      */
     @GetMapping("/api/eventlocation")
-    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     private Collection<EventLocation> getEventLocations() { return eventLocationRepository.findAll(); }
 
     /**
@@ -38,7 +39,7 @@ public class EventLocationController {
      * @return a single location object
      */
     @GetMapping("/api/eventlocation/{locationId}")
-    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public Optional<EventLocation> getSpecifiedEventlocation(@PathVariable  Long locationId) {
         LOGGER.info("Fetching event location with id: "  + locationId);
         return eventLocationRepository.findById(locationId);
@@ -50,7 +51,7 @@ public class EventLocationController {
      * @return an inserted event location object
      */
     @PostMapping(value = "/api/eventlocation", consumes = MediaType.APPLICATION_JSON_VALUE)
-    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public EventLocation createEventLocation(@Valid @RequestBody EventLocation location) {
         LOGGER.info("Creating new eventlocation.");
         return eventLocationRepository.save(location);
@@ -63,7 +64,7 @@ public class EventLocationController {
      * @return an updated location object
      */
     @PutMapping(value = "/api/eventlocation/{locationId}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public EventLocation updateEventLocation(@PathVariable Long locationId, @Valid @RequestBody EventLocation updatedEventLocation) {
         LOGGER.info("Updating eventlocation with id: " + locationId);
         return eventLocationRepository.findById(locationId).map(eventLocation -> {
@@ -80,7 +81,7 @@ public class EventLocationController {
      * @return response
      */
     @DeleteMapping("/api/eventlocation/{locationId}")
-    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public ResponseEntity<?> deleteEventLocation(@PathVariable Long locationId) {
         LOGGER.info("Deleting event location with id " + locationId);
         return eventLocationRepository.findById(locationId).map(eventLocation -> {

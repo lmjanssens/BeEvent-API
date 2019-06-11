@@ -13,6 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.RolesAllowed;
@@ -37,20 +38,20 @@ public class EmployeeController {
     CollectionDataService<EmployeePhone> phoneCollectionDataService = new CollectionDataService<>();
 
     @GetMapping("/api/employees")
-    @RolesAllowed(Role.ADMIN)
+    @PreAuthorize("hasAuthority('" + Role.ADMIN + "')")
     public Collection<Employee> getEmployees() {
         return employeeRepository.findAll();
     }
 
     @GetMapping("/api/employees/{employeeId}")
-    @RolesAllowed(Role.ADMIN)
+    @PreAuthorize("hasAuthority('" + Role.ADMIN + "')")
     public Optional<Employee> getEmployee(@PathVariable Long employeeId) {
         LOGGER.info("Fetching employee with id" + employeeId);
         return employeeRepository.findById(employeeId);
     }
 
     @PostMapping("/api/employees")
-    @RolesAllowed(Role.ADMIN)
+    @PreAuthorize("hasAuthority('" + Role.ADMIN + "')")
     public Employee createEmployee(@Valid @RequestBody Employee employee) {
         LOGGER.info("Creating employee.");
         Employee savedEmployee = employeeRepository.save(employee);
@@ -62,7 +63,7 @@ public class EmployeeController {
     }
 
     @PutMapping("/api/employees/{employeeId}")
-    @RolesAllowed(Role.ADMIN)
+    @PreAuthorize("hasAuthority('" + Role.ADMIN + "')")
     public Employee updateEmployee(@PathVariable Long employeeId, @Valid @RequestBody Employee updatedEmployee) {
         LOGGER.info("Updating employee with id: " + employeeId);
         return employeeRepository.findById(employeeId).map(employee -> {
@@ -94,7 +95,7 @@ public class EmployeeController {
     }
 
     @DeleteMapping("/api/employees/{employeeId}")
-    @RolesAllowed(Role.ADMIN)
+    @PreAuthorize("hasAuthority('" + Role.ADMIN + "')")
     public ResponseEntity<?> deleteEmployee(@PathVariable Long employeeId) {
         LOGGER.info("Deleting customer with id: " + employeeId);
         return employeeRepository.findById(employeeId).map(employee -> {

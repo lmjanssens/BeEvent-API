@@ -2,17 +2,20 @@
 
 GET http://localhost:8080/api/caterings
 Accept: application/json
+Authorization: Basic Arthur abc
 
 ###
 
 GET http://localhost:8080/api/caterings/18
 Accept: application/json
+Authorization: Basic Arthur abc
 
 ###
 
-POST http://localhost:8080/api/caterings/1
+POST http://localhost:8080/api/caterings/6
 Content-Type: application/json
 Accept: application/json
+Authorization: Basic Arthur abc
 
 {
   "cateringName" : "AH",
@@ -27,12 +30,13 @@ Accept: application/json
 
 ###
 
-PUT http://localhost:8080/api/caterings/18
+PUT http://localhost:8080/api/caterings/19
 Content-Type: application/json
 Accept: application/json
+Authorization: Basic Arthur abc
 
 {
-  "cateringName": "AH",
+  "cateringName": "Scandinavian Airlines",
   "contactPerson": "Jeroen",
   "zipcode": "1234KL",
   "address": "teststraat 50",
@@ -44,20 +48,23 @@ Accept: application/json
 
 ###
 
-POST http://localhost:8080/api/cateringimages/18
+POST http://localhost:8080/api/cateringimages/19
 Content-Type: application/json
 Accept: application/json
+Authorization: Basic Arthur abc
 
 {
-"image" : "image/ah.jpg"
+"image" : "image/sas.jpg"
 }
 
 ###
 DELETE http://localhost:8080/api/cateringimages/3
 Accept: application/json
+Authorization: Basic Arthur abc
 
 ###
 DELETE http://localhost:8080/api/caterings/18
 Accept: application/json
+Authorization: Basic Arthur abc
 
 ###

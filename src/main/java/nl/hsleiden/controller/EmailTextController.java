@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.RolesAllowed;
@@ -23,22 +24,22 @@ public class EmailTextController {
     private EmailTextRepository emailTextRepository;
 
     @GetMapping("/api/emailtexts")
-    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public Collection<EmailText> getEmailTexts() { return emailTextRepository.findAll(); }
 
     @GetMapping("/api/emailtexts/{id}")
-    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public Optional<EmailText> getSpecificEmailTexts(@PathVariable Long id) { return emailTextRepository.findById(id); }
 
     @PostMapping("/api/emailtexts")
-    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public EmailText createEmailText(@RequestBody EmailText emailText) {
         LOGGER.info("Creating an email text object");
         return emailTextRepository.save(emailText);
     }
 
     @PutMapping("/api/emailtexts/{id}")
-    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public EmailText updateEmailText(@PathVariable Long id, @RequestBody EmailText updatedEmailText) {
         LOGGER.info("Updating email text object of id " + id);
         return emailTextRepository.findById(id).map(emailText -> {
@@ -49,7 +50,7 @@ public class EmailTextController {
     }
 
     @DeleteMapping("/api/emailtexts/{id}")
-    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public ResponseEntity<?> deleteEmailText(@PathVariable Long id) {
         LOGGER.info("Deleting email text object of id " + id);
         return emailTextRepository.findById(id).map(emailText -> {

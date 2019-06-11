@@ -41,18 +41,18 @@ public class OrderController {
     CollectionDataService<Quotation> quotationCollectionDataService = new CollectionDataService<>();
 
     @GetMapping("/api/orders")
-    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public Collection<Order> getOrders() { return orderRepository.findAll(); }
 
     @GetMapping("/api/orders/{orderId}")
-    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public Optional<Order> getSpecifiedCatering(@PathVariable Long orderId) {
         LOGGER.info("Fetching order with id: " + orderId);
         return orderRepository.findById(orderId);
     }
 
     @PostMapping("/api/orders")
-    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public Order createOrder(@Valid @RequestBody Order order) {
         LOGGER.info("Creating new order...");
         Order savedOrder = orderRepository.save(order);
@@ -65,7 +65,7 @@ public class OrderController {
     }
 
     @PutMapping("/api/orders/{orderId}")
-    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public Order updateOrder(@PathVariable Long orderId, @Valid @RequestBody Order updatedOrder) {
         LOGGER.info("Updating order with id: " + orderId);
         return orderRepository.findById(orderId).map(order -> {
@@ -110,7 +110,7 @@ public class OrderController {
     }
 
     @DeleteMapping("/api/orders/{orderId}")
-    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public ResponseEntity<?> deleteOrder(@PathVariable Long orderId) {
         LOGGER.info("Deleting order with id: " + orderId);
         return orderRepository.findById(orderId).map(order -> {

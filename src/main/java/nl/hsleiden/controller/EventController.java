@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.RolesAllowed;
@@ -43,7 +44,7 @@ public class EventController {
      * @return a list of events
      */
     @GetMapping("/api/events")
-    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public Collection<Event> getEvents() { return eventRepo.findAll(); }
 
     /**
@@ -52,7 +53,7 @@ public class EventController {
      * @return a single specific event
      */
     @GetMapping("/api/events/{eventId}")
-    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public Optional<Event> getSpecifiedEvents(@PathVariable(value = "eventId") Long eventId) {
         LOGGER.info("Fetching event object with id: " + eventId);
         return eventRepo.findById(eventId);
@@ -65,7 +66,7 @@ public class EventController {
      * @return an inserted event object
      */
     @PostMapping("/api/events/{supplierId}/{eventLocationId}")
-    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public Event createEvent(@PathVariable(value = "eventLocationId") Long eventLocationId,
                              @PathVariable Long supplierId,
                              @Valid @RequestBody Event event){
@@ -87,7 +88,7 @@ public class EventController {
      * @return an updated event object
      */
     @PutMapping("/api/events/{eventId}")
-    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public Event updateEvent(@PathVariable Long eventId, @Valid @RequestBody Event updatedEvent) {
         return eventRepo.findById(eventId).map(event -> {
             event.setOwnEvent(updatedEvent.isOwnEvent());
@@ -110,7 +111,7 @@ public class EventController {
      * @return response
      */
     @DeleteMapping("/api/events/{eventId}")
-    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public ResponseEntity<?> deleteEvents(@PathVariable Long eventId) {
         LOGGER.info("Deleting event with id: " + eventId);
         return eventRepo.findById(eventId).map(event -> {

@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.RolesAllowed;
@@ -33,7 +34,7 @@ public class EventImageController {
      * @return a list of imagepaths
      */
     @GetMapping("/api/eventimage")
-    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public Collection<EventImage> getEventImages() { return eventImageRepo.findAll(); }
 
     /**
@@ -42,7 +43,7 @@ public class EventImageController {
      * @return a specific event image object
      */
     @GetMapping("/api/eventimage/{eventImageId}")
-    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public Optional<EventImage> getSpecificEventImage(@PathVariable Long eventImageId) {
         LOGGER.info("Fetching event image of id " + eventImageId);
         return eventImageRepo.findById(eventImageId);
@@ -55,7 +56,7 @@ public class EventImageController {
      * @return an inserted event image object
      */
     @PostMapping(value = "/api/eventimage/{eventId}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public EventImage createEventImage(@PathVariable(value = "eventId") Long eventId,
                                        @Valid @RequestBody EventImage eventImage)
     {
@@ -73,7 +74,7 @@ public class EventImageController {
      * @return An updated event image object
      */
     @PutMapping(value = "/api/eventimage/{eventImageId}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public EventImage updateEventImage(@PathVariable Long eventImageId, @Valid @RequestBody EventImage eventImage) {
         LOGGER.info("Updating event image of id " + eventImageId);
         return eventImageRepo.findById(eventImageId).map(updateEventImage -> {
@@ -88,7 +89,7 @@ public class EventImageController {
      * @return response
      */
     @DeleteMapping("/api/eventimage/{eventImageId}")
-    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public ResponseEntity<?> deleteEventImage(@PathVariable Long eventImageId) {
         return eventImageRepo.findById(eventImageId).map(eventImage -> {
             eventImageRepo.delete(eventImage);

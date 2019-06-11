@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.RolesAllowed;
@@ -41,20 +42,20 @@ public class SupplierController {
     private CollectionDataService<SupplierAddress> supplierAddressCollectionDataService = new CollectionDataService<>();
 
     @GetMapping("/api/suppliers")
-    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public Collection<Supplier> getSuppliers() {
         return supplierRepository.findAll();
     }
 
     @GetMapping("/api/suppliers/{supplierId}")
-    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public Optional<Supplier> getSupplier(@PathVariable Long supplierId) {
         LOGGER.info("Fetching supplier by id: " + supplierId);
         return supplierRepository.findById(supplierId);
     }
 
     @PostMapping("/api/suppliers")
-    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public Supplier createSupplier(@Valid @RequestBody Supplier supplier) {
         LOGGER.info("Creating supplier.");
         Supplier savedSupplier = supplierRepository.save(supplier);
@@ -68,7 +69,7 @@ public class SupplierController {
     }
 
     @PutMapping("/api/suppliers/{supplierId}")
-    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public Supplier updateSupplier(@PathVariable Long supplierId, @Valid @RequestBody Supplier updatedSupplier) {
         LOGGER.info("Updating supplier with id: " + supplierId);
         return supplierRepository.findById(supplierId).map(supplier -> {
@@ -117,7 +118,7 @@ public class SupplierController {
     }
 
     @DeleteMapping("/api/suppliers/{supplierId}")
-    @RolesAllowed({Role.EMPLOYEE, Role.ADMIN})
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public ResponseEntity<?> deleteSupplier(@PathVariable Long supplierId) {
         LOGGER.info("Deleting supplier with id: " + supplierId);
         return supplierRepository.findById(supplierId).map(supplier -> {

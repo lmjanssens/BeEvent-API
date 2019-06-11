@@ -2,11 +2,13 @@
 
 GET http://localhost:8080/api/suppliers
 Accept: application/json
+Authorization: Basic Arthur abc
 
 ###
 
 GET http://localhost:8080/api/suppliers/1
 Accept: application/json
+Authorization: Basic Arthur abc
 
 ###
 
@@ -49,10 +51,52 @@ Authorization: Basic Liselot abc
     }
   ]
 }
+###
+
+POST http://localhost:8080/api/suppliers
+Content-Type: application/json
+Accept: application/json
+Authorization: Basic Liselot abc
+
+{
+  "name": "LeverancierA",
+  "contact_person": "Peterjan45",
+  "supervisor": "Peterjan45",
+  "website" : "leveranciera.nl",
+  "note" : "Test",
+  "image" : "image/leveranciera.jpg",
+  "email_addresses": [
+    { "email": "hello45@example.com" }
+  ],
+  "phone_numbers": [
+    { "phone": "+31 6 12345666" }
+  ],
+  "contracts": [
+    {
+      "type": true,
+      "title": "Inkoop",
+      "description": "Sushi rolls verkoop contract",
+      "inclubtw": "Sushi rolls | 20-;",
+      "percentage": 21,
+      "pre_conditions": "Minimaal 500 sushi rolls afnemen",
+      "insurance": "Geen",
+      "responsibility": "Artemis",
+      "extras": "5 sushi rolls gratis bij een afname van 1000 sushi rolls"
+    }
+  ],
+  "addresses" : [
+    {
+      "address" : "Binnenhof 45",
+      "city" : "Den Haag",
+      "zipcode" : "1234KL"
+    }
+  ]
+}
 
 ###
 
 DELETE http://localhost:8080/api/suppliers/5
 Accept: application/json
+Authorization: Basic Arthur abc
 
 ###
