@@ -1,6 +1,5 @@
 package nl.hsleiden.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.validator.constraints.Length;
 
@@ -25,26 +24,31 @@ public class Instructor {
     @NotNull
     @Length(max = 100)
     @Column(name = "first_name")
+    @JsonProperty("first_name")
     private String firstName;
 
     @Length(max = 20)
     @Column(name = "infix")
+    @JsonProperty("infix")
     private String infix;
 
     @NotNull
     @Length(max = 100)
     @Column(name = "last_name")
+    @JsonProperty("last_name")
     private String lastName;
 
     @NotNull
     @Length(min = 10, max = 20)
     @Column(name = "phone_number")
+    @JsonProperty("phone_number")
     private String phoneNumber;
 
     @NotNull
     @Email
     @Length(max = 150)
     @Column(name = "email")
+    @JsonProperty("email_address")
     private String email;
 
     public User getUser() {

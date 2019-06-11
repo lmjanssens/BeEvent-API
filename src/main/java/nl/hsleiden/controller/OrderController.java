@@ -38,7 +38,6 @@ public class OrderController {
 
     CollectionDataService<Invoice> invoiceCollectionDataService = new CollectionDataService<>();
     CollectionDataService<CateringOrder> cateringOrderCollectionDataService = new CollectionDataService<>();
-    CollectionDataService<Event> eventCollectionDataService = new CollectionDataService<>();
     CollectionDataService<Quotation> quotationCollectionDataService = new CollectionDataService<>();
 
     @GetMapping("/api/orders")
@@ -59,20 +58,6 @@ public class OrderController {
         Order savedOrder = orderRepository.save(order);
 
         this.saveCateringOrders(savedOrder, order.getCateringOrders());
-        /**
-         * Luuk Luister eens voor altijd. In tabel events is er GEEN FUCKING foreign key genaamd ORDERID
-         * in tabel events. Ik word er helemaal moe van wanneer iemand aan mijn feature (events) zit te vernagelen.
-         * Ik zou het appreciëren deze te corrigeren. Dit is precies hetzelfde akkefietje met die contractId in cateringtabel en
-         * gerelateerde tabellen.
-         *
-         * Groet,
-         * Robin
-         *
-         * PS:: Sorry voor die rantingmode. Plus moest heel wat aanpassen aan je code in dit bestand om te voor
-         * zorgen dat de applicatie geen nieuwe kolom creëert op het moment dat het opstart. Daarna heb ik weer in oude staat gezet.
-         * Corrigeer deze fout aub.
-         */
-        this.saveEvents(savedOrder, order.getEvents());
         this.saveInvoices(savedOrder, order.getInvoices());
         this.saveQuotations(savedOrder, order.getQuotations());
 
@@ -84,6 +69,7 @@ public class OrderController {
     public Order updateOrder(@PathVariable Long orderId, @Valid @RequestBody Order updatedOrder) {
         LOGGER.info("Updating order with id: " + orderId);
         return orderRepository.findById(orderId).map(order -> {
+            order.setEvent(updatedOrder.getEvent());
             order.setDateEvent(updatedOrder.getDateEvent());
             order.setDateOrder(updatedOrder.getDateOrder());
             order.setEndTime(updatedOrder.getEndTime());
@@ -97,9 +83,6 @@ public class OrderController {
             Collection<CateringOrder> cateringOrdersToBeSaved = cateringOrderCollectionDataService.getToBeSaved(order.getCateringOrders(), updatedOrder.getCateringOrders());
             Collection<CateringOrder> cateringOrdersToBeDeleted = cateringOrderCollectionDataService.getToBeDeleted(order.getCateringOrders(), updatedOrder.getCateringOrders());
 
-            Collection<Event> eventsToBeSaved = eventCollectionDataService.getToBeSaved(order.getEvents(), updatedOrder.getEvents());
-            Collection<Event> eventsToBeDeleted = eventCollectionDataService.getToBeDeleted(order.getEvents(), updatedOrder.getEvents());
-
             Collection<Quotation> quotationsToBeSaved = quotationCollectionDataService.getToBeSaved(order.getQuotations(), updatedOrder.getQuotations());
             Collection<Quotation> quotationsToBeDeleted = quotationCollectionDataService.getToBeDeleted(order.getQuotations(), updatedOrder.getQuotations());
 
@@ -109,9 +92,6 @@ public class OrderController {
             saveCateringOrders(order, cateringOrdersToBeSaved);
             deleteCateringOrders(cateringOrdersToBeDeleted);
 
-            saveEvents(order, eventsToBeSaved);
-            deleteEvents(eventsToBeDeleted);
-
             saveQuotations(order, quotationsToBeSaved);
             deleteQuotations(quotationsToBeDeleted);
 
@@ -120,9 +100,6 @@ public class OrderController {
             );
             order.setCateringOrders(
                     cateringOrderCollectionDataService.getDefinitiveCollection(order.getCateringOrders(), cateringOrdersToBeSaved, cateringOrdersToBeDeleted)
-            );
-            order.setEvents(
-                    eventCollectionDataService.getDefinitiveCollection(order.getEvents(), eventsToBeSaved, eventsToBeDeleted)
             );
             order.setQuotations(
                     quotationCollectionDataService.getDefinitiveCollection(order.getQuotations(), quotationsToBeSaved, quotationsToBeDeleted)
@@ -181,27 +158,6 @@ public class OrderController {
             cateringOrderRepository.deleteAll(toBeDeleted);
         } catch (NullPointerException exception) {
             LOGGER.info("Unable to delete catering orders");
-        }
-    }
-
-    private void saveEvents(Order order, Collection<Event> toBeSaved) {
-        LOGGER.info("Saving events...");
-        try {
-            for (Event event : toBeSaved) {
-                event.setOrder(order);
-            }
-            eventRepository.saveAll(toBeSaved);
-        } catch (NullPointerException exception) {
-            LOGGER.info("Unable to save events");
-        }
-    }
-
-    private void deleteEvents(Collection<Event> toBeDeleted) {
-        LOGGER.info("Deleting events...");
-        try {
-            eventRepository.deleteAll(toBeDeleted);
-        } catch (NullPointerException exception) {
-            LOGGER.info("Unable to delete events");
         }
     }
 

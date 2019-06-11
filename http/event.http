@@ -13,10 +13,10 @@ Authorization: Basic Arthur abc
 
 ###
 
-POST http://localhost:8080/api/events/1/39
+POST http://localhost:8080/api/events/6/38
 Content-Type: application/json
 Accept: application/json
-Authorization: Basic Arthur abc
+Authorization: Basic Liselot abc
 
 {
   "ownEvent": true,
@@ -52,7 +52,7 @@ Authorization: Basic Arthur abc
 POST http://localhost:8080/api/eventlocation
 Content-Type: application/json
 Accept: application/json
-Authorization: Basic Arthur abc
+Authorization: Basic Liselot abc
 
 {
   "name" : "Delft",
