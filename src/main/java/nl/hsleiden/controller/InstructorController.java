@@ -26,27 +26,27 @@ public class InstructorController {
     private InstructorRepository instructorRepository;
 
     @GetMapping("/api/instructors")
-    @PreAuthorize("hasAuthority('" + Role.ADMIN + "')")
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public Collection<Instructor> getInstructors() {
         return instructorRepository.findAll();
     }
 
     @GetMapping("/api/instructors/{instructorId}")
-    @PreAuthorize("hasAuthority('" + Role.ADMIN + "')")
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public Optional<Instructor> getInstructor(@PathVariable Long instructorId) {
         LOGGER.info("Fetching instructor with id" + instructorId);
         return instructorRepository.findById(instructorId);
     }
 
     @PostMapping("/api/instructors")
-    @PreAuthorize("hasAuthority('" + Role.ADMIN + "')")
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public Instructor createInstructor(@Valid @RequestBody Instructor instructor) {
         LOGGER.info("Creating instructor.");
         return instructorRepository.save(instructor);
     }
 
     @PutMapping("/api/instructors/{instructorId}")
-    @PreAuthorize("hasAuthority('" + Role.ADMIN + "')")
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public Instructor updateInstructor(@PathVariable Long instructorId, @Valid @RequestBody Instructor updatedInstructor) {
         LOGGER.info("Updating instructor with id: " + instructorId);
         return instructorRepository.findById(instructorId).map(instructor -> {
