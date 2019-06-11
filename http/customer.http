@@ -34,13 +34,13 @@ Accept: application/json
 
 ###
 
-PUT http://localhost:8080/api/customers/4
+PUT http://localhost:8080/api/customers/33
 Content-Type: application/json
 Accept: application/json
 
 {
   "title": "heer",
-  "first_name": "Niels",
+  "first_name": "hallo",
   "infix": "der",
   "last_name": "achternaam",
   "address": "Straat 123",
@@ -58,7 +58,7 @@ Accept: application/json
 
 ###
 
-DELETE http://localhost:8080/api/customers/3
+DELETE http://localhost:8080/api/customers/6
 Accept: application/json
 
 ###

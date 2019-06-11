@@ -15,6 +15,7 @@ public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "employeeID", columnDefinition = "serial")
+    @JsonProperty("employeeId")
     private Long id;
 
     @OneToOne

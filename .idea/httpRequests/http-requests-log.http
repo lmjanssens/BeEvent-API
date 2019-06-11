@@ -1,3 +1,355 @@
+PUT http://localhost:8080/api/customers/33
+Content-Type: application/json
+Accept: application/json
+
+{
+  "title": "heer",
+  "first_name": "hallo",
+  "infix": "der",
+  "last_name": "achternaam",
+  "address": "Straat 123",
+  "zipcode": "2323JA",
+  "country": "Nederland",
+  "city": "Alkmaar",
+  "gender": "m",
+  "email_addresses": [
+    { "email": "test12@test.com" }
+  ],
+  "phone_numbers": [
+    { "phonenumber": "06-43430309" }
+  ]
+}
+
+<> 2019-06-10T043608.200.json
+
+###
+
+PUT http://localhost:8080/api/customers/33
+Content-Type: application/json
+Accept: application/json
+
+{
+  "title": "heer",
+  "first_name": "Bashar",
+  "infix": "der",
+  "last_name": "achternaam",
+  "address": "Straat 123",
+  "zipcode": "2323JA",
+  "country": "Nederland",
+  "city": "Alkmaar",
+  "gender": "m",
+  "email_addresses": [
+    { "email": "test12@test.com" }
+  ],
+  "phone_numbers": [
+    { "phonenumber": "06-43430309" }
+  ]
+}
+
+<> 2019-06-10T102632.200.json
+
+###
+
+PUT http://localhost:8080/api/customers/33
+Content-Type: application/json
+Accept: application/json
+
+{
+  "title": "heer",
+  "first_name": "Niels",
+  "infix": "der",
+  "last_name": "achternaam",
+  "address": "Straat 123",
+  "zipcode": "2323JA",
+  "country": "Nederland",
+  "city": "Alkmaar",
+  "gender": "m",
+  "email_addresses": [
+    { "email": "test12@test.com" }
+  ],
+  "phone_numbers": [
+    { "phonenumber": "06-43430309" }
+  ]
+}
+
+<> 2019-06-10T102612.200.json
+
+###
+
+PUT http://localhost:8080/api/customers/32
+Content-Type: application/json
+Accept: application/json
+
+{
+  "title": "heer",
+  "first_name": "Niels",
+  "infix": "der",
+  "last_name": "achternaam",
+  "address": "Straat 123",
+  "zipcode": "2323JA",
+  "country": "Nederland",
+  "city": "Alkmaar",
+  "gender": "m",
+  "email_addresses": [
+    { "email": "test12@test.com" }
+  ],
+  "phone_numbers": [
+    { "phonenumber": "06-43430309" }
+  ]
+}
+
+<> 2019-06-10T102510.200.json
+
+###
+
+DELETE http://localhost:8080/api/customers/6
+Accept: application/json
+
+###
+
+POST http://localhost:8080/api/customers
+Content-Type: application/json
+Accept: application/json
+
+{
+  "title": "mevrouw",
+  "first_name": "Nina",
+  "infix": "van der",
+  "last_name": "Hulde",
+  "address": "Bloemenlaan 57",
+  "zipcode": "9284WL",
+  "country": "Nederland",
+  "city": "Nijmegen",
+  "gender": "v",
+  "email_addresses": [
+    { "email": "test@test.com" }
+  ],
+  "phone_numbers": [
+    { "phonenumber": "06-43430303" }
+  ]
+}
+
+<> 2019-06-09T021055.500.json
+
+###
+
+DELETE http://localhost:8080/api/customers/90
+Accept: application/json
+
+<> 2019-06-09T013129.500.json
+
+###
+
+PUT http://localhost:8080/api/customers/90
+Content-Type: application/json
+Accept: application/json
+
+{
+  "title": "heer",
+  "first_name": "Niels",
+  "infix": "der",
+  "last_name": "achternaam",
+  "address": "Straat 123",
+  "zipcode": "2323JA",
+  "country": "Nederland",
+  "city": "Alkmaar",
+  "gender": "m",
+  "email_addresses": [
+    { "email": "test12@test.com" }
+  ],
+  "phone_numbers": [
+    { "phonenumber": "06-43430309" }
+  ]
+}
+
+<> 2019-06-09T012926.200.json
+
+###
+
+PUT http://localhost:8080/api/customers/4
+Content-Type: application/json
+Accept: application/json
+
+{
+  "title": "heer",
+  "first_name": "Niels",
+  "infix": "der",
+  "last_name": "achternaam",
+  "address": "Straat 123",
+  "zipcode": "2323JA",
+  "country": "Nederland",
+  "city": "Alkmaar",
+  "gender": "m",
+  "email_addresses": [
+    { "email": "test12@test.com" }
+  ],
+  "phone_numbers": [
+    { "phonenumber": "06-43430309" }
+  ]
+}
+
+<> 2019-06-09T012917.404.json
+
+###
+
+GET http://localhost:8080/api/customers
+Accept: application/json
+
+<> 2019-06-09T012907.200.json
+
+###
+
+POST http://localhost:8080/api/customers
+Content-Type: application/json
+Accept: application/json
+
+{
+  "title": "mevrouw",
+  "first_name": "Nina",
+  "infix": "van der",
+  "last_name": "Hulde",
+  "address": "Bloemenlaan 57",
+  "zipcode": "9284WL",
+  "country": "Nederland",
+  "city": "Nijmegen",
+  "gender": "v",
+  "email_addresses": [
+    { "email": "test@test.com" }
+  ],
+  "phone_numbers": [
+    { "phonenumber": "06-43430303" }
+  ]
+}
+
+<> 2019-06-09T012855.200.json
+
+###
+
+DELETE http://localhost:8080/api/customers/90
+Accept: application/json
+
+<> 2019-06-09T012646.500.json
+
+###
+
+DELETE http://localhost:8080/api/customers/90
+Accept: application/json
+
+<> 2019-06-09T012620.500.json
+
+###
+
+DELETE http://localhost:8080/api/customers/3
+Accept: application/json
+
+<> 2019-06-09T012610.404.json
+
+###
+
+POST http://localhost:8080/api/customers
+Content-Type: application/json
+Accept: application/json
+
+{
+  "title": "mevrouw",
+  "first_name": "Nina",
+  "infix": "van der",
+  "last_name": "Hulde",
+  "address": "Bloemenlaan 57",
+  "zipcode": "9284WL",
+  "country": "Nederland",
+  "city": "Nijmegen",
+  "gender": "v",
+  "email_addresses": [
+    { "email": "test@test.com" }
+  ],
+  "phone_numbers": [
+    { "phonenumber": "06-43430303" }
+  ]
+}
+
+<> 2019-06-07T105106.200.json
+
+###
+
+POST http://localhost:8080/api/customers
+Content-Type: application/json
+Accept: application/json
+
+{
+  "title": "mevrouw",
+  "first_name": "Nina",
+  "infix": "van der",
+  "last_name": "Hulde",
+  "address": "Bloemenlaan 57",
+  "zipcode": "9284WL",
+  "country": "Nederland",
+  "city": "Nijmegen",
+  "gender": "v",
+  "email_addresses": [
+    { "email": "test@test.com" }
+  ],
+  "phone_numbers": [
+    { "phonenumber": "06-43430303" }
+  ]
+}
+
+<> 2019-06-06T030321.200.json
+
+###
+
+POST http://localhost:8080/api/customers
+Content-Type: application/json
+Accept: application/json
+
+{
+  "title": "mevrouw",
+  "first_name": "Nina",
+  "infix": "van der",
+  "last_name": "Hulde",
+  "address": "Bloemenlaan 57",
+  "zipcode": "9284WL",
+  "country": "Nederland",
+  "city": "Nijmegen",
+  "gender": "v",
+  "email_addresses": [
+    { "email": "test@test.com" }
+  ],
+  "phone_numbers": [
+    { "phonenumber": "06-43430303" }
+  ]
+}
+
+<> 2019-06-06T121217.200.json
+
+###
+
+POST http://localhost:8080/api/customers
+Content-Type: application/json
+Accept: application/json
+
+{
+  "title": "mevrouw",
+  "first_name": "Nina",
+  "infix": "van der",
+  "last_name": "Hulde",
+  "address": "Bloemenlaan 57",
+  "zipcode": "9284WL",
+  "country": "Nederland",
+  "city": "Nijmegen",
+  "gender": "v",
+  "email_addresses": [
+    { "email": "test@test.com" }
+  ],
+  "phone_numbers": [
+    { "phonenumber": "06-43430303" }
+  ]
+}
+
+<> 2019-06-06T120038.500.json
+
+###
+
 GET http://localhost:8080/api/emailtexts
 Accept: application/json
 
@@ -290,203 +642,6 @@ Accept: application/json
 
 GET http://localhost:8080/api/events
 Accept: application:json
-
-###
-
-DELETE http://localhost:8080/api/events/49
-Accept: application/json
-
-<> 2019-06-03T111305.404.json
-
-###
-
-POST http://localhost:8080/api/events/1/36
-Content-Type: application/json
-Accept: application/json
-
-{
-  "ownEvent": true,
-  "name": "Be On ICE",
-  "description": "This is a great event",
-  "program": "Glope Ijsspelen",
-  "duration": "1:30",
-  "options": null,
-  "pricePerPerson": 130.5,
-  "priceBuyPerPerson": 0,
-  "btw": 0.21,
-  "note": null
-}
-
-<> 2019-06-03T105913.500.json
-
-###
-
-GET http://localhost:8080/api/users
-Accept: application:json
-
-###
-
-POST http://localhost:8080/api/events/1/39
-Content-Type: application/json
-Accept: application/json
-
-{
-  "ownEvent": true,
-  "name": "Be On ICE",
-  "description": "This is a great event",
-  "program": "Glope Ijsspelen",
-  "duration": "1:30",
-  "options": null,
-  "pricePerPerson": 130.5,
-  "priceBuyPerPerson": 0,
-  "btw": 0.21,
-  "note": null
-}
-
-<> 2019-06-03T104512.404.json
-
-###
-
-GET http://localhost:8080/api/events
-Accept: application:json
-
-###
-
-GET http://localhost:8080/api/users/1
-Accept: application/json
-
-<> 2019-06-03T104427.200.json
-
-###
-
-GET http://localhost:8080/api/users
-Accept: application:json
-
-###
-
-GET http://localhost:8080/api/caterings
-Accept: application/json
-
-<> 2019-06-03T104156.200.json
-
-###
-
-DELETE http://localhost:8080/api/caterings/18
-Accept: application/json
-
-###
-
-GET http://localhost:8080/api/caterings/18
-Accept: application/json
-
-<> 2019-06-03T104145.200.json
-
-###
-
-PUT http://localhost:8080/api/caterings/18
-Content-Type: application/json
-Accept: application/json
-
-{
-  "cateringName" : "AH",
-  "contactPerson" : "Jeroen",
-  "zipcode" : "1234KL",
-  "address" : "teststraat 50",
-  "city" : "Eindoven",
-  "phone" : "0123456789",
-  "cateringPrice" : 130.50,
-  "note" : null
-}
-
-<> 2019-06-03T104139.200.json
-
-###
-
-PUT http://localhost:8080/api/caterings/1
-Content-Type: application/json
-Accept: application/json
-
-{
-  "cateringName" : "AH",
-  "contactPerson" : "Jeroen",
-  "zipcode" : "1234KL",
-  "address" : "teststraat 50",
-  "city" : "Eindoven",
-  "phone" : "0123456789",
-  "cateringPrice" : 130.50,
-  "note" : null
-}
-
-<> 2019-06-03T104131.404.json
-
-###
-
-DELETE http://localhost:8080/api/cateringimages/3
-Accept: application/json
-
-###
-
-POST http://localhost:8080/api/cateringimages/18
-Content-Type: application/json
-Accept: application/json
-
-{
-"image" : "image/ah.jpg"
-}
-
-<> 2019-06-03T104040.200.json
-
-###
-
-GET http://localhost:8080/api/caterings/18
-Accept: application/json
-
-<> 2019-06-03T104013.200.json
-
-###
-
-GET http://localhost:8080/api/caterings
-Accept: application/json
-
-<> 2019-06-03T104006.200.json
-
-###
-
-POST http://localhost:8080/api/caterings/1
-Content-Type: application/json
-Accept: application/json
-
-{
-  "cateringName" : "AH",
-  "contactPerson" : "Joost",
-  "zipcode" : "1234KL",
-  "address" : "teststraat 50",
-  "city" : "Den Haag",
-  "phone" : "0123456789",
-  "cateringPrice" : 130.50,
-  "note" : null
-}
-
-<> 2019-06-03T103957.200.json
-
-###
-
-POST http://localhost:8080/api/caterings/1
-Content-Type: application/json
-Accept: application/json
-
-{
-  "cateringName" : "AH",
-  "contactPerson" : "Joost",
-  "zipcode" : "1234KL",
-  "address" : "teststraat 50",
-  "city" : "Den Haag",
-  "phone" : "0123456789",
-  "cateringPrice" : 130.50,
-  "note" : null
-}
-
-<> 2019-06-03T103830.500.json
 
 ###
 
