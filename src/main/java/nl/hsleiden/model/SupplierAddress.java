@@ -46,6 +46,10 @@ public class SupplierAddress {
         this.zipcode = zipcode;
     }
 
+    public SupplierAddress() {
+
+    }
+
     public Long getId() {
         return id;
     }

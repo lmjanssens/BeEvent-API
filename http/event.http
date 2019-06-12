@@ -7,6 +7,12 @@ Authorization: Basic Arthur abc
 
 ###
 
+GET http://localhost:8080/api/eventlocation
+Accept: application/json
+Authorization: Basic Arthur abc
+
+###
+
 GET http://localhost:8080/api/events/52
 Accept: application/json
 Authorization: Basic Arthur abc

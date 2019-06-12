@@ -26,6 +26,10 @@ public class SupplierEmail {
     @JsonProperty("email")
     private String email;
 
+    public SupplierEmail() {
+
+    }
+
     public Supplier getSupplier() {
         return supplier;
     }

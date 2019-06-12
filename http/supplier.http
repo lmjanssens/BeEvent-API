@@ -95,7 +95,7 @@ Authorization: Basic Liselot abc
 
 ###
 
-DELETE http://localhost:8080/api/suppliers/5
+DELETE http://localhost:8080/api/suppliers/7
 Accept: application/json
 Authorization: Basic Arthur abc
 

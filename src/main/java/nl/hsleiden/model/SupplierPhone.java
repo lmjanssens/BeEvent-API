@@ -26,6 +26,10 @@ public class SupplierPhone {
     @JsonProperty("phone")
     private String phone;
 
+    public SupplierPhone() {
+
+    }
+
     public Supplier getSupplier() {
         return supplier;
     }

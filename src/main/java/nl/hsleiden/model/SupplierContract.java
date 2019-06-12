@@ -66,6 +66,10 @@ public class SupplierContract {
     @JsonProperty("extras")
     private String extras;
 
+    public SupplierContract() {
+
+    }
+
     public Long getId() {
         return id;
     }
