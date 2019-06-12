@@ -22,7 +22,7 @@ public class Instructor {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JsonProperty("user_id")
-    @JoinColumn(name = "userid", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false)
     @JsonView(View.Public.class)
     private User user;
 
