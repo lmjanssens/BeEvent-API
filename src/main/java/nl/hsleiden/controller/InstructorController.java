@@ -1,5 +1,7 @@
 package nl.hsleiden.controller;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import nl.hsleiden.View;
 import nl.hsleiden.auth.Role;
 import nl.hsleiden.exception.ResourceNotFoundException;
 import nl.hsleiden.model.Instructor;
@@ -27,12 +29,14 @@ public class InstructorController {
 
     @GetMapping("/api/instructors")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @JsonView(View.Public.class)
     public Collection<Instructor> getInstructors() {
         return instructorRepository.findAll();
     }
 
     @GetMapping("/api/instructors/{instructorId}")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @JsonView(View.Public.class)
     public Optional<Instructor> getInstructor(@PathVariable Long instructorId) {
         LOGGER.info("Fetching instructor with id" + instructorId);
         return instructorRepository.findById(instructorId);
@@ -47,6 +51,7 @@ public class InstructorController {
 
     @PutMapping("/api/instructors/{instructorId}")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @JsonView(View.Public.class)
     public Instructor updateInstructor(@PathVariable Long instructorId, @Valid @RequestBody Instructor updatedInstructor) {
         LOGGER.info("Updating instructor with id: " + instructorId);
         return instructorRepository.findById(instructorId).map(instructor -> {
