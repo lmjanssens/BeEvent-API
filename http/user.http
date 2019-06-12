@@ -2,7 +2,7 @@
 
 
 GET http://localhost:8080/api/users
-Accept: application:json
+Accept: application/json
 Authorization: Basic Arthur abc
 
 ###
@@ -89,5 +89,17 @@ Authorization: Basic Arthur abc
     }
   ]
 }
+
+###
+
+GET http://localhost:8080/api/instructors/1
+Accept: application/json
+Authorization: Basic Arthur abc
+
+###
+
+GET http://localhost:8080/api/employees
+Accept: application/json
+Authorization: Basic Arthur abc
 
 ###

@@ -1,6 +1,8 @@
 package nl.hsleiden.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonView;
+import nl.hsleiden.View;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
@@ -14,34 +16,41 @@ public class Instructor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "instructorid", columnDefinition = "serial")
+    @JsonView(View.Public.class)
+    @JsonProperty("instructor_id")
     private Long id;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JsonProperty("user_id")
     @JoinColumn(name = "userid", nullable = false)
+    @JsonView(View.Public.class)
     private User user;
 
     @NotNull
     @Length(max = 100)
     @Column(name = "first_name")
     @JsonProperty("first_name")
+    @JsonView(View.Public.class)
     private String firstName;
 
     @Length(max = 20)
     @Column(name = "infix")
     @JsonProperty("infix")
+    @JsonView(View.Public.class)
     private String infix;
 
     @NotNull
     @Length(max = 100)
     @Column(name = "last_name")
     @JsonProperty("last_name")
+    @JsonView(View.Public.class)
     private String lastName;
 
     @NotNull
     @Length(min = 10, max = 20)
     @Column(name = "phone_number")
     @JsonProperty("phone_number")
+    @JsonView(View.Public.class)
     private String phoneNumber;
 
     @NotNull
@@ -49,6 +58,7 @@ public class Instructor {
     @Length(max = 150)
     @Column(name = "email")
     @JsonProperty("email_address")
+    @JsonView(View.Public.class)
     private String email;
 
     public User getUser() {
