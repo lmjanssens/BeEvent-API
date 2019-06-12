@@ -28,7 +28,7 @@ public class InstructorController {
     private InstructorRepository instructorRepository;
 
     @GetMapping("/api/instructors")
-    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "') or hasAuthority('" + Role.INSTRUCTOR + "')")
     @JsonView(View.Public.class)
     public Collection<Instructor> getInstructors() {
         return instructorRepository.findAll();

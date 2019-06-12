@@ -24,7 +24,7 @@ public class InvoiceController {
     private InvoiceRepository invoiceRepository;
 
     @GetMapping("/api/invoice")
-    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "') or hasAuthority('" + Role.INSTRUCTOR + "')")
     public Collection<Invoice> getInvoices() { return invoiceRepository.findAll(); }
 
     @GetMapping("/api/invoice/{invoiceNumber}")

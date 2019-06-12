@@ -33,7 +33,7 @@ public class CateringOrderController {
     private CateringRepository cateringRepo;
 
     @GetMapping("/api/cateringorder")
-    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "') or hasAuthority('" + Role.INSTRUCTOR + "')")
     public Collection<CateringOrder> getCateringOrders() { return this.cateringOrderRepo.findAll(); }
 
     @GetMapping("/api/cateringorder/{id}")

@@ -33,7 +33,7 @@ public class CustomerOrderController {
     private CustomerRepository customerRepository;
 
     @GetMapping("/api/customerOrder")
-    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "') or hasAuthority('" + Role.INSTRUCTOR + "')")
     public Collection<CustomerOrder> getCustomerOrder() { return customerOrderRepository.findAll(); }
 
     @GetMapping("/api/customerOrder/{customerOrderId}")

@@ -35,7 +35,7 @@ public class UserController {
 
     @GetMapping("/api/users")
     @JsonView(View.Public.class)
-    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "') or hasAuthority('" + Role.INSTRUCTOR + "')")
     public Collection<User> getEmployees() {
         return userRepository.findAll();
     }

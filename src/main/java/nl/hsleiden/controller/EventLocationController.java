@@ -30,8 +30,8 @@ public class EventLocationController {
      * @return a list of locations
      */
     @GetMapping("/api/eventlocation")
-    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
-    public Collection<EventLocation> getEventLocations() { return eventLocationRepository.findAll(); }
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "') or hasAuthority('" + Role.INSTRUCTOR + "')")
+    private Collection<EventLocation> getEventLocations() { return eventLocationRepository.findAll(); }
 
     /**
      * For getting a specific location from a database

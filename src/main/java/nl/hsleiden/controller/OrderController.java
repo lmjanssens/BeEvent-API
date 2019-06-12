@@ -41,7 +41,7 @@ public class OrderController {
     CollectionDataService<Quotation> quotationCollectionDataService = new CollectionDataService<>();
 
     @GetMapping("/api/orders")
-    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "') or hasAuthority('" + Role.INSTRUCTOR + "')")
     public Collection<Order> getOrders() { return orderRepository.findAll(); }
 
     @GetMapping("/api/orders/{orderId}")

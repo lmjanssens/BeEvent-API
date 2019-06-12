@@ -38,7 +38,7 @@ public class EmployeeController {
     CollectionDataService<EmployeePhone> phoneCollectionDataService = new CollectionDataService<>();
 
     @GetMapping("/api/employees")
-    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "') or hasAuthority('" + Role.INSTRUCTOR + "')")
     public Collection<Employee> getEmployees() {
         return employeeRepository.findAll();
     }
