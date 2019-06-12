@@ -38,20 +38,20 @@ public class EmployeeController {
     CollectionDataService<EmployeePhone> phoneCollectionDataService = new CollectionDataService<>();
 
     @GetMapping("/api/employees")
-    @PreAuthorize("hasAuthority('" + Role.ADMIN + "')")
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public Collection<Employee> getEmployees() {
         return employeeRepository.findAll();
     }
 
     @GetMapping("/api/employees/{employeeId}")
-    @PreAuthorize("hasAuthority('" + Role.ADMIN + "')")
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public Optional<Employee> getEmployee(@PathVariable Long employeeId) {
         LOGGER.info("Fetching employee with id" + employeeId);
         return employeeRepository.findById(employeeId);
     }
 
     @PostMapping("/api/employees")
-    @PreAuthorize("hasAuthority('" + Role.ADMIN + "')")
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public Employee createEmployee(@Valid @RequestBody Employee employee) {
         LOGGER.info("Creating employee.");
         Employee savedEmployee = employeeRepository.save(employee);
@@ -63,7 +63,7 @@ public class EmployeeController {
     }
 
     @PutMapping("/api/employees/{employeeId}")
-    @PreAuthorize("hasAuthority('" + Role.ADMIN + "')")
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     public Employee updateEmployee(@PathVariable Long employeeId, @Valid @RequestBody Employee updatedEmployee) {
         LOGGER.info("Updating employee with id: " + employeeId);
         return employeeRepository.findById(employeeId).map(employee -> {
