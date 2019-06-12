@@ -2,6 +2,8 @@ package nl.hsleiden.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonView;
+import nl.hsleiden.View;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
@@ -15,6 +17,7 @@ public class EmployeeEmail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "employeeemailid", columnDefinition = "serial")
+    @JsonView(View.Public.class)
     private Long id;
 
     @ManyToOne
@@ -27,6 +30,7 @@ public class EmployeeEmail {
     @Length(max = 150)
     @Column(name = "email")
     @JsonProperty("email")
+    @JsonView(View.Public.class)
     private String email;
 
     public Employee getEmployee() {
