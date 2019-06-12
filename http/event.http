@@ -34,7 +34,8 @@ Authorization: Basic Liselot abc
   "pricePerPerson": 130.5,
   "priceBuyPerPerson": 0,
   "btw": 0.21,
-  "note": null
+  "note": null,
+  "maxinstructors": 5
 }
 
 ###

@@ -46,10 +46,6 @@ public class Order {
     @JsonProperty("endtime")
     private Timestamp endTime;
 
-    @Column(name = "maxinstructors")
-    @JsonProperty("maxinstructors")
-    private int maxInstructors;
-
     @OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
     @JsonProperty("catering_orders")
     private Set<CateringOrder> cateringOrders;
@@ -113,14 +109,6 @@ public class Order {
 
     public void setEndTime(Timestamp endTime) {
         this.endTime = endTime;
-    }
-
-    public int getMaxInstructors() {
-        return maxInstructors;
-    }
-
-    public void setMaxInstructors(int maxInstructors) {
-        this.maxInstructors = maxInstructors;
     }
 
     public Set<CateringOrder> getCateringOrders() {

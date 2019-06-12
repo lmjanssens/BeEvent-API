@@ -101,6 +101,7 @@ public class EventController {
             event.setPriceBuyPerPerson(updatedEvent.getPriceBuyPerPerson());
             event.setBtw(updatedEvent.getBtw());
             event.setNote(updatedEvent.getNote());
+            event.setMaxInstructors(updatedEvent.getMaxInstructors());
             return eventRepo.save(event);
         }).orElseThrow(() -> new ResourceNotFoundException("Event not found with id " + eventId));
     }

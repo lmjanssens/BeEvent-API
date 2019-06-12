@@ -73,7 +73,6 @@ public class OrderController {
             order.setDateEvent(updatedOrder.getDateEvent());
             order.setDateOrder(updatedOrder.getDateOrder());
             order.setEndTime(updatedOrder.getEndTime());
-            order.setMaxInstructors(updatedOrder.getMaxInstructors());
             order.setNote(updatedOrder.getNote());
             order.setStartTime(updatedOrder.getStartTime());
 
