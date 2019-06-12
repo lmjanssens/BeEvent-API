@@ -16,7 +16,7 @@ public class Instructor {
     @Column(name = "instructorid", columnDefinition = "serial")
     private Long id;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JsonProperty("user_id")
     @JoinColumn(name = "userid", nullable = false)
     private User user;
