@@ -16,6 +16,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "userid", columnDefinition = "serial")
+    @JsonView(View.Public.class)
     private Long id;
 
     @NotNull
