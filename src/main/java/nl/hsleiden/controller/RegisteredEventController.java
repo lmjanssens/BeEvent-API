@@ -2,17 +2,16 @@ package nl.hsleiden.controller;
 
 import nl.hsleiden.auth.Role;
 import nl.hsleiden.exception.ResourceNotFoundException;
-import nl.hsleiden.model.RegisteredEvent;
-import nl.hsleiden.model.User;
+import nl.hsleiden.model.*;
 import nl.hsleiden.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -48,6 +47,17 @@ public class RegisteredEventController {
     @GetMapping("/api/registeredevents")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "') or hasAuthority('" + Role.INSTRUCTOR + "')")
     public Collection<RegisteredEvent> getRegisteredEvents() { return registeredEventRepo.findAll(); }
+
+    /**
+     * For retrieving a registered event by instructor username
+     * @return a subscribed event
+     */
+    @GetMapping("/api/registeredevents/orderid/{orderId}")
+    @PreAuthorize("hasAuthority('" + Role.INSTRUCTOR + "')")
+    public List<RegisteredEvent> getRegisteredEventByOrder (@PathVariable Long orderId) {
+        LOGGER.info("Fetching registered event by orderid " + orderId);
+        return registeredEventRepo.findByOrder_OrderId(orderId);
+    }
 
     /**
      * For retrieving a specific registered event object stored in the database
