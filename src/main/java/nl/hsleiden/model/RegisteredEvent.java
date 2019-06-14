@@ -19,6 +19,10 @@ public class RegisteredEvent {
     private Long id;
 
     @ManyToOne
+    @JoinColumn(name = "orderid", nullable = false)
+    private Order order;
+
+    @ManyToOne
     @JoinColumn(name = "eventid", nullable = false)
     private Event event;
 
@@ -26,7 +30,8 @@ public class RegisteredEvent {
     @JoinColumn(name = "instructorid", nullable = false)
     private Instructor instructor;
 
-    public RegisteredEvent(Event event, Instructor instructor) {
+    public RegisteredEvent(Order order, Event event, Instructor instructor) {
+        this.order = order;
         this.event = event;
         this.instructor = instructor;
     }
@@ -40,6 +45,10 @@ public class RegisteredEvent {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public Order getOrder() { return order; }
+
+    public void setOrder(Order order) { this.order = order; }
 
     public Event getEvent() {
         return event;

@@ -1,8 +1,6 @@
 package nl.hsleiden.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonView;
+import com.fasterxml.jackson.annotation.*;
 import nl.hsleiden.repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -24,6 +22,7 @@ public class Order {
     @ManyToOne
     @JoinColumn(name = "customerid", nullable = false , updatable = false)
     @JsonProperty("customerid")
+    @JsonBackReference
     private Customer customer;
 
     @Column(name = "dateorder")

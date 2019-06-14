@@ -12,7 +12,7 @@ Authorization: Basic Arthur abc
 
 ###
 
-POST http://localhost:8080/api/caterings/6
+POST http://localhost:8080/api/caterings/2
 Content-Type: application/json
 Accept: application/json
 Authorization: Basic Arthur abc

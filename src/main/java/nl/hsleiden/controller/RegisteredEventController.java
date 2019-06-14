@@ -3,9 +3,8 @@ package nl.hsleiden.controller;
 import nl.hsleiden.auth.Role;
 import nl.hsleiden.exception.ResourceNotFoundException;
 import nl.hsleiden.model.RegisteredEvent;
-import nl.hsleiden.repository.EventRepository;
-import nl.hsleiden.repository.InstructorRepository;
-import nl.hsleiden.repository.RegisteredEventRepository;
+import nl.hsleiden.model.User;
+import nl.hsleiden.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -36,6 +35,12 @@ public class RegisteredEventController {
     @Autowired
     private InstructorRepository instructorRepo;
 
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private OrderRepository orderRepository;
+
     /**
      * For retrieving a list of registered events stored in the database
      * @return a list of registered events
@@ -62,19 +67,25 @@ public class RegisteredEventController {
      * @param registeredEvent a JSON-object obtained from the frontend ready to be inserted to the database.
      * @return an inserted registered event object
      */
-    @PostMapping("/api/registeredevents/{eventId}/{instructorId}")
-    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
-    public RegisteredEvent createRegisteredEvent(@PathVariable Long eventId,
-                                                        @PathVariable Long instructorId,
+    @PostMapping("/api/registeredevents/{orderId}/{eventId}/{instructorId}")
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "') or hasAuthority('" + Role.INSTRUCTOR + "')")
+    public RegisteredEvent createRegisteredEvent(@PathVariable Long orderId,
+                                                 @PathVariable Long eventId,
+                                                 @PathVariable String instructorId,
                                                         @Valid @RequestBody RegisteredEvent registeredEvent){
         LOGGER.info("Creating registered event");
 
+        User user = userRepository.findByUsername(instructorId);
+
         return eventRepo.findById(eventId).map(event1 -> {
             registeredEvent.setEvent(event1);
-            return instructorRepo.findById(instructorId).map(instructor -> {
-                registeredEvent.setInstructor(instructor);
-                return registeredEventRepo.save(registeredEvent);
-            }).orElseThrow(() -> new ResourceNotFoundException("No instructor found of id " + instructorId));
+            return orderRepository.findById(orderId).map(order -> {
+                registeredEvent.setOrder(order);
+                return instructorRepo.findByUser(user).map(instructor -> {
+                    registeredEvent.setInstructor(instructor);
+                    return registeredEventRepo.save(registeredEvent);
+                }).orElseThrow(() -> new ResourceNotFoundException("No instructor found of id " + instructorId));
+            }).orElseThrow(() -> new ResourceNotFoundException("Could not find order of id " + orderId));
         }).orElseThrow(() -> new ResourceNotFoundException("No event found of id " + eventId));
 
     }

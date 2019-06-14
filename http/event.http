@@ -19,7 +19,7 @@ Authorization: Basic Arthur abc
 
 ###
 
-POST http://localhost:8080/api/events/6/38
+POST http://localhost:8080/api/events/3/2
 Content-Type: application/json
 Accept: application/json
 Authorization: Basic Liselot abc
