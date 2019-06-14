@@ -2,8 +2,6 @@ package nl.hsleiden.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
@@ -74,7 +72,6 @@ public class Event {
     private double priceBuyPerPerson;
 
     @Column(name = "maxinstructors")
-    @JsonProperty("maxinstructors")
     private int maxInstructors;
 
     @NotNull
