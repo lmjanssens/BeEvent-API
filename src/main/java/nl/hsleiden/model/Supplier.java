@@ -1,6 +1,8 @@
 package nl.hsleiden.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonView;
+import nl.hsleiden.View;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
@@ -13,6 +15,8 @@ public class Supplier {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "supplierid", columnDefinition = "serial")
+    @JsonView(View.Public.class)
+    @JsonProperty("supplierid")
     private Long id;
 
     @NotNull
@@ -59,6 +63,14 @@ public class Supplier {
     @OneToMany(mappedBy = "supplier")
     @JsonProperty("addresses")
     private Set<SupplierAddress> addresses;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;

@@ -18,26 +18,26 @@ import javax.mail.internet.MimeMultipart;
 @Component
 public class EmailService {
 
-    @Autowired
-    private JavaMailSender javaMailSender;
-
-    public void send(String to, String subject, String text) {
-        MimeMessagePreparator preparator = new MimeMessagePreparator() {
-
-            public void prepare(MimeMessage mimeMessage) throws Exception {
-                mimeMessage.setRecipient(Message.RecipientType.TO,
-                        new InternetAddress(to));
-                mimeMessage.setSubject(subject);
-                mimeMessage.setContent(text, "text/html");
-            }
-        };
-
-        try {
-            this.javaMailSender.send(preparator);
-        }
-        catch (MailException ex) {
-            // simply log it and go on...
-            System.err.println(ex.getMessage());
-        }
-    }
+//    @Autowired
+//    private JavaMailSender javaMailSender;
+//
+//    public void send(String to, String subject, String text) {
+//        MimeMessagePreparator preparator = new MimeMessagePreparator() {
+//
+//            public void prepare(MimeMessage mimeMessage) throws Exception {
+//                mimeMessage.setRecipient(Message.RecipientType.TO,
+//                        new InternetAddress(to));
+//                mimeMessage.setSubject(subject);
+//                mimeMessage.setContent(text, "text/html");
+//            }
+//        };
+//
+//        try {
+//            this.javaMailSender.send(preparator);
+//        }
+//        catch (MailException ex) {
+//            // simply log it and go on...
+//            System.err.println(ex.getMessage());
+//        }
+//    }
 }

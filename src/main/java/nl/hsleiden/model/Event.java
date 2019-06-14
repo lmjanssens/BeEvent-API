@@ -2,8 +2,8 @@ package nl.hsleiden.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
+import com.fasterxml.jackson.annotation.JsonView;
+import nl.hsleiden.View;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
@@ -24,14 +24,16 @@ public class Event {
     @Column(name = "eventid", columnDefinition = "SERIAL")
     private Long id;
 
-    @ManyToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "supplierid")
     @JsonIgnore
+    @JsonView(View.Public.class)
     private Supplier supplier;
 
-    @ManyToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "locationid")
     @JsonIgnore
+    @JsonView(View.Public.class)
     private EventLocation location;
 
     @OneToMany(mappedBy = "event")
@@ -74,7 +76,6 @@ public class Event {
     private double priceBuyPerPerson;
 
     @Column(name = "maxinstructors")
-    @JsonProperty("maxinstructors")
     private int maxInstructors;
 
     @NotNull

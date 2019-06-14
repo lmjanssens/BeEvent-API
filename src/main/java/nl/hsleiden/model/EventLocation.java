@@ -19,13 +19,11 @@ public class EventLocation {
     @Column(name = "name")
     private String name;
 
-    @NotNull
     @Length(max = 255)
     @Column(name = "description")
 
     private String description;
 
-    @NotNull
     @Length(max = 255)
     @Column(name = "routepicture")
     private String routePicture;
