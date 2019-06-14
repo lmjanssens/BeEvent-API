@@ -1,5 +1,7 @@
 package nl.hsleiden.controller;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import nl.hsleiden.View;
 import nl.hsleiden.auth.Role;
 import nl.hsleiden.exception.ResourceNotFoundException;
 import nl.hsleiden.model.Event;
@@ -45,6 +47,7 @@ public class EventController {
      */
     @GetMapping("/api/events")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "') or hasAuthority('" + Role.INSTRUCTOR + "')")
+    @JsonView(View.Public.class)
     public Collection<Event> getEvents() { return eventRepo.findAll(); }
 
     /**
@@ -54,6 +57,7 @@ public class EventController {
      */
     @GetMapping("/api/events/{eventId}")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @JsonView(View.Public.class)
     public Optional<Event> getSpecifiedEvents(@PathVariable(value = "eventId") Long eventId) {
         LOGGER.info("Fetching event object with id: " + eventId);
         return eventRepo.findById(eventId);
@@ -67,6 +71,7 @@ public class EventController {
      */
     @PostMapping("/api/events/{supplierId}/{eventLocationId}")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @JsonView(View.Public.class)
     public Event createEvent(@PathVariable(value = "eventLocationId") Long eventLocationId,
                              @PathVariable Long supplierId,
                              @Valid @RequestBody Event event){
@@ -89,6 +94,7 @@ public class EventController {
      */
     @PutMapping("/api/events/{eventId}")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @JsonView(View.Public.class)
     public Event updateEvent(@PathVariable Long eventId, @Valid @RequestBody Event updatedEvent) {
         return eventRepo.findById(eventId).map(event -> {
             event.setOwnEvent(updatedEvent.isOwnEvent());

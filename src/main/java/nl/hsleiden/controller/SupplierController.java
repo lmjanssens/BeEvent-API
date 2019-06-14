@@ -1,5 +1,7 @@
 package nl.hsleiden.controller;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import nl.hsleiden.View;
 import nl.hsleiden.auth.Role;
 import nl.hsleiden.exception.ResourceNotFoundException;
 import nl.hsleiden.model.*;
@@ -43,12 +45,14 @@ public class SupplierController {
 
     @GetMapping("/api/suppliers")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "') or hasAuthority('" + Role.INSTRUCTOR + "')")
+    @JsonView(View.Public.class)
     public Collection<Supplier> getSuppliers() {
         return supplierRepository.findAll();
     }
 
     @GetMapping("/api/suppliers/{supplierId}")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @JsonView(View.Public.class)
     public Optional<Supplier> getSupplier(@PathVariable Long supplierId) {
         LOGGER.info("Fetching supplier by id: " + supplierId);
         return supplierRepository.findById(supplierId);
@@ -56,6 +60,7 @@ public class SupplierController {
 
     @PostMapping("/api/suppliers")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @JsonView(View.Public.class)
     public Supplier createSupplier(@Valid @RequestBody Supplier supplier) {
         LOGGER.info("Creating supplier.");
         Supplier savedSupplier = supplierRepository.save(supplier);
@@ -70,6 +75,7 @@ public class SupplierController {
 
     @PutMapping("/api/suppliers/{supplierId}")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @JsonView(View.Public.class)
     public Supplier updateSupplier(@PathVariable Long supplierId, @Valid @RequestBody Supplier updatedSupplier) {
         LOGGER.info("Updating supplier with id: " + supplierId);
         return supplierRepository.findById(supplierId).map(supplier -> {

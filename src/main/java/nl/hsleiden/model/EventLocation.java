@@ -1,5 +1,7 @@
 package nl.hsleiden.model;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import nl.hsleiden.View;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
@@ -12,22 +14,25 @@ public class EventLocation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "locationid")
+    @JsonView(View.Public.class)
     private Long id;
 
     @NotNull
     @Length(max = 255)
     @Column(name = "name")
+    @JsonView(View.Public.class)
     private String name;
 
     @NotNull
     @Length(max = 255)
     @Column(name = "description")
-
+    @JsonView(View.Public.class)
     private String description;
 
     @NotNull
     @Length(max = 255)
     @Column(name = "routepicture")
+    @JsonView(View.Public.class)
     private String routePicture;
 
     public EventLocation(@NotNull @Length(max = 255) String name, @NotNull @Length(max = 255) String description, @NotNull @Length(max = 255) String routePicture) {

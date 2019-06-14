@@ -16,8 +16,8 @@ public class Instructor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "instructorid", columnDefinition = "serial")
-    @JsonView(View.Public.class)
     @JsonProperty("instructor_id")
+    @JsonView(View.Public.class)
     private Long id;
 
     @OneToOne(cascade = CascadeType.ALL)

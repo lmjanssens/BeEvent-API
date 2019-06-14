@@ -44,6 +44,7 @@ public class InstructorController {
 
     @PostMapping("/api/instructors")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @JsonView(View.Public.class)
     public Instructor createInstructor(@Valid @RequestBody Instructor instructor) {
         LOGGER.info("Creating instructor.");
         return instructorRepository.save(instructor);

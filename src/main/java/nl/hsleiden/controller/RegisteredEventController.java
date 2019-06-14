@@ -1,5 +1,7 @@
 package nl.hsleiden.controller;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import nl.hsleiden.View;
 import nl.hsleiden.auth.Role;
 import nl.hsleiden.exception.ResourceNotFoundException;
 import nl.hsleiden.model.RegisteredEvent;
@@ -42,6 +44,7 @@ public class RegisteredEventController {
      */
     @GetMapping("/api/registeredevents")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "') or hasAuthority('" + Role.INSTRUCTOR + "')")
+    @JsonView(View.Public.class)
     public Collection<RegisteredEvent> getRegisteredEvents() { return registeredEventRepo.findAll(); }
 
     /**
@@ -51,6 +54,7 @@ public class RegisteredEventController {
      */
     @GetMapping("/api/registeredevents/{eventId}")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @JsonView(View.Public.class)
     public Optional<RegisteredEvent> getRegisteredEventById (@PathVariable Long eventId) {
         LOGGER.info("Fetching registered event with id " +  eventId);
         return registeredEventRepo.findById(eventId);
@@ -64,6 +68,7 @@ public class RegisteredEventController {
      */
     @PostMapping("/api/registeredevents/{eventId}/{instructorId}")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @JsonView(View.Public.class)
     public RegisteredEvent createRegisteredEvent(@PathVariable Long eventId,
                                                         @PathVariable Long instructorId,
                                                         @Valid @RequestBody RegisteredEvent registeredEvent){
