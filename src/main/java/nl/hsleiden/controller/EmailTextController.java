@@ -24,7 +24,7 @@ public class EmailTextController {
     private EmailTextRepository emailTextRepository;
 
     @GetMapping("/api/emailtexts")
-    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "') or hasAuthority('" + Role.INSTRUCTOR + "')")
     public Collection<EmailText> getEmailTexts() { return emailTextRepository.findAll(); }
 
     @GetMapping("/api/emailtexts/{id}")

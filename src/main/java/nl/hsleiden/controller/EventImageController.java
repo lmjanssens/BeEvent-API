@@ -34,7 +34,7 @@ public class EventImageController {
      * @return a list of imagepaths
      */
     @GetMapping("/api/eventimage")
-    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "') or hasAuthority('" + Role.INSTRUCTOR + "')")
     public Collection<EventImage> getEventImages() { return eventImageRepo.findAll(); }
 
     /**

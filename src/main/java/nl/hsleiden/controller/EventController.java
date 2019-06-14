@@ -44,7 +44,7 @@ public class EventController {
      * @return a list of events
      */
     @GetMapping("/api/events")
-    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "') or hasAuthority('" + Role.INSTRUCTOR + "')")
     public Collection<Event> getEvents() { return eventRepo.findAll(); }
 
     /**

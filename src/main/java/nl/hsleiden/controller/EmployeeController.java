@@ -1,5 +1,7 @@
 package nl.hsleiden.controller;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import nl.hsleiden.View;
 import nl.hsleiden.auth.Role;
 import nl.hsleiden.exception.ResourceNotFoundException;
 import nl.hsleiden.model.Employee;
@@ -38,13 +40,15 @@ public class EmployeeController {
     CollectionDataService<EmployeePhone> phoneCollectionDataService = new CollectionDataService<>();
 
     @GetMapping("/api/employees")
-    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "') or hasAuthority('" + Role.INSTRUCTOR + "')")
+    @JsonView(View.Public.class)
     public Collection<Employee> getEmployees() {
         return employeeRepository.findAll();
     }
 
     @GetMapping("/api/employees/{employeeId}")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @JsonView(View.Public.class)
     public Optional<Employee> getEmployee(@PathVariable Long employeeId) {
         LOGGER.info("Fetching employee with id" + employeeId);
         return employeeRepository.findById(employeeId);

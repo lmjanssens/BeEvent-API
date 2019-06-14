@@ -24,7 +24,7 @@ public class QuotationController {
     private QuotationRepository quotationRepository;
 
     @GetMapping("/api/quotation")
-    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "') or hasAuthority('" + Role.INSTRUCTOR + "')")
     public Collection<Quotation> getQuotations() { return quotationRepository.findAll(); }
 
     @GetMapping("/api/quotation/{quotationNumber}")

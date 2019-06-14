@@ -42,7 +42,7 @@ public class SupplierController {
     private CollectionDataService<SupplierAddress> supplierAddressCollectionDataService = new CollectionDataService<>();
 
     @GetMapping("/api/suppliers")
-    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "') or hasAuthority('" + Role.INSTRUCTOR + "')")
     public Collection<Supplier> getSuppliers() {
         return supplierRepository.findAll();
     }

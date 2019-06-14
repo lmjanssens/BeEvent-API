@@ -29,7 +29,7 @@ public class CateringImageController {
     private CateringRepository cateringRepo;
 
     @GetMapping("/api/cateringimages")
-    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "') or hasAuthority('" + Role.INSTRUCTOR + "')")
     public Collection<CateringImage> getCateringImages() { return this.cateringImageRepo.findAll(); }
 
     @GetMapping("/api/cateringimages/{id}")
