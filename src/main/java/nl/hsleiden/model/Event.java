@@ -2,6 +2,8 @@ package nl.hsleiden.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonView;
+import nl.hsleiden.View;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
@@ -22,14 +24,16 @@ public class Event {
     @Column(name = "eventid", columnDefinition = "SERIAL")
     private Long id;
 
-    @ManyToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "supplierid")
     @JsonIgnore
+    @JsonView(View.Public.class)
     private Supplier supplier;
 
-    @ManyToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "locationid")
     @JsonIgnore
+    @JsonView(View.Public.class)
     private EventLocation location;
 
     @OneToMany(mappedBy = "event")
