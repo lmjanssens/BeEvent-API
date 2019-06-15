@@ -1,5 +1,7 @@
 package nl.hsleiden.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.validator.constraints.Length;
 
@@ -80,7 +82,8 @@ public class Customer {
     @JsonProperty("phone_numbers")
     private Set<CustomerPhone> phones;
 
-    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "customer")
+    @JsonIgnore
     private Set<Order> orders;
 
     public Customer() {

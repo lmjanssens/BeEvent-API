@@ -22,7 +22,6 @@ public class Order {
     @ManyToOne
     @JoinColumn(name = "customerid", nullable = false , updatable = false)
     @JsonProperty("customerid")
-    @JsonBackReference
     private Customer customer;
 
     @Column(name = "dateorder")
