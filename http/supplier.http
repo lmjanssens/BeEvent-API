@@ -59,7 +59,7 @@ Accept: application/json
 Authorization: Basic Liselot abc
 
 {
-  "name": "LeverancierA",
+  "name": "LeverancierC",
   "contact_person": "Peterjan45",
   "supervisor": "Peterjan45",
   "website" : "leveranciera.nl",
