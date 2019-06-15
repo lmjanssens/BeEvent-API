@@ -1,0 +1,10 @@
+POST http://localhost:8080/api/registeredevents/2/Danny
+Content-Type: application/json
+Accept: application/json
+Authorization: Basic Danny abc
+
+{
+
+}
+
+###

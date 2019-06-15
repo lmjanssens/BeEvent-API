@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="50b9253f-f2ad-4c62-9b3b-4fb64f939245" name="Default Changelist" comment="Create a cronjob to run every morgen at 08:00 AM to check if invoice notifications should be sent.">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2019-06-14T024440.200.json" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/httpRequests/2019-06-14T024440.200.json" afterDir="false" />
+    <list default="true" id="50b9253f-f2ad-4c62-9b3b-4fb64f939245" name="Default Changelist" comment="removed CASCADE ALL from event to supplier and eventlocation, never again please">
+      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2019-06-15T035054.200.json" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/httpRequests/2019-06-15T035054.200.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/httpRequests/http-requests-log.http" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/httpRequests/http-requests-log.http" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/http/event.http" beforeDir="false" afterPath="$PROJECT_DIR$/http/event.http" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nl/hsleiden/controller/EventLocationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/hsleiden/controller/EventLocationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/http/supplier.http" beforeDir="false" afterPath="$PROJECT_DIR$/http/supplier.http" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/nl/hsleiden/model/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/hsleiden/model/Event.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nl/hsleiden/service/EmailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/hsleiden/service/EmailService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/hsleiden/model/Supplier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/hsleiden/model/Supplier.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/.idea/httpRequests/" />
@@ -37,8 +37,29 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/http/event.http">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-23">
-              <caret line="16" column="24" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="24" />
+            <state relative-caret-position="306">
+              <caret line="18" selection-start-line="18" selection-end-line="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/nl/hsleiden/model/Event.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="243">
+              <caret line="27" column="36" selection-start-line="27" selection-start-column="36" selection-end-line="27" selection-end-column="36" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/nl/hsleiden/model/Supplier.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="20" selection-start-line="20" selection-end-line="20" />
             </state>
           </provider>
         </entry>
@@ -46,29 +67,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/nl/hsleiden/model/EventLocation.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="18" column="26" lean-forward="true" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="26" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/nl/hsleiden/model/Instructor.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="23" column="28" selection-start-line="23" selection-start-column="28" selection-end-line="23" selection-end-column="28" />
+            <state relative-caret-position="102">
+              <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/nl/hsleiden/model/Event.java">
+        <entry file="file://$PROJECT_DIR$/http/supplier.http">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="175">
-              <caret line="32" column="36" selection-start-line="32" selection-start-column="36" selection-end-line="32" selection-end-column="36" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="113">
+              <caret line="61" column="23" selection-start-line="61" selection-start-column="23" selection-end-line="61" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -134,16 +143,16 @@
         <option value="$PROJECT_DIR$/src/main/java/nl/hsleiden/model/SupplierPhone.java" />
         <option value="$PROJECT_DIR$/src/main/java/nl/hsleiden/model/SupplierEmail.java" />
         <option value="$PROJECT_DIR$/src/main/java/nl/hsleiden/model/SupplierContract.java" />
-        <option value="$PROJECT_DIR$/http/supplier.http" />
         <option value="$PROJECT_DIR$/src/main/java/nl/hsleiden/controller/OrderController.java" />
         <option value="$PROJECT_DIR$/src/main/java/nl/hsleiden/model/Order.java" />
         <option value="$PROJECT_DIR$/src/main/java/nl/hsleiden/controller/EventController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/nl/hsleiden/model/Supplier.java" />
         <option value="$PROJECT_DIR$/src/main/java/nl/hsleiden/model/EventLocation.java" />
-        <option value="$PROJECT_DIR$/http/event.http" />
         <option value="$PROJECT_DIR$/src/main/java/nl/hsleiden/service/EmailService.java" />
         <option value="$PROJECT_DIR$/src/main/java/nl/hsleiden/controller/EventLocationController.java" />
         <option value="$PROJECT_DIR$/src/main/java/nl/hsleiden/model/Event.java" />
+        <option value="$PROJECT_DIR$/http/event.http" />
+        <option value="$PROJECT_DIR$/src/main/java/nl/hsleiden/model/Supplier.java" />
+        <option value="$PROJECT_DIR$/http/supplier.http" />
       </list>
     </option>
   </component>
@@ -179,6 +188,7 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -251,7 +261,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -263,7 +272,7 @@
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1560517125846" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1560611490988" />
     <property name="last_opened_file_path" value="$USER_HOME$/Downloads/springboot-basicauth/springboot-basicauth/pom.xml" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -274,6 +283,156 @@
   <component name="RestClientSettings">
     <option name="REQUEST_HISTORY">
       <list>
+        <RestClientRequest>
+          <option name="httpMethod" value="POST" />
+          <option name="urlBase" value="http://localhost:8080/api/suppliers" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="haveTextToSend" value="true" />
+          <option name="textToSend" value="{&#10;  &quot;name&quot;: &quot;LeverancierC&quot;,&#10;  &quot;contact_person&quot;: &quot;Peterjan45&quot;,&#10;  &quot;supervisor&quot;: &quot;Peterjan45&quot;,&#10;  &quot;website&quot; : &quot;leveranciera.nl&quot;,&#10;  &quot;note&quot; : &quot;Test&quot;,&#10;  &quot;image&quot; : &quot;image/leveranciera.jpg&quot;,&#10;  &quot;email_addresses&quot;: [&#10;    { &quot;email&quot;: &quot;hello45@example.com&quot; }&#10;  ],&#10;  &quot;phone_numbers&quot;: [&#10;    { &quot;phone&quot;: &quot;+31 6 12345666&quot; }&#10;  ],&#10;  &quot;contracts&quot;: [&#10;    {&#10;      &quot;type&quot;: true,&#10;      &quot;title&quot;: &quot;Inkoop&quot;,&#10;      &quot;description&quot;: &quot;Sushi rolls verkoop contract&quot;,&#10;      &quot;inclubtw&quot;: &quot;Sushi rolls | 20-;&quot;,&#10;      &quot;percentage&quot;: 21,&#10;      &quot;pre_conditions&quot;: &quot;Minimaal 500 sushi rolls afnemen&quot;,&#10;      &quot;insurance&quot;: &quot;Geen&quot;,&#10;      &quot;responsibility&quot;: &quot;Artemis&quot;,&#10;      &quot;extras&quot;: &quot;5 sushi rolls gratis bij een afname van 1000 sushi rolls&quot;&#10;    }&#10;  ],&#10;  &quot;addresses&quot; : [&#10;    {&#10;      &quot;address&quot; : &quot;Binnenhof 45&quot;,&#10;      &quot;city&quot; : &quot;Den Haag&quot;,&#10;      &quot;zipcode&quot; : &quot;1234KL&quot;&#10;    }&#10;  ]&#10;}" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="POST" />
+          <option name="urlBase" value="http://localhost:8080/api/events/10/73" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="haveTextToSend" value="true" />
+          <option name="textToSend" value="{&#10;  &quot;ownEvent&quot;: true,&#10;  &quot;name&quot;: &quot;Expeditie ik haat IDs&quot;,&#10;  &quot;description&quot;: &quot;This is a great event&quot;,&#10;  &quot;program&quot;: &quot;Fietstocht&quot;,&#10;  &quot;duration&quot;: &quot;1:30&quot;,&#10;  &quot;options&quot;: null,&#10;  &quot;pricePerPerson&quot;: 130.5,&#10;  &quot;priceBuyPerPerson&quot;: 0,&#10;  &quot;btw&quot;: 0.21,&#10;  &quot;note&quot;: null,&#10;  &quot;maxInstructors&quot;: 5&#10;}" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="POST" />
+          <option name="urlBase" value="http://localhost:8080/api/events/10/73" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="haveTextToSend" value="true" />
+          <option name="textToSend" value="{&#10;  &quot;ownEvent&quot;: true,&#10;  &quot;name&quot;: &quot;Expeditie wtf max instructors&quot;,&#10;  &quot;description&quot;: &quot;This is a great event&quot;,&#10;  &quot;program&quot;: &quot;Fietstocht&quot;,&#10;  &quot;duration&quot;: &quot;1:30&quot;,&#10;  &quot;options&quot;: null,&#10;  &quot;pricePerPerson&quot;: 130.5,&#10;  &quot;priceBuyPerPerson&quot;: 0,&#10;  &quot;btw&quot;: 0.21,&#10;  &quot;note&quot;: null,&#10;  &quot;maxInstructors&quot;: 5&#10;}" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="POST" />
+          <option name="urlBase" value="http://localhost:8080/api/suppliers" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="haveTextToSend" value="true" />
+          <option name="textToSend" value="{&#10;  &quot;name&quot;: &quot;LeverancierB&quot;,&#10;  &quot;contactPerson&quot;: &quot;Peterjan45&quot;,&#10;  &quot;supervisor&quot;: &quot;Peterjan45&quot;,&#10;  &quot;website&quot; : &quot;leveranciera.nl&quot;,&#10;  &quot;note&quot; : &quot;Test&quot;,&#10;  &quot;image&quot; : &quot;image/leveranciera.jpg&quot;,&#10;  &quot;email_addresses&quot;: [&#10;    { &quot;email&quot;: &quot;hello45@example.com&quot; }&#10;  ],&#10;  &quot;phone_numbers&quot;: [&#10;    { &quot;phone&quot;: &quot;+31 6 12345666&quot; }&#10;  ],&#10;  &quot;contracts&quot;: [&#10;    {&#10;      &quot;type&quot;: true,&#10;      &quot;title&quot;: &quot;Inkoop&quot;,&#10;      &quot;description&quot;: &quot;Sushi rolls verkoop contract&quot;,&#10;      &quot;inclubtw&quot;: &quot;Sushi rolls | 20-;&quot;,&#10;      &quot;percentage&quot;: 21,&#10;      &quot;pre_conditions&quot;: &quot;Minimaal 500 sushi rolls afnemen&quot;,&#10;      &quot;insurance&quot;: &quot;Geen&quot;,&#10;      &quot;responsibility&quot;: &quot;Artemis&quot;,&#10;      &quot;extras&quot;: &quot;5 sushi rolls gratis bij een afname van 1000 sushi rolls&quot;&#10;    }&#10;  ],&#10;  &quot;addresses&quot; : [&#10;    {&#10;      &quot;address&quot; : &quot;Binnenhof 45&quot;,&#10;      &quot;city&quot; : &quot;Den Haag&quot;,&#10;      &quot;zipcode&quot; : &quot;1234KL&quot;&#10;    }&#10;  ]&#10;}" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="POST" />
+          <option name="urlBase" value="http://localhost:8080/api/suppliers" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="haveTextToSend" value="true" />
+          <option name="textToSend" value="{&#10;  &quot;name&quot;: &quot;LeverancierB&quot;,&#10;  &quot;contact_person&quot;: &quot;Peterjan45&quot;,&#10;  &quot;supervisor&quot;: &quot;Peterjan45&quot;,&#10;  &quot;website&quot; : &quot;leveranciera.nl&quot;,&#10;  &quot;note&quot; : &quot;Test&quot;,&#10;  &quot;image&quot; : &quot;image/leveranciera.jpg&quot;,&#10;  &quot;email_addresses&quot;: [&#10;    { &quot;email&quot;: &quot;hello45@example.com&quot; }&#10;  ],&#10;  &quot;phone_numbers&quot;: [&#10;    { &quot;phone&quot;: &quot;+31 6 12345666&quot; }&#10;  ],&#10;  &quot;contracts&quot;: [&#10;    {&#10;      &quot;type&quot;: true,&#10;      &quot;title&quot;: &quot;Inkoop&quot;,&#10;      &quot;description&quot;: &quot;Sushi rolls verkoop contract&quot;,&#10;      &quot;inclubtw&quot;: &quot;Sushi rolls | 20-;&quot;,&#10;      &quot;percentage&quot;: 21,&#10;      &quot;pre_conditions&quot;: &quot;Minimaal 500 sushi rolls afnemen&quot;,&#10;      &quot;insurance&quot;: &quot;Geen&quot;,&#10;      &quot;responsibility&quot;: &quot;Artemis&quot;,&#10;      &quot;extras&quot;: &quot;5 sushi rolls gratis bij een afname van 1000 sushi rolls&quot;&#10;    }&#10;  ],&#10;  &quot;addresses&quot; : [&#10;    {&#10;      &quot;address&quot; : &quot;Binnenhof 45&quot;,&#10;      &quot;city&quot; : &quot;Den Haag&quot;,&#10;      &quot;zipcode&quot; : &quot;1234KL&quot;&#10;    }&#10;  ]&#10;}" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="http://localhost:8080/api/events" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="http://localhost:8080/api/events/79" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="POST" />
+          <option name="urlBase" value="http://localhost:8080/api/events/8/69" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="haveTextToSend" value="true" />
+          <option name="textToSend" value="{&#10;  &quot;ownEvent&quot;: true,&#10;  &quot;name&quot;: &quot;Expeditie wtf max instructors&quot;,&#10;  &quot;description&quot;: &quot;This is a great event&quot;,&#10;  &quot;program&quot;: &quot;Fietstocht&quot;,&#10;  &quot;duration&quot;: &quot;1:30&quot;,&#10;  &quot;options&quot;: null,&#10;  &quot;pricePerPerson&quot;: 130.5,&#10;  &quot;priceBuyPerPerson&quot;: 0,&#10;  &quot;btw&quot;: 0.21,&#10;  &quot;note&quot;: null,&#10;  &quot;maxInstructors&quot;: 5&#10;}" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
         <RestClientRequest>
           <option name="httpMethod" value="POST" />
           <option name="urlBase" value="http://localhost:8080/api/events/6/38" />
@@ -295,6 +454,26 @@
           <option name="filesToSend" value="" />
         </RestClientRequest>
         <RestClientRequest>
+          <option name="httpMethod" value="POST" />
+          <option name="urlBase" value="http://localhost:8080/api/suppliers" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="haveTextToSend" value="true" />
+          <option name="textToSend" value="{&#10;  &quot;name&quot;: &quot;LeverancierA&quot;,&#10;  &quot;contact_person&quot;: &quot;Peterjan45&quot;,&#10;  &quot;supervisor&quot;: &quot;Peterjan45&quot;,&#10;  &quot;website&quot; : &quot;leveranciera.nl&quot;,&#10;  &quot;note&quot; : &quot;Test&quot;,&#10;  &quot;image&quot; : &quot;image/leveranciera.jpg&quot;,&#10;  &quot;email_addresses&quot;: [&#10;    { &quot;email&quot;: &quot;hello45@example.com&quot; }&#10;  ],&#10;  &quot;phone_numbers&quot;: [&#10;    { &quot;phone&quot;: &quot;+31 6 12345666&quot; }&#10;  ],&#10;  &quot;contracts&quot;: [&#10;    {&#10;      &quot;type&quot;: true,&#10;      &quot;title&quot;: &quot;Inkoop&quot;,&#10;      &quot;description&quot;: &quot;Sushi rolls verkoop contract&quot;,&#10;      &quot;inclubtw&quot;: &quot;Sushi rolls | 20-;&quot;,&#10;      &quot;percentage&quot;: 21,&#10;      &quot;pre_conditions&quot;: &quot;Minimaal 500 sushi rolls afnemen&quot;,&#10;      &quot;insurance&quot;: &quot;Geen&quot;,&#10;      &quot;responsibility&quot;: &quot;Artemis&quot;,&#10;      &quot;extras&quot;: &quot;5 sushi rolls gratis bij een afname van 1000 sushi rolls&quot;&#10;    }&#10;  ],&#10;  &quot;addresses&quot; : [&#10;    {&#10;      &quot;address&quot; : &quot;Binnenhof 45&quot;,&#10;      &quot;city&quot; : &quot;Den Haag&quot;,&#10;      &quot;zipcode&quot; : &quot;1234KL&quot;&#10;    }&#10;  ]&#10;}" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
           <option name="httpMethod" value="GET" />
           <option name="urlBase" value="http://localhost:8080/api/events" />
           <option name="urlPath" value="" />
@@ -307,6 +486,26 @@
             </list>
           </option>
           <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="POST" />
+          <option name="urlBase" value="http://localhost:8080/api/events/6/38" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="haveTextToSend" value="true" />
+          <option name="textToSend" value="{&#10;  &quot;ownEvent&quot;: true,&#10;  &quot;name&quot;: &quot;Expeditie wtf max instructors&quot;,&#10;  &quot;description&quot;: &quot;This is a great event&quot;,&#10;  &quot;program&quot;: &quot;Fietstocht&quot;,&#10;  &quot;duration&quot;: &quot;1:30&quot;,&#10;  &quot;options&quot;: null,&#10;  &quot;pricePerPerson&quot;: 130.5,&#10;  &quot;priceBuyPerPerson&quot;: 0,&#10;  &quot;btw&quot;: 0.21,&#10;  &quot;note&quot;: null,&#10;  &quot;maxInstructors&quot;: 5&#10;}" />
           <option name="filesToSend" value="" />
         </RestClientRequest>
         <RestClientRequest>
@@ -993,196 +1192,6 @@
           <option name="textToSend" value="{&#10;  &quot;dateorder&quot;: &quot;2019-01-10T13:37:42&quot;,&#10;  &quot;dateevent&quot;: &quot;2019-01-10T13:37:42&quot;,&#10;  &quot;note&quot;: &quot;test note&quot;,&#10;  &quot;starttime&quot;: &quot;2019-01-10T13:37:42&quot;,&#10;  &quot;endtime&quot;: &quot;2019-01-10T13:37:42&quot;,&#10;  &quot;maxinstructors&quot;: 4,&#10;  &quot;quotations&quot;: [&#10;    {&#10;      &quot;orderid&quot;: 1,&#10;      &quot;datequotation&quot;: &quot;2019-01-10T13:37:42&quot;,&#10;      &quot;bankaccount&quot;: &quot;ABNA4200982&quot;,&#10;      &quot;pricebtw&quot;: 1212,&#10;      &quot;pricepp&quot;: 40&#10;    }&#10;  ]&#13;&#10;}" />
           <option name="filesToSend" value="" />
         </RestClientRequest>
-        <RestClientRequest>
-          <option name="httpMethod" value="POST" />
-          <option name="urlBase" value="http://localhost:8080/api/orders" />
-          <option name="urlPath" value="" />
-          <option name="headers">
-            <list>
-              <KeyValuePair>
-                <option name="key" value="Content-Type" />
-                <option name="value" value="application/json" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="Accept" />
-                <option name="value" value="application/json" />
-              </KeyValuePair>
-            </list>
-          </option>
-          <option name="haveTextToSend" value="true" />
-          <option name="textToSend" value="{&#10;  &quot;dateorder&quot;: &quot;2019-01-10T13:37:42&quot;,&#10;  &quot;dateevent&quot;: &quot;2019-01-10T13:37:42&quot;,&#10;  &quot;note&quot;: &quot;test note&quot;,&#10;  &quot;starttime&quot;: &quot;2019-01-10T13:37:42&quot;,&#10;  &quot;endtime&quot;: &quot;2019-01-10T13:37:42&quot;,&#10;  &quot;maxinstructors&quot;: 4,&#10;  &quot;invoices&quot;: [&#10;    {&#10;      &quot;dateinvoice&quot;: &quot;2019-01-10T13:37:42&quot;,&#10;      &quot;paymentextras&quot;: &quot;dit kost te veel&quot;,&#10;      &quot;pricepp&quot;: 1242.99,&#10;      &quot;pricebtw&quot;: 12453,&#10;      &quot;othercosts&quot;: 120,&#10;      &quot;othercostsbtw&quot;: 190,&#10;      &quot;tobepaid&quot;: 1242,&#10;      &quot;paid&quot;: 4,&#10;      &quot;datepartpaid&quot;: &quot;2019-01-10T13:37:42&quot;,&#10;      &quot;datefullpaid&quot;: &quot;2019-01-10T13:37:42&quot;,&#10;      &quot;bankaccount&quot;: &quot;INGB13371337&quot;,&#10;      &quot;dateinvoicemailsend&quot;: &quot;2019-01-10T13:37:42&quot;,&#10;      &quot;excludefrominvoicealert&quot;: true&#10;    }&#10;  ]&#13;&#10;}" />
-          <option name="filesToSend" value="" />
-        </RestClientRequest>
-        <RestClientRequest>
-          <option name="httpMethod" value="POST" />
-          <option name="urlBase" value="http://localhost:8080/api/orders" />
-          <option name="urlPath" value="" />
-          <option name="headers">
-            <list>
-              <KeyValuePair>
-                <option name="key" value="Content-Type" />
-                <option name="value" value="application/json" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="Accept" />
-                <option name="value" value="application/json" />
-              </KeyValuePair>
-            </list>
-          </option>
-          <option name="haveTextToSend" value="true" />
-          <option name="textToSend" value="{&#10;  &quot;dateorder&quot;: &quot;2019-01-10T13:37:42&quot;,&#10;  &quot;dateevent&quot;: &quot;2019-01-10T13:37:42&quot;,&#10;  &quot;note&quot;: &quot;test note&quot;,&#10;  &quot;starttime&quot;: &quot;2019-01-10T13:37:42&quot;,&#10;  &quot;endtime&quot;: &quot;2019-01-10T13:37:42&quot;,&#10;  &quot;maxinstructors&quot;: 4,&#10;  &quot;invoices&quot;: [&#10;    {&#10;      &quot;dateinvoice&quot;: &quot;2019-01-10T13:37:42&quot;,&#10;      &quot;paymentextras&quot;: &quot;dit kost te veel&quot;,&#10;      &quot;pricepp&quot;: 1242.99,&#10;      &quot;pricebtw&quot;: 12453,&#10;      &quot;othercosts&quot;: 120,&#10;      &quot;othercostsbtw&quot;: 190,&#10;      &quot;tobepaid&quot;: 1242,&#10;      &quot;paid&quot;: 4,&#10;      &quot;datepartpaid&quot;: &quot;2019-01-10T13:37:42&quot;,&#10;      &quot;datefullpaid&quot;: &quot;2019-01-10T13:37:42&quot;,&#10;      &quot;bankaccount&quot;: &quot;INGB13371337&quot;,&#10;      &quot;dateinvoicemailsend&quot;: &quot;2019-01-10T13:37:42&quot;,&#10;      &quot;excludefrominvoicealert&quot;: true&#10;    }&#10;  ],&#13;&#10;}" />
-          <option name="filesToSend" value="" />
-        </RestClientRequest>
-        <RestClientRequest>
-          <option name="httpMethod" value="POST" />
-          <option name="urlBase" value="http://localhost:8080/api/orders" />
-          <option name="urlPath" value="" />
-          <option name="headers">
-            <list>
-              <KeyValuePair>
-                <option name="key" value="Content-Type" />
-                <option name="value" value="application/json" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="Accept" />
-                <option name="value" value="application/json" />
-              </KeyValuePair>
-            </list>
-          </option>
-          <option name="haveTextToSend" value="true" />
-          <option name="textToSend" value="{&#10;  &quot;dateorder&quot;: &quot;2019-01-10T13:37:42&quot;,&#10;  &quot;dateevent&quot;: &quot;2019-01-10T13:37:42&quot;,&#10;  &quot;note&quot;: &quot;test note&quot;,&#10;  &quot;starttime&quot;: &quot;2019-01-10T13:37:42&quot;,&#10;  &quot;endtime&quot;: &quot;2019-01-10T13:37:42&quot;,&#10;  &quot;maxinstructors&quot;: 4,&#10;  &quot;invoices&quot;: [&#10;    {&#10;      &quot;dateinvoice&quot;: &quot;2019-01-10T13:37:42&quot;,&#10;      &quot;paymentextras&quot;: &quot;dit kost te veel&quot;,&#10;      &quot;pricepp&quot;: 1242.99,&#10;      &quot;pricebtw&quot;: 12453,&#10;      &quot;othercosts&quot;: 120,&#10;      &quot;othercostsbtw&quot;: 190,&#10;      &quot;tobepaid&quot;: 1242,&#10;      &quot;paid&quot;: 4,&#10;      &quot;datepartpaid&quot;: &quot;2019-01-10T13:37:42&quot;,&#10;      &quot;datefullpaid&quot;: &quot;2019-01-10T13:37:42&quot;,&#10;      &quot;bankaccount&quot;: &quot;INGB13371337&quot;,&#10;      &quot;dateinvoicemailsend&quot;: &quot;2019-01-10T13:37:42&quot;,&#10;      &quot;excludefrominvoicealert&quot;: true&#10;    }&#10;  ],&#10;  &quot;events&quot;: [&#10;    {&#10;      &quot;ownEvent&quot;: true,&#10;      &quot;name&quot;: &quot;Be On ICE&quot;,&#10;      &quot;description&quot;: &quot;This is a great event&quot;,&#10;      &quot;program&quot;: &quot;Glope Ijsspelen&quot;,&#10;      &quot;duration&quot;: &quot;1:30&quot;,&#10;      &quot;options&quot;: null,&#10;      &quot;pricePerPerson&quot;: 130.5,&#10;      &quot;priceBuyPerPerson&quot;: 0,&#10;      &quot;btw&quot;: 0.21,&#10;      &quot;note&quot;: null&#10;    }&#10;  ]&#10;}" />
-          <option name="filesToSend" value="" />
-        </RestClientRequest>
-        <RestClientRequest>
-          <option name="httpMethod" value="POST" />
-          <option name="urlBase" value="http://localhost:8080/api/orders" />
-          <option name="urlPath" value="" />
-          <option name="headers">
-            <list>
-              <KeyValuePair>
-                <option name="key" value="Content-Type" />
-                <option name="value" value="application/json" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="Accept" />
-                <option name="value" value="application/json" />
-              </KeyValuePair>
-            </list>
-          </option>
-          <option name="haveTextToSend" value="true" />
-          <option name="textToSend" value="{&#10;  &quot;dateorder&quot;: &quot;2019-01-10T13:37:42&quot;,&#10;  &quot;dateevent&quot;: &quot;2019-01-10T13:37:42&quot;,&#10;  &quot;note&quot;: &quot;test note&quot;,&#10;  &quot;starttime&quot;: &quot;2019-01-10T13:37:42&quot;,&#10;  &quot;endtime&quot;: &quot;2019-01-10T13:37:42&quot;,&#10;  &quot;maxinstructors&quot;: 4,&#10;  &quot;events&quot;: [&#10;    {&#10;      &quot;ownEvent&quot;: true,&#10;      &quot;name&quot;: &quot;Be On ICE&quot;,&#10;      &quot;description&quot;: &quot;This is a great event&quot;,&#10;      &quot;program&quot;: &quot;Glope Ijsspelen&quot;,&#10;      &quot;duration&quot;: &quot;1:30&quot;,&#10;      &quot;options&quot;: null,&#10;      &quot;pricePerPerson&quot;: 130.5,&#10;      &quot;priceBuyPerPerson&quot;: 0,&#10;      &quot;btw&quot;: 0.21,&#10;      &quot;note&quot;: null&#10;    }&#10;  ]&#10;}" />
-          <option name="filesToSend" value="" />
-        </RestClientRequest>
-        <RestClientRequest>
-          <option name="httpMethod" value="POST" />
-          <option name="urlBase" value="http://localhost:8080/api/orders" />
-          <option name="urlPath" value="" />
-          <option name="headers">
-            <list>
-              <KeyValuePair>
-                <option name="key" value="Content-Type" />
-                <option name="value" value="application/json" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="Accept" />
-                <option name="value" value="application/json" />
-              </KeyValuePair>
-            </list>
-          </option>
-          <option name="haveTextToSend" value="true" />
-          <option name="textToSend" value="{&#10;  &quot;dateorder&quot;: &quot;2019-01-10T13:37:42&quot;,&#10;  &quot;dateevent&quot;: &quot;2019-01-10T13:37:42&quot;,&#10;  &quot;note&quot;: &quot;test note&quot;,&#10;  &quot;starttime&quot;: &quot;2019-01-10T13:37:42&quot;,&#10;  &quot;endtime&quot;: &quot;2019-01-10T13:37:42&quot;,&#10;  &quot;maxinstructors&quot;: 4&#10;}" />
-          <option name="filesToSend" value="" />
-        </RestClientRequest>
-        <RestClientRequest>
-          <option name="httpMethod" value="POST" />
-          <option name="urlBase" value="http://localhost:8080/api/orders" />
-          <option name="urlPath" value="" />
-          <option name="headers">
-            <list>
-              <KeyValuePair>
-                <option name="key" value="Content-Type" />
-                <option name="value" value="application/json" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="Accept" />
-                <option name="value" value="application/json" />
-              </KeyValuePair>
-            </list>
-          </option>
-          <option name="haveTextToSend" value="true" />
-          <option name="textToSend" value="{&#10;  &quot;dateorder&quot;: &quot;'2019-01-10T13:37:42'::date&quot;,&#10;  &quot;dateevent&quot;: &quot;'2019-01-10T13:37:42'::date&quot;,&#10;  &quot;note&quot;: &quot;test note&quot;,&#10;  &quot;starttime&quot;: &quot;'2019-01-10T13:37:42'::date&quot;,&#10;  &quot;endtime&quot;: &quot;'2019-01-10T13:37:42'::date&quot;,&#10;  &quot;maxinstructors&quot;: 4&#10;}" />
-          <option name="filesToSend" value="" />
-        </RestClientRequest>
-        <RestClientRequest>
-          <option name="httpMethod" value="POST" />
-          <option name="urlBase" value="http://localhost:8080/api/orders" />
-          <option name="urlPath" value="" />
-          <option name="headers">
-            <list>
-              <KeyValuePair>
-                <option name="key" value="Content-Type" />
-                <option name="value" value="application/json" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="Accept" />
-                <option name="value" value="application/json" />
-              </KeyValuePair>
-            </list>
-          </option>
-          <option name="haveTextToSend" value="true" />
-          <option name="textToSend" value="{&#10;  &quot;dateorder&quot;: &quot;2019-01-10T13:37:42::date&quot;,&#10;  &quot;dateevent&quot;: &quot;2019-01-10T13:37:42::date&quot;,&#10;  &quot;note&quot;: &quot;test note&quot;,&#10;  &quot;starttime&quot;: &quot;2019-01-10T13:37:42::date&quot;,&#10;  &quot;endtime&quot;: &quot;2019-01-10T13:37:42::date&quot;,&#10;  &quot;maxinstructors&quot;: 4&#10;}" />
-          <option name="filesToSend" value="" />
-        </RestClientRequest>
-        <RestClientRequest>
-          <option name="httpMethod" value="POST" />
-          <option name="urlBase" value="http://localhost:8080/api/orders" />
-          <option name="urlPath" value="" />
-          <option name="headers">
-            <list>
-              <KeyValuePair>
-                <option name="key" value="Content-Type" />
-                <option name="value" value="application/json" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="Accept" />
-                <option name="value" value="application/json" />
-              </KeyValuePair>
-            </list>
-          </option>
-          <option name="haveTextToSend" value="true" />
-          <option name="textToSend" value="{&#10;  &quot;dateorder&quot;: &quot;2016-01-21 00:00&quot;,&#10;  &quot;dateevent&quot;: &quot;2016-01-21 00:00&quot;,&#10;  &quot;note&quot;: &quot;test note&quot;,&#10;  &quot;starttime&quot;: &quot;2016-01-21 00:00&quot;,&#10;  &quot;endtime&quot;: &quot;2016-01-21 00:00&quot;,&#10;  &quot;maxinstructors&quot;: 4&#10;}" />
-          <option name="filesToSend" value="" />
-        </RestClientRequest>
-        <RestClientRequest>
-          <option name="httpMethod" value="GET" />
-          <option name="urlBase" value="http://localhost:8080/api/orders/1" />
-          <option name="urlPath" value="" />
-          <option name="headers">
-            <list>
-              <KeyValuePair>
-                <option name="key" value="Accept" />
-                <option name="value" value="application/json" />
-              </KeyValuePair>
-            </list>
-          </option>
-          <option name="textToSend" value="" />
-          <option name="filesToSend" value="" />
-        </RestClientRequest>
-        <RestClientRequest>
-          <option name="httpMethod" value="GET" />
-          <option name="urlBase" value="http://localhost:8080/api/orders" />
-          <option name="urlPath" value="" />
-          <option name="headers">
-            <list>
-              <KeyValuePair>
-                <option name="key" value="Accept" />
-                <option name="value" value="application/json" />
-              </KeyValuePair>
-            </list>
-          </option>
-          <option name="textToSend" value="" />
-          <option name="filesToSend" value="" />
-        </RestClientRequest>
       </list>
     </option>
   </component>
@@ -1198,7 +1207,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="HTTP Request.event#1">
+  <component name="RunManager" selected="HTTP Request.supplier#4">
     <configuration name="event#1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$PROJECT_DIR$/http/event.http">
       <method v="2" />
     </configuration>
@@ -1211,7 +1220,7 @@
     <configuration name="event#6" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$PROJECT_DIR$/http/event.http" index="6">
       <method v="2" />
     </configuration>
-    <configuration name="supplier#1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$PROJECT_DIR$/http/supplier.http">
+    <configuration name="supplier#4" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$PROJECT_DIR$/http/supplier.http" index="4">
       <method v="2" />
     </configuration>
     <configuration name="Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
@@ -1226,18 +1235,18 @@
     <list>
       <item itemvalue="HTTP Request.event#1" />
       <item itemvalue="HTTP Request.event#4" />
-      <item itemvalue="HTTP Request.supplier#1" />
       <item itemvalue="HTTP Request.event#6" />
-      <item itemvalue="Spring Boot.Application" />
       <item itemvalue="HTTP Request.event#3" />
+      <item itemvalue="Spring Boot.Application" />
+      <item itemvalue="HTTP Request.supplier#4" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="HTTP Request.event#1" />
+        <item itemvalue="HTTP Request.supplier#4" />
         <item itemvalue="HTTP Request.event#4" />
+        <item itemvalue="HTTP Request.event#1" />
         <item itemvalue="HTTP Request.event#3" />
         <item itemvalue="HTTP Request.event#6" />
-        <item itemvalue="HTTP Request.supplier#1" />
       </list>
     </recent_temporary>
   </component>
@@ -1263,7 +1272,8 @@
       <workItem from="1560417208349" duration="4503000" />
       <workItem from="1560452905151" duration="1275000" />
       <workItem from="1560499711146" duration="2951000" />
-      <workItem from="1560506209908" duration="2847000" />
+      <workItem from="1560506209908" duration="4702000" />
+      <workItem from="1560599694250" duration="3595000" />
     </task>
     <task id="LOCAL-00001" summary="Order with relations to: event, quotation, invoice and cateringorder done. TODO: many to many with customer">
       <created>1558964326837</created>
@@ -1293,11 +1303,18 @@
       <option name="project" value="LOCAL" />
       <updated>1560505468744</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="GET eventlocation to public, added jsonviews to event (supplier and eventlocation)">
+      <created>1560517234915</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1560517234915</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="61303000" />
+    <option name="totallyTimeSpent" value="66753000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1312,7 +1329,7 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4957806" visible="true" weight="0.28997868" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4957806" visible="true" weight="0.29317698" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -1322,7 +1339,7 @@
       <window_info id="Image Layers" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32936078" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3900325" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3900325" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39934355" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -1391,7 +1408,8 @@
     <MESSAGE value="CORS config, default constructors and public instead of private GET method" />
     <MESSAGE value="removed maxinstructors from orders, added it to events" />
     <MESSAGE value="Added getters and setters for supplierID, removed not null from description and routeimage from eventlocation, removed jsonproperty of maxinstructors" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added getters and setters for supplierID, removed not null from description and routeimage from eventlocation, removed jsonproperty of maxinstructors" />
+    <MESSAGE value="GET eventlocation to public, added jsonviews to event (supplier and eventlocation)" />
+    <option name="LAST_COMMIT_MESSAGE" value="GET eventlocation to public, added jsonviews to event (supplier and eventlocation)" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/main/java/nl/hsleiden/repository/EMailTemplateRepository.java" />
@@ -1517,32 +1535,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nl/hsleiden/model/SupplierAddress.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="49" selection-start-line="49" selection-end-line="49" />
-          <folding>
-            <element signature="e#1246#1247#0" expanded="true" />
-            <element signature="e#1271#1272#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/nl/hsleiden/model/SupplierEmail.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="253">
           <caret line="29" selection-start-line="29" selection-end-line="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nl/hsleiden/model/SupplierPhone.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="91">
-          <caret line="29" selection-start-line="29" selection-end-line="29" />
-          <folding>
-            <element signature="e#951#952#0" expanded="true" />
-            <element signature="e#985#986#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1623,13 +1619,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nl/hsleiden/model/Customer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="861">
-          <caret line="184" selection-start-line="184" selection-end-line="184" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/nl/hsleiden/model/Order.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1309">
@@ -1641,26 +1630,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1020">
           <caret line="75" selection-start-line="75" selection-end-line="75" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/http/supplier.http">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1649">
-          <caret line="97" column="44" selection-start-line="97" selection-start-column="44" selection-end-line="97" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nl/hsleiden/model/Supplier.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="969">
-          <caret line="63" column="18" selection-start-line="63" selection-start-column="18" selection-end-line="63" selection-end-column="18" />
-          <folding>
-            <element signature="e#1542#1543#0" expanded="true" />
-            <element signature="e#1567#1568#0" expanded="true" />
-            <element signature="e#1601#1602#0" expanded="true" />
-            <element signature="e#1629#1630#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1685,6 +1654,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nl/hsleiden/model/SupplierAddress.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="34" column="29" selection-start-line="34" selection-start-column="29" selection-end-line="34" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/nl/hsleiden/model/Instructor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -1692,27 +1668,55 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/http/event.http">
+    <entry file="file://$PROJECT_DIR$/src/main/java/nl/hsleiden/model/Customer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-23">
-          <caret line="16" column="24" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="24" />
+        <state relative-caret-position="969">
+          <caret line="68" column="24" selection-start-line="68" selection-start-column="24" selection-end-line="68" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nl/hsleiden/model/SupplierPhone.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="29" selection-start-line="29" selection-end-line="29" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/nl/hsleiden/model/EventLocation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="18" column="26" lean-forward="true" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="26" />
+        <state relative-caret-position="102">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/nl/hsleiden/model/Event.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="32" column="36" selection-start-line="32" selection-start-column="36" selection-end-line="32" selection-end-column="36" />
+        <state relative-caret-position="243">
+          <caret line="27" column="36" selection-start-line="27" selection-start-column="36" selection-end-line="27" selection-end-column="36" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/http/event.http">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" selection-start-line="18" selection-end-line="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nl/hsleiden/model/Supplier.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="20" selection-start-line="20" selection-end-line="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/http/supplier.http">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="113">
+          <caret line="61" column="23" selection-start-line="61" selection-start-column="23" selection-end-line="61" selection-end-column="23" />
         </state>
       </provider>
     </entry>

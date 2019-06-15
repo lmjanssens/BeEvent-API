@@ -13,20 +13,20 @@ Authorization: Basic Arthur abc
 
 ###
 
-GET http://localhost:8080/api/events/79
+GET http://localhost:8080/api/events/52
 Accept: application/json
 Authorization: Basic Arthur abc
 
 ###
 
-POST http://localhost:8080/api/events/10/73
+POST http://localhost:8080/api/events/3/2
 Content-Type: application/json
 Accept: application/json
 Authorization: Basic Liselot abc
 
 {
   "ownEvent": true,
-  "name": "Expeditie ik haat IDs",
+  "name": "Expeditie wtf max instructors",
   "description": "This is a great event",
   "program": "Fietstocht",
   "duration": "1:30",
