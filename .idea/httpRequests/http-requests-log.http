@@ -1,3 +1,347 @@
+POST http://localhost:8080/api/suppliers
+Authorization: Basic Liselot abc
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "LeverancierC",
+  "contact_person": "Peterjan45",
+  "supervisor": "Peterjan45",
+  "website" : "leveranciera.nl",
+  "note" : "Test",
+  "image" : "image/leveranciera.jpg",
+  "email_addresses": [
+    { "email": "hello45@example.com" }
+  ],
+  "phone_numbers": [
+    { "phone": "+31 6 12345666" }
+  ],
+  "contracts": [
+    {
+      "type": true,
+      "title": "Inkoop",
+      "description": "Sushi rolls verkoop contract",
+      "inclubtw": "Sushi rolls | 20-;",
+      "percentage": 21,
+      "pre_conditions": "Minimaal 500 sushi rolls afnemen",
+      "insurance": "Geen",
+      "responsibility": "Artemis",
+      "extras": "5 sushi rolls gratis bij een afname van 1000 sushi rolls"
+    }
+  ],
+  "addresses" : [
+    {
+      "address" : "Binnenhof 45",
+      "city" : "Den Haag",
+      "zipcode" : "1234KL"
+    }
+  ]
+}
+
+<> 2019-06-15T035054.200.json
+
+###
+
+POST http://localhost:8080/api/events/10/73
+Authorization: Basic Liselot abc
+Content-Type: application/json
+Accept: application/json
+
+{
+  "ownEvent": true,
+  "name": "Expeditie ik haat IDs",
+  "description": "This is a great event",
+  "program": "Fietstocht",
+  "duration": "1:30",
+  "options": null,
+  "pricePerPerson": 130.5,
+  "priceBuyPerPerson": 0,
+  "btw": 0.21,
+  "note": null,
+  "maxInstructors": 5
+}
+
+<> 2019-06-15T034131.200.json
+
+###
+
+POST http://localhost:8080/api/events/10/73
+Authorization: Basic Liselot abc
+Content-Type: application/json
+Accept: application/json
+
+{
+  "ownEvent": true,
+  "name": "Expeditie wtf max instructors",
+  "description": "This is a great event",
+  "program": "Fietstocht",
+  "duration": "1:30",
+  "options": null,
+  "pricePerPerson": 130.5,
+  "priceBuyPerPerson": 0,
+  "btw": 0.21,
+  "note": null,
+  "maxInstructors": 5
+}
+
+<> 2019-06-15T034119.200.json
+
+###
+
+POST http://localhost:8080/api/suppliers
+Authorization: Basic Liselot abc
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "LeverancierB",
+  "contactPerson": "Peterjan45",
+  "supervisor": "Peterjan45",
+  "website" : "leveranciera.nl",
+  "note" : "Test",
+  "image" : "image/leveranciera.jpg",
+  "email_addresses": [
+    { "email": "hello45@example.com" }
+  ],
+  "phone_numbers": [
+    { "phone": "+31 6 12345666" }
+  ],
+  "contracts": [
+    {
+      "type": true,
+      "title": "Inkoop",
+      "description": "Sushi rolls verkoop contract",
+      "inclubtw": "Sushi rolls | 20-;",
+      "percentage": 21,
+      "pre_conditions": "Minimaal 500 sushi rolls afnemen",
+      "insurance": "Geen",
+      "responsibility": "Artemis",
+      "extras": "5 sushi rolls gratis bij een afname van 1000 sushi rolls"
+    }
+  ],
+  "addresses" : [
+    {
+      "address" : "Binnenhof 45",
+      "city" : "Den Haag",
+      "zipcode" : "1234KL"
+    }
+  ]
+}
+
+<> 2019-06-15T034058.200.json
+
+###
+
+POST http://localhost:8080/api/suppliers
+Authorization: Basic Liselot abc
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "LeverancierB",
+  "contact_person": "Peterjan45",
+  "supervisor": "Peterjan45",
+  "website" : "leveranciera.nl",
+  "note" : "Test",
+  "image" : "image/leveranciera.jpg",
+  "email_addresses": [
+    { "email": "hello45@example.com" }
+  ],
+  "phone_numbers": [
+    { "phone": "+31 6 12345666" }
+  ],
+  "contracts": [
+    {
+      "type": true,
+      "title": "Inkoop",
+      "description": "Sushi rolls verkoop contract",
+      "inclubtw": "Sushi rolls | 20-;",
+      "percentage": 21,
+      "pre_conditions": "Minimaal 500 sushi rolls afnemen",
+      "insurance": "Geen",
+      "responsibility": "Artemis",
+      "extras": "5 sushi rolls gratis bij een afname van 1000 sushi rolls"
+    }
+  ],
+  "addresses" : [
+    {
+      "address" : "Binnenhof 45",
+      "city" : "Den Haag",
+      "zipcode" : "1234KL"
+    }
+  ]
+}
+
+<> 2019-06-15T033956.400.json
+
+###
+
+GET http://localhost:8080/api/events
+Authorization: Basic Arthur abc
+Accept: application/json
+
+<> 2019-06-15T033009.200.json
+
+###
+
+GET http://localhost:8080/api/events/79
+Authorization: Basic Arthur abc
+Accept: application/json
+
+<> 2019-06-15T032013.200.json
+
+###
+
+GET http://localhost:8080/api/events
+Authorization: Basic Arthur abc
+Accept: application/json
+
+<> 2019-06-15T031416.200.json
+
+###
+
+POST http://localhost:8080/api/events/8/69
+Authorization: Basic Liselot abc
+Content-Type: application/json
+Accept: application/json
+
+{
+  "ownEvent": true,
+  "name": "Expeditie wtf max instructors",
+  "description": "This is a great event",
+  "program": "Fietstocht",
+  "duration": "1:30",
+  "options": null,
+  "pricePerPerson": 130.5,
+  "priceBuyPerPerson": 0,
+  "btw": 0.21,
+  "note": null,
+  "maxInstructors": 5
+}
+
+<> 2019-06-15T031407.200.json
+
+###
+
+POST http://localhost:8080/api/events/6/38
+Authorization: Basic Liselot abc
+Content-Type: application/json
+Accept: application/json
+
+{
+  "ownEvent": true,
+  "name": "Expeditie wtf max instructors",
+  "description": "This is a great event",
+  "program": "Fietstocht",
+  "duration": "1:30",
+  "options": null,
+  "pricePerPerson": 130.5,
+  "priceBuyPerPerson": 0,
+  "btw": 0.21,
+  "note": null,
+  "maxInstructors": 5
+}
+
+<> 2019-06-15T031340.404.json
+
+###
+
+GET http://localhost:8080/api/events
+Authorization: Basic Arthur abc
+Accept: application/json
+
+<> 2019-06-15T031326.200.json
+
+###
+
+POST http://localhost:8080/api/suppliers
+Authorization: Basic Liselot abc
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "LeverancierB",
+  "contact_person": "Peterjan45",
+  "supervisor": "Peterjan45",
+  "website" : "leveranciera.nl",
+  "note" : "Test",
+  "image" : "image/leveranciera.jpg",
+  "email_addresses": [
+    { "email": "hello45@example.com" }
+  ],
+  "phone_numbers": [
+    { "phone": "+31 6 12345666" }
+  ],
+  "contracts": [
+    {
+      "type": true,
+      "title": "Inkoop",
+      "description": "Sushi rolls verkoop contract",
+      "inclubtw": "Sushi rolls | 20-;",
+      "percentage": 21,
+      "pre_conditions": "Minimaal 500 sushi rolls afnemen",
+      "insurance": "Geen",
+      "responsibility": "Artemis",
+      "extras": "5 sushi rolls gratis bij een afname van 1000 sushi rolls"
+    }
+  ],
+  "addresses" : [
+    {
+      "address" : "Binnenhof 45",
+      "city" : "Den Haag",
+      "zipcode" : "1234KL"
+    }
+  ]
+}
+
+<> 2019-06-15T031105.200.json
+
+###
+
+POST http://localhost:8080/api/suppliers
+Authorization: Basic Liselot abc
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "LeverancierA",
+  "contact_person": "Peterjan45",
+  "supervisor": "Peterjan45",
+  "website" : "leveranciera.nl",
+  "note" : "Test",
+  "image" : "image/leveranciera.jpg",
+  "email_addresses": [
+    { "email": "hello45@example.com" }
+  ],
+  "phone_numbers": [
+    { "phone": "+31 6 12345666" }
+  ],
+  "contracts": [
+    {
+      "type": true,
+      "title": "Inkoop",
+      "description": "Sushi rolls verkoop contract",
+      "inclubtw": "Sushi rolls | 20-;",
+      "percentage": 21,
+      "pre_conditions": "Minimaal 500 sushi rolls afnemen",
+      "insurance": "Geen",
+      "responsibility": "Artemis",
+      "extras": "5 sushi rolls gratis bij een afname van 1000 sushi rolls"
+    }
+  ],
+  "addresses" : [
+    {
+      "address" : "Binnenhof 45",
+      "city" : "Den Haag",
+      "zipcode" : "1234KL"
+    }
+  ]
+}
+
+<> 2019-06-15T031042.200.json
+
+###
+
 GET http://localhost:8080/api/events
 Authorization: Basic Arthur abc
 Accept: application/json

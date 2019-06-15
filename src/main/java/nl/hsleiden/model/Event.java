@@ -24,13 +24,13 @@ public class Event {
     @Column(name = "eventid", columnDefinition = "SERIAL")
     private Long id;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "supplierid")
     @JsonIgnore
     @JsonView(View.Public.class)
     private Supplier supplier;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "locationid")
     @JsonIgnore
     @JsonView(View.Public.class)

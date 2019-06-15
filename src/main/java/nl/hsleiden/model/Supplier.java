@@ -64,6 +64,9 @@ public class Supplier {
     @JsonProperty("addresses")
     private Set<SupplierAddress> addresses;
 
+    public Supplier() {
+    }
+
     public Long getId() {
         return id;
     }
