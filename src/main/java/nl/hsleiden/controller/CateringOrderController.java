@@ -1,5 +1,7 @@
 package nl.hsleiden.controller;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import nl.hsleiden.View;
 import nl.hsleiden.auth.Role;
 import nl.hsleiden.exception.ResourceNotFoundException;
 import nl.hsleiden.model.CateringOrder;
@@ -34,10 +36,12 @@ public class CateringOrderController {
 
     @GetMapping("/api/cateringorder")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "') or hasAuthority('" + Role.INSTRUCTOR + "')")
+    @JsonView(View.Public.class)
     public Collection<CateringOrder> getCateringOrders() { return this.cateringOrderRepo.findAll(); }
 
     @GetMapping("/api/cateringorder/{id}")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @JsonView(View.Public.class)
     public Optional<CateringOrder> getSpecificCateringOrder(@PathVariable Long id) {
         LOGGER.info("Fetching catering order object of id " + id);
         return cateringOrderRepo.findById(id);
@@ -45,6 +49,7 @@ public class CateringOrderController {
 
     @PostMapping("/api/cateringorder/{orderId}/{cateringId}")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @JsonView(View.Public.class)
     public CateringOrder createCateringOrder(@PathVariable Long orderId,
                                              @PathVariable Long cateringId,
                                              @Valid @RequestBody CateringOrder cateringOrder) {
@@ -61,6 +66,7 @@ public class CateringOrderController {
 
     @PutMapping("/api/cateringorder/{id}")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @JsonView(View.Public.class)
     public CateringOrder updateCateringOrder(@PathVariable Long id,
                                              @Valid @RequestBody CateringOrder updatedCateringOrder) {
         LOGGER.info("Updating catering order object of id " + id);

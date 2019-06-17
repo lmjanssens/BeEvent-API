@@ -1,6 +1,8 @@
 package nl.hsleiden.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
+import nl.hsleiden.View;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
@@ -19,42 +21,51 @@ public class Catering {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cateringid", columnDefinition = "SERIAL")
+    @JsonView(View.Public.class)
     private Long id;
 
     @ManyToOne
     @JoinColumn(name = "supplierid")
-    @JsonIgnore
+    @JsonView(View.Public.class)
     private Supplier supplier;
 
     @NotNull
     @Column(name = "catering_name")
+    @JsonView(View.Public.class)
     private String cateringName;
 
     @NotNull
     @Column(name = "contact_person")
+    @JsonView(View.Public.class)
     private String contactPerson;
 
     @NotNull
     @Column(name = "zipcode")
+    @JsonView(View.Public.class)
     private String zipcode;
 
     @NotNull
     @Column(name = "address")
+    @JsonView(View.Public.class)
     private String address;
 
     @NotNull
     @Column(name = "city")
+    @JsonView(View.Public.class)
     private String city;
 
     @NotNull
     @Column(name = "phone")
+    @JsonView(View.Public.class)
     private String phone;
 
     @NotNull
     @Column(name = "catering_price")
+    @JsonView(View.Public.class)
     private double cateringPrice;
 
     @Column(name = "note")
+    @JsonView(View.Public.class)
     private String note;
 
     public Catering(Supplier supplier, String cateringName, String contactPerson, String zipcode, String address, String city, String phone, double cateringPrice, String note) {

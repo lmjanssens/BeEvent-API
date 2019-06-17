@@ -1,5 +1,7 @@
 package nl.hsleiden.controller;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import nl.hsleiden.View;
 import nl.hsleiden.auth.Role;
 import nl.hsleiden.exception.ResourceNotFoundException;
 import nl.hsleiden.model.Invoice;
@@ -25,10 +27,12 @@ public class InvoiceController {
 
     @GetMapping("/api/invoice")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "') or hasAuthority('" + Role.INSTRUCTOR + "')")
+    @JsonView(View.Public.class)
     public Collection<Invoice> getInvoices() { return invoiceRepository.findAll(); }
 
     @GetMapping("/api/invoice/{invoiceNumber}")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @JsonView(View.Public.class)
     public Optional<Invoice> getSpecifiedInvoice(@PathVariable Long invoiceNumber) {
         LOGGER.info("Fetching invoice with number: " + invoiceNumber);
         return invoiceRepository.findById(invoiceNumber);
@@ -36,6 +40,7 @@ public class InvoiceController {
 
     @PostMapping("/api/invoice")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @JsonView(View.Public.class)
     public Invoice createInvoice(@Valid @RequestBody Invoice invoice) {
         LOGGER.info("Creating new invoice...");
         return invoiceRepository.save(invoice);
@@ -43,6 +48,7 @@ public class InvoiceController {
 
     @PutMapping("/api/invoice/{invoiceNumber}")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @JsonView(View.Public.class)
     public Invoice updateInvoice(@PathVariable Long invoiceNumber, @Valid @RequestBody Invoice updatedInvoice) {
         LOGGER.info("Updating invoice with number: " + invoiceNumber);
         return invoiceRepository.findById(invoiceNumber).map(invoice -> {

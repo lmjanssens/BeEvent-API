@@ -34,14 +34,15 @@ public class UserController {
     private UserRepository userRepository;
 
     @GetMapping("/api/users")
-    @JsonView(View.Public.class)
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "') or hasAuthority('" + Role.INSTRUCTOR + "')")
+    @JsonView(View.Public.class)
     public Collection<User> getEmployees() {
         return userRepository.findAll();
     }
 
     @GetMapping("/api/users/{userId}")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @JsonView(View.Public.class)
     public Optional<User> getEmployee(@PathVariable Long userId) {
         LOGGER.info("Fetching users with id" + userId);
         return userRepository.findById(userId);
@@ -49,6 +50,7 @@ public class UserController {
 
     @PostMapping("/api/users")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @JsonView(View.Public.class)
     public User createEmployee(@Valid @RequestBody User users) {
         LOGGER.info("Creating users.");
         users.setPassword(bCryptPasswordEncoder().encode(users.getPassword()));
@@ -57,6 +59,7 @@ public class UserController {
 
     @PutMapping("/api/users/{userId}")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @JsonView(View.Public.class)
     public User updateEmployee(@PathVariable Long userId, @Valid @RequestBody User updatedUser) {
         LOGGER.info("Updating users with id: " + userId);
         return userRepository.findById(userId).map(user -> {
