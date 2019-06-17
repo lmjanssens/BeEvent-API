@@ -56,6 +56,7 @@ public class EmployeeController {
 
     @PostMapping("/api/employees")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @JsonView(View.Public.class)
     public Employee createEmployee(@Valid @RequestBody Employee employee) {
         LOGGER.info("Creating employee.");
         Employee savedEmployee = employeeRepository.save(employee);
@@ -68,6 +69,7 @@ public class EmployeeController {
 
     @PutMapping("/api/employees/{employeeId}")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @JsonView(View.Public.class)
     public Employee updateEmployee(@PathVariable Long employeeId, @Valid @RequestBody Employee updatedEmployee) {
         LOGGER.info("Updating employee with id: " + employeeId);
         return employeeRepository.findById(employeeId).map(employee -> {

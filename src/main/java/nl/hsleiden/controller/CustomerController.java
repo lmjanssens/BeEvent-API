@@ -1,5 +1,7 @@
 package nl.hsleiden.controller;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import nl.hsleiden.View;
 import nl.hsleiden.auth.Role;
 import nl.hsleiden.exception.ResourceNotFoundException;
 import nl.hsleiden.model.Customer;
@@ -46,12 +48,14 @@ public class CustomerController {
 
     @GetMapping("/api/customers")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "') or hasAuthority('" + Role.INSTRUCTOR + "')")
+    @JsonView(View.Public.class)
     public Collection<Customer> getCustomers() {
         return customerRepository.findAll();
     }
 
     @GetMapping("/api/customers/{customerId}")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @JsonView(View.Public.class)
     public Optional<Customer> getSpecifiedCustomer(@PathVariable Long customerId) {
         LOGGER.info("Fetching customer with id: " + customerId);
         return customerRepository.findById(customerId);
@@ -59,6 +63,7 @@ public class CustomerController {
 
     @PostMapping("/api/customers")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @JsonView(View.Public.class)
     public Customer createCustomer(@Valid @RequestBody Customer customer) {
         LOGGER.info("Creating new customer...");
         Customer savedCustomer = customerRepository.save(customer);
@@ -74,6 +79,7 @@ public class CustomerController {
 
     @PutMapping("/api/customers/{customerId}")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @JsonView(View.Public.class)
     public Customer updateCustomer(@PathVariable Long customerId, @Valid @RequestBody Customer updatedCustomer) {
         LOGGER.info("Updating customer with id: " + customerId);
 

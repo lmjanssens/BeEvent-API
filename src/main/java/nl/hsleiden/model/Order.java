@@ -1,5 +1,9 @@
 package nl.hsleiden.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonView;
+import nl.hsleiden.View;
 import com.fasterxml.jackson.annotation.*;
 import nl.hsleiden.repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,48 +21,59 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "orderid", columnDefinition = "serial")
+    @JsonView(View.Public.class)
     private Long orderId;
 
     @ManyToOne
     @JoinColumn(name = "customerid", nullable = false , updatable = false)
     @JsonProperty("customerid")
+    @JsonView(View.Public.class)
     private Customer customer;
 
     @Column(name = "dateorder")
     @JsonProperty("dateorder")
+    @JsonView(View.Public.class)
     private Date dateOrder;
 
     @Column(name = "dateevent")
     @JsonProperty("dateevent")
+    @JsonView(View.Public.class)
     private Date dateEvent;
 
     @Column(name = "note")
     @JsonProperty("note")
+    @JsonView(View.Public.class)
     private String note;
 
     @Column(name = "starttime")
     @JsonProperty("starttime")
+    @JsonView(View.Public.class)
     private Timestamp startTime;
 
     @Column(name = "endtime")
     @JsonProperty("endtime")
+    @JsonView(View.Public.class)
     private Timestamp endTime;
 
     @OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
     @JsonProperty("catering_orders")
+    @JsonView(View.Public.class)
     private Set<CateringOrder> cateringOrders;
 
     @OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
     @JsonProperty("invoices")
+    @JsonView(View.Public.class)
     private Set<Invoice> invoices;
 
     @OneToOne
     @JoinColumn(name = "eventid")
     @JsonProperty("eventid")
+    @JsonView(View.Public.class)
     private Event event;
 
     @OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
     @JsonProperty("quotations")
+    @JsonView(View.Public.class)
     private Set<Quotation> quotations;
 
     public Long getOrderId() {

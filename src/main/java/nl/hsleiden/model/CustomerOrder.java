@@ -1,6 +1,9 @@
 package nl.hsleiden.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
+import nl.hsleiden.View;
 
 import javax.persistence.*;
 
@@ -10,16 +13,19 @@ public class CustomerOrder {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "customerorderid", columnDefinition = "serial")
+    @JsonView(View.Public.class)
     private Long customerOrderId;
 
     @ManyToOne
     @JoinColumn(name = "orderid")
-    @JsonIgnore
+    @JsonBackReference
+    @JsonView(View.Public.class)
     private Order order;
 
     @ManyToOne
     @JoinColumn(name = "customerid", nullable = false)
-    @JsonIgnore
+    @JsonBackReference
+    @JsonView(View.Public.class)
     private Customer customer;
 
     public CustomerOrder(Order order, Customer customer) {

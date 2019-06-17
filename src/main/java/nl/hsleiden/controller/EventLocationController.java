@@ -1,5 +1,7 @@
 package nl.hsleiden.controller;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import nl.hsleiden.View;
 import nl.hsleiden.auth.Role;
 import nl.hsleiden.exception.ResourceNotFoundException;
 import nl.hsleiden.model.EventLocation;
@@ -31,6 +33,7 @@ public class EventLocationController {
      */
     @GetMapping("/api/eventlocation")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "') or hasAuthority('" + Role.INSTRUCTOR + "')")
+    @JsonView(View.Public.class)
     public Collection<EventLocation> getEventLocations() { return eventLocationRepository.findAll(); }
 
     /**
@@ -40,6 +43,7 @@ public class EventLocationController {
      */
     @GetMapping("/api/eventlocation/{locationId}")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @JsonView(View.Public.class)
     public Optional<EventLocation> getSpecifiedEventlocation(@PathVariable  Long locationId) {
         LOGGER.info("Fetching event location with id: "  + locationId);
         return eventLocationRepository.findById(locationId);
@@ -52,6 +56,7 @@ public class EventLocationController {
      */
     @PostMapping(value = "/api/eventlocation", consumes = MediaType.APPLICATION_JSON_VALUE)
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @JsonView(View.Public.class)
     public EventLocation createEventLocation(@Valid @RequestBody EventLocation location) {
         LOGGER.info("Creating new eventlocation.");
         return eventLocationRepository.save(location);
@@ -65,6 +70,7 @@ public class EventLocationController {
      */
     @PutMapping(value = "/api/eventlocation/{locationId}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @JsonView(View.Public.class)
     public EventLocation updateEventLocation(@PathVariable Long locationId, @Valid @RequestBody EventLocation updatedEventLocation) {
         LOGGER.info("Updating eventlocation with id: " + locationId);
         return eventLocationRepository.findById(locationId).map(eventLocation -> {

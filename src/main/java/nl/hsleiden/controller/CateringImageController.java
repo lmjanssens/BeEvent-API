@@ -1,5 +1,7 @@
 package nl.hsleiden.controller;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import nl.hsleiden.View;
 import nl.hsleiden.auth.Role;
 import nl.hsleiden.exception.ResourceNotFoundException;
 import nl.hsleiden.model.CateringImage;
@@ -30,10 +32,12 @@ public class CateringImageController {
 
     @GetMapping("/api/cateringimages")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "') or hasAuthority('" + Role.INSTRUCTOR + "')")
+    @JsonView(View.Public.class)
     public Collection<CateringImage> getCateringImages() { return this.cateringImageRepo.findAll(); }
 
     @GetMapping("/api/cateringimages/{id}")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @JsonView(View.Public.class)
     public Optional<CateringImage> getSpecificCateringImage(@PathVariable Long id) {
         LOGGER.info("Fetching cateringimage object of id " + id);
         return cateringImageRepo.findById(id);
@@ -41,6 +45,7 @@ public class CateringImageController {
 
     @PostMapping("/api/cateringimages/{id}")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @JsonView(View.Public.class)
     public CateringImage createCateringImage(@PathVariable Long id, @Valid @RequestBody CateringImage cateringImage) {
         LOGGER.info("Creating a new catering image");
         return cateringRepo.findById(id).map(catering -> {
@@ -51,6 +56,7 @@ public class CateringImageController {
 
     @PutMapping("/api/cateringimages/{id}")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @JsonView(View.Public.class)
     public CateringImage updateCateringImage(@PathVariable Long id, @Valid @RequestBody CateringImage updatedCateringImage) {
         LOGGER.info("Updating catering image object of id " + id);
         return cateringImageRepo.findById(id).map(cateringImage -> {

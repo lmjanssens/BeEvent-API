@@ -1,5 +1,8 @@
 package nl.hsleiden.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonView;
+import nl.hsleiden.View;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -16,6 +19,7 @@ public class RegisteredEvent {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "registeredeventid")
+    @JsonView(View.Public.class)
     private Long id;
 
     @ManyToOne
@@ -24,10 +28,12 @@ public class RegisteredEvent {
 
     @ManyToOne
     @JoinColumn(name = "eventid", nullable = false)
+    @JsonView(View.Public.class)
     private Event event;
 
     @ManyToOne
     @JoinColumn(name = "instructorid", nullable = false)
+    @JsonView(View.Public.class)
     private Instructor instructor;
 
     public RegisteredEvent(Order order, Event event, Instructor instructor) {

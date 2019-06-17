@@ -1,5 +1,7 @@
 package nl.hsleiden.controller;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import nl.hsleiden.View;
 import nl.hsleiden.auth.Role;
 import nl.hsleiden.exception.ResourceNotFoundException;
 import nl.hsleiden.model.EventImage;
@@ -35,6 +37,7 @@ public class EventImageController {
      */
     @GetMapping("/api/eventimage")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "') or hasAuthority('" + Role.INSTRUCTOR + "')")
+    @JsonView(View.Public.class)
     public Collection<EventImage> getEventImages() { return eventImageRepo.findAll(); }
 
     /**
@@ -44,6 +47,7 @@ public class EventImageController {
      */
     @GetMapping("/api/eventimage/{eventImageId}")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @JsonView(View.Public.class)
     public Optional<EventImage> getSpecificEventImage(@PathVariable Long eventImageId) {
         LOGGER.info("Fetching event image of id " + eventImageId);
         return eventImageRepo.findById(eventImageId);
@@ -57,6 +61,7 @@ public class EventImageController {
      */
     @PostMapping(value = "/api/eventimage/{eventId}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @JsonView(View.Public.class)
     public EventImage createEventImage(@PathVariable(value = "eventId") Long eventId,
                                        @Valid @RequestBody EventImage eventImage)
     {
@@ -75,6 +80,7 @@ public class EventImageController {
      */
     @PutMapping(value = "/api/eventimage/{eventImageId}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @JsonView(View.Public.class)
     public EventImage updateEventImage(@PathVariable Long eventImageId, @Valid @RequestBody EventImage eventImage) {
         LOGGER.info("Updating event image of id " + eventImageId);
         return eventImageRepo.findById(eventImageId).map(updateEventImage -> {
