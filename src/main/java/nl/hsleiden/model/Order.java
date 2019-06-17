@@ -37,15 +37,15 @@ public class Order {
     private String note;
 
     @Column(name = "starttime")
-    @JsonProperty("starttime")
+    @JsonProperty("startTime")
     private Timestamp startTime;
 
     @Column(name = "endtime")
-    @JsonProperty("endtime")
+    @JsonProperty("endTime")
     private Timestamp endTime;
 
     @OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
-    @JsonProperty("catering_orders")
+    @JsonProperty("cateringOrders")
     private Set<CateringOrder> cateringOrders;
 
     @OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
@@ -54,12 +54,16 @@ public class Order {
 
     @OneToOne
     @JoinColumn(name = "eventid")
-    @JsonProperty("eventid")
+    @JsonProperty("events")
     private Event event;
 
     @OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
     @JsonProperty("quotations")
     private Set<Quotation> quotations;
+
+    @OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
+    @JsonProperty("registeredevents")
+    private Set<RegisteredEvent> registeredEvents;
 
     public Long getOrderId() {
         return orderId;
@@ -147,5 +151,13 @@ public class Order {
 
     public void setEvent(Event event) {
         this.event = event;
+    }
+
+    public Set<RegisteredEvent> getRegisteredEvents() {
+        return registeredEvents;
+    }
+
+    public void setRegisteredEvents(Set<RegisteredEvent> registeredEvents) {
+        this.registeredEvents = registeredEvents;
     }
 }

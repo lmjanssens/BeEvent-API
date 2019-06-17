@@ -106,7 +106,7 @@ public class RegisteredEventController {
      * @return response
      */
     @DeleteMapping("/api/registeredevents/{eventId}")
-    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "') or hasAuthority('" + Role.INSTRUCTOR + "')")
     public ResponseEntity<?> deleteEvents(@PathVariable Long eventId){
         LOGGER.info("Deleting registered event with id " + eventId);
         return registeredEventRepo.findById(eventId).map(event -> {

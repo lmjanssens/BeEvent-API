@@ -1,5 +1,6 @@
 package nl.hsleiden.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -20,6 +21,7 @@ public class RegisteredEvent {
 
     @ManyToOne
     @JoinColumn(name = "orderid", nullable = false)
+    @JsonIgnore
     private Order order;
 
     @ManyToOne
