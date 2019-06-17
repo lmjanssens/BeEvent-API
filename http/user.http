@@ -16,7 +16,7 @@ Authorization: Basic Arthur abc
 POST http://localhost:8080/api/users
 Content-Type: application/json
 Accept: application/json
-Authorization: Basic Liselot abc
+Authorization: Basic Arthur abc
 
 {
   "username": "johndoe",
@@ -31,7 +31,7 @@ Accept: application/json
 Authorization: Basic Arthur abc
 
 {
-"username": "Danny",
+"username": "johndoe0808",
 "password": "password"
 }
 
@@ -92,13 +92,29 @@ Authorization: Basic Arthur abc
 
 ###
 
+POST http://localhost:8080/api/instructors/
+Content-Type: application/json
+Accept: application/json
+Authorization: Basic Arthur abc
+
+{
+  "user_id": 4,
+  "first_name": "Jop",
+  "infix": null,
+  "last_name": "Pa",
+  "email_address": "joppa0808@gmail.com",
+  "phone_number": "0631919686"
+}
+
+###
+
 GET http://localhost:8080/api/instructors/1
 Accept: application/json
 Authorization: Basic Arthur abc
 
 ###
 
-GET http://localhost:8080/api/employees
+GET http://localhost:8080/api/employees/1
 Accept: application/json
 Authorization: Basic Arthur abc
 
