@@ -1,5 +1,6 @@
 package nl.hsleiden.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonView;
@@ -8,6 +9,7 @@ import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "employee_phone")
@@ -21,11 +23,13 @@ public class EmployeePhone {
 
     @ManyToOne
     @JoinColumn(name = "employeeid", nullable = false)
-    @JsonIgnore
+    @JsonBackReference("phoneEmployeeRef")
+    @JsonView(View.Public.class)
     private Employee employee;
 
     @NotNull
-    @Length(max = 20)
+    @Length(max = 10)
+    @Pattern(regexp="(^[0-9]{10}$)")
     @Column(name = "phonenumber")
     @JsonProperty("phone")
     @JsonView(View.Public.class)

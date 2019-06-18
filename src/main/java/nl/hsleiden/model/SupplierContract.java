@@ -1,10 +1,12 @@
 package nl.hsleiden.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonView;
+import nl.hsleiden.View;
 import org.hibernate.validator.constraints.Length;
-
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -18,27 +20,31 @@ public class SupplierContract {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "contractid", columnDefinition = "serial")
+    @JsonView(View.Public.class)
     private Long id;
 
     @ManyToOne
     @JoinColumn(name = "supplierid", nullable = false)
-    @JsonIgnore
+    @JsonBackReference("contractSupplierRef")
     private Supplier supplier;
 
     @NotNull
     @Column(name = "type_contract")
     @JsonProperty("type")
+    @JsonView(View.Public.class)
     private String typeContract;
 
     @Length(max = 20)
     @Column(name = "contract_title")
     @JsonProperty("title")
+    @JsonView(View.Public.class)
     private String title;
 
     @NotNull
     @Length(max = 100)
     @Column(name = "contract_description")
     @JsonProperty("description")
+    @JsonView(View.Public.class)
     private String description;
 
     @NotNull
@@ -51,7 +57,6 @@ public class SupplierContract {
     @JsonProperty("exclubtw")
     private double excluBtw;
 
-    @Min(0)
     @Max(100)
     @Column(name = "contract_btw_percentage")
     @JsonProperty("btw_percentage")
@@ -59,18 +64,22 @@ public class SupplierContract {
 
     @Column(name = "contract_preconditions")
     @JsonProperty("pre_conditions")
+    @JsonView(View.Public.class)
     private String preconditions;
 
     @Column(name = "contract_insurance")
     @JsonProperty("insurance")
+    @JsonView(View.Public.class)
     private String insurance;
 
     @Column(name = "contract_responsibility")
     @JsonProperty("responsibility")
+    @JsonView(View.Public.class)
     private String responsibility;
 
     @Column(name = "contract_extras")
     @JsonProperty("extras")
+    @JsonView(View.Public.class)
     private String extras;
 
     @Column(name = "contract_start")

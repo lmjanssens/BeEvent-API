@@ -28,10 +28,49 @@ Authorization: Basic Liselot abc
   "city": "Nijmegen",
   "gender": "v",
   "email_addresses": [
-    { "email": "test@test.com" }
+    {
+      "email": "test@test.com"
+    }
   ],
   "phone_numbers": [
-    { "phonenumber": "06-43430303" }
+    {
+      "phonenumber": "06-43430303"
+    }
+  ],
+  "orders": [
+    {
+      "dateorder": "2019-01-10T13:37:42",
+      "dateevent": "2019-01-10T13:37:42",
+      "note": "test note",
+      "starttime": "2019-01-10T13:37:42",
+      "endtime": "2019-01-10T13:37:42",
+      "eventid": 2,
+      "quotations": [
+        {
+          "datequotation": "2019-01-10T13:37:42",
+          "bankaccount": "ABNA4200982",
+          "pricebtw": 1212,
+          "pricepp": 40
+        }
+      ],
+      "invoices": [
+        {
+          "dateinvoice": "2019-01-10T13:37:42",
+          "paymentextras": "dit kost te veel",
+          "pricepp": 1242.99,
+          "pricebtw": 12453,
+          "othercosts": 120,
+          "othercostsbtw": 190,
+          "tobepaid": 1242,
+          "paid": 4,
+          "datepartpaid": "2019-01-10T13:37:42",
+          "datefullpaid": "2019-01-10T13:37:42",
+          "bankaccount": "INGB13371337",
+          "dateinvoicemailsend": "2019-01-10T13:37:42",
+          "excludefrominvoicealert": true
+        }
+      ]
+    }
   ]
 }
 

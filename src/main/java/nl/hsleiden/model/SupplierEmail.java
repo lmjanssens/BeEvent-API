@@ -1,7 +1,10 @@
 package nl.hsleiden.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonView;
+import nl.hsleiden.View;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
@@ -13,17 +16,19 @@ public class SupplierEmail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "supplieremailid")
+    @JsonView(View.Public.class)
     private Long id;
 
     @ManyToOne
     @JoinColumn(name = "supplierID", nullable = false)
-    @JsonIgnore
+    @JsonBackReference("emailSupplierRef")
     private Supplier supplier;
 
     @NotNull
     @Length(max = 200)
     @Column(name = "email")
     @JsonProperty("email")
+    @JsonView(View.Public.class)
     private String email;
 
     public SupplierEmail() {

@@ -6,7 +6,7 @@ Authorization: Basic Arthur abc
 
 ###
 
-GET http://localhost:8080/api/suppliers/8
+GET http://localhost:8080/api/suppliers/2
 Accept: application/json
 Authorization: Basic Arthur abc
 

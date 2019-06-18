@@ -1,0 +1,2069 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="50b9253f-f2ad-4c62-9b3b-4fb64f939245" name="Default Changelist" comment="Add email parser, unit tests for the email parser, and mock data">
+      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2019-06-18T020959.415.json" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/httpRequests/2019-06-18T020959.415.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/http-requests-log.http" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/httpRequests/http-requests-log.http" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/http/customer.http" beforeDir="false" afterPath="$PROJECT_DIR$/http/customer.http" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/http/order.http" beforeDir="false" afterPath="$PROJECT_DIR$/http/order.http" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/hsleiden/controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/hsleiden/controller/CustomerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/hsleiden/controller/InstructorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/hsleiden/controller/InstructorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/hsleiden/model/CateringImage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/hsleiden/model/CateringImage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/hsleiden/model/CateringOrder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/hsleiden/model/CateringOrder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/hsleiden/model/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/hsleiden/model/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/hsleiden/model/CustomerEmail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/hsleiden/model/CustomerEmail.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/hsleiden/model/CustomerOrder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/hsleiden/model/CustomerOrder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/hsleiden/model/CustomerPhone.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/hsleiden/model/CustomerPhone.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/hsleiden/model/EmployeeEmail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/hsleiden/model/EmployeeEmail.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/hsleiden/model/EmployeePhone.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/hsleiden/model/EmployeePhone.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/hsleiden/model/EventImage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/hsleiden/model/EventImage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/hsleiden/model/Invoice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/hsleiden/model/Invoice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/hsleiden/model/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/hsleiden/model/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/hsleiden/model/Quotation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/hsleiden/model/Quotation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/hsleiden/model/SupplierAddress.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/hsleiden/model/SupplierAddress.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/hsleiden/model/SupplierContract.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/hsleiden/model/SupplierContract.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/hsleiden/model/SupplierEmail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/hsleiden/model/SupplierEmail.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/hsleiden/model/SupplierPhone.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/hsleiden/model/SupplierPhone.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/hsleiden/model/UserAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/hsleiden/model/UserAction.java" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/target/" />
+    <ignored path="$PROJECT_DIR$/.idea/httpRequests/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="1227124582">
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="http" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="HTTP Request" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="java" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="JAVA" value="1" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/nl/hsleiden/model/Supplier.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="152">
+              <caret line="113" column="5" selection-start-line="113" selection-start-column="5" selection-end-line="113" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/nl/hsleiden/model/SupplierContract.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="479">
+              <caret line="238" column="73" selection-start-line="238" selection-start-column="73" selection-end-line="238" selection-end-column="73" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#2212#2213#0" expanded="true" />
+                <element signature="e#2240#2241#0" expanded="true" />
+                <element signature="e#2279#2280#0" expanded="true" />
+                <element signature="e#2314#2315#0" expanded="true" />
+                <element signature="e#2444#2445#0" expanded="true" />
+                <element signature="e#2476#2477#0" expanded="true" />
+                <element signature="e#2524#2525#0" expanded="true" />
+                <element signature="e#2566#2567#0" expanded="true" />
+                <element signature="e#2598#2599#0" expanded="true" />
+                <element signature="e#2628#2629#0" expanded="true" />
+                <element signature="e#2672#2673#0" expanded="true" />
+                <element signature="e#2710#2711#0" expanded="true" />
+                <element signature="e#2738#2739#0" expanded="true" />
+                <element signature="e#2772#2773#0" expanded="true" />
+                <element signature="e#2907#2908#0" expanded="true" />
+                <element signature="e#2938#2939#0" expanded="true" />
+                <element signature="e#2986#2987#0" expanded="true" />
+                <element signature="e#3026#3027#0" expanded="true" />
+                <element signature="e#3069#3070#0" expanded="true" />
+                <element signature="e#3100#3101#0" expanded="true" />
+                <element signature="e#3148#3149#0" expanded="true" />
+                <element signature="e#3188#3189#0" expanded="true" />
+                <element signature="e#3743#3744#0" expanded="true" />
+                <element signature="e#3787#3788#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/http/supplier.http">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="100">
+              <caret line="62" column="33" lean-forward="true" selection-start-line="62" selection-start-column="33" selection-end-line="62" selection-end-column="33" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/nl/hsleiden/service/EmailService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <folding>
+                <element signature="e#0#2150#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/nl/hsleiden/controller/SupplierController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="222">
+              <caret line="103" selection-start-line="103" selection-end-line="103" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/nl/hsleiden/model/Catering.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-349">
+              <caret line="71" column="28" selection-start-line="71" selection-end-line="72" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/nl/hsleiden/controller/CateringController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="330">
+              <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/http/catering.http">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-402">
+              <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/http/customer.http">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/nl/hsleiden/model/SupplierAddress.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="487">
+              <caret line="106" column="24" selection-start-line="106" selection-start-column="24" selection-end-line="106" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="JUnit5 Test Class" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>mappedBy</find>
+      <find>maxInstructors</find>
+      <find>@jsonbackref</find>
+      <find>com.fasterxml.jackson.databind.JsonMappingException: Multiple back-reference properties with name 'defaultReference'</find>
+      <find>@jsonbac</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="feature/validation" />
+      </map>
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/main/java/nl/hsleiden/service/MailService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nl/hsleiden/controller/NotificationController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nl/hsleiden/Application.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nl/hsleiden/controller/OrderController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nl/hsleiden/controller/EventController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nl/hsleiden/model/EventLocation.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nl/hsleiden/controller/EventLocationController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nl/hsleiden/model/Event.java" />
+        <option value="$PROJECT_DIR$/http/event.http" />
+        <option value="$PROJECT_DIR$/src/main/java/nl/hsleiden/model/Supplier.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nl/hsleiden/model/User.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nl/hsleiden/service/PaymentMailParser.java" />
+        <option value="$PROJECT_DIR$/src/test/java/nl/hsleiden/service/InvoiceMockData.java" />
+        <option value="$PROJECT_DIR$/src/test/java/nl/hsleiden/mock/InvoiceMockData.java" />
+        <option value="$PROJECT_DIR$/src/test/java/nl/hsleiden/mock/MockEvent.java" />
+        <option value="$PROJECT_DIR$/src/test/java/nl/hsleiden/mock/MockEventLocation.java" />
+        <option value="$PROJECT_DIR$/src/test/java/nl/hsleiden/mock/MockCustomerEmail.java" />
+        <option value="$PROJECT_DIR$/src/test/java/nl/hsleiden/mock/MockCustomerPhone.java" />
+        <option value="$PROJECT_DIR$/src/test/java/nl/hsleiden/mock/MockCustomer.java" />
+        <option value="$PROJECT_DIR$/src/test/java/nl/hsleiden/service/PaymentMailParserTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/nl/hsleiden/service/EmailParserTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/nl/hsleiden/mock/MockInvoice.java" />
+        <option value="$PROJECT_DIR$/src/test/java/nl/hsleiden/mock/MockOrder.java" />
+        <option value="$PROJECT_DIR$/src/test/java/nl/hsleiden/service/EmailParserServiceTest.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/nl/hsleiden/model/Instructor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nl/hsleiden/controller/InstructorController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nl/hsleiden/service/EmailParserService.java" />
+        <option value="$PROJECT_DIR$/http/order.http" />
+        <option value="$PROJECT_DIR$/src/main/java/nl/hsleiden/controller/CustomerController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nl/hsleiden/model/Customer.java" />
+        <option value="$PROJECT_DIR$/http/customer.http" />
+        <option value="$PROJECT_DIR$/src/main/java/nl/hsleiden/model/CustomerPhone.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nl/hsleiden/model/CustomerEmail.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nl/hsleiden/model/CustomerOrder.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nl/hsleiden/model/EmployeePhone.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nl/hsleiden/model/EmployeeEmail.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nl/hsleiden/model/Invoice.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nl/hsleiden/model/EventImage.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nl/hsleiden/model/Quotation.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nl/hsleiden/model/UserAction.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nl/hsleiden/model/SupplierContract.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nl/hsleiden/model/Order.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nl/hsleiden/model/SupplierEmail.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nl/hsleiden/model/CateringImage.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nl/hsleiden/model/SupplierPhone.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nl/hsleiden/model/SupplierAddress.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nl/hsleiden/model/CateringOrder.java" />
+        <option value="$PROJECT_DIR$/http/catering.http" />
+        <option value="$PROJECT_DIR$/http/supplier.http" />
+        <option value="$PROJECT_DIR$/src/main/java/nl/hsleiden/service/EmailService.java" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="BeEventAPI" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+        </path>
+      </expand>
+      <select />
+    </treeState>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="953" />
+    <option name="width" value="974" />
+    <option name="height" value="1047" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="BeEventAPI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BeEvent-API" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BeEventAPI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BeEvent-API" type="462c0819:PsiDirectoryNode" />
+              <item name=".idea" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BeEventAPI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BeEvent-API" type="462c0819:PsiDirectoryNode" />
+              <item name=".idea" type="462c0819:PsiDirectoryNode" />
+              <item name="httpRequests" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BeEventAPI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BeEvent-API" type="462c0819:PsiDirectoryNode" />
+              <item name="http" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BeEventAPI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BeEvent-API" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BeEventAPI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BeEvent-API" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BeEventAPI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BeEvent-API" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BeEventAPI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BeEvent-API" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="hsleiden" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BeEventAPI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BeEvent-API" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="hsleiden" type="462c0819:PsiDirectoryNode" />
+              <item name="auth" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BeEventAPI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BeEvent-API" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="hsleiden" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BeEventAPI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BeEvent-API" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="hsleiden" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BeEventAPI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BeEvent-API" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="hsleiden" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BeEventAPI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BeEvent-API" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="hsleiden" type="462c0819:PsiDirectoryNode" />
+              <item name="repository" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BeEventAPI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BeEvent-API" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="hsleiden" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BeEventAPI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BeEvent-API" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="AndroidView" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ExpandSpringBootJavaOptionsPanel" value="true" />
+    <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1560860279470" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/springboot-basicauth/springboot-basicauth/pom.xml" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="restartRequiresConfirmation" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="nl.hsleiden.service" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="nl.hsleiden.mock" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Danny\Projects\Java\BeeventgroupAPI\src" />
+    </key>
+  </component>
+  <component name="RestClientSettings">
+    <option name="REQUEST_HISTORY">
+      <list>
+        <RestClientRequest>
+          <option name="httpMethod" value="POST" />
+          <option name="urlBase" value="http://localhost:8080/api/customers" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="haveTextToSend" value="true" />
+          <option name="textToSend" value="{&#10;  &quot;title&quot;: &quot;mevrouw&quot;,&#10;  &quot;first_name&quot;: &quot;Nina&quot;,&#10;  &quot;infix&quot;: &quot;van der&quot;,&#10;  &quot;last_name&quot;: &quot;Hulde&quot;,&#10;  &quot;address&quot;: &quot;Bloemenlaan 57&quot;,&#10;  &quot;zipcode&quot;: &quot;9284WL&quot;,&#10;  &quot;country&quot;: &quot;Nederland&quot;,&#10;  &quot;city&quot;: &quot;Nijmegen&quot;,&#10;  &quot;gender&quot;: &quot;v&quot;,&#10;  &quot;email_addresses&quot;: [&#10;    {&#10;      &quot;email&quot;: &quot;test@test.com&quot;&#10;    }&#10;  ],&#10;  &quot;phone_numbers&quot;: [&#10;    {&#10;      &quot;phonenumber&quot;: &quot;06-43430303&quot;&#10;    }&#10;  ],&#10;  &quot;orders&quot;: [&#10;    {&#10;      &quot;dateorder&quot;: &quot;2019-01-10T13:37:42&quot;,&#10;      &quot;dateevent&quot;: &quot;2019-01-10T13:37:42&quot;,&#10;      &quot;note&quot;: &quot;test note&quot;,&#10;      &quot;starttime&quot;: &quot;2019-01-10T13:37:42&quot;,&#10;      &quot;endtime&quot;: &quot;2019-01-10T13:37:42&quot;,&#10;      &quot;eventid&quot;: 2,&#10;      &quot;quotations&quot;: [&#10;        {&#10;          &quot;datequotation&quot;: &quot;2019-01-10T13:37:42&quot;,&#10;          &quot;bankaccount&quot;: &quot;ABNA4200982&quot;,&#10;          &quot;pricebtw&quot;: 1212,&#10;          &quot;pricepp&quot;: 40&#10;        }&#10;      ],&#10;      &quot;invoices&quot;: [&#10;        {&#10;          &quot;dateinvoice&quot;: &quot;2019-01-10T13:37:42&quot;,&#10;          &quot;paymentextras&quot;: &quot;dit kost te veel&quot;,&#10;          &quot;pricepp&quot;: 1242.99,&#10;          &quot;pricebtw&quot;: 12453,&#10;          &quot;othercosts&quot;: 120,&#10;          &quot;othercostsbtw&quot;: 190,&#10;          &quot;tobepaid&quot;: 1242,&#10;          &quot;paid&quot;: 4,&#10;          &quot;datepartpaid&quot;: &quot;2019-01-10T13:37:42&quot;,&#10;          &quot;datefullpaid&quot;: &quot;2019-01-10T13:37:42&quot;,&#10;          &quot;bankaccount&quot;: &quot;INGB13371337&quot;,&#10;          &quot;dateinvoicemailsend&quot;: &quot;2019-01-10T13:37:42&quot;,&#10;          &quot;excludefrominvoicealert&quot;: true&#10;        }&#10;      ]&#10;    }&#10;  ]&#10;}" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="POST" />
+          <option name="urlBase" value="http://localhost:8080/api/orders" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="haveTextToSend" value="true" />
+          <option name="textToSend" value="{&#10;  &quot;customerid&quot;: 7,&#10;  &quot;dateorder&quot;: &quot;2019-01-10T13:37:42&quot;,&#10;  &quot;dateevent&quot;: &quot;2019-01-10T13:37:42&quot;,&#10;  &quot;note&quot;: &quot;test note&quot;,&#10;  &quot;starttime&quot;: &quot;2019-01-10T13:37:42&quot;,&#10;  &quot;endtime&quot;: &quot;2019-01-10T13:37:42&quot;,&#10;  &quot;eventid&quot;: 2,&#10;    &quot;quotations&quot;: [&#10;    {&#10;      &quot;datequotation&quot;: &quot;2019-01-10T13:37:42&quot;,&#10;      &quot;bankaccount&quot;: &quot;ABNA4200982&quot;,&#10;      &quot;pricebtw&quot;: 1212,&#10;      &quot;pricepp&quot;: 40&#10;    }&#10;  ],&#10;  &quot;invoices&quot;: [&#10;    {&#10;      &quot;dateinvoice&quot;: &quot;2019-01-10T13:37:42&quot;,&#10;      &quot;paymentextras&quot;: &quot;dit kost te veel&quot;,&#10;      &quot;pricepp&quot;: 1242.99,&#10;      &quot;pricebtw&quot;: 12453,&#10;      &quot;othercosts&quot;: 120,&#10;      &quot;othercostsbtw&quot;: 190,&#10;      &quot;tobepaid&quot;: 1242,&#10;      &quot;paid&quot;: 4,&#10;      &quot;datepartpaid&quot;: &quot;2019-01-10T13:37:42&quot;,&#10;      &quot;datefullpaid&quot;: &quot;2019-01-10T13:37:42&quot;,&#10;      &quot;bankaccount&quot;: &quot;INGB13371337&quot;,&#10;      &quot;dateinvoicemailsend&quot;: &quot;2019-01-10T13:37:42&quot;,&#10;      &quot;excludefrominvoicealert&quot;: true&#10;    }&#10;  ]&#10;}" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="http://localhost:8080/api/orders" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="POST" />
+          <option name="urlBase" value="http://localhost:8080/api/suppliers" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="haveTextToSend" value="true" />
+          <option name="textToSend" value="{&#10;  &quot;name&quot;: &quot;LeverancierC&quot;,&#10;  &quot;contact_person&quot;: &quot;Peterjan45&quot;,&#10;  &quot;supervisor&quot;: &quot;Peterjan45&quot;,&#10;  &quot;website&quot; : &quot;leveranciera.nl&quot;,&#10;  &quot;note&quot; : &quot;Test&quot;,&#10;  &quot;image&quot; : &quot;image/leveranciera.jpg&quot;,&#10;  &quot;email_addresses&quot;: [&#10;    { &quot;email&quot;: &quot;hello45@example.com&quot; }&#10;  ],&#10;  &quot;phone_numbers&quot;: [&#10;    { &quot;phone&quot;: &quot;+31 6 12345666&quot; }&#10;  ],&#10;  &quot;contracts&quot;: [&#10;    {&#10;      &quot;type&quot;: true,&#10;      &quot;title&quot;: &quot;Inkoop&quot;,&#10;      &quot;description&quot;: &quot;Sushi rolls verkoop contract&quot;,&#10;      &quot;inclubtw&quot;: &quot;Sushi rolls | 20-;&quot;,&#10;      &quot;percentage&quot;: 21,&#10;      &quot;pre_conditions&quot;: &quot;Minimaal 500 sushi rolls afnemen&quot;,&#10;      &quot;insurance&quot;: &quot;Geen&quot;,&#10;      &quot;responsibility&quot;: &quot;Artemis&quot;,&#10;      &quot;extras&quot;: &quot;5 sushi rolls gratis bij een afname van 1000 sushi rolls&quot;&#10;    }&#10;  ],&#10;  &quot;addresses&quot; : [&#10;    {&#10;      &quot;address&quot; : &quot;Binnenhof 45&quot;,&#10;      &quot;city&quot; : &quot;Den Haag&quot;,&#10;      &quot;zipcode&quot; : &quot;1234KL&quot;&#10;    }&#10;  ]&#10;}" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="POST" />
+          <option name="urlBase" value="http://localhost:8080/api/events/10/73" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="haveTextToSend" value="true" />
+          <option name="textToSend" value="{&#10;  &quot;ownEvent&quot;: true,&#10;  &quot;name&quot;: &quot;Expeditie ik haat IDs&quot;,&#10;  &quot;description&quot;: &quot;This is a great event&quot;,&#10;  &quot;program&quot;: &quot;Fietstocht&quot;,&#10;  &quot;duration&quot;: &quot;1:30&quot;,&#10;  &quot;options&quot;: null,&#10;  &quot;pricePerPerson&quot;: 130.5,&#10;  &quot;priceBuyPerPerson&quot;: 0,&#10;  &quot;btw&quot;: 0.21,&#10;  &quot;note&quot;: null,&#10;  &quot;maxInstructors&quot;: 5&#10;}" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="POST" />
+          <option name="urlBase" value="http://localhost:8080/api/events/10/73" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="haveTextToSend" value="true" />
+          <option name="textToSend" value="{&#10;  &quot;ownEvent&quot;: true,&#10;  &quot;name&quot;: &quot;Expeditie wtf max instructors&quot;,&#10;  &quot;description&quot;: &quot;This is a great event&quot;,&#10;  &quot;program&quot;: &quot;Fietstocht&quot;,&#10;  &quot;duration&quot;: &quot;1:30&quot;,&#10;  &quot;options&quot;: null,&#10;  &quot;pricePerPerson&quot;: 130.5,&#10;  &quot;priceBuyPerPerson&quot;: 0,&#10;  &quot;btw&quot;: 0.21,&#10;  &quot;note&quot;: null,&#10;  &quot;maxInstructors&quot;: 5&#10;}" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="POST" />
+          <option name="urlBase" value="http://localhost:8080/api/suppliers" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="haveTextToSend" value="true" />
+          <option name="textToSend" value="{&#10;  &quot;name&quot;: &quot;LeverancierB&quot;,&#10;  &quot;contactPerson&quot;: &quot;Peterjan45&quot;,&#10;  &quot;supervisor&quot;: &quot;Peterjan45&quot;,&#10;  &quot;website&quot; : &quot;leveranciera.nl&quot;,&#10;  &quot;note&quot; : &quot;Test&quot;,&#10;  &quot;image&quot; : &quot;image/leveranciera.jpg&quot;,&#10;  &quot;email_addresses&quot;: [&#10;    { &quot;email&quot;: &quot;hello45@example.com&quot; }&#10;  ],&#10;  &quot;phone_numbers&quot;: [&#10;    { &quot;phone&quot;: &quot;+31 6 12345666&quot; }&#10;  ],&#10;  &quot;contracts&quot;: [&#10;    {&#10;      &quot;type&quot;: true,&#10;      &quot;title&quot;: &quot;Inkoop&quot;,&#10;      &quot;description&quot;: &quot;Sushi rolls verkoop contract&quot;,&#10;      &quot;inclubtw&quot;: &quot;Sushi rolls | 20-;&quot;,&#10;      &quot;percentage&quot;: 21,&#10;      &quot;pre_conditions&quot;: &quot;Minimaal 500 sushi rolls afnemen&quot;,&#10;      &quot;insurance&quot;: &quot;Geen&quot;,&#10;      &quot;responsibility&quot;: &quot;Artemis&quot;,&#10;      &quot;extras&quot;: &quot;5 sushi rolls gratis bij een afname van 1000 sushi rolls&quot;&#10;    }&#10;  ],&#10;  &quot;addresses&quot; : [&#10;    {&#10;      &quot;address&quot; : &quot;Binnenhof 45&quot;,&#10;      &quot;city&quot; : &quot;Den Haag&quot;,&#10;      &quot;zipcode&quot; : &quot;1234KL&quot;&#10;    }&#10;  ]&#10;}" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="POST" />
+          <option name="urlBase" value="http://localhost:8080/api/suppliers" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="haveTextToSend" value="true" />
+          <option name="textToSend" value="{&#10;  &quot;name&quot;: &quot;LeverancierB&quot;,&#10;  &quot;contact_person&quot;: &quot;Peterjan45&quot;,&#10;  &quot;supervisor&quot;: &quot;Peterjan45&quot;,&#10;  &quot;website&quot; : &quot;leveranciera.nl&quot;,&#10;  &quot;note&quot; : &quot;Test&quot;,&#10;  &quot;image&quot; : &quot;image/leveranciera.jpg&quot;,&#10;  &quot;email_addresses&quot;: [&#10;    { &quot;email&quot;: &quot;hello45@example.com&quot; }&#10;  ],&#10;  &quot;phone_numbers&quot;: [&#10;    { &quot;phone&quot;: &quot;+31 6 12345666&quot; }&#10;  ],&#10;  &quot;contracts&quot;: [&#10;    {&#10;      &quot;type&quot;: true,&#10;      &quot;title&quot;: &quot;Inkoop&quot;,&#10;      &quot;description&quot;: &quot;Sushi rolls verkoop contract&quot;,&#10;      &quot;inclubtw&quot;: &quot;Sushi rolls | 20-;&quot;,&#10;      &quot;percentage&quot;: 21,&#10;      &quot;pre_conditions&quot;: &quot;Minimaal 500 sushi rolls afnemen&quot;,&#10;      &quot;insurance&quot;: &quot;Geen&quot;,&#10;      &quot;responsibility&quot;: &quot;Artemis&quot;,&#10;      &quot;extras&quot;: &quot;5 sushi rolls gratis bij een afname van 1000 sushi rolls&quot;&#10;    }&#10;  ],&#10;  &quot;addresses&quot; : [&#10;    {&#10;      &quot;address&quot; : &quot;Binnenhof 45&quot;,&#10;      &quot;city&quot; : &quot;Den Haag&quot;,&#10;      &quot;zipcode&quot; : &quot;1234KL&quot;&#10;    }&#10;  ]&#10;}" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="http://localhost:8080/api/events" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="http://localhost:8080/api/events/79" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="POST" />
+          <option name="urlBase" value="http://localhost:8080/api/events/8/69" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="haveTextToSend" value="true" />
+          <option name="textToSend" value="{&#10;  &quot;ownEvent&quot;: true,&#10;  &quot;name&quot;: &quot;Expeditie wtf max instructors&quot;,&#10;  &quot;description&quot;: &quot;This is a great event&quot;,&#10;  &quot;program&quot;: &quot;Fietstocht&quot;,&#10;  &quot;duration&quot;: &quot;1:30&quot;,&#10;  &quot;options&quot;: null,&#10;  &quot;pricePerPerson&quot;: 130.5,&#10;  &quot;priceBuyPerPerson&quot;: 0,&#10;  &quot;btw&quot;: 0.21,&#10;  &quot;note&quot;: null,&#10;  &quot;maxInstructors&quot;: 5&#10;}" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="POST" />
+          <option name="urlBase" value="http://localhost:8080/api/events/6/38" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="haveTextToSend" value="true" />
+          <option name="textToSend" value="{&#10;  &quot;ownEvent&quot;: true,&#10;  &quot;name&quot;: &quot;Expeditie wtf max instructors&quot;,&#10;  &quot;description&quot;: &quot;This is a great event&quot;,&#10;  &quot;program&quot;: &quot;Fietstocht&quot;,&#10;  &quot;duration&quot;: &quot;1:30&quot;,&#10;  &quot;options&quot;: null,&#10;  &quot;pricePerPerson&quot;: 130.5,&#10;  &quot;priceBuyPerPerson&quot;: 0,&#10;  &quot;btw&quot;: 0.21,&#10;  &quot;note&quot;: null,&#10;  &quot;maxInstructors&quot;: 5&#10;}" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="POST" />
+          <option name="urlBase" value="http://localhost:8080/api/suppliers" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="haveTextToSend" value="true" />
+          <option name="textToSend" value="{&#10;  &quot;name&quot;: &quot;LeverancierA&quot;,&#10;  &quot;contact_person&quot;: &quot;Peterjan45&quot;,&#10;  &quot;supervisor&quot;: &quot;Peterjan45&quot;,&#10;  &quot;website&quot; : &quot;leveranciera.nl&quot;,&#10;  &quot;note&quot; : &quot;Test&quot;,&#10;  &quot;image&quot; : &quot;image/leveranciera.jpg&quot;,&#10;  &quot;email_addresses&quot;: [&#10;    { &quot;email&quot;: &quot;hello45@example.com&quot; }&#10;  ],&#10;  &quot;phone_numbers&quot;: [&#10;    { &quot;phone&quot;: &quot;+31 6 12345666&quot; }&#10;  ],&#10;  &quot;contracts&quot;: [&#10;    {&#10;      &quot;type&quot;: true,&#10;      &quot;title&quot;: &quot;Inkoop&quot;,&#10;      &quot;description&quot;: &quot;Sushi rolls verkoop contract&quot;,&#10;      &quot;inclubtw&quot;: &quot;Sushi rolls | 20-;&quot;,&#10;      &quot;percentage&quot;: 21,&#10;      &quot;pre_conditions&quot;: &quot;Minimaal 500 sushi rolls afnemen&quot;,&#10;      &quot;insurance&quot;: &quot;Geen&quot;,&#10;      &quot;responsibility&quot;: &quot;Artemis&quot;,&#10;      &quot;extras&quot;: &quot;5 sushi rolls gratis bij een afname van 1000 sushi rolls&quot;&#10;    }&#10;  ],&#10;  &quot;addresses&quot; : [&#10;    {&#10;      &quot;address&quot; : &quot;Binnenhof 45&quot;,&#10;      &quot;city&quot; : &quot;Den Haag&quot;,&#10;      &quot;zipcode&quot; : &quot;1234KL&quot;&#10;    }&#10;  ]&#10;}" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="http://localhost:8080/api/events" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="POST" />
+          <option name="urlBase" value="http://localhost:8080/api/events/6/38" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="haveTextToSend" value="true" />
+          <option name="textToSend" value="{&#10;  &quot;ownEvent&quot;: true,&#10;  &quot;name&quot;: &quot;Expeditie wtf max instructors&quot;,&#10;  &quot;description&quot;: &quot;This is a great event&quot;,&#10;  &quot;program&quot;: &quot;Fietstocht&quot;,&#10;  &quot;duration&quot;: &quot;1:30&quot;,&#10;  &quot;options&quot;: null,&#10;  &quot;pricePerPerson&quot;: 130.5,&#10;  &quot;priceBuyPerPerson&quot;: 0,&#10;  &quot;btw&quot;: 0.21,&#10;  &quot;note&quot;: null,&#10;  &quot;maxInstructors&quot;: 5&#10;}" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="http://localhost:8080/api/events/52" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="http://localhost:8080/api/events" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="POST" />
+          <option name="urlBase" value="http://localhost:8080/api/events/6/38" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="haveTextToSend" value="true" />
+          <option name="textToSend" value="{&#10;  &quot;ownEvent&quot;: true,&#10;  &quot;name&quot;: &quot;Expeditie wtf max instructors&quot;,&#10;  &quot;description&quot;: &quot;This is a great event&quot;,&#10;  &quot;program&quot;: &quot;Fietstocht&quot;,&#10;  &quot;duration&quot;: &quot;1:30&quot;,&#10;  &quot;options&quot;: null,&#10;  &quot;pricePerPerson&quot;: 130.5,&#10;  &quot;priceBuyPerPerson&quot;: 0,&#10;  &quot;btw&quot;: 0.21,&#10;  &quot;note&quot;: null,&#10;  &quot;maxinstructors&quot;: 5&#10;}" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="DELETE" />
+          <option name="urlBase" value="http://localhost:8080/api/events/63" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="http://localhost:8080/api/suppliers" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="POST" />
+          <option name="urlBase" value="http://localhost:8080/api/events/6/38" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="haveTextToSend" value="true" />
+          <option name="textToSend" value="{&#10;  &quot;ownEvent&quot;: true,&#10;  &quot;name&quot;: &quot;Expeditie Hello World&quot;,&#10;  &quot;description&quot;: &quot;This is a great event&quot;,&#10;  &quot;program&quot;: &quot;Fietstocht&quot;,&#10;  &quot;duration&quot;: &quot;1:30&quot;,&#10;  &quot;options&quot;: null,&#10;  &quot;pricePerPerson&quot;: 130.5,&#10;  &quot;priceBuyPerPerson&quot;: 0,&#10;  &quot;btw&quot;: 0.21,&#10;  &quot;note&quot;: null,&#10;  &quot;maxinstructors&quot;: 5&#10;}" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="POST" />
+          <option name="urlBase" value="http://localhost:8080/api/events/6/38" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="haveTextToSend" value="true" />
+          <option name="textToSend" value="{&#10;  &quot;ownEvent&quot;: true,&#10;  &quot;name&quot;: &quot;Expeditie Hello World&quot;,&#10;  &quot;description&quot;: &quot;This is a great event&quot;,&#10;  &quot;program&quot;: &quot;Fietstocht&quot;,&#10;  &quot;duration&quot;: &quot;1:30&quot;,&#10;  &quot;options&quot;: null,&#10;  &quot;pricePerPerson&quot;: 130.5,&#10;  &quot;priceBuyPerPerson&quot;: 0,&#10;  &quot;btw&quot;: 0.21,&#10;  &quot;note&quot;: null,&#10;  &quot;maxinstructors&quot;: 5&#10;}" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="POST" />
+          <option name="urlBase" value="http://localhost:8080/api/events/6/38" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="haveTextToSend" value="true" />
+          <option name="textToSend" value="{&#10;  &quot;ownEvent&quot;: true,&#10;  &quot;name&quot;: &quot;Expeditie Hello World&quot;,&#10;  &quot;description&quot;: &quot;This is a great event&quot;,&#10;  &quot;program&quot;: &quot;Fietstocht&quot;,&#10;  &quot;duration&quot;: &quot;1:30&quot;,&#10;  &quot;options&quot;: null,&#10;  &quot;pricePerPerson&quot;: 130.5,&#10;  &quot;priceBuyPerPerson&quot;: 0,&#10;  &quot;btw&quot;: 0.21,&#10;  &quot;note&quot;: null,&#10;  &quot;maxinstructors&quot;: 5&#10;}" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="http://localhost:8080/api/events" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="POST" />
+          <option name="urlBase" value="http://localhost:8080/api/customers" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="haveTextToSend" value="true" />
+          <option name="textToSend" value="{&#10;  &quot;title&quot;: &quot;mevrouw&quot;,&#10;  &quot;first_name&quot;: &quot;Nina&quot;,&#10;  &quot;infix&quot;: &quot;van der&quot;,&#10;  &quot;last_name&quot;: &quot;Hulde&quot;,&#10;  &quot;address&quot;: &quot;Bloemenlaan 57&quot;,&#10;  &quot;zipcode&quot;: &quot;9284WL&quot;,&#10;  &quot;country&quot;: &quot;Nederland&quot;,&#10;  &quot;city&quot;: &quot;Nijmegen&quot;,&#10;  &quot;gender&quot;: &quot;v&quot;,&#10;  &quot;email_addresses&quot;: [&#10;    { &quot;email&quot;: &quot;test@test.com&quot; }&#10;  ],&#10;  &quot;phone_numbers&quot;: [&#10;    { &quot;phonenumber&quot;: &quot;06-43430303&quot; }&#10;  ]&#10;}" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="http://localhost:8080/api/customers" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="DELETE" />
+          <option name="urlBase" value="http://localhost:8080/api/suppliers/7" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="POST" />
+          <option name="urlBase" value="http://localhost:8080/api/suppliers" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="haveTextToSend" value="true" />
+          <option name="textToSend" value="{&#10;  &quot;name&quot;: &quot;Hoboken&quot;,&#10;  &quot;contact_person&quot;: &quot;Hoboken45&quot;,&#10;  &quot;supervisor&quot;: &quot;Hoboken45&quot;,&#10;  &quot;website&quot; : &quot;hoboken.nl&quot;,&#10;  &quot;note&quot; : null,&#10;  &quot;image&quot; : &quot;image/hoboken.jpg&quot;,&#10;  &quot;email_addresses&quot;: [&#10;    { &quot;email&quot;: &quot;sushi45@example.com&quot; }&#10;  ],&#10;  &quot;phone_numbers&quot;: [&#10;    { &quot;phone&quot;: &quot;+31 6 12345666&quot; }&#10;  ],&#10;  &quot;contracts&quot;: [&#10;    {&#10;      &quot;type&quot;: true,&#10;      &quot;title&quot;: &quot;Inkoop&quot;,&#10;      &quot;description&quot;: &quot;Sushi rolls verkoop contract&quot;,&#10;      &quot;inclubtw&quot;: &quot;Sushi rolls | 20-;&quot;,&#10;      &quot;percentage&quot;: 21,&#10;      &quot;pre_conditions&quot;: &quot;Minimaal 500 sushi rolls afnemen&quot;,&#10;      &quot;insurance&quot;: &quot;Geen&quot;,&#10;      &quot;responsibility&quot;: &quot;Artemis&quot;,&#10;      &quot;extras&quot;: &quot;5 sushi rolls gratis bij een afname van 1000 sushi rolls&quot;&#10;    }&#10;  ],&#10;  &quot;addresses&quot; : [&#10;    {&#10;      &quot;address&quot; : &quot;Teststraat 138&quot;,&#10;      &quot;city&quot; : &quot;Delft&quot;,&#10;      &quot;zipcode&quot; : &quot;1234KL&quot;&#10;    }&#10;  ]&#10;}" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="http://localhost:8080/api/suppliers" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="http://localhost:8080/api/eventlocation" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="http://localhost:8080/api/suppliers" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="http://localhost:8080/api/events" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="POST" />
+          <option name="urlBase" value="http://localhost:8080/api/events/6/38" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="haveTextToSend" value="true" />
+          <option name="textToSend" value="{&#10;  &quot;ownEvent&quot;: true,&#10;  &quot;name&quot;: &quot;Be On ICE&quot;,&#10;  &quot;description&quot;: &quot;This is a great event&quot;,&#10;  &quot;program&quot;: &quot;Glope Ijsspelen&quot;,&#10;  &quot;duration&quot;: &quot;1:30&quot;,&#10;  &quot;options&quot;: null,&#10;  &quot;pricePerPerson&quot;: 130.5,&#10;  &quot;priceBuyPerPerson&quot;: 0,&#10;  &quot;btw&quot;: 0.21,&#10;  &quot;note&quot;: null&#10;}" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="http://localhost:8080/api/events" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="POST" />
+          <option name="urlBase" value="http://localhost:8080/api/events" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="http://localhost:8080/api/users" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="application:json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="DELETE" />
+          <option name="urlBase" value="http://localhost:8080/api/events/53" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="POST" />
+          <option name="urlBase" value="http://localhost:8080/api/events/6/38" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="haveTextToSend" value="true" />
+          <option name="textToSend" value="{&#10;  &quot;ownEvent&quot;: true,&#10;  &quot;name&quot;: &quot;Be On ICE&quot;,&#10;  &quot;description&quot;: &quot;This is a great event&quot;,&#10;  &quot;program&quot;: &quot;Glope Ijsspelen&quot;,&#10;  &quot;duration&quot;: &quot;1:30&quot;,&#10;  &quot;options&quot;: null,&#10;  &quot;pricePerPerson&quot;: 130.5,&#10;  &quot;priceBuyPerPerson&quot;: 0,&#10;  &quot;btw&quot;: 0.21,&#10;  &quot;note&quot;: null,&#10;  &quot;locationid&quot;: {&#10;    &quot;name&quot;: &quot;test&quot;,&#10;    &quot;description&quot;: &quot;leuk dit&quot;,&#10;    &quot;routePicture&quot;: &quot;imgur.com/haha&quot;&#10;  }&#10;}" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="http://localhost:8080/api/events/52" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="http://localhost:8080/api/events" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="POST" />
+          <option name="urlBase" value="http://localhost:8080/api/events/6/38" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="haveTextToSend" value="true" />
+          <option name="textToSend" value="{&#10;  &quot;ownEvent&quot;: true,&#10;  &quot;name&quot;: &quot;Be On ICE&quot;,&#10;  &quot;description&quot;: &quot;This is a great event&quot;,&#10;  &quot;program&quot;: &quot;Glope Ijsspelen&quot;,&#10;  &quot;duration&quot;: &quot;1:30&quot;,&#10;  &quot;options&quot;: null,&#10;  &quot;pricePerPerson&quot;: 130.5,&#10;  &quot;priceBuyPerPerson&quot;: 0,&#10;  &quot;btw&quot;: 0.21,&#10;  &quot;note&quot;: null&#10;}" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="POST" />
+          <option name="urlBase" value="http://localhost:8080/api/suppliers" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="haveTextToSend" value="true" />
+          <option name="textToSend" value="{&#10;  &quot;name&quot;: &quot;Hoboken&quot;,&#10;  &quot;contact_person&quot;: &quot;Hoboken45&quot;,&#10;  &quot;supervisor&quot;: &quot;Hoboken45&quot;,&#10;  &quot;website&quot; : &quot;hoboken.nl&quot;,&#10;  &quot;note&quot; : null,&#10;  &quot;image&quot; : &quot;image/hoboken.jpg&quot;,&#10;  &quot;email_addresses&quot;: [&#10;    { &quot;email&quot;: &quot;sushi45@example.com&quot; }&#10;  ],&#10;  &quot;phone_numbers&quot;: [&#10;    { &quot;phone&quot;: &quot;+31 6 12345666&quot; }&#10;  ],&#10;  &quot;contracts&quot;: [&#10;    {&#10;      &quot;type&quot;: true,&#10;      &quot;title&quot;: &quot;Inkoop&quot;,&#10;      &quot;description&quot;: &quot;Sushi rolls verkoop contract&quot;,&#10;      &quot;inclubtw&quot;: &quot;Sushi rolls | 20-;&quot;,&#10;      &quot;percentage&quot;: 21,&#10;      &quot;pre_conditions&quot;: &quot;Minimaal 500 sushi rolls afnemen&quot;,&#10;      &quot;insurance&quot;: &quot;Geen&quot;,&#10;      &quot;responsibility&quot;: &quot;Artemis&quot;,&#10;      &quot;extras&quot;: &quot;5 sushi rolls gratis bij een afname van 1000 sushi rolls&quot;&#10;    }&#10;  ],&#10;  &quot;addresses&quot; : [&#10;    {&#10;      &quot;address&quot; : &quot;Teststraat 138&quot;,&#10;      &quot;city&quot; : &quot;Delft&quot;,&#10;      &quot;zipcode&quot; : &quot;1234KL&quot;&#10;    }&#10;  ]&#10;}" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="POST" />
+          <option name="urlBase" value="http://localhost:8080/api/suppliers" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="haveTextToSend" value="true" />
+          <option name="textToSend" value="{&#10;  &quot;name&quot;: &quot;Hoboken&quot;,&#10;  &quot;contact_person&quot;: &quot;Hoboken45&quot;,&#10;  &quot;supervisor&quot;: &quot;Hoboken45&quot;,&#10;  &quot;website&quot; : &quot;hoboken.nl&quot;,&#10;  &quot;note&quot; : null,&#10;  &quot;image&quot; : &quot;image/hoboken.jpg&quot;,&#10;  &quot;email_addresses&quot;: [&#10;    { &quot;email&quot;: &quot;sushi45@example.com&quot; }&#10;  ],&#10;  &quot;phone_numbers&quot;: [&#10;    { &quot;phone&quot;: &quot;+31 6 12345666&quot; }&#10;  ],&#10;  &quot;contracts&quot;: [&#10;    {&#10;      &quot;type&quot;: true,&#10;      &quot;title&quot;: &quot;Inkoop&quot;,&#10;      &quot;description&quot;: &quot;Sushi rolls verkoop contract&quot;,&#10;      &quot;inclubtw&quot;: &quot;Sushi rolls | 20-;&quot;,&#10;      &quot;percentage&quot;: 21,&#10;      &quot;pre_conditions&quot;: &quot;Minimaal 500 sushi rolls afnemen&quot;,&#10;      &quot;insurance&quot;: &quot;Geen&quot;,&#10;      &quot;responsibility&quot;: &quot;Artemis&quot;,&#10;      &quot;extras&quot;: &quot;5 sushi rolls gratis bij een afname van 1000 sushi rolls&quot;&#10;    }&#10;  ],&#10;  &quot;addresses&quot; : [&#10;    {&#10;      &quot;address&quot; : &quot;Teststraat 138&quot;,&#10;      &quot;city&quot; : &quot;Delft&quot;,&#10;      &quot;zipcode&quot; : &quot;1234KL&quot;&#10;    }&#10;  ]&#10;}" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="http://localhost:8080/api/customers" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="POST" />
+          <option name="urlBase" value="http://localhost:8080/api/customers" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="haveTextToSend" value="true" />
+          <option name="textToSend" value="{&#10;  &quot;title&quot;: &quot;mevrouw&quot;,&#10;  &quot;first_name&quot;: &quot;Nina&quot;,&#10;  &quot;infix&quot;: &quot;van der&quot;,&#10;  &quot;last_name&quot;: &quot;Hulde&quot;,&#10;  &quot;address&quot;: &quot;Bloemenlaan 57&quot;,&#10;  &quot;zipcode&quot;: &quot;9284WL&quot;,&#10;  &quot;country&quot;: &quot;Nederland&quot;,&#10;  &quot;city&quot;: &quot;Nijmegen&quot;,&#10;  &quot;gender&quot;: &quot;v&quot;,&#10;  &quot;email_addresses&quot;: [&#10;    { &quot;email&quot;: &quot;test@test.com&quot; }&#10;  ],&#10;  &quot;phone_numbers&quot;: [&#10;    { &quot;phonenumber&quot;: &quot;06-43430303&quot; }&#10;  ]&#10;}" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="http://localhost:8080/api/customers/1" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="DELETE" />
+          <option name="urlBase" value="http://localhost:8080/api/customers/2" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="PUT" />
+          <option name="urlBase" value="http://localhost:8080/api/customers/2" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="haveTextToSend" value="true" />
+          <option name="textToSend" value="{&#10;  &quot;title&quot;: &quot;heer&quot;,&#10;  &quot;first_name&quot;: &quot;Niels&quot;,&#10;  &quot;infix&quot;: &quot;der&quot;,&#10;  &quot;last_name&quot;: &quot;achternaam&quot;,&#10;  &quot;address&quot;: &quot;Straat 123&quot;,&#10;  &quot;zipcode&quot;: &quot;2323JA&quot;,&#10;  &quot;country&quot;: &quot;Nederland&quot;,&#10;  &quot;city&quot;: &quot;Alkmaar&quot;,&#10;  &quot;gender&quot;: &quot;m&quot;,&#10;  &quot;email_addresses&quot;: [&#10;    { &quot;email&quot;: &quot;test12@test.com&quot; }&#10;  ],&#10;  &quot;phone_numbers&quot;: [&#10;    { &quot;phonenumber&quot;: &quot;06-43430309&quot; }&#10;  ]&#10;}" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="POST" />
+          <option name="urlBase" value="http://localhost:8080/api/customerOrder/1/1" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="haveTextToSend" value="true" />
+          <option name="textToSend" value="{&#10;&#10;}" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="POST" />
+          <option name="urlBase" value="http://localhost:8080/api/customerorder/1/1" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="haveTextToSend" value="true" />
+          <option name="textToSend" value="{&#10;  &#10;}" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="POST" />
+          <option name="urlBase" value="http://localhost:8080/api/orders" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="haveTextToSend" value="true" />
+          <option name="textToSend" value="{&#10;  &quot;dateorder&quot;: &quot;2019-01-10T13:37:42&quot;,&#10;  &quot;dateevent&quot;: &quot;2019-01-10T13:37:42&quot;,&#10;  &quot;note&quot;: &quot;test note&quot;,&#10;  &quot;starttime&quot;: &quot;2019-01-10T13:37:42&quot;,&#10;  &quot;endtime&quot;: &quot;2019-01-10T13:37:42&quot;,&#10;  &quot;maxinstructors&quot;: 4,&#10;  &quot;quotations&quot;: [&#10;    {&#10;      &quot;datequotation&quot;: &quot;2019-01-10T13:37:42&quot;,&#10;      &quot;bankaccount&quot;: &quot;ABNA4200982&quot;,&#10;      &quot;pricebtw&quot;: 1212,&#10;      &quot;pricepp&quot;: 40&#10;    }&#10;  ],&#10;  &quot;invoices&quot;: [&#10;    {&#10;      &quot;dateinvoice&quot;: &quot;2019-01-10T13:37:42&quot;,&#10;      &quot;paymentextras&quot;: &quot;dit kost te veel&quot;,&#10;      &quot;pricepp&quot;: 1242.99,&#10;      &quot;pricebtw&quot;: 12453,&#10;      &quot;othercosts&quot;: 120,&#10;      &quot;othercostsbtw&quot;: 190,&#10;      &quot;tobepaid&quot;: 1242,&#10;      &quot;paid&quot;: 4,&#10;      &quot;datepartpaid&quot;: &quot;2019-01-10T13:37:42&quot;,&#10;      &quot;datefullpaid&quot;: &quot;2019-01-10T13:37:42&quot;,&#10;      &quot;bankaccount&quot;: &quot;INGB13371337&quot;,&#10;      &quot;dateinvoicemailsend&quot;: &quot;2019-01-10T13:37:42&quot;,&#10;      &quot;excludefrominvoicealert&quot;: true&#10;    }&#10;  ],&#10;  &quot;events&quot;: [&#10;    {&#10;      &quot;ownEvent&quot;: true,&#10;      &quot;name&quot;: &quot;Be On ICE&quot;,&#10;      &quot;description&quot;: &quot;This is a great event&quot;,&#10;      &quot;program&quot;: &quot;Glope Ijsspelen&quot;,&#10;      &quot;duration&quot;: &quot;1:30&quot;,&#10;      &quot;options&quot;: null,&#10;      &quot;pricePerPerson&quot;: 130.5,&#10;      &quot;priceBuyPerPerson&quot;: 0,&#10;      &quot;btw&quot;: 0.21,&#10;      &quot;note&quot;: null&#10;    }&#10;  ]&#10;}" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+      </list>
+    </option>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.Application">
+    <configuration name="customer#3" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$PROJECT_DIR$/http/customer.http" index="3">
+      <method v="2" />
+    </configuration>
+    <configuration name="order#1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$PROJECT_DIR$/http/order.http">
+      <method v="2" />
+    </configuration>
+    <configuration name="order#3" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$PROJECT_DIR$/http/order.http" index="3">
+      <method v="2" />
+    </configuration>
+    <configuration name="supplier#2" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$PROJECT_DIR$/http/supplier.http" index="2">
+      <method v="2" />
+    </configuration>
+    <configuration name="supplier#4" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$PROJECT_DIR$/http/supplier.http" index="4">
+      <method v="2" />
+    </configuration>
+    <configuration name="Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="BeEvent-API" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="nl.hsleiden.Application" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Spring Boot.Application" />
+    </list>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="50b9253f-f2ad-4c62-9b3b-4fb64f939245" name="Default Changelist" comment="" />
+      <created>1557743180334</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1557743180334</updated>
+      <workItem from="1557743181788" duration="1657000" />
+      <workItem from="1558512582923" duration="11750000" />
+      <workItem from="1558978798985" duration="220000" />
+      <workItem from="1560192954592" duration="2753000" />
+      <workItem from="1560237388062" duration="11667000" />
+      <workItem from="1560279098279" duration="2360000" />
+      <workItem from="1560326737363" duration="3588000" />
+      <workItem from="1560334218485" duration="815000" />
+      <workItem from="1560338684944" duration="3168000" />
+      <workItem from="1560417208349" duration="4503000" />
+      <workItem from="1560452905151" duration="1275000" />
+      <workItem from="1560499711146" duration="2951000" />
+      <workItem from="1560506209908" duration="4702000" />
+      <workItem from="1560599694250" duration="3595000" />
+    </task>
+    <task id="LOCAL-00001" summary="Order with relations to: event, quotation, invoice and cateringorder done. TODO: many to many with customer">
+      <created>1558964326837</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1558964326837</updated>
+    </task>
+    <task id="LOCAL-00002" summary="CORS config, default constructors and public instead of private GET method">
+      <created>1560327821498</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1560327821498</updated>
+    </task>
+    <task id="LOCAL-00003" summary="removed maxinstructors from orders, added it to events">
+      <created>1560329519092</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1560329519092</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Added getters and setters for supplierID, removed not null from description and routeimage from eventlocation, removed jsonproperty of maxinstructors">
+      <created>1560505468744</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1560505468744</updated>
+    </task>
+    <task id="LOCAL-00005" summary="GET eventlocation to public, added jsonviews to event (supplier and eventlocation)">
+      <created>1560517234915</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1560517234915</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
+    <servers />
+  </component>
+  <component name="TestHistory">
+    <history-entry file="EmailParserServiceTest_parse - 2019.06.18 at 09h 58m 22s.xml">
+      <configuration name="EmailParserServiceTest.parse" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="EmailParserServiceTest_parse - 2019.06.18 at 09h 58m 33s.xml">
+      <configuration name="EmailParserServiceTest.parse" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="EmailParserServiceTest_parse - 2019.06.18 at 10h 00m 50s.xml">
+      <configuration name="EmailParserServiceTest.parse" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="EmailParserServiceTest_parse - 2019.06.18 at 10h 01m 06s.xml">
+      <configuration name="EmailParserServiceTest.parse" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="EmailParserServiceTest_parse - 2019.06.18 at 10h 01m 15s.xml">
+      <configuration name="EmailParserServiceTest.parse" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="EmailParserServiceTest_parse - 2019.06.18 at 10h 01m 24s.xml">
+      <configuration name="EmailParserServiceTest.parse" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="EmailParserServiceTest_parse - 2019.06.18 at 10h 03m 41s.xml">
+      <configuration name="EmailParserServiceTest.parse" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="EmailParserServiceTest_parse - 2019.06.18 at 10h 18m 56s.xml">
+      <configuration name="EmailParserServiceTest.parse" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="EmailParserServiceTest_parseInvoiceNumber - 2019.06.18 at 10h 19m 05s.xml">
+      <configuration name="EmailParserServiceTest.parseInvoiceNumber" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="EmailParserServiceTest - 2019.06.18 at 10h 19m 11s.xml">
+      <configuration name="EmailParserServiceTest" configurationId="JUnit" />
+    </history-entry>
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="71046000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="72" y="74" width="1515" height="870" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4957806" visible="true" weight="0.305499" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Designer" order="2" />
+      <window_info id="UI Designer" order="3" />
+      <window_info id="Favorites" order="4" side_tool="true" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info id="Web" order="6" sideWeight="0.5042194" side_tool="true" weight="0.29127517" />
+      <window_info id="Image Layers" order="7" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32936078" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.38894907" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39934355" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Spring" order="7" weight="0.3286119" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49932885" weight="0.3286119" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50067115" side_tool="true" weight="0.3286119" />
+      <window_info anchor="bottom" id="Java Enterprise" order="10" />
+      <window_info anchor="bottom" id="Database Changes" order="11" />
+      <window_info anchor="bottom" id="Version Control" order="12" weight="0.32936078" />
+      <window_info anchor="bottom" id="Docker" order="13" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Messages" order="14" weight="0.32719395" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Maven" order="3" />
+      <window_info anchor="right" id="Palette" order="4" />
+      <window_info anchor="right" id="Capture Analysis" order="5" />
+      <window_info anchor="right" id="Database" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Theme Preview" order="8" />
+      <window_info anchor="right" id="Bean Validation" order="9" />
+    </layout>
+    <layout-to-restore>
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4957806" visible="true" weight="0.30597016" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Designer" order="2" />
+      <window_info id="UI Designer" order="3" />
+      <window_info id="Favorites" order="4" side_tool="true" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info id="Web" order="6" sideWeight="0.5042194" side_tool="true" weight="0.29127517" />
+      <window_info id="Image Layers" order="7" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32936078" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.38894907" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39934355" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Spring" order="7" weight="0.3286119" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49932885" weight="0.3286119" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50067115" side_tool="true" weight="0.3286119" />
+      <window_info anchor="bottom" id="Java Enterprise" order="10" />
+      <window_info anchor="bottom" id="Database Changes" order="11" />
+      <window_info anchor="bottom" id="Version Control" order="12" weight="0.32936078" />
+      <window_info anchor="bottom" id="Docker" order="13" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Messages" order="14" weight="0.32719395" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Maven" order="3" />
+      <window_info anchor="right" id="Palette" order="4" />
+      <window_info anchor="right" id="Capture Analysis" order="5" />
+      <window_info anchor="right" id="Database" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Theme Preview" order="8" />
+      <window_info anchor="right" id="Bean Validation" order="9" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Order with relations to: event, quotation, invoice and cateringorder done. TODO: many to many with customer" />
+    <MESSAGE value="Create a cronjob to run every morgen at 08:00 AM to check if invoice notifications should be sent." />
+    <MESSAGE value="CORS config, default constructors and public instead of private GET method" />
+    <MESSAGE value="removed maxinstructors from orders, added it to events" />
+    <MESSAGE value="Added getters and setters for supplierID, removed not null from description and routeimage from eventlocation, removed jsonproperty of maxinstructors" />
+    <MESSAGE value="GET eventlocation to public, added jsonviews to event (supplier and eventlocation)" />
+    <MESSAGE value="Add email parser, unit tests for the email parser, and mock data" />
+    <MESSAGE value="Update gender of customer" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update gender of customer" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/java/nl/hsleiden/model/EventLocation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nl/hsleiden/model/Event.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="27" column="36" selection-start-line="27" selection-start-column="36" selection-end-line="27" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nl/hsleiden/model/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="34" column="33" selection-start-line="34" selection-start-column="33" selection-end-line="34" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/nl/hsleiden/services/TestPaymentMailParser.java" />
+    <entry file="file://$PROJECT_DIR$/src/test/java/nl/hsleiden/mock/MockEventLocation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="5" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/nl/hsleiden/mock/MockEvent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="20" column="5" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/nl/hsleiden/mock/MockCustomerPhone.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="37" selection-start-line="8" selection-start-column="37" selection-end-line="8" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/nl/hsleiden/mock/MockCustomerEmail.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="43" selection-start-line="8" selection-start-column="43" selection-end-line="8" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/http/event.http">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1071">
+          <caret line="63" selection-start-line="63" selection-end-line="67" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/http/invoice.http">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="19" column="38" lean-forward="true" selection-start-line="19" selection-start-column="38" selection-end-line="19" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/nl/hsleiden/mock/MockCustomer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="13" column="33" lean-forward="true" selection-start-line="13" selection-start-column="33" selection-end-line="13" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/nl/hsleiden/mock/MockInvoice.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="23" column="60" selection-start-line="23" selection-start-column="60" selection-end-line="23" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nl/hsleiden/service/DateCalculatorService.java" />
+    <entry file="file://$PROJECT_DIR$/src/test/java/nl/hsleiden/service/EmailParserServiceTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1462">
+          <caret line="86" column="5" lean-forward="true" selection-start-line="86" selection-start-column="5" selection-end-line="86" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="50" selection-start-line="50" selection-end-line="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nl/hsleiden/service/OrderService.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/nl/hsleiden/batch/PaymentNotifierBatch.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/nl/hsleiden/controller/SupplierController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="222">
+          <caret line="103" selection-start-line="103" selection-end-line="103" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nl/hsleiden/model/Supplier.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="113" column="5" selection-start-line="113" selection-start-column="5" selection-end-line="113" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nl/hsleiden/model/Instructor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="53" column="36" selection-start-line="53" selection-start-column="36" selection-end-line="53" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nl/hsleiden/controller/InstructorController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="28" column="20" selection-start-line="28" selection-start-column="20" selection-end-line="28" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nl/hsleiden/controller/CustomerOrderController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="39" column="27" selection-start-line="39" selection-start-column="27" selection-end-line="39" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nl/hsleiden/service/EmailParserService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="10" lean-forward="true" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/nl/hsleiden/mock/MockOrder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="12" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nl/hsleiden/controller/OrderController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="42" column="89" selection-start-line="42" selection-start-column="89" selection-end-line="42" selection-end-column="89" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nl/hsleiden/controller/CustomerController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="141" column="13" lean-forward="true" selection-start-line="141" selection-start-column="13" selection-end-line="141" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nl/hsleiden/model/Customer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="92" column="46" selection-start-line="92" selection-start-column="46" selection-end-line="92" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nl/hsleiden/controller/EventController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="97" column="58" selection-start-line="97" selection-start-column="58" selection-end-line="97" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nl/hsleiden/model/CustomerPhone.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="213">
+          <caret line="26" column="30" selection-start-line="26" selection-start-column="30" selection-end-line="26" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nl/hsleiden/model/CustomerEmail.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="23" column="43" selection-start-line="23" selection-start-column="43" selection-end-line="23" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/http/order.http">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="20" column="18" selection-start-line="20" selection-start-column="18" selection-end-line="20" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/http/customer.http">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nl/hsleiden/model/CustomerOrder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="24" column="14" lean-forward="true" selection-start-line="24" selection-start-column="14" selection-end-line="24" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nl/hsleiden/model/EmployeePhone.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="257">
+          <caret line="30" column="21" lean-forward="true" selection-start-line="30" selection-start-column="21" selection-end-line="30" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nl/hsleiden/model/EmployeeEmail.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="25" column="40" selection-start-line="25" selection-start-column="40" selection-end-line="25" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nl/hsleiden/model/Invoice.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="24" column="39" selection-start-line="24" selection-start-column="39" selection-end-line="24" selection-end-column="39" />
+          <folding>
+            <element signature="e#2686#2687#0" expanded="true" />
+            <element signature="e#2736#2737#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nl/hsleiden/model/EventImage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="26" column="37" selection-start-line="26" selection-start-column="37" selection-end-line="26" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nl/hsleiden/model/Quotation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="213">
+          <caret line="26" column="24" lean-forward="true" selection-start-line="26" selection-start-column="24" selection-end-line="26" selection-end-column="24" />
+          <folding>
+            <element signature="e#1453#1454#0" expanded="true" />
+            <element signature="e#1491#1492#0" expanded="true" />
+            <element signature="e#1551#1552#0" expanded="true" />
+            <element signature="e#1605#1606#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nl/hsleiden/model/UserAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="21" column="37" selection-start-line="21" selection-start-column="37" selection-end-line="21" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nl/hsleiden/model/SupplierContract.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="479">
+          <caret line="238" column="73" selection-start-line="238" selection-start-column="73" selection-end-line="238" selection-end-column="73" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2212#2213#0" expanded="true" />
+            <element signature="e#2240#2241#0" expanded="true" />
+            <element signature="e#2279#2280#0" expanded="true" />
+            <element signature="e#2314#2315#0" expanded="true" />
+            <element signature="e#2444#2445#0" expanded="true" />
+            <element signature="e#2476#2477#0" expanded="true" />
+            <element signature="e#2524#2525#0" expanded="true" />
+            <element signature="e#2566#2567#0" expanded="true" />
+            <element signature="e#2598#2599#0" expanded="true" />
+            <element signature="e#2628#2629#0" expanded="true" />
+            <element signature="e#2672#2673#0" expanded="true" />
+            <element signature="e#2710#2711#0" expanded="true" />
+            <element signature="e#2738#2739#0" expanded="true" />
+            <element signature="e#2772#2773#0" expanded="true" />
+            <element signature="e#2907#2908#0" expanded="true" />
+            <element signature="e#2938#2939#0" expanded="true" />
+            <element signature="e#2986#2987#0" expanded="true" />
+            <element signature="e#3026#3027#0" expanded="true" />
+            <element signature="e#3069#3070#0" expanded="true" />
+            <element signature="e#3100#3101#0" expanded="true" />
+            <element signature="e#3148#3149#0" expanded="true" />
+            <element signature="e#3188#3189#0" expanded="true" />
+            <element signature="e#3743#3744#0" expanded="true" />
+            <element signature="e#3787#3788#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nl/hsleiden/model/Order.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="26" column="40" selection-start-line="26" selection-start-column="40" selection-end-line="26" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nl/hsleiden/model/SupplierEmail.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="23" column="40" selection-start-line="23" selection-start-column="40" selection-end-line="23" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nl/hsleiden/model/SupplierPhone.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="24" column="40" selection-start-line="24" selection-start-column="40" selection-end-line="24" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nl/hsleiden/model/CateringImage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="31" column="4" selection-start-line="31" selection-start-column="4" selection-end-line="31" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nl/hsleiden/model/SupplierAddress.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="487">
+          <caret line="106" column="24" selection-start-line="106" selection-start-column="24" selection-end-line="106" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nl/hsleiden/model/CateringOrder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="145">
+          <caret line="22" column="14" lean-forward="true" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nl/hsleiden/model/Catering.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-349">
+          <caret line="71" column="28" selection-start-line="71" selection-end-line="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/http/catering.http">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-402">
+          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nl/hsleiden/controller/CateringController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/http/supplier.http">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="62" column="33" lean-forward="true" selection-start-line="62" selection-start-column="33" selection-end-line="62" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nl/hsleiden/service/EmailService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#2150#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <last-edited>BeEvent-API:war</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.5" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>Spring</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>Spring|BeEvent-API</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>Maven: antlr:antlr:2.7.7</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

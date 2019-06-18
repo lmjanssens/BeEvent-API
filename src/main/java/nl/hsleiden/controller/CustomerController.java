@@ -1,5 +1,7 @@
 package nl.hsleiden.controller;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import nl.hsleiden.View;
 import nl.hsleiden.auth.Role;
 import nl.hsleiden.exception.ResourceNotFoundException;
 import nl.hsleiden.model.Customer;
@@ -43,15 +45,18 @@ public class CustomerController {
 
     CollectionDataService<CustomerEmail> emailCollectionDataService = new CollectionDataService<>();
     CollectionDataService<CustomerPhone> phoneCollectionDataService = new CollectionDataService<>();
+    CollectionDataService<Order> orderCollectionDataService = new CollectionDataService<>();
 
     @GetMapping("/api/customers")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "') or hasAuthority('" + Role.INSTRUCTOR + "')")
+    @JsonView(View.Public.class)
     public Collection<Customer> getCustomers() {
         return customerRepository.findAll();
     }
 
     @GetMapping("/api/customers/{customerId}")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @JsonView(View.Public.class)
     public Optional<Customer> getSpecifiedCustomer(@PathVariable Long customerId) {
         LOGGER.info("Fetching customer with id: " + customerId);
         return customerRepository.findById(customerId);
@@ -59,6 +64,7 @@ public class CustomerController {
 
     @PostMapping("/api/customers")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @JsonView(View.Public.class)
     public Customer createCustomer(@Valid @RequestBody Customer customer) {
         LOGGER.info("Creating new customer...");
         Customer savedCustomer = customerRepository.save(customer);
@@ -74,6 +80,7 @@ public class CustomerController {
 
     @PutMapping("/api/customers/{customerId}")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @JsonView(View.Public.class)
     public Customer updateCustomer(@PathVariable Long customerId, @Valid @RequestBody Customer updatedCustomer) {
         LOGGER.info("Updating customer with id: " + customerId);
 
@@ -86,6 +93,7 @@ public class CustomerController {
             customer.setLastName(updatedCustomer.getLastName());
             customer.setTitle(updatedCustomer.getTitle());
             customer.setZipcode(updatedCustomer.getZipcode());
+            customer.setGender(updatedCustomer.getGender());
 
             Collection<CustomerEmail> emailsToSave = emailCollectionDataService.getToBeSaved(customer.getEmails(), updatedCustomer.getEmails());
             Collection<CustomerEmail> emailsToDelete = emailCollectionDataService.getToBeDeleted(customer.getEmails(), updatedCustomer.getEmails());
@@ -93,17 +101,26 @@ public class CustomerController {
             Collection<CustomerPhone> phonesToSave = phoneCollectionDataService.getToBeSaved(customer.getPhones(), updatedCustomer.getPhones());
             Collection<CustomerPhone> phonesToDelete = phoneCollectionDataService.getToBeDeleted(customer.getPhones(), updatedCustomer.getPhones());
 
+            Collection<Order> ordersToSave = orderCollectionDataService.getToBeSaved(customer.getOrders(), updatedCustomer.getOrders());
+            Collection<Order> ordersToDelete = orderCollectionDataService.getToBeDeleted(customer.getOrders(), updatedCustomer.getOrders());
+
             saveEmailAddresses(customer, emailsToSave);
             deleteEmailAddresses(emailsToDelete);
 
             savePhoneNumbers(customer, phonesToSave);
             deletePhoneNumbers(phonesToDelete);
 
+            saveOrders(customer, ordersToSave);
+            deleteOrders(ordersToDelete);
+
             customer.setEmails(
                     emailCollectionDataService.getDefinitiveCollection(customer.getEmails(), emailsToSave, emailsToDelete)
             );
             customer.setPhones(
                     phoneCollectionDataService.getDefinitiveCollection(customer.getPhones(), phonesToSave, phonesToDelete)
+            );
+            customer.setOrders(
+                    orderCollectionDataService.getDefinitiveCollection(customer.getOrders(), ordersToSave, ordersToDelete)
             );
 
             return customerRepository.save(customer);
@@ -159,6 +176,27 @@ public class CustomerController {
             customerPhoneRepository.deleteAll(toBeDeleted);
         } catch (NullPointerException exception) {
             LOGGER.info("Unable to delete phone numbers");
+        }
+    }
+
+    private void saveOrders(Customer customer, Collection<Order> toBeSaved) {
+        LOGGER.info("Saving orders...");
+        try {
+            for (Order order: toBeSaved)
+                order.setCustomer(customer);
+
+            orderRepository.saveAll(toBeSaved);
+        } catch (NullPointerException exception) {
+            LOGGER.info("Unable to save orders");
+        }
+    }
+
+    private void deleteOrders(Collection<Order> toBeDeleted) {
+        LOGGER.info("Deleting orders...");
+        try {
+            orderRepository.deleteAll(toBeDeleted);
+        } catch (NullPointerException exception) {
+            LOGGER.info("Unable to delete orders");
         }
     }
 }

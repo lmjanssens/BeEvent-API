@@ -1,19 +1,19 @@
 package nl.hsleiden.controller;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import nl.hsleiden.View;
 import nl.hsleiden.auth.Role;
 import nl.hsleiden.exception.ResourceNotFoundException;
-import nl.hsleiden.model.RegisteredEvent;
-import nl.hsleiden.repository.EventRepository;
-import nl.hsleiden.repository.InstructorRepository;
-import nl.hsleiden.repository.RegisteredEventRepository;
+import nl.hsleiden.model.*;
+import nl.hsleiden.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,13 +36,32 @@ public class RegisteredEventController {
     @Autowired
     private InstructorRepository instructorRepo;
 
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private OrderRepository orderRepository;
+
     /**
      * For retrieving a list of registered events stored in the database
      * @return a list of registered events
      */
     @GetMapping("/api/registeredevents")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "') or hasAuthority('" + Role.INSTRUCTOR + "')")
+    @JsonView(View.Public.class)
     public Collection<RegisteredEvent> getRegisteredEvents() { return registeredEventRepo.findAll(); }
+
+    /**
+     * For retrieving a registered event by instructor username
+     * @return a subscribed event
+     */
+    @GetMapping("/api/registeredevents/orderid/{orderId}")
+    @PreAuthorize("hasAuthority('" + Role.INSTRUCTOR + "')")
+    @JsonView(View.Public.class)
+    public List<RegisteredEvent> getRegisteredEventByOrder (@PathVariable Long orderId) {
+        LOGGER.info("Fetching registered event by orderid " + orderId);
+        return registeredEventRepo.findByOrder_OrderId(orderId);
+    }
 
     /**
      * For retrieving a specific registered event object stored in the database
@@ -51,6 +70,7 @@ public class RegisteredEventController {
      */
     @GetMapping("/api/registeredevents/{eventId}")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @JsonView(View.Public.class)
     public Optional<RegisteredEvent> getRegisteredEventById (@PathVariable Long eventId) {
         LOGGER.info("Fetching registered event with id " +  eventId);
         return registeredEventRepo.findById(eventId);
@@ -62,19 +82,26 @@ public class RegisteredEventController {
      * @param registeredEvent a JSON-object obtained from the frontend ready to be inserted to the database.
      * @return an inserted registered event object
      */
-    @PostMapping("/api/registeredevents/{eventId}/{instructorId}")
-    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
-    public RegisteredEvent createRegisteredEvent(@PathVariable Long eventId,
-                                                        @PathVariable Long instructorId,
+    @PostMapping("/api/registeredevents/{orderId}/{eventId}/{instructorId}")
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "') or hasAuthority('" + Role.INSTRUCTOR + "')")
+    @JsonView(View.Public.class)
+    public RegisteredEvent createRegisteredEvent(@PathVariable Long orderId,
+                                                 @PathVariable Long eventId,
+                                                 @PathVariable String instructorId,
                                                         @Valid @RequestBody RegisteredEvent registeredEvent){
         LOGGER.info("Creating registered event");
 
+        User user = userRepository.findByUsername(instructorId);
+
         return eventRepo.findById(eventId).map(event1 -> {
             registeredEvent.setEvent(event1);
-            return instructorRepo.findById(instructorId).map(instructor -> {
-                registeredEvent.setInstructor(instructor);
-                return registeredEventRepo.save(registeredEvent);
-            }).orElseThrow(() -> new ResourceNotFoundException("No instructor found of id " + instructorId));
+            return orderRepository.findById(orderId).map(order -> {
+                registeredEvent.setOrder(order);
+                return instructorRepo.findByUser(user).map(instructor -> {
+                    registeredEvent.setInstructor(instructor);
+                    return registeredEventRepo.save(registeredEvent);
+                }).orElseThrow(() -> new ResourceNotFoundException("No instructor found of id " + instructorId));
+            }).orElseThrow(() -> new ResourceNotFoundException("Could not find order of id " + orderId));
         }).orElseThrow(() -> new ResourceNotFoundException("No event found of id " + eventId));
 
     }
@@ -85,7 +112,7 @@ public class RegisteredEventController {
      * @return response
      */
     @DeleteMapping("/api/registeredevents/{eventId}")
-    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "') or hasAuthority('" + Role.INSTRUCTOR + "')")
     public ResponseEntity<?> deleteEvents(@PathVariable Long eventId){
         LOGGER.info("Deleting registered event with id " + eventId);
         return registeredEventRepo.findById(eventId).map(event -> {

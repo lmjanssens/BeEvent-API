@@ -1,5 +1,7 @@
 package nl.hsleiden.controller;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import nl.hsleiden.View;
 import nl.hsleiden.auth.Role;
 import nl.hsleiden.exception.ResourceNotFoundException;
 import nl.hsleiden.model.*;
@@ -42,10 +44,12 @@ public class OrderController {
 
     @GetMapping("/api/orders")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "') or hasAuthority('" + Role.INSTRUCTOR + "')")
+    @JsonView(View.Public.class)
     public Collection<Order> getOrders() { return orderRepository.findAll(); }
 
     @GetMapping("/api/orders/{orderId}")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @JsonView(View.Public.class)
     public Optional<Order> getSpecifiedCatering(@PathVariable Long orderId) {
         LOGGER.info("Fetching order with id: " + orderId);
         return orderRepository.findById(orderId);
@@ -53,6 +57,7 @@ public class OrderController {
 
     @PostMapping("/api/orders")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @JsonView(View.Public.class)
     public Order createOrder(@Valid @RequestBody Order order) {
         LOGGER.info("Creating new order...");
         Order savedOrder = orderRepository.save(order);
@@ -66,6 +71,7 @@ public class OrderController {
 
     @PutMapping("/api/orders/{orderId}")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @JsonView(View.Public.class)
     public Order updateOrder(@PathVariable Long orderId, @Valid @RequestBody Order updatedOrder) {
         LOGGER.info("Updating order with id: " + orderId);
         return orderRepository.findById(orderId).map(order -> {

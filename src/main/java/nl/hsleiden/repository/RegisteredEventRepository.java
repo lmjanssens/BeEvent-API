@@ -9,5 +9,7 @@ import java.util.List;
  * @author Robin Silverio
  */
 public interface RegisteredEventRepository extends JpaRepository<RegisteredEvent, Long> {
+
+    List<RegisteredEvent> findByOrder_OrderId (Long orderId);
     List<RegisteredEvent> findAll();
 }

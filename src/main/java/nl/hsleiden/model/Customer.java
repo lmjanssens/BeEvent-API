@@ -1,6 +1,10 @@
 package nl.hsleiden.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonView;
+import nl.hsleiden.View;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
@@ -15,72 +19,87 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "customerid", columnDefinition = "serial")
     @JsonProperty("customerId")
+    @JsonView(View.Public.class)
     private Long id;
 
     @Length(max = 10)
     @Column(name = "title")
     @JsonProperty("title")
+    @JsonView(View.Public.class)
     private String title;
 
     @NotNull
     @Length(max = 30)
     @Column(name = "first_name")
     @JsonProperty("first_name")
+    @JsonView(View.Public.class)
     private String firstName;
 
     @Length(max = 15)
     @Column(name = "infix")
     @JsonProperty("infix")
+    @JsonView(View.Public.class)
     private String infix;
 
     @NotNull
     @Length(max = 30)
     @Column(name = "last_name")
     @JsonProperty("last_name")
+    @JsonView(View.Public.class)
     private String lastName;
 
     @NotNull
     @Length(max = 50)
     @Column(name = "address")
     @JsonProperty("address")
+    @JsonView(View.Public.class)
     private String address;
 
     @NotNull
     @Length(max = 10)
     @Column(name = "zipcode")
     @JsonProperty("zipcode")
+    @JsonView(View.Public.class)
     private String zipcode;
 
     @NotNull
     @Length(max = 50)
     @Column(name = "country")
     @JsonProperty("country")
+    @JsonView(View.Public.class)
     private String country;
 
     @NotNull
     @Column(name = "gender")
     @JsonProperty("gender")
+    @JsonView(View.Public.class)
     private char gender;
 
     @NotNull
     @Length(max = 50)
     @Column(name = "city")
     @JsonProperty("city")
+    @JsonView(View.Public.class)
     private String city;
 
     @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
     @JsonProperty("email_addresses")
+    @JsonView(View.Public.class)
     private Set<CustomerEmail> emails;
 
     @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
     @JsonProperty("customer_orders")
+    @JsonView(View.Public.class)
     private Set<CustomerOrder> customerOrders;
 
     @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
     @JsonProperty("phone_numbers")
+    @JsonView(View.Public.class)
     private Set<CustomerPhone> phones;
 
     @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
+    @JsonView(View.Public.class)
+    @JsonProperty("orders")
     private Set<Order> orders;
 
     public Customer() {

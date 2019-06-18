@@ -1,5 +1,7 @@
 package nl.hsleiden.controller;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import nl.hsleiden.View;
 import nl.hsleiden.auth.Role;
 import nl.hsleiden.exception.ResourceNotFoundException;
 import nl.hsleiden.model.Quotation;
@@ -25,10 +27,12 @@ public class QuotationController {
 
     @GetMapping("/api/quotation")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "') or hasAuthority('" + Role.INSTRUCTOR + "')")
+    @JsonView(View.Public.class)
     public Collection<Quotation> getQuotations() { return quotationRepository.findAll(); }
 
     @GetMapping("/api/quotation/{quotationNumber}")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @JsonView(View.Public.class)
     public Optional<Quotation> getSpecifiedQuotation(@PathVariable Long quotationNumber) {
         LOGGER.info("Fetching quotation with number: " + quotationNumber);
         return quotationRepository.findById(quotationNumber);
@@ -36,6 +40,7 @@ public class QuotationController {
 
     @PostMapping("/api/quotation")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @JsonView(View.Public.class)
     public Quotation createQuotation(@Valid @RequestBody Quotation quotation) {
         LOGGER.info("Creating new quotation...");
         return quotationRepository.save(quotation);
@@ -43,6 +48,7 @@ public class QuotationController {
 
     @PutMapping("/api/quotation/{quotationNumber}")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @JsonView(View.Public.class)
     public Quotation updateQuotation(@PathVariable Long quotationNumber,
                                      @Valid @RequestBody Quotation updatedQuotation) {
         LOGGER.info("Updating quotation with number: " + quotationNumber);

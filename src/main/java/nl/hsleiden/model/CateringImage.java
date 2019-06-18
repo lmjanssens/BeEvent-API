@@ -1,6 +1,9 @@
 package nl.hsleiden.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
+import nl.hsleiden.View;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.validator.constraints.Length;
@@ -20,17 +23,20 @@ public class CateringImage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cateringimageid")
+    @JsonView(View.Public.class)
     private Long id;
 
     @ManyToOne
     @JoinColumn(name = "cateringid", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
+    @JsonBackReference("imageCateringRef")
+    @JsonView(View.Public.class)
     private Catering catering;
 
     @NotNull
     @Length(max = 255)
     @Column(name = "image")
+    @JsonView(View.Public.class)
     private String image;
 
     public CateringImage(Catering catering, @NotNull @Length(max = 255) String image) {

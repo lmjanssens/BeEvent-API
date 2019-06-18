@@ -5,7 +5,6 @@ import nl.hsleiden.View;
 import nl.hsleiden.auth.Role;
 import nl.hsleiden.exception.ResourceNotFoundException;
 import nl.hsleiden.model.Instructor;
-import nl.hsleiden.model.Instructor;
 import nl.hsleiden.repository.InstructorRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,7 +13,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
 import java.util.Collection;
 import java.util.Optional;
@@ -26,6 +24,9 @@ public class InstructorController {
 
     @Autowired
     private InstructorRepository instructorRepository;
+
+//    @Autowired
+//    private UserService userService;
 
     @GetMapping("/api/instructors")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "') or hasAuthority('" + Role.INSTRUCTOR + "')")
@@ -44,8 +45,13 @@ public class InstructorController {
 
     @PostMapping("/api/instructors")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @JsonView(View.Public.class)
     public Instructor createInstructor(@Valid @RequestBody Instructor instructor) {
         LOGGER.info("Creating instructor.");
+//        instructor.setUser(
+//                this.userService.encodePassword(instructor.getUser())
+//        );
+
         return instructorRepository.save(instructor);
     }
 

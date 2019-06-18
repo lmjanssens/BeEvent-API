@@ -1,7 +1,14 @@
 package nl.hsleiden.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonView;
+import nl.hsleiden.View;
+import com.fasterxml.jackson.annotation.JsonView;
+import nl.hsleiden.View;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
@@ -20,16 +27,17 @@ public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "eventid", columnDefinition = "SERIAL")
+    @JsonView(View.Public.class)
     private Long id;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "supplierid")
     @JsonIgnore
     private Supplier supplier;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "locationid")
-    @JsonIgnore
+    @JsonView(View.Public.class)
     private EventLocation location;
 
     @OneToMany(mappedBy = "event")
@@ -37,48 +45,60 @@ public class Event {
     private Set<RegisteredEvent> registeredEvents;
 
     @OneToMany(mappedBy = "event")
-    @JsonIgnore
+    @JsonView(View.Public.class)
     private Set<EventImage> eventImages;
 
     @Column(name = "ownevent", nullable = false,columnDefinition = "boolean default true")
+    @JsonView(View.Public.class)
     private boolean ownEvent;
 
     @NotNull
     @Length(max = 30)
     @Column(name = "eventname")
+    @JsonView(View.Public.class)
     private String name;
 
     @NotNull
     @Column(name = "description")
+    @JsonView(View.Public.class)
     private String description;
 
     @NotNull
     @Column(name = "eventprogram")
+    @JsonView(View.Public.class)
     private String program;
 
     @NotNull
     @Column(name = "duration")
+    @JsonView(View.Public.class)
     private String duration;
 
     @Column(name = "options")
+    @JsonView(View.Public.class)
     private String options;
 
     @NotNull
     @Column(name = "pricepp")
+    @JsonView(View.Public.class)
     private double pricePerPerson;
 
     @NotNull
     @Column(name = "pricebuypp")
+    @JsonView(View.Public.class)
     private double priceBuyPerPerson;
 
     @Column(name = "maxinstructors")
+    @JsonProperty("maxinstructors")
+    @JsonView(View.Public.class)
     private int maxInstructors;
 
     @NotNull
     @Column(name = "btw")
+    @JsonView(View.Public.class)
     private double btw;
 
     @Column(name = "note")
+    @JsonView(View.Public.class)
     private String note;
 
     public Event(){ }

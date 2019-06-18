@@ -1,7 +1,10 @@
 package nl.hsleiden.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonView;
+import nl.hsleiden.View;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
@@ -14,32 +17,38 @@ public class Quotation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "quotationnumber", columnDefinition = "serial")
+    @JsonView(View.Public.class)
     private Long quotationNumber;
 
     @ManyToOne
     @JoinColumn(name = "orderid", nullable = false)
-    @JsonIgnore
+    @JsonBackReference("quotationOrderRef")
+    @JsonView(View.Public.class)
     private Order order;
 
+    @NotNull
     @Column(name = "datequotation")
     @JsonProperty("datequotation")
-    @NotNull
+    @JsonView(View.Public.class)
     private Date dateQuotation;
 
+    @NotNull
     @Column(name = "bankaccount")
     @Length(max = 255)
     @JsonProperty("bankaccount")
-    @NotNull
+    @JsonView(View.Public.class)
     private String bankAccount;
 
+    @NotNull
     @Column(name = "pricebtw")
     @JsonProperty("pricebtw")
-    @NotNull
+    @JsonView(View.Public.class)
     private double priceBtw;
 
+    @NotNull
     @Column(name = "pricepp")
     @JsonProperty("pricepp")
-    @NotNull
+    @JsonView(View.Public.class)
     private double pricePp;
 
     public Long getQuotationNumber() {

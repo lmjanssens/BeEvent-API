@@ -1,7 +1,10 @@
 package nl.hsleiden.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonView;
+import nl.hsleiden.View;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
@@ -14,65 +17,79 @@ public class Invoice {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "invoicenumber", columnDefinition = "serial")
     @JsonProperty("invoiceNumber")
+    @JsonView(View.Public.class)
     private Long invoiceNumber;
 
     @ManyToOne
     @JoinColumn(name = "orderid", nullable = false)
-    @JsonIgnore
+    @JsonBackReference("invoiceOrderRef")
     private Order order;
 
     @Column(name = "dateinvoice")
     @JsonProperty("dateinvoice")
+    @JsonView(View.Public.class)
     private Date dateInvoice;
 
     @Column(name = "paymentextras")
     @Length(max = 255)
     @JsonProperty("paymentextras")
+    @JsonView(View.Public.class)
     private String paymentExtras;
 
     @Column(name = "pricepp")
     @JsonProperty("pricepp")
+    @JsonView(View.Public.class)
     private int pricePp;
 
     @Column(name = "pricebtw")
     @JsonProperty("pricebtw")
+    @JsonView(View.Public.class)
     private int priceBtw;
 
     @Column(name = "othercosts")
     @JsonProperty("othercosts")
+    @JsonView(View.Public.class)
     private double otherCosts;
 
     @Column(name = "othercostsbtw")
     @JsonProperty("othercostsbtw")
+    @JsonView(View.Public.class)
     private double otherCostsBtw;
 
     @Column(name = "tobepaid")
     @JsonProperty("tobepaid")
+    @JsonView(View.Public.class)
     private double toBePaid;
 
     @Column(name = "paid")
     @JsonProperty("paid")
+    @JsonView(View.Public.class)
     private double paid;
 
     @Column(name = "datepartpaid")
     @JsonProperty("datepartpaid")
+    @JsonView(View.Public.class)
     private Date datePartPaid;
 
     @Column(name = "datefullpaid")
     @JsonProperty("datefullpaid")
+    @JsonView(View.Public.class)
     private Date dateFullPaid;
 
     @Column(name = "bankaccount")
     @Length(max = 255)
     @JsonProperty("bankaccount")
+    @JsonView(View.Public.class)
     private String bankAccount;
 
     @Column(name = "dateinvoicemailsend")
     @JsonProperty("dateinvoicemailsend")
+    @JsonView(View.Public.class)
     private Date dateInvoiceMailSent;
 
     @Column(name = "excludefrominvoicealert")
     @JsonProperty("excludefrominvoicealert")
+    @JsonView(View.Public.class)
     private boolean excludeFromInvoiceAlert;
 
     public Long getInvoiceNumber() {

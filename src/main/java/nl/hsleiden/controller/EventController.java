@@ -1,5 +1,7 @@
 package nl.hsleiden.controller;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import nl.hsleiden.View;
 import nl.hsleiden.auth.Role;
 import nl.hsleiden.exception.ResourceNotFoundException;
 import nl.hsleiden.model.Event;
@@ -37,14 +39,13 @@ public class EventController {
     @Autowired
     private SupplierRepository supplierRepository;
 
-
-
     /**
      * This is for getting all events from database.
      * @return a list of events
      */
     @GetMapping("/api/events")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "') or hasAuthority('" + Role.INSTRUCTOR + "')")
+    @JsonView(View.Public.class)
     public Collection<Event> getEvents() { return eventRepo.findAll(); }
 
     /**
@@ -54,6 +55,7 @@ public class EventController {
      */
     @GetMapping("/api/events/{eventId}")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @JsonView(View.Public.class)
     public Optional<Event> getSpecifiedEvents(@PathVariable(value = "eventId") Long eventId) {
         LOGGER.info("Fetching event object with id: " + eventId);
         return eventRepo.findById(eventId);
@@ -67,18 +69,13 @@ public class EventController {
      */
     @PostMapping("/api/events/{supplierId}/{eventLocationId}")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @JsonView(View.Public.class)
     public Event createEvent(@PathVariable(value = "eventLocationId") Long eventLocationId,
                              @PathVariable Long supplierId,
                              @Valid @RequestBody Event event){
+        LOGGER.info("Creating event...");
 
-        LOGGER.info("Creating event");
-        return eventLocationRepo.findById(eventLocationId).map(eventLocation -> {
-            event.setLocation(eventLocation);
-            return supplierRepository.findById(supplierId).map(supplier -> {
-                event.setSupplier(supplier);
-                return eventRepo.save(event);
-            }).orElseThrow(() -> new ResourceNotFoundException("No supplier found of id " + supplierId));
-        }).orElseThrow(()-> new ResourceNotFoundException("No eventlocation found."));
+        return linkLocationAndSupplierToEvent(event, eventLocationId, supplierId);
     }
 
     /**
@@ -87,9 +84,12 @@ public class EventController {
      * @param updatedEvent a JSON-object obtained from the frontend ready to be inserted to the database
      * @return an updated event object
      */
-    @PutMapping("/api/events/{eventId}")
+    @PutMapping("/api/events/{eventId}/{supplierId}/{eventLocationId}")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
-    public Event updateEvent(@PathVariable Long eventId, @Valid @RequestBody Event updatedEvent) {
+    @JsonView(View.Public.class)
+    public Event updateEvent(@PathVariable Long eventId, @Valid @RequestBody Event updatedEvent,
+                             @PathVariable(value = "eventLocationId") Long eventLocationId,
+                             @PathVariable Long supplierId) {
         return eventRepo.findById(eventId).map(event -> {
             event.setOwnEvent(updatedEvent.isOwnEvent());
             event.setName(updatedEvent.getName());
@@ -102,7 +102,8 @@ public class EventController {
             event.setBtw(updatedEvent.getBtw());
             event.setNote(updatedEvent.getNote());
             event.setMaxInstructors(updatedEvent.getMaxInstructors());
-            return eventRepo.save(event);
+
+            return linkLocationAndSupplierToEvent(event, eventLocationId, supplierId);
         }).orElseThrow(() -> new ResourceNotFoundException("Event not found with id " + eventId));
     }
 
@@ -119,5 +120,15 @@ public class EventController {
             eventRepo.delete(event);
             return ResponseEntity.ok().build();
         }).orElseThrow(() -> new ResourceNotFoundException("No event found with id " + eventId));
+    }
+
+    private Event linkLocationAndSupplierToEvent(Event event, Long eventLocationId, Long supplierId) {
+        return eventLocationRepo.findById(eventLocationId).map(eventLocation -> {
+            event.setLocation(eventLocation);
+            return supplierRepository.findById(supplierId).map(supplier -> {
+                event.setSupplier(supplier);
+                return eventRepo.save(event);
+            }).orElseThrow(() -> new ResourceNotFoundException("No supplier found of id " + supplierId));
+        }).orElseThrow(()-> new ResourceNotFoundException("No eventlocation found."));
     }
 }

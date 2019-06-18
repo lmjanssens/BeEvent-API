@@ -15,54 +15,67 @@ public class Supplier {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "supplierid", columnDefinition = "serial")
-    @JsonView(View.Public.class)
     @JsonProperty("supplierid")
+    @JsonView(View.Public.class)
     private Long id;
 
     @NotNull
     @Length(max = 100)
     @Column(name = "suppliername")
     @JsonProperty("name")
+    @JsonView(View.Public.class)
     private String name;
 
     @NotNull
     @Column(name = "contactperson")
     @JsonProperty("contact_person")
+    @JsonView(View.Public.class)
     private String contactPerson;
 
     @NotNull
     @Column(name = "supervisor")
     @JsonProperty("supervisor")
+    @JsonView(View.Public.class)
     private String supervisor;
 
     @Length(max = 150)
     @Column(name = "website")
     @JsonProperty("website")
+    @JsonView(View.Public.class)
     private String website;
 
     @Column(name = "note")
     @JsonProperty("note")
+    @JsonView(View.Public.class)
     private String note;
 
     @Column(name = "image")
     @JsonProperty("image")
+    @JsonView(View.Public.class)
     private String image;
 
     @OneToMany(mappedBy = "supplier")
     @JsonProperty("email_addresses")
+    @JsonView(View.Public.class)
     private Set<SupplierEmail> emails;
 
     @OneToMany(mappedBy = "supplier")
     @JsonProperty("phone_numbers")
+    @JsonView(View.Public.class)
     private Set<SupplierPhone> phones;
 
     @OneToMany(mappedBy = "supplier")
     @JsonProperty("contracts")
+    @JsonView(View.Public.class)
     private Set<SupplierContract> contracts;
 
     @OneToMany(mappedBy = "supplier")
     @JsonProperty("addresses")
+    @JsonView(View.Public.class)
     private Set<SupplierAddress> addresses;
+
+    public Supplier() {
+    }
 
     public Long getId() {
         return id;

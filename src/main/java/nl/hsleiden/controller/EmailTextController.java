@@ -1,5 +1,7 @@
 package nl.hsleiden.controller;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import nl.hsleiden.View;
 import nl.hsleiden.auth.Role;
 import nl.hsleiden.exception.ResourceNotFoundException;
 import nl.hsleiden.model.EmailText;
@@ -25,14 +27,17 @@ public class EmailTextController {
 
     @GetMapping("/api/emailtexts")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "') or hasAuthority('" + Role.INSTRUCTOR + "')")
+    @JsonView(View.Public.class)
     public Collection<EmailText> getEmailTexts() { return emailTextRepository.findAll(); }
 
     @GetMapping("/api/emailtexts/{id}")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @JsonView(View.Public.class)
     public Optional<EmailText> getSpecificEmailTexts(@PathVariable Long id) { return emailTextRepository.findById(id); }
 
     @PostMapping("/api/emailtexts")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @JsonView(View.Public.class)
     public EmailText createEmailText(@RequestBody EmailText emailText) {
         LOGGER.info("Creating an email text object");
         return emailTextRepository.save(emailText);
@@ -40,6 +45,7 @@ public class EmailTextController {
 
     @PutMapping("/api/emailtexts/{id}")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @JsonView(View.Public.class)
     public EmailText updateEmailText(@PathVariable Long id, @RequestBody EmailText updatedEmailText) {
         LOGGER.info("Updating email text object of id " + id);
         return emailTextRepository.findById(id).map(emailText -> {

@@ -19,14 +19,14 @@ Authorization: Basic Arthur abc
 
 ###
 
-POST http://localhost:8080/api/events/6/38
+POST http://localhost:8080/api/events/3/2
 Content-Type: application/json
 Accept: application/json
 Authorization: Basic Liselot abc
 
 {
   "ownEvent": true,
-  "name": "Expeditie Hello World",
+  "name": "Expeditie wtf max instructors",
   "description": "This is a great event",
   "program": "Fietstocht",
   "duration": "1:30",
@@ -35,7 +35,7 @@ Authorization: Basic Liselot abc
   "priceBuyPerPerson": 0,
   "btw": 0.21,
   "note": null,
-  "maxinstructors": 5
+  "maxInstructors": 5
 }
 
 ###
@@ -50,7 +50,7 @@ Authorization: Basic Arthur abc
 
 ###
 
-DELETE http://localhost:8080/api/events/49
+DELETE http://localhost:8080/api/events/63
 Accept: application/json
 Authorization: Basic Arthur abc
 
