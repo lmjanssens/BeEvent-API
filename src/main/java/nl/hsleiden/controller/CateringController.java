@@ -55,10 +55,10 @@ public class CateringController {
         }).orElseThrow(() -> new ResourceNotFoundException("No supplier found of id " + supplierId));
     }
 
-    @PutMapping("/api/caterings/{id}")
+    @PutMapping("/api/caterings/{id}/{supplierId}")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     @JsonView(View.Public.class)
-    public Catering updateCatering(@PathVariable Long id, @RequestBody Catering updatedCatering) {
+    public Catering updateCatering(@PathVariable Long id, @RequestBody Catering updatedCatering, @PathVariable Long supplierId) {
 
         LOGGER.info("Updating catering object of id " + id);
         return cateringRepo.findById(id).map(catering -> {
@@ -72,9 +72,16 @@ public class CateringController {
             catering.setCateringPrice(updatedCatering.getCateringPrice());
             catering.setNote(updatedCatering.getNote());
 
-            return cateringRepo.save(catering);
+            return linkSupplierToCatering(catering, supplierId);
 
         }).orElseThrow(() -> new ResourceNotFoundException("No catering object found of id " + id));
+    }
+
+    private Catering linkSupplierToCatering(Catering catering, Long supplierId) {
+        return supplierRepo.findById(supplierId).map(supplier -> {
+            catering.setSupplier(supplier);
+            return cateringRepo.save(catering);
+        }).orElseThrow(() -> new ResourceNotFoundException("No supplier found of id " + supplierId));
     }
 
     @DeleteMapping("/api/caterings/{id}")
