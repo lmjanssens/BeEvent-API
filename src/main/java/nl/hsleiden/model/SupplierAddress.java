@@ -93,6 +93,10 @@ public class SupplierAddress {
     @Override
     public boolean equals(Object obj) {
         SupplierAddress supplierAddress = (SupplierAddress) obj;
-        return this.address.equals(supplierAddress.getAddress());
+        return
+                this.address.equals(supplierAddress.getAddress()) &&
+                        this.zipcode.equals(supplierAddress.getZipcode()) &&
+                        this.city.equals(supplierAddress.getCity()) &&
+                        this.supplier.getId() == supplierAddress.getSupplier().getId();
     }
 }

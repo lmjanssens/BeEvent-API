@@ -6,13 +6,13 @@ Authorization: Basic Arthur abc
 
 ###
 
-GET http://localhost:8080/api/caterings/18
+GET http://localhost:8080/api/caterings/1
 Accept: application/json
 Authorization: Basic Arthur abc
 
 ###
 
-POST http://localhost:8080/api/caterings/6
+POST http://localhost:8080/api/caterings/1
 Content-Type: application/json
 Accept: application/json
 Authorization: Basic Arthur abc
@@ -30,7 +30,7 @@ Authorization: Basic Arthur abc
 
 ###
 
-PUT http://localhost:8080/api/caterings/19
+PUT http://localhost:8080/api/caterings/1
 Content-Type: application/json
 Accept: application/json
 Authorization: Basic Arthur abc

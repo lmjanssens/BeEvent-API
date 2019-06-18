@@ -2,12 +2,14 @@ package nl.hsleiden.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import java.sql.Date;
 import java.util.Set;
 
 @Entity
@@ -26,7 +28,7 @@ public class SupplierContract {
     @NotNull
     @Column(name = "type_contract")
     @JsonProperty("type")
-    private boolean typeContract;
+    private String typeContract;
 
     @Length(max = 20)
     @Column(name = "contract_title")
@@ -40,15 +42,20 @@ public class SupplierContract {
     private String description;
 
     @NotNull
-    @Column(name = "contract_incl_btw")
+    @Column(name = "contract_inclu_btw")
     @JsonProperty("inclubtw")
-    private String incluBtw;
+    private double incluBtw;
+
+    @NotNull
+    @Column(name = "contract_excl")
+    @JsonProperty("exclubtw")
+    private double excluBtw;
 
     @Min(0)
     @Max(100)
     @Column(name = "contract_btw_percentage")
     @JsonProperty("btw_percentage")
-    private int percentage;
+    private double percentage;
 
     @Column(name = "contract_preconditions")
     @JsonProperty("pre_conditions")
@@ -66,8 +73,42 @@ public class SupplierContract {
     @JsonProperty("extras")
     private String extras;
 
+    @Column(name = "contract_start")
+    @JsonProperty("startdate")
+    private Date startDate;
+
+    @Column(name = "contract_end")
+    @JsonProperty("enddate")
+    private Date endDate;
+
+
     public SupplierContract() {
 
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getTypeContract() {
+        return typeContract;
+    }
+
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
     }
 
     public Long getId() {
@@ -82,11 +123,11 @@ public class SupplierContract {
         this.supplier = supplier;
     }
 
-    public boolean isTypeContract() {
+    public String isTypeContract() {
         return typeContract;
     }
 
-    public void setTypeContract(boolean typeContract) {
+    public void setTypeContract(String typeContract) {
         this.typeContract = typeContract;
     }
 
@@ -106,19 +147,27 @@ public class SupplierContract {
         this.description = description;
     }
 
-    public String getIncluBtw() {
+    public double getIncluBtw() {
         return incluBtw;
     }
 
-    public void setIncluBtw(String incluBtw) {
+    public void setIncluBtw(double incluBtw) {
         this.incluBtw = incluBtw;
     }
 
-    public int getPercentage() {
+    public double getExcluBtw() {
+        return excluBtw;
+    }
+
+    public void setExcluBtw(double excluBtw) {
+        this.excluBtw = excluBtw;
+    }
+
+    public double getPercentage() {
         return percentage;
     }
 
-    public void setPercentage(int percentage) {
+    public void setPercentage(double percentage) {
         this.percentage = percentage;
     }
 
@@ -161,12 +210,16 @@ public class SupplierContract {
                 this.typeContract == supplierContract.isTypeContract() &&
                         this.title.equals(supplierContract.getTitle()) &&
                         this.description.equals(supplierContract.getDescription()) &&
-                        this.incluBtw.equals(supplierContract.getIncluBtw()) &&
+                        this.incluBtw == supplierContract.getIncluBtw() &&
                         this.percentage == supplierContract.getPercentage() &&
                         this.preconditions.equals(supplierContract.getPreconditions()) &&
                         this.insurance.equals(supplierContract.getInsurance()) &&
                         this.responsibility.equals(supplierContract.getResponsibility()) &&
-                        this.extras.equals(supplierContract.getExtras())
+                        this.extras.equals(supplierContract.getExtras()) &&
+                        this.endDate.equals(supplierContract.getEndDate()) &&
+                        this.startDate.equals(supplierContract.getStartDate()) &&
+                        this.id.equals(supplierContract.getId()) &&
+                        this.typeContract.equals(supplierContract.getTypeContract())
         );
     }
 }

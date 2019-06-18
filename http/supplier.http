@@ -6,7 +6,7 @@ Authorization: Basic Arthur abc
 
 ###
 
-GET http://localhost:8080/api/suppliers/1
+GET http://localhost:8080/api/suppliers/8
 Accept: application/json
 Authorization: Basic Arthur abc
 
@@ -53,7 +53,7 @@ Authorization: Basic Liselot abc
 }
 ###
 
-POST http://localhost:8080/api/suppliers
+POST http://localhost:8080/api/suppliers/
 Content-Type: application/json
 Accept: application/json
 Authorization: Basic Liselot abc

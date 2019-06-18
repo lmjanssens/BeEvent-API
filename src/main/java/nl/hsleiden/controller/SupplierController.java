@@ -95,9 +95,11 @@ public class SupplierController {
             Collection<SupplierAddress> supplierAddressesToBeSaved = supplierAddressCollectionDataService.getToBeSaved(supplier.getAddresses(), updatedSupplier.getAddresses());
             Collection<SupplierAddress> supplierAddressesToBeDeleted = supplierAddressCollectionDataService.getToBeDeleted(supplier.getAddresses(), updatedSupplier.getAddresses());
 
-            // TODO
             saveContracts(supplier, supplierContractsToBeSaved);
             deleteContracts(supplierContractsToBeDeleted);
+
+            System.out.println(supplierContractsToBeDeleted.size());
+            System.out.println(supplierContractsToBeSaved.size());
 
             saveEmails(supplier, supplierEmailsToBeSaved);
             deleteEmails(supplierEmailsToBeDeleted);
@@ -129,8 +131,10 @@ public class SupplierController {
 
     private void saveContracts(Supplier supplier, Collection<SupplierContract> toBeSaved) {
         try {
-            for (SupplierContract supplierContract : toBeSaved)
+            for (SupplierContract supplierContract : toBeSaved) {
                 supplierContract.setSupplier(supplier);
+                supplierContract.setId(null);
+            }
 
             supplierContractRepository.saveAll(toBeSaved);
         } catch (NullPointerException exception) {
