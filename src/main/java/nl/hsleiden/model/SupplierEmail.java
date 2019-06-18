@@ -21,7 +21,7 @@ public class SupplierEmail {
 
     @ManyToOne
     @JoinColumn(name = "supplierID", nullable = false)
-    @JsonBackReference
+    @JsonBackReference("emailSupplierRef")
     private Supplier supplier;
 
     @NotNull

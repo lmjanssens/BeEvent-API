@@ -22,7 +22,7 @@ public class SupplierPhone {
 
     @ManyToOne
     @JoinColumn(name = "supplierid", nullable = false)
-    @JsonBackReference
+    @JsonBackReference("phoneSupplierRef")
     private Supplier supplier;
 
     @NotNull

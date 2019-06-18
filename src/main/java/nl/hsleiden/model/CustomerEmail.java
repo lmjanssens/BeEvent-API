@@ -21,7 +21,7 @@ public class CustomerEmail {
 
     @ManyToOne
     @JoinColumn(name = "customerid", nullable = false)
-    @JsonBackReference
+    @JsonBackReference("customerMailPhone")
     @JsonView(View.Public.class)
     private Customer customer;
 

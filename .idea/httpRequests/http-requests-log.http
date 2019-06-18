@@ -1,3 +1,436 @@
+POST http://localhost:8080/api/customers
+Authorization: Basic Liselot abc
+Content-Type: application/json
+Accept: application/json
+
+{
+  "title": "mevrouw",
+  "first_name": "Nina",
+  "infix": "van der",
+  "last_name": "Hulde",
+  "address": "Bloemenlaan 57",
+  "zipcode": "9284WL",
+  "country": "Nederland",
+  "city": "Nijmegen",
+  "gender": "v",
+  "email_addresses": [
+    {
+      "email": "test@test.com"
+    }
+  ],
+  "phone_numbers": [
+    {
+      "phonenumber": "06-43430303"
+    }
+  ],
+  "orders": [
+    {
+      "dateorder": "2019-01-10T13:37:42",
+      "dateevent": "2019-01-10T13:37:42",
+      "note": "test note",
+      "starttime": "2019-01-10T13:37:42",
+      "endtime": "2019-01-10T13:37:42",
+      "eventid": 2,
+      "quotations": [
+        {
+          "datequotation": "2019-01-10T13:37:42",
+          "bankaccount": "ABNA4200982",
+          "pricebtw": 1212,
+          "pricepp": 40
+        }
+      ],
+      "invoices": [
+        {
+          "dateinvoice": "2019-01-10T13:37:42",
+          "paymentextras": "dit kost te veel",
+          "pricepp": 1242.99,
+          "pricebtw": 12453,
+          "othercosts": 120,
+          "othercostsbtw": 190,
+          "tobepaid": 1242,
+          "paid": 4,
+          "datepartpaid": "2019-01-10T13:37:42",
+          "datefullpaid": "2019-01-10T13:37:42",
+          "bankaccount": "INGB13371337",
+          "dateinvoicemailsend": "2019-01-10T13:37:42",
+          "excludefrominvoicealert": true
+        }
+      ]
+    }
+  ]
+}
+
+<> 2019-06-18T021724.500.json
+
+###
+
+POST http://localhost:8080/api/customers
+Authorization: Basic Liselot abc
+Content-Type: application/json
+Accept: application/json
+
+{
+  "title": "mevrouw",
+  "first_name": "Nina",
+  "infix": "van der",
+  "last_name": "Hulde",
+  "address": "Bloemenlaan 57",
+  "zipcode": "9284WL",
+  "country": "Nederland",
+  "city": "Nijmegen",
+  "gender": "v",
+  "email_addresses": [
+    {
+      "email": "test@test.com"
+    }
+  ],
+  "phone_numbers": [
+    {
+      "phonenumber": "0643430303"
+    }
+  ],
+  "orders": [
+    {
+      "dateorder": "2019-01-10T13:37:42",
+      "dateevent": "2019-01-10T13:37:42",
+      "note": "test note",
+      "starttime": "2019-01-10T13:37:42",
+      "endtime": "2019-01-10T13:37:42",
+      "eventid": 2,
+      "quotations": [
+        {
+          "datequotation": "2019-01-10T13:37:42",
+          "bankaccount": "ABNA4200982",
+          "pricebtw": 1212,
+          "pricepp": 40
+        }
+      ],
+      "invoices": [
+        {
+          "dateinvoice": "2019-01-10T13:37:42",
+          "paymentextras": "dit kost te veel",
+          "pricepp": 1242.99,
+          "pricebtw": 12453,
+          "othercosts": 120,
+          "othercostsbtw": 190,
+          "tobepaid": 1242,
+          "paid": 4,
+          "datepartpaid": "2019-01-10T13:37:42",
+          "datefullpaid": "2019-01-10T13:37:42",
+          "bankaccount": "INGB13371337",
+          "dateinvoicemailsend": "2019-01-10T13:37:42",
+          "excludefrominvoicealert": true
+        }
+      ]
+    }
+  ]
+}
+
+<> 2019-06-18T021621.200.json
+
+###
+
+POST http://localhost:8080/api/customers
+Authorization: Basic Liselot abc
+Content-Type: application/json
+Accept: application/json
+
+{
+  "title": "mevrouw",
+  "first_name": "Nina",
+  "infix": "van der",
+  "last_name": "Hulde",
+  "address": "Bloemenlaan 57",
+  "zipcode": "9284WL",
+  "country": "Nederland",
+  "city": "Nijmegen",
+  "gender": "v",
+  "email_addresses": [
+    {
+      "email": "test@test.com"
+    }
+  ],
+  "phone_numbers": [
+    {
+      "phonenumber": "06-43430303"
+    }
+  ],
+  "orders": [
+    {
+      "dateorder": "2019-01-10T13:37:42",
+      "dateevent": "2019-01-10T13:37:42",
+      "note": "test note",
+      "starttime": "2019-01-10T13:37:42",
+      "endtime": "2019-01-10T13:37:42",
+      "eventid": 2,
+      "quotations": [
+        {
+          "datequotation": "2019-01-10T13:37:42",
+          "bankaccount": "ABNA4200982",
+          "pricebtw": 1212,
+          "pricepp": 40
+        }
+      ],
+      "invoices": [
+        {
+          "dateinvoice": "2019-01-10T13:37:42",
+          "paymentextras": "dit kost te veel",
+          "pricepp": 1242.99,
+          "pricebtw": 12453,
+          "othercosts": 120,
+          "othercostsbtw": 190,
+          "tobepaid": 1242,
+          "paid": 4,
+          "datepartpaid": "2019-01-10T13:37:42",
+          "datefullpaid": "2019-01-10T13:37:42",
+          "bankaccount": "INGB13371337",
+          "dateinvoicemailsend": "2019-01-10T13:37:42",
+          "excludefrominvoicealert": true
+        }
+      ]
+    }
+  ]
+}
+
+<> 2019-06-18T021606.500.json
+
+###
+
+POST http://localhost:8080/api/customers
+Authorization: Basic Liselot abc
+Content-Type: application/json
+Accept: application/json
+
+{
+  "title": "mevrouw",
+  "first_name": "Nina",
+  "infix": "van der",
+  "last_name": "Hulde",
+  "address": "Bloemenlaan 57",
+  "zipcode": "9284WL",
+  "country": "Nederland",
+  "city": "Nijmegen",
+  "gender": "v",
+  "email_addresses": [
+    {
+      "email": "test@test.com"
+    }
+  ],
+  "phone_numbers": [
+    {
+      "phonenumber": "06-43430303"
+    }
+  ],
+  "orders": [
+    {
+      "dateorder": "2019-01-10T13:37:42",
+      "dateevent": "2019-01-10T13:37:42",
+      "note": "test note",
+      "starttime": "2019-01-10T13:37:42",
+      "endtime": "2019-01-10T13:37:42",
+      "eventid": 2,
+      "quotations": [
+        {
+          "datequotation": "2019-01-10T13:37:42",
+          "bankaccount": "ABNA4200982",
+          "pricebtw": 1212,
+          "pricepp": 40
+        }
+      ],
+      "invoices": [
+        {
+          "dateinvoice": "2019-01-10T13:37:42",
+          "paymentextras": "dit kost te veel",
+          "pricepp": 1242.99,
+          "pricebtw": 12453,
+          "othercosts": 120,
+          "othercostsbtw": 190,
+          "tobepaid": 1242,
+          "paid": 4,
+          "datepartpaid": "2019-01-10T13:37:42",
+          "datefullpaid": "2019-01-10T13:37:42",
+          "bankaccount": "INGB13371337",
+          "dateinvoicemailsend": "2019-01-10T13:37:42",
+          "excludefrominvoicealert": true
+        }
+      ]
+    }
+  ]
+}
+
+<> 2019-06-18T020959.415.json
+
+###
+
+POST http://localhost:8080/api/customers
+Authorization: Basic Liselot abc
+Content-Type: application/json
+Accept: application/json
+
+{
+  "title": "mevrouw",
+  "first_name": "Nina",
+  "infix": "van der",
+  "last_name": "Hulde",
+  "address": "Bloemenlaan 57",
+  "zipcode": "9284WL",
+  "country": "Nederland",
+  "city": "Nijmegen",
+  "gender": "v",
+  "email_addresses": [
+    {
+      "email": "test@test.com"
+    }
+  ],
+  "phone_numbers": [
+    {
+      "phonenumber": "06-43430303"
+    }
+  ],
+  "orders": [
+    {
+      "dateorder": "2019-01-10T13:37:42",
+      "dateevent": "2019-01-10T13:37:42",
+      "note": "test note",
+      "starttime": "2019-01-10T13:37:42",
+      "endtime": "2019-01-10T13:37:42",
+      "eventid": 2,
+      "quotations": [
+        {
+          "datequotation": "2019-01-10T13:37:42",
+          "bankaccount": "ABNA4200982",
+          "pricebtw": 1212,
+          "pricepp": 40
+        }
+      ],
+      "invoices": [
+        {
+          "dateinvoice": "2019-01-10T13:37:42",
+          "paymentextras": "dit kost te veel",
+          "pricepp": 1242.99,
+          "pricebtw": 12453,
+          "othercosts": 120,
+          "othercostsbtw": 190,
+          "tobepaid": 1242,
+          "paid": 4,
+          "datepartpaid": "2019-01-10T13:37:42",
+          "datefullpaid": "2019-01-10T13:37:42",
+          "bankaccount": "INGB13371337",
+          "dateinvoicemailsend": "2019-01-10T13:37:42",
+          "excludefrominvoicealert": true
+        }
+      ]
+    }
+  ]
+}
+
+<> 2019-06-18T014149.415.json
+
+###
+
+POST http://localhost:8080/api/orders
+Authorization: Basic Liselot abc
+Content-Type: application/json
+Accept: application/json
+
+{
+  "customerid": 7,
+  "dateorder": "2019-01-10T13:37:42",
+  "dateevent": "2019-01-10T13:37:42",
+  "note": "test note",
+  "starttime": "2019-01-10T13:37:42",
+  "endtime": "2019-01-10T13:37:42",
+  "eventid": 2,
+    "quotations": [
+    {
+      "datequotation": "2019-01-10T13:37:42",
+      "bankaccount": "ABNA4200982",
+      "pricebtw": 1212,
+      "pricepp": 40
+    }
+  ],
+  "invoices": [
+    {
+      "dateinvoice": "2019-01-10T13:37:42",
+      "paymentextras": "dit kost te veel",
+      "pricepp": 1242.99,
+      "pricebtw": 12453,
+      "othercosts": 120,
+      "othercostsbtw": 190,
+      "tobepaid": 1242,
+      "paid": 4,
+      "datepartpaid": "2019-01-10T13:37:42",
+      "datefullpaid": "2019-01-10T13:37:42",
+      "bankaccount": "INGB13371337",
+      "dateinvoicemailsend": "2019-01-10T13:37:42",
+      "excludefrominvoicealert": true
+    }
+  ]
+}
+
+<> 2019-06-18T013114.415.json
+
+###
+
+POST http://localhost:8080/api/orders
+Authorization: Basic Liselot abc
+Content-Type: application/json
+Accept: application/json
+
+{
+  "customerid": 7,
+  "dateorder": "2019-01-10T13:37:42",
+  "dateevent": "2019-01-10T13:37:42",
+  "note": "test note",
+  "starttime": "2019-01-10T13:37:42",
+  "endtime": "2019-01-10T13:37:42",
+  "maxinstructors": 4,
+  "eventid": 2,
+    "quotations": [
+    {
+      "datequotation": "2019-01-10T13:37:42",
+      "bankaccount": "ABNA4200982",
+      "pricebtw": 1212,
+      "pricepp": 40
+    }
+  ],
+  "invoices": [
+    {
+      "dateinvoice": "2019-01-10T13:37:42",
+      "paymentextras": "dit kost te veel",
+      "pricepp": 1242.99,
+      "pricebtw": 12453,
+      "othercosts": 120,
+      "othercostsbtw": 190,
+      "tobepaid": 1242,
+      "paid": 4,
+      "datepartpaid": "2019-01-10T13:37:42",
+      "datefullpaid": "2019-01-10T13:37:42",
+      "bankaccount": "INGB13371337",
+      "dateinvoicemailsend": "2019-01-10T13:37:42",
+      "excludefrominvoicealert": true
+    }
+  ]
+}
+
+###
+
+GET http://localhost:8080/api/orders
+Authorization: Basic Arthur abc
+Accept: application/json
+
+<> 2019-06-18T012001.500.json
+
+###
+
+GET http://localhost:8080/api/orders
+Authorization: Basic Arthur abc
+Accept: application/json
+
+<> 2019-06-18T011913.500.json
+
+###
+
 POST http://localhost:8080/api/suppliers
 Authorization: Basic Liselot abc
 Content-Type: application/json

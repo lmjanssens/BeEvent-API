@@ -24,7 +24,7 @@ public class EventImage {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "eventid", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonBackReference
+    @JsonBackReference("imageEventRef")
     private Event event;
 
     @NotNull

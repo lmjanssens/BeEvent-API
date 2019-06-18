@@ -1,15 +1,11 @@
 package nl.hsleiden.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonView;
 import nl.hsleiden.View;
-import com.fasterxml.jackson.annotation.*;
-import nl.hsleiden.repository.EventRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
-import java.awt.*;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Set;
@@ -28,6 +24,7 @@ public class Order {
     @JoinColumn(name = "customerid", nullable = false , updatable = false)
     @JsonProperty("customerid")
     @JsonView(View.Public.class)
+    @JsonBackReference("orderCustomerRef")
     private Customer customer;
 
     @Column(name = "dateorder")

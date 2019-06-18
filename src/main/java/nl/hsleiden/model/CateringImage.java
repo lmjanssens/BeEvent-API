@@ -29,7 +29,7 @@ public class CateringImage {
     @ManyToOne
     @JoinColumn(name = "cateringid", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonBackReference
+    @JsonBackReference("imageCateringRef")
     @JsonView(View.Public.class)
     private Catering catering;
 

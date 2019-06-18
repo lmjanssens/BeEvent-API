@@ -22,7 +22,7 @@ public class Quotation {
 
     @ManyToOne
     @JoinColumn(name = "orderid", nullable = false)
-    @JsonBackReference
+    @JsonBackReference("quotationOrderRef")
     @JsonView(View.Public.class)
     private Order order;
 

@@ -99,7 +99,7 @@ public class Customer {
 
     @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
     @JsonView(View.Public.class)
-    @JsonIgnore
+    @JsonProperty("orders")
     private Set<Order> orders;
 
     public Customer() {

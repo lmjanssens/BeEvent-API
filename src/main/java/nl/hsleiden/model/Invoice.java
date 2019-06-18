@@ -22,7 +22,7 @@ public class Invoice {
 
     @ManyToOne
     @JoinColumn(name = "orderid", nullable = false)
-    @JsonBackReference
+    @JsonBackReference("invoiceOrderRef")
     private Order order;
 
     @Column(name = "dateinvoice")

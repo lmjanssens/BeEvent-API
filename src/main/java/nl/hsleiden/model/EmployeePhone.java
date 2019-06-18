@@ -23,7 +23,7 @@ public class EmployeePhone {
 
     @ManyToOne
     @JoinColumn(name = "employeeid", nullable = false)
-    @JsonBackReference
+    @JsonBackReference("phoneEmployeeRef")
     @JsonView(View.Public.class)
     private Employee employee;
 

@@ -19,7 +19,7 @@ public class UserAction {
 
     @ManyToOne
     @JoinColumn(name = "userID", nullable = false)
-    @JsonBackReference
+    @JsonBackReference("actionUserRef")
     private User user;
 
     @NotNull

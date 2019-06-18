@@ -18,13 +18,13 @@ public class CustomerOrder {
 
     @ManyToOne
     @JoinColumn(name = "orderid")
-    @JsonBackReference
+    @JsonBackReference("customerOrderOrderRef")
     @JsonView(View.Public.class)
     private Order order;
 
     @ManyToOne
     @JoinColumn(name = "customerid", nullable = false)
-    @JsonBackReference
+    @JsonBackReference("customerOrderCustomerRef")
     @JsonView(View.Public.class)
     private Customer customer;
 

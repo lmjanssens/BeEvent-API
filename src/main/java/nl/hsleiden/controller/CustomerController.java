@@ -45,6 +45,7 @@ public class CustomerController {
 
     CollectionDataService<CustomerEmail> emailCollectionDataService = new CollectionDataService<>();
     CollectionDataService<CustomerPhone> phoneCollectionDataService = new CollectionDataService<>();
+    CollectionDataService<Order> orderCollectionDataService = new CollectionDataService<>();
 
     @GetMapping("/api/customers")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "') or hasAuthority('" + Role.INSTRUCTOR + "')")
@@ -100,17 +101,26 @@ public class CustomerController {
             Collection<CustomerPhone> phonesToSave = phoneCollectionDataService.getToBeSaved(customer.getPhones(), updatedCustomer.getPhones());
             Collection<CustomerPhone> phonesToDelete = phoneCollectionDataService.getToBeDeleted(customer.getPhones(), updatedCustomer.getPhones());
 
+            Collection<Order> ordersToSave = orderCollectionDataService.getToBeSaved(customer.getOrders(), updatedCustomer.getOrders());
+            Collection<Order> ordersToDelete = orderCollectionDataService.getToBeDeleted(customer.getOrders(), updatedCustomer.getOrders());
+
             saveEmailAddresses(customer, emailsToSave);
             deleteEmailAddresses(emailsToDelete);
 
             savePhoneNumbers(customer, phonesToSave);
             deletePhoneNumbers(phonesToDelete);
 
+            saveOrders(customer, ordersToSave);
+            deleteOrders(ordersToDelete);
+
             customer.setEmails(
                     emailCollectionDataService.getDefinitiveCollection(customer.getEmails(), emailsToSave, emailsToDelete)
             );
             customer.setPhones(
                     phoneCollectionDataService.getDefinitiveCollection(customer.getPhones(), phonesToSave, phonesToDelete)
+            );
+            customer.setOrders(
+                    orderCollectionDataService.getDefinitiveCollection(customer.getOrders(), ordersToSave, ordersToDelete)
             );
 
             return customerRepository.save(customer);
@@ -166,6 +176,27 @@ public class CustomerController {
             customerPhoneRepository.deleteAll(toBeDeleted);
         } catch (NullPointerException exception) {
             LOGGER.info("Unable to delete phone numbers");
+        }
+    }
+
+    private void saveOrders(Customer customer, Collection<Order> toBeSaved) {
+        LOGGER.info("Saving orders...");
+        try {
+            for (Order order: toBeSaved)
+                order.setCustomer(customer);
+
+            orderRepository.saveAll(toBeSaved);
+        } catch (NullPointerException exception) {
+            LOGGER.info("Unable to save orders");
+        }
+    }
+
+    private void deleteOrders(Collection<Order> toBeDeleted) {
+        LOGGER.info("Deleting orders...");
+        try {
+            orderRepository.deleteAll(toBeDeleted);
+        } catch (NullPointerException exception) {
+            LOGGER.info("Unable to delete orders");
         }
     }
 }

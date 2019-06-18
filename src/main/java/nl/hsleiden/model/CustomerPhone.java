@@ -22,7 +22,7 @@ public class CustomerPhone {
 
     @ManyToOne
     @JoinColumn(name = "customerid", nullable = false)
-    @JsonBackReference
+    @JsonBackReference("customerPhoneRef")
     @JsonView(View.Public.class)
     private Customer customer;
 
