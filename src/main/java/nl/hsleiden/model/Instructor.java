@@ -3,11 +3,14 @@ package nl.hsleiden.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonView;
 import nl.hsleiden.View;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "instructor")
@@ -47,7 +50,8 @@ public class Instructor {
     private String lastName;
 
     @NotNull
-    @Length(min = 10, max = 20)
+    @Length(max = 10)
+    @Pattern(regexp="(^[0-9]{10}$)")
     @Column(name = "phone_number")
     @JsonProperty("phone_number")
     @JsonView(View.Public.class)

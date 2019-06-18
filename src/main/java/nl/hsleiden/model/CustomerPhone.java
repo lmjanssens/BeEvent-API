@@ -5,9 +5,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonView;
 import nl.hsleiden.View;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "customer_phone")
@@ -25,6 +27,8 @@ public class CustomerPhone {
     private Customer customer;
 
     @NotNull
+    @Length(max = 10)
+    @Pattern(regexp="(^[0-9]{10}$)")
     @Column(name = "phonenumber")
     @JsonProperty("phonenumber")
     @JsonView(View.Public.class)

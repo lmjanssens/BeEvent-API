@@ -9,6 +9,7 @@ import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "employee_phone")
@@ -27,7 +28,8 @@ public class EmployeePhone {
     private Employee employee;
 
     @NotNull
-    @Length(max = 20)
+    @Length(max = 10)
+    @Pattern(regexp="(^[0-9]{10}$)")
     @Column(name = "phonenumber")
     @JsonProperty("phone")
     @JsonView(View.Public.class)
