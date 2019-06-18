@@ -92,6 +92,7 @@ public class CustomerController {
             customer.setLastName(updatedCustomer.getLastName());
             customer.setTitle(updatedCustomer.getTitle());
             customer.setZipcode(updatedCustomer.getZipcode());
+            customer.setGender(updatedCustomer.getGender());
 
             Collection<CustomerEmail> emailsToSave = emailCollectionDataService.getToBeSaved(customer.getEmails(), updatedCustomer.getEmails());
             Collection<CustomerEmail> emailsToDelete = emailCollectionDataService.getToBeDeleted(customer.getEmails(), updatedCustomer.getEmails());
