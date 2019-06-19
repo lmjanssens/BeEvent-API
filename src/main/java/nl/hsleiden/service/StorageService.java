@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.FileSystemUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.nio.file.Files;
@@ -45,6 +46,14 @@ public class StorageService {
 
     public void deleteAll() {
         FileSystemUtils.deleteRecursively(rootLocation.toFile());
+    }
+
+    public void delete(Resource file) {
+        try {
+            file.getFile().delete();
+        } catch (IOException exception) {
+            throw new RuntimeException("FAILED TO DELETE FILE");
+        }
     }
 
     public void init() {
