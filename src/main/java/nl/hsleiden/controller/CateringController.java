@@ -36,7 +36,7 @@ public class CateringController {
     public Collection<Catering> getCaterings() { return this.cateringRepo.findAll(); }
 
     @GetMapping("/api/caterings/{cateringId}")
-    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "') or hasAuthority('" + Role.INSTRUCTOR + "')")
     @JsonView(View.Public.class)
     public Optional<Catering> getSpecificCatering(@PathVariable Long cateringId) {
         LOGGER.info("Fetching catering of id " + cateringId);

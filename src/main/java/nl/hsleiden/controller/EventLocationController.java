@@ -42,7 +42,7 @@ public class EventLocationController {
      * @return a single location object
      */
     @GetMapping("/api/eventlocation/{locationId}")
-    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')  or hasAuthority('" + Role.INSTRUCTOR + "')")
     @JsonView(View.Public.class)
     public Optional<EventLocation> getSpecifiedEventlocation(@PathVariable  Long locationId) {
         LOGGER.info("Fetching event location with id: "  + locationId);

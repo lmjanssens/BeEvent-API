@@ -48,7 +48,7 @@ public class OrderController {
     public Collection<Order> getOrders() { return orderRepository.findAll(); }
 
     @GetMapping("/api/orders/{orderId}")
-    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')  or hasAuthority('" + Role.INSTRUCTOR + "')")
     @JsonView(View.Public.class)
     public Optional<Order> getSpecifiedCatering(@PathVariable Long orderId) {
         LOGGER.info("Fetching order with id: " + orderId);

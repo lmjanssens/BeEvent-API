@@ -47,7 +47,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/api/employees/{employeeId}")
-    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "') or hasAuthority('" + Role.INSTRUCTOR + "')")
     @JsonView(View.Public.class)
     public Optional<Employee> getEmployee(@PathVariable Long employeeId) {
         LOGGER.info("Fetching employee with id" + employeeId);

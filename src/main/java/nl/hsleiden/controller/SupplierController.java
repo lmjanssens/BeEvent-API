@@ -51,7 +51,7 @@ public class SupplierController {
     }
 
     @GetMapping("/api/suppliers/{supplierId}")
-    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "') or hasAuthority('" + Role.INSTRUCTOR + "')")
     @JsonView(View.Public.class)
     public Optional<Supplier> getSupplier(@PathVariable Long supplierId) {
         LOGGER.info("Fetching supplier by id: " + supplierId);

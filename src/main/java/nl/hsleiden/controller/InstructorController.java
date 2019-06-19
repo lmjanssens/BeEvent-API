@@ -36,7 +36,7 @@ public class InstructorController {
     }
 
     @GetMapping("/api/instructors/{instructorId}")
-    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "') or hasAuthority('" + Role.INSTRUCTOR + "')")
     @JsonView(View.Public.class)
     public Optional<Instructor> getInstructor(@PathVariable Long instructorId) {
         LOGGER.info("Fetching instructor with id" + instructorId);

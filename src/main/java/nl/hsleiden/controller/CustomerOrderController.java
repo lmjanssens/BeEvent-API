@@ -40,7 +40,7 @@ public class CustomerOrderController {
     public Collection<CustomerOrder> getCustomerOrder() { return customerOrderRepository.findAll(); }
 
     @GetMapping("/api/customerOrder/{customerOrderId}")
-    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "') or hasAuthority('" + Role.INSTRUCTOR + "')")
     @JsonView(View.Public.class)
     public Optional<CustomerOrder> getSpecifiedCustomerOrder(@PathVariable Long customerOrderId) {
         LOGGER.info("Fetching customer order with id: " + customerOrderId);
