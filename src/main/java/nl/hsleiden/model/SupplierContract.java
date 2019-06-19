@@ -49,12 +49,12 @@ public class SupplierContract {
 
     @NotNull
     @Column(name = "contract_inclu_btw")
-    @JsonProperty("inclubtw")
+    @JsonProperty("incluBtw")
     private double incluBtw;
 
     @NotNull
     @Column(name = "contract_excl")
-    @JsonProperty("exclubtw")
+    @JsonProperty("excluBtw")
     private double excluBtw;
 
     @Max(100)
