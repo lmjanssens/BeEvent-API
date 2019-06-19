@@ -32,7 +32,7 @@ public class Event {
 
     @OneToOne
     @JoinColumn(name = "supplierid")
-    @JsonIgnore
+    @JsonView(View.Public.class)
     private Supplier supplier;
 
     @OneToOne
