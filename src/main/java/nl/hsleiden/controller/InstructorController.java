@@ -6,6 +6,7 @@ import nl.hsleiden.auth.Role;
 import nl.hsleiden.exception.ResourceNotFoundException;
 import nl.hsleiden.model.Instructor;
 import nl.hsleiden.repository.InstructorRepository;
+import nl.hsleiden.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +26,8 @@ public class InstructorController {
     @Autowired
     private InstructorRepository instructorRepository;
 
-//    @Autowired
-//    private UserService userService;
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/api/instructors")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "') or hasAuthority('" + Role.INSTRUCTOR + "')")
@@ -48,9 +49,10 @@ public class InstructorController {
     @JsonView(View.Public.class)
     public Instructor createInstructor(@Valid @RequestBody Instructor instructor) {
         LOGGER.info("Creating instructor.");
-//        instructor.setUser(
-//                this.userService.encodePassword(instructor.getUser())
-//        );
+
+        instructor.setUser(
+                this.userService.encodePassword(instructor.getUser())
+        );
 
         return instructorRepository.save(instructor);
     }

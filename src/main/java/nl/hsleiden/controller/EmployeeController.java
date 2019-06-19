@@ -11,6 +11,7 @@ import nl.hsleiden.repository.EmployeeEmailRepository;
 import nl.hsleiden.repository.EmployeePhoneRepository;
 import nl.hsleiden.repository.EmployeeRepository;
 import nl.hsleiden.service.CollectionDataService;
+import nl.hsleiden.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,10 @@ public class EmployeeController {
     private EmployeeEmailRepository employeeEmailRepository;
 
     @Autowired
-    EmployeePhoneRepository employeePhoneRepository;
+    private EmployeePhoneRepository employeePhoneRepository;
+
+    @Autowired
+    private UserService userService;
 
     CollectionDataService<EmployeeEmail> emailCollectionDataService = new CollectionDataService<>();
     CollectionDataService<EmployeePhone> phoneCollectionDataService = new CollectionDataService<>();
@@ -59,6 +63,11 @@ public class EmployeeController {
     @JsonView(View.Public.class)
     public Employee createEmployee(@Valid @RequestBody Employee employee) {
         LOGGER.info("Creating employee.");
+
+        employee.setUser(
+                userService.encodePassword(employee.getUser())
+        );
+
         Employee savedEmployee = employeeRepository.save(employee);
 
         this.saveEmailAddresses(savedEmployee, employee.getEmails());
