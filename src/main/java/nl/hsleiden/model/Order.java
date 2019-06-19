@@ -1,9 +1,12 @@
 package nl.hsleiden.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonView;
 import nl.hsleiden.View;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -20,11 +23,10 @@ public class Order {
     @JsonView(View.Public.class)
     private Long orderId;
 
-    @ManyToOne
-    @JoinColumn(name = "customerid", nullable = false , updatable = false)
-    @JsonProperty("customerid")
-    @JsonView(View.Public.class)
-    @JsonBackReference("orderCustomerRef")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "customerid", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonBackReference("eventCustomerRef")
     private Customer customer;
 
     @Column(name = "dateorder")
@@ -55,14 +57,8 @@ public class Order {
     @JsonView(View.Public.class)
     private Set<CateringOrder> cateringOrders;
 
-    @OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
-    @JsonProperty("invoices")
-    @JsonView(View.Public.class)
-    private Set<Invoice> invoices;
-
     @OneToOne
     @JoinColumn(name = "eventid")
-    @JsonProperty("eventid")
     @JsonView(View.Public.class)
     private Event event;
 
@@ -130,14 +126,6 @@ public class Order {
 
     public void setCateringOrders(Set<CateringOrder> cateringOrders) {
         this.cateringOrders = cateringOrders;
-    }
-
-    public Set<Invoice> getInvoices() {
-        return invoices;
-    }
-
-    public void setInvoices(Set<Invoice> invoices) {
-        this.invoices = invoices;
     }
 
     public Customer getCustomer() {

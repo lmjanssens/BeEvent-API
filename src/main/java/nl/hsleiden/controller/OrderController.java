@@ -27,18 +27,17 @@ public class OrderController {
     private OrderRepository orderRepository;
 
     @Autowired
-    private InvoiceRepository invoiceRepository;
-
-    @Autowired
     private CateringOrderRepository cateringOrderRepository;
 
     @Autowired
     private EventRepository eventRepository;
 
     @Autowired
+    private CustomerRepository customerRepository;
+
+    @Autowired
     private QuotationRepository quotationRepository;
 
-    CollectionDataService<Invoice> invoiceCollectionDataService = new CollectionDataService<>();
     CollectionDataService<CateringOrder> cateringOrderCollectionDataService = new CollectionDataService<>();
     CollectionDataService<Quotation> quotationCollectionDataService = new CollectionDataService<>();
 
@@ -55,24 +54,26 @@ public class OrderController {
         return orderRepository.findById(orderId);
     }
 
-    @PostMapping("/api/orders")
+    @PostMapping("/api/orders/{customerId}/{eventId}")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     @JsonView(View.Public.class)
-    public Order createOrder(@Valid @RequestBody Order order) {
+    public Order createOrder(@Valid @RequestBody Order order,
+                             @PathVariable Long eventId,
+                             @PathVariable Long customerId) {
         LOGGER.info("Creating new order...");
         Order savedOrder = orderRepository.save(order);
 
         this.saveCateringOrders(savedOrder, order.getCateringOrders());
-        this.saveInvoices(savedOrder, order.getInvoices());
         this.saveQuotations(savedOrder, order.getQuotations());
 
-        return orderRepository.save(order);
+        return linkEventAndCustomerToOrder(savedOrder, eventId, customerId);
     }
 
-    @PutMapping("/api/orders/{orderId}")
+    @PutMapping("/api/orders/{orderId}/{customerId}/{eventId}")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     @JsonView(View.Public.class)
-    public Order updateOrder(@PathVariable Long orderId, @Valid @RequestBody Order updatedOrder) {
+    public Order updateOrder(@PathVariable Long orderId, @Valid @RequestBody Order updatedOrder,
+                             @PathVariable Long customerId, @PathVariable Long eventId) {
         LOGGER.info("Updating order with id: " + orderId);
         return orderRepository.findById(orderId).map(order -> {
             order.setEvent(updatedOrder.getEvent());
@@ -82,17 +83,11 @@ public class OrderController {
             order.setNote(updatedOrder.getNote());
             order.setStartTime(updatedOrder.getStartTime());
 
-            Collection<Invoice> invoicesToBeSaved = invoiceCollectionDataService.getToBeSaved(order.getInvoices(), updatedOrder.getInvoices());
-            Collection<Invoice> invoicesToBeDeleted = invoiceCollectionDataService.getToBeDeleted(order.getInvoices(), updatedOrder.getInvoices());
-
             Collection<CateringOrder> cateringOrdersToBeSaved = cateringOrderCollectionDataService.getToBeSaved(order.getCateringOrders(), updatedOrder.getCateringOrders());
             Collection<CateringOrder> cateringOrdersToBeDeleted = cateringOrderCollectionDataService.getToBeDeleted(order.getCateringOrders(), updatedOrder.getCateringOrders());
 
             Collection<Quotation> quotationsToBeSaved = quotationCollectionDataService.getToBeSaved(order.getQuotations(), updatedOrder.getQuotations());
             Collection<Quotation> quotationsToBeDeleted = quotationCollectionDataService.getToBeDeleted(order.getQuotations(), updatedOrder.getQuotations());
-
-            saveInvoices(order, invoicesToBeSaved);
-            deleteInvoices(invoicesToBeDeleted);
 
             saveCateringOrders(order, cateringOrdersToBeSaved);
             deleteCateringOrders(cateringOrdersToBeDeleted);
@@ -100,9 +95,6 @@ public class OrderController {
             saveQuotations(order, quotationsToBeSaved);
             deleteQuotations(quotationsToBeDeleted);
 
-            order.setInvoices(
-                    invoiceCollectionDataService.getDefinitiveCollection(order.getInvoices(), invoicesToBeSaved, invoicesToBeDeleted)
-            );
             order.setCateringOrders(
                     cateringOrderCollectionDataService.getDefinitiveCollection(order.getCateringOrders(), cateringOrdersToBeSaved, cateringOrdersToBeDeleted)
             );
@@ -110,7 +102,7 @@ public class OrderController {
                     quotationCollectionDataService.getDefinitiveCollection(order.getQuotations(), quotationsToBeSaved, quotationsToBeDeleted)
             );
 
-            return orderRepository.save(order);
+            return linkEventAndCustomerToOrder(order, eventId, customerId);
         }).orElseThrow(() -> new ResourceNotFoundException("Order not found with id: " + orderId));
     }
 
@@ -122,27 +114,6 @@ public class OrderController {
             orderRepository.delete(order);
             return ResponseEntity.ok().build();
         }).orElseThrow(() -> new ResourceNotFoundException("Order not found with id: " + orderId));
-    }
-
-    private void saveInvoices(Order order, Collection<Invoice> toBeSaved) {
-        LOGGER.info("Saving invoices...");
-        try {
-            for (Invoice invoice : toBeSaved) {
-                invoice.setOrder(order);
-            }
-            invoiceRepository.saveAll(toBeSaved);
-        } catch (NullPointerException exception) {
-            LOGGER.info("Unable to save invoices");
-        }
-    }
-
-    private void deleteInvoices(Collection<Invoice> toBeDeleted) {
-        LOGGER.info("Deleting invoices...");
-        try {
-            invoiceRepository.deleteAll(toBeDeleted);
-        } catch (NullPointerException exception) {
-            LOGGER.info("Unable to delete invoices");
-        }
     }
 
     private void saveCateringOrders(Order order, Collection<CateringOrder> toBeSaved) {
@@ -185,5 +156,15 @@ public class OrderController {
         } catch (NullPointerException exception) {
             LOGGER.info("Unable to delete quotations");
         }
+    }
+
+    private Order linkEventAndCustomerToOrder(Order order, Long eventId, Long customerId) {
+        return eventRepository.findById(eventId).map(event -> {
+            order.setEvent(event);
+            return customerRepository.findById(customerId).map(customer -> {
+                order.setCustomer(customer);
+                return orderRepository.save(order);
+            }).orElseThrow(() -> new ResourceNotFoundException("No customer found with id: " + customerId));
+        }).orElseThrow(() -> new ResourceNotFoundException("No event found with id: " + eventId));
     }
 }
