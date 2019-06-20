@@ -26,7 +26,7 @@ public class Order {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "customerid", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonBackReference("eventCustomerRef")
+    @JsonView(View.Public.class)
     private Customer customer;
 
     @Column(name = "dateorder")
