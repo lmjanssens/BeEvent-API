@@ -46,11 +46,11 @@ public class Order {
 
     @Column(name = "starttime")
     @JsonProperty("startTime")
-    private Timestamp startTime;
+    private String startTime;
 
     @Column(name = "endtime")
     @JsonProperty("endTime")
-    private Timestamp endTime;
+    private String endTime;
 
     @OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
     @JsonProperty("cateringOrders")
@@ -104,19 +104,19 @@ public class Order {
         this.note = note;
     }
 
-    public Timestamp getStartTime() {
+    public String getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Timestamp startTime) {
+    public void setStartTime(String startTime) {
         this.startTime = startTime;
     }
 
-    public Timestamp getEndTime() {
+    public String getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(Timestamp endTime) {
+    public void setEndTime(String endTime) {
         this.endTime = endTime;
     }
 
