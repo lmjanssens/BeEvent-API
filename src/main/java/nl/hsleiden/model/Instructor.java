@@ -65,6 +65,8 @@ public class Instructor {
     @JsonView(View.Public.class)
     private String email;
 
+    public Long getId() { return id; }
+
     public User getUser() {
         return user;
     }
