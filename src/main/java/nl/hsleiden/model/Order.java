@@ -46,11 +46,18 @@ public class Order {
 
     @Column(name = "starttime")
     @JsonProperty("startTime")
+    @JsonView(View.Public.class)
     private String startTime;
 
     @Column(name = "endtime")
     @JsonProperty("endTime")
+    @JsonView(View.Public.class)
     private String endTime;
+
+    @Column(name = "persons")
+    @JsonProperty("persons")
+    @JsonView(View.Public.class)
+    private Long persons;
 
     @OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
     @JsonProperty("cateringOrders")
@@ -120,6 +127,10 @@ public class Order {
         this.endTime = endTime;
     }
 
+    public Long getPersons() { return persons; }
+
+    public void setPersons(Long persons) { this.persons = persons; }
+
     public Set<CateringOrder> getCateringOrders() {
         return cateringOrders;
     }
@@ -150,13 +161,5 @@ public class Order {
 
     public void setEvent(Event event) {
         this.event = event;
-    }
-
-    public Set<RegisteredEvent> getRegisteredEvents() {
-        return registeredEvents;
-    }
-
-    public void setRegisteredEvents(Set<RegisteredEvent> registeredEvents) {
-        this.registeredEvents = registeredEvents;
     }
 }
