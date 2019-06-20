@@ -74,7 +74,7 @@ public class InstructorController {
     }
 
     @DeleteMapping("/api/instructors/{instructorId}")
-    @PreAuthorize("hasAuthority('" + Role.ADMIN + "')")
+    @PreAuthorize("hasAuthority('" + Role.ADMIN + "') or hasAuthority('" + Role.EMPLOYEE + "')")
     public ResponseEntity<?> deleteInstructor(@PathVariable Long instructorId) {
         LOGGER.info("Deleting instructor with id: " + instructorId);
         return instructorRepository.findById(instructorId).map(instructor -> {
