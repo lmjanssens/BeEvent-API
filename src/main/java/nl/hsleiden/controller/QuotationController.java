@@ -31,7 +31,7 @@ public class QuotationController {
     public Collection<Quotation> getQuotations() { return quotationRepository.findAll(); }
 
     @GetMapping("/api/quotation/{quotationNumber}")
-    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "') or hasAuthority('" + Role.INSTRUCTOR + "')")
     @JsonView(View.Public.class)
     public Optional<Quotation> getSpecifiedQuotation(@PathVariable Long quotationNumber) {
         LOGGER.info("Fetching quotation with number: " + quotationNumber);

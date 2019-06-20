@@ -54,7 +54,7 @@ public class EventController {
      * @return a single specific event
      */
     @GetMapping("/api/events/{eventId}")
-    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "') or hasAuthority('" + Role.INSTRUCTOR + "')")
     @JsonView(View.Public.class)
     public Optional<Event> getSpecifiedEvents(@PathVariable(value = "eventId") Long eventId) {
         LOGGER.info("Fetching event object with id: " + eventId);

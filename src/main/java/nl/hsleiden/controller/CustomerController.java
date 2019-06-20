@@ -55,7 +55,7 @@ public class CustomerController {
     }
 
     @GetMapping("/api/customers/{customerId}")
-    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')  or hasAuthority('" + Role.INSTRUCTOR + "')")
     @JsonView(View.Public.class)
     public Optional<Customer> getSpecifiedCustomer(@PathVariable Long customerId) {
         LOGGER.info("Fetching customer with id: " + customerId);
