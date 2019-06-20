@@ -92,7 +92,7 @@ public class UserController {
         String username = null;
         String authority = null;
         User user = null;
-        Instructor instructor = null;
+        Optional<Instructor> instructor = null;
 
         if (!(authentication instanceof AnonymousAuthenticationToken)) {
             username = authentication.getName();
@@ -102,11 +102,6 @@ public class UserController {
         }
 
         user = userRepository.findByUsername(username);
-
-        if (authority.equals(Role.INSTRUCTOR)){
-            instructor = instructorRepository.findByUserId(user.getId());
-            user.setId(instructor.getId());
-        }
 
         return new LoginUser(user.getId(), username, authority);
     }
