@@ -1,7 +1,6 @@
 package nl.hsleiden.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonView;
 import nl.hsleiden.View;
@@ -33,7 +32,15 @@ public class EmployeePhone {
     @Column(name = "phonenumber")
     @JsonProperty("phone")
     @JsonView(View.Public.class)
-    private String phone;
+    private String phoneNumber;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public Employee getEmployee() {
         return employee;
@@ -43,17 +50,17 @@ public class EmployeePhone {
         this.employee = employee;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     @Override
     public boolean equals(Object object) {
         EmployeePhone phone = (EmployeePhone) object;
-        return this.phone.equals(phone.getPhone());
+        return this.phoneNumber.equals(phone.getPhoneNumber());
     }
 }

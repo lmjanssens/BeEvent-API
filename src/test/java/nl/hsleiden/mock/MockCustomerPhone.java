@@ -2,10 +2,12 @@ package nl.hsleiden.mock;
 
 import nl.hsleiden.model.CustomerPhone;
 
+import javax.persistence.Entity;
+
+@Entity
 public class MockCustomerPhone extends CustomerPhone {
 
     public MockCustomerPhone() {
-        this.setId(1L);
-        this.setPhone("+31 6 12345666");
+        this.setPhone("0612345678");
     }
 }

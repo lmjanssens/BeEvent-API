@@ -3,7 +3,6 @@ package nl.hsleiden.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonView;
 import nl.hsleiden.View;
-import org.hibernate.FetchMode;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
@@ -55,7 +54,15 @@ public class Employee {
     @OneToMany(mappedBy = "employee", fetch = FetchType.LAZY)
     @JsonProperty("phone_numbers")
     @JsonView(View.Public.class)
-    private Set<EmployeePhone> phones;
+    private Set<EmployeePhone> phoneNumbers;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public User getUser() {
         return user;
@@ -97,11 +104,11 @@ public class Employee {
         this.emails = emails;
     }
 
-    public Set<EmployeePhone> getPhones() {
-        return phones;
+    public Set<EmployeePhone> getPhoneNumbers() {
+        return phoneNumbers;
     }
 
-    public void setPhones(Set<EmployeePhone> phones) {
-        this.phones = phones;
+    public void setPhoneNumbers(Set<EmployeePhone> phoneNumbers) {
+        this.phoneNumbers = phoneNumbers;
     }
 }
