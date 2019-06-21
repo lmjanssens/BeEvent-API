@@ -101,7 +101,7 @@ public class CateringOrderController {
         }).orElseThrow(() -> new ResourceNotFoundException("No catering order object found of id " + id));
     }
 
-    @PostMapping(("/api/cateringorder/{orderId}/{cateringId}"))
+    @PutMapping("/api/cateringorder/{orderId}/{cateringId}")
     private void saveOrderOptions(CateringOrder cateringOrder, Collection<CateringOrderOption> toBeSaved) {
         try {
             for (CateringOrderOption cateringOrderOption : toBeSaved) {
