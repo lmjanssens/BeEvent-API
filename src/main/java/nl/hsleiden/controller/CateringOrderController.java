@@ -63,6 +63,7 @@ public class CateringOrderController {
             return cateringRepo.findById(cateringId).map(catering -> {
                 cateringOrder.setOrder(order);
                 cateringOrder.setCatering(catering);
+                saveOrderOptions(cateringOrder, cateringOrder.getOptions());
                 return cateringOrderRepo.save(cateringOrder);
             }).orElseThrow(() -> new ResourceNotFoundException("No catering object found of id " + cateringId));
         }).orElseThrow(() -> new ResourceNotFoundException("No order object found of id " + orderId));
@@ -77,6 +78,7 @@ public class CateringOrderController {
         LOGGER.info("Updating catering order object of id " + id);
         return cateringOrderRepo.findById(id).map(cateringOrder -> {
 
+            cateringOrder.setOptions(updatedCateringOrder.getOptions());
             cateringOrder.setDateCateringOptions(updatedCateringOrder.getDateCateringOptions());
             cateringOrder.setDateCateringDefinite(updatedCateringOrder.getDateCateringDefinite());
             cateringOrder.setDateCateringSend(updatedCateringOrder.getDateCateringSend());
@@ -99,6 +101,7 @@ public class CateringOrderController {
         }).orElseThrow(() -> new ResourceNotFoundException("No catering order object found of id " + id));
     }
 
+    @PostMapping(("/api/cateringorder/{orderId}/{cateringId}"))
     private void saveOrderOptions(CateringOrder cateringOrder, Collection<CateringOrderOption> toBeSaved) {
         try {
             for (CateringOrderOption cateringOrderOption : toBeSaved) {
