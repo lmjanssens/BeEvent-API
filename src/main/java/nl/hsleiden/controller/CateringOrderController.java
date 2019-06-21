@@ -5,6 +5,8 @@ import nl.hsleiden.View;
 import nl.hsleiden.auth.Role;
 import nl.hsleiden.exception.ResourceNotFoundException;
 import nl.hsleiden.model.CateringOrder;
+import nl.hsleiden.model.CateringOrderOption;
+import nl.hsleiden.repository.CateringOrderOptionRepository;
 import nl.hsleiden.repository.CateringOrderRepository;
 import nl.hsleiden.repository.CateringRepository;
 import nl.hsleiden.repository.OrderRepository;
@@ -33,6 +35,9 @@ public class CateringOrderController {
 
     @Autowired
     private CateringRepository cateringRepo;
+
+    @Autowired
+    private CateringOrderOptionRepository cateringOrderOptionRepo;
 
     @GetMapping("/api/cateringorder")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "') or hasAuthority('" + Role.INSTRUCTOR + "')")
@@ -92,6 +97,26 @@ public class CateringOrderController {
             cateringOrderRepo.delete(cateringOrder);
             return ResponseEntity.ok().build();
         }).orElseThrow(() -> new ResourceNotFoundException("No catering order object found of id " + id));
+    }
+
+    private void saveOrderOptions(CateringOrder cateringOrder, Collection<CateringOrderOption> toBeSaved) {
+        try {
+            for (CateringOrderOption cateringOrderOption : toBeSaved) {
+                cateringOrderOption.setCateringorder(cateringOrderOption.getCateringorder());
+            }
+            cateringOrderOptionRepo.saveAll(toBeSaved);
+
+        } catch (NullPointerException exception) {
+            LOGGER.info("Unable to save contractsoptions");
+        }
+    }
+
+    private void deleteContractOptions(Collection<CateringOrderOption> toBeDeleted) {
+        try {
+            cateringOrderOptionRepo.deleteAll(toBeDeleted);
+        } catch (NullPointerException e){
+            LOGGER.info("Unable to delete addresses");
+        }
     }
 
 }

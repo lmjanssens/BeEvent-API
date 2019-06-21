@@ -9,6 +9,7 @@ import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "catering_order")
@@ -25,6 +26,19 @@ public class CateringOrder {
     @JsonBackReference("cateringOrderRef")
     @JsonView(View.Public.class)
     private Order order;
+
+    public Set<CateringOrderOption> getOptions() {
+        return options;
+    }
+
+    public void setOptions(Set<CateringOrderOption> options) {
+        this.options = options;
+    }
+
+    @OneToMany(mappedBy = "cateringorder")
+    @JsonProperty("options")
+    @JsonView(View.Public.class)
+    private Set<CateringOrderOption> options;
 
     @ManyToOne
     @JoinColumn(name = "cateringid", nullable = false)

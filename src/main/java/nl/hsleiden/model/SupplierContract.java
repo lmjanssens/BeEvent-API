@@ -23,6 +23,19 @@ public class SupplierContract {
     @JsonView(View.Public.class)
     private Long id;
 
+    public Set<SupplierContractOption> getOptions() {
+        return options;
+    }
+
+    public void setOptions(Set<SupplierContractOption> options) {
+        this.options = options;
+    }
+
+    @OneToMany(mappedBy = "contract")
+    @JsonProperty("options")
+    @JsonView(View.Public.class)
+    private Set<SupplierContractOption> options;
+
     @ManyToOne
     @JoinColumn(name = "supplierid", nullable = false)
     @JsonBackReference("contractSupplierRef")

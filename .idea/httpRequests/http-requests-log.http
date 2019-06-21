@@ -1,3 +1,24 @@
+POST http://localhost:8080/api/cateringorder/43/19
+Authorization: Basic Arthur abc
+Content-Type: application/json
+Accept: application/json
+
+{
+  "orderid": 1,
+  "cateringid": 1,
+  "datecateringoptions": "2019-01-10T13:37:42",
+  "datecateringdefinite": "2019-01-10T13:37:42",
+  "datecateringsend": "2019-01-10T13:37:42",
+  "contactcateringoption": "opties enzo",
+  "contactcateringdefinite": "wat moet hier",
+  "contactcateringsend": "ja",
+  "note": "jajajaja"
+}
+
+<> 2019-06-21T010843.404.json
+
+###
+
 POST http://localhost:8080/api/customers
 Authorization: Basic Liselot abc
 Content-Type: application/json

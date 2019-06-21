@@ -1,7 +1,6 @@
 package nl.hsleiden.controller;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
 import nl.hsleiden.View;
 import nl.hsleiden.auth.Role;
 import nl.hsleiden.exception.ResourceNotFoundException;
