@@ -2,10 +2,12 @@ package nl.hsleiden.mock;
 
 import nl.hsleiden.model.Event;
 
+import javax.persistence.Entity;
+
+@Entity
 public class MockEvent extends Event {
 
     public MockEvent() {
-        this.setId(1L);
         this.setOwnEvent(true);
         this.setName("Mock event");
         this.setDescription("This is a great event");

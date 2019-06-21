@@ -4,13 +4,14 @@ import nl.hsleiden.model.Customer;
 import nl.hsleiden.model.CustomerEmail;
 import nl.hsleiden.model.CustomerPhone;
 
+import javax.persistence.Entity;
 import java.util.ArrayList;
 import java.util.HashSet;
 
+@Entity
 public class MockCustomer extends Customer {
 
     public MockCustomer() {
-        this.setId(1L);
         this.setTitle("mevrouw");
         this.setFirstName("Nina");
         this.setInfix("van der");

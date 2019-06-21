@@ -2,13 +2,14 @@ package nl.hsleiden.mock;
 
 import nl.hsleiden.model.Invoice;
 
+import javax.persistence.Entity;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.time.Instant;
 
+@Entity
 public class MockInvoice extends Invoice {
     public MockInvoice() {
-        this.setInvoiceNumber(1L);
         this.setDateInvoice(Date.valueOf("2019-01-10"));
 
         this.setPaymentExtras("Dit kost te veel");
