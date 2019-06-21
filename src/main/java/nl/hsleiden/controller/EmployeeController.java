@@ -85,6 +85,7 @@ public class EmployeeController {
             employee.setFirstName(updatedEmployee.getFirstName());
             employee.setInfix(updatedEmployee.getInfix());
             employee.setLastName(updatedEmployee.getLastName());
+            employee.setNote(updatedEmployee.getNote());
 
             Collection<EmployeeEmail> emailsToSaved = emailCollectionDataService.getToBeSaved(employee.getEmails(), updatedEmployee.getEmails());
             Collection<EmployeeEmail> emailsToDeletes = emailCollectionDataService.getToBeDeleted(employee.getEmails(), updatedEmployee.getEmails());
