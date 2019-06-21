@@ -27,6 +27,7 @@ public class Order {
     @JoinColumn(name = "customerid", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonBackReference("eventCustomerRef")
+    @JsonView(View.Public.class)
     private Customer customer;
 
     @Column(name = "dateorder")
@@ -51,6 +52,11 @@ public class Order {
     @Column(name = "endtime")
     @JsonProperty("endTime")
     private Timestamp endTime;
+
+    @Column(name = "persons")
+    @JsonProperty("persons")
+    @JsonView(View.Public.class)
+    private int persons;
 
     @OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
     @JsonProperty("cateringOrders")
@@ -80,6 +86,13 @@ public class Order {
         this.orderId = orderId;
     }
 
+    public int getPersons() {
+        return persons;
+    }
+
+    public void setPersons(int persons) {
+        this.persons = persons;
+    }
     public Date getDateOrder() {
         return dateOrder;
     }
