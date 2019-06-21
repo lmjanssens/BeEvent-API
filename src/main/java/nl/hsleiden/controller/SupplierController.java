@@ -96,25 +96,25 @@ public class SupplierController {
             supplier.setSupervisor(updatedSupplier.getSupervisor());
 
             supplier.setNote(updatedSupplier.getNote());
-            Set<SupplierContract> contracts;
-            contracts = updatedSupplier.getContracts();
-            Collection<SupplierContractOption> supplierContractOptionsToBeSaved = null;
-            for (SupplierContract contract : contracts) {
-                Set<SupplierContractOption> options = contract.getOptions();
-                for (SupplierContractOption option : options) {
-                    supplierContractOptionsToBeSaved.add(option);
-                }
-                saveContractOptions(contract, supplierContractOptionsToBeSaved);
-            }
-
-            Collection<SupplierContractOption> supplierContractOptionsToBeDeleted = null;
-            for (SupplierContract contract : contracts) {
-                Set<SupplierContractOption> options = contract.getOptions();
-                for (SupplierContractOption option : options) {
-                    supplierContractOptionsToBeDeleted.add(option);
-                }
-                deleteContractOptions(supplierContractOptionsToBeSaved);
-            }
+//            Set<SupplierContract> contracts;
+//            contracts = updatedSupplier.getContracts();
+//            Collection<SupplierContractOption> supplierContractOptionsToBeSaved = null;
+//            for (SupplierContract contract : contracts) {
+//                Set<SupplierContractOption> options = contract.getOptions();
+//                for (SupplierContractOption option : options) {
+//                    supplierContractOptionsToBeSaved.add(option);
+//                }
+//                saveContractOptions(contract, supplierContractOptionsToBeSaved);
+//            }
+//
+//            Collection<SupplierContractOption> supplierContractOptionsToBeDeleted = null;
+//            for (SupplierContract contract : contracts) {
+//                Set<SupplierContractOption> options = contract.getOptions();
+//                for (SupplierContractOption option : options) {
+//                    supplierContractOptionsToBeDeleted.add(option);
+//                }
+//                deleteContractOptions(supplierContractOptionsToBeSaved);
+//            }
 
             Collection<SupplierContract> supplierContractsToBeSaved = supplierContractCollectionDataService.getToBeSaved(supplier.getContracts(), updatedSupplier.getContracts());
             Collection<SupplierContract> supplierContractsToBeDeleted = supplierContractCollectionDataService.getToBeDeleted(supplier.getContracts(), updatedSupplier.getContracts());
@@ -160,6 +160,17 @@ public class SupplierController {
             supplierRepository.delete(supplier);
             return ResponseEntity.ok().build();
         }).orElseThrow(() -> new ResourceNotFoundException("Employee not found with id: " + supplierId));
+    }
+
+
+    @DeleteMapping("/api/suppliers/{supplierId}/{contractId}")
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    public ResponseEntity<?> deleteContract(@PathVariable Long contractId) {
+        LOGGER.info("Deleting contract with id: " + contractId);
+        return supplierContractRepository.findById(contractId).map(contract -> {
+            supplierContractRepository.delete(contract);
+            return ResponseEntity.ok().build();
+        }).orElseThrow(() -> new ResourceNotFoundException("Contract not found with id: " + contractId));
     }
 
     private void saveContracts(Supplier supplier, Collection<SupplierContract> toBeSaved) {

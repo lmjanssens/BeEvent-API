@@ -12,6 +12,22 @@ import javax.validation.constraints.NotNull;
 @Table(name = "supplier_contract_option")
 public class SupplierContractOption {
 
+    @ManyToOne
+    @JoinColumn(name = "contractid", nullable = false)
+    @JsonBackReference("optionContractRef")
+    public SupplierContract contract;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "optionid", columnDefinition = "serial")
+    @JsonView(View.Public.class)
+    private Long optionid;
+
+    @NotNull
+    @Column(name = "option")
+    @JsonProperty("option")
+    @JsonView(View.Public.class)
+    private String option;
 
 
     public Long getOptionid() {
@@ -21,14 +37,6 @@ public class SupplierContractOption {
     public void setOptionid(Long optionid) {
         this.optionid = optionid;
     }
-
-//    public long getContractid() {
-//        return contractid;
-//    }
-//
-//    public void setContractid(long contractid) {
-//        this.contractid = contractid;
-//    }
 
     public String getOption() {
         return option;
@@ -46,26 +54,7 @@ public class SupplierContractOption {
         this.contract = contract;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "contractid", nullable = false)
-    @JsonBackReference("optionContractRef")
-    public SupplierContract contract;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "optionid", columnDefinition = "serial")
-    @JsonView(View.Public.class)
-    private Long optionid;
-
-//    @JoinColumn(name = "contractid", nullable = false)
-//    @JsonBackReference("contractid")
-//    private Long contractid;
-
-    @NotNull
-    @Column(name = "option")
-    @JsonProperty("option")
-    @JsonView(View.Public.class)
-    private String option;
 }
 
 
