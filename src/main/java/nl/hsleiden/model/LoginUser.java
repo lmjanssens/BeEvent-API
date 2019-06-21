@@ -9,15 +9,21 @@ import java.util.Collection;
 public class LoginUser {
 
     @JsonView(View.Public.class)
+    private Long uid;
+
+    @JsonView(View.Public.class)
     private String username;
 
     @JsonView(View.Public.class)
     private String role;
 
-    public LoginUser(String username, String role) {
+    public LoginUser(Long uid, String username, String role) {
+        this.uid = uid;
         this.username = username;
         this.role = role;
     }
+
+    public Long getUid() { return uid; }
 
     public String getUsername() {
         return username;

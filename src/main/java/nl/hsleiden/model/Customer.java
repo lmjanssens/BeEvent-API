@@ -1,9 +1,6 @@
 package nl.hsleiden.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonView;
+import com.fasterxml.jackson.annotation.*;
 import nl.hsleiden.View;
 import org.hibernate.validator.constraints.Length;
 
@@ -100,6 +97,7 @@ public class Customer {
     @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
     @JsonView(View.Public.class)
     @JsonProperty("orders")
+    @JsonBackReference("eventCustomerRef")
     private Set<Order> orders;
 
     public Customer() {

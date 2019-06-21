@@ -1,11 +1,14 @@
 package nl.hsleiden.controller;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
 import nl.hsleiden.View;
 import nl.hsleiden.auth.Role;
 import nl.hsleiden.exception.ResourceNotFoundException;
+import nl.hsleiden.model.Instructor;
 import nl.hsleiden.model.LoginUser;
 import nl.hsleiden.model.User;
+import nl.hsleiden.repository.InstructorRepository;
 import nl.hsleiden.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,6 +35,9 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private InstructorRepository instructorRepository;
 
     @GetMapping("/api/users")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "') or hasAuthority('" + Role.INSTRUCTOR + "')")
@@ -85,6 +91,8 @@ public class UserController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = null;
         String authority = null;
+        User user = null;
+        Optional<Instructor> instructor = null;
 
         if (!(authentication instanceof AnonymousAuthenticationToken)) {
             username = authentication.getName();
@@ -93,7 +101,9 @@ public class UserController {
             }
         }
 
-        return new LoginUser(username, authority);
+        user = userRepository.findByUsername(username);
+
+        return new LoginUser(user.getId(), username, authority);
     }
 
     private PasswordEncoder bCryptPasswordEncoder() {

@@ -44,7 +44,9 @@ public class OrderController {
     @GetMapping("/api/orders")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "') or hasAuthority('" + Role.INSTRUCTOR + "')")
     @JsonView(View.Public.class)
-    public Collection<Order> getOrders() { return orderRepository.findAll(); }
+    public Collection<Order> getOrders() {
+        return orderRepository.findAll();
+    }
 
     @GetMapping("/api/orders/{orderId}")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')  or hasAuthority('" + Role.INSTRUCTOR + "')")
@@ -80,9 +82,9 @@ public class OrderController {
             order.setDateEvent(updatedOrder.getDateEvent());
             order.setDateOrder(updatedOrder.getDateOrder());
             order.setEndTime(updatedOrder.getEndTime());
+            order.setPersons(updatedOrder.getPersons());
             order.setNote(updatedOrder.getNote());
             order.setStartTime(updatedOrder.getStartTime());
-            order.setPersons(updatedOrder.getPersons());
 
             Collection<CateringOrder> cateringOrdersToBeSaved = cateringOrderCollectionDataService.getToBeSaved(order.getCateringOrders(), updatedOrder.getCateringOrders());
             Collection<CateringOrder> cateringOrdersToBeDeleted = cateringOrderCollectionDataService.getToBeDeleted(order.getCateringOrders(), updatedOrder.getCateringOrders());

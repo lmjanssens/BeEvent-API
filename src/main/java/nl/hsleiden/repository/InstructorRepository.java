@@ -12,6 +12,8 @@ public interface InstructorRepository extends JpaRepository<Instructor, Long> {
 
     Optional<Instructor> findByUser(User user);
 
+    Instructor findByUserId(int user);
+
     @Override
     List<Instructor> findAll();
 }
