@@ -65,6 +65,13 @@ public class Instructor {
     @JsonView(View.Public.class)
     private String email;
 
+    @NotNull
+    @Length(max = 250)
+    @Column(name = "note")
+    @JsonProperty("note")
+    @JsonView(View.Public.class)
+    private String note;
+
     public Long getId() { return id; }
 
     public User getUser() {
@@ -114,4 +121,8 @@ public class Instructor {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public String getNote() { return note; }
+
+    public void setNote(String note) { this.note = note; }
 }

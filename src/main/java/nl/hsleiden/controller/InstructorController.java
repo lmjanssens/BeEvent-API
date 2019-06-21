@@ -68,6 +68,7 @@ public class InstructorController {
             instructor.setLastName(updatedInstructor.getLastName());
             instructor.setEmail(updatedInstructor.getEmail());
             instructor.setPhoneNumber(updatedInstructor.getPhoneNumber());
+            instructor.setNote(updatedInstructor.getNote());
 
             return instructorRepository.save(instructor);
         }).orElseThrow(() -> new ResourceNotFoundException("Instructor not found with id " + instructorId));
