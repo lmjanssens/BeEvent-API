@@ -96,25 +96,25 @@ public class SupplierController {
             supplier.setSupervisor(updatedSupplier.getSupervisor());
 
             supplier.setNote(updatedSupplier.getNote());
-            Set<SupplierContract> contracts;
-            contracts = updatedSupplier.getContracts();
-            Collection<SupplierContractOption> supplierContractOptionsToBeSaved = null;
-            for (SupplierContract contract : contracts) {
-                Set<SupplierContractOption> options = contract.getOptions();
-                for (SupplierContractOption option : options) {
-                    supplierContractOptionsToBeSaved.add(option);
-                }
-                saveContractOptions(contract, supplierContractOptionsToBeSaved);
-            }
-
-            Collection<SupplierContractOption> supplierContractOptionsToBeDeleted = null;
-            for (SupplierContract contract : contracts) {
-                Set<SupplierContractOption> options = contract.getOptions();
-                for (SupplierContractOption option : options) {
-                    supplierContractOptionsToBeDeleted.add(option);
-                }
-                deleteContractOptions(supplierContractOptionsToBeSaved);
-            }
+//            Set<SupplierContract> contracts;
+//            contracts = updatedSupplier.getContracts();
+//            Collection<SupplierContractOption> supplierContractOptionsToBeSaved = null;
+//            for (SupplierContract contract : contracts) {
+//                Set<SupplierContractOption> options = contract.getOptions();
+//                for (SupplierContractOption option : options) {
+//                    supplierContractOptionsToBeSaved.add(option);
+//                }
+//                saveContractOptions(contract, supplierContractOptionsToBeSaved);
+//            }
+//
+//            Collection<SupplierContractOption> supplierContractOptionsToBeDeleted = null;
+//            for (SupplierContract contract : contracts) {
+//                Set<SupplierContractOption> options = contract.getOptions();
+//                for (SupplierContractOption option : options) {
+//                    supplierContractOptionsToBeDeleted.add(option);
+//                }
+//                deleteContractOptions(supplierContractOptionsToBeSaved);
+//            }
 
             Collection<SupplierContract> supplierContractsToBeSaved = supplierContractCollectionDataService.getToBeSaved(supplier.getContracts(), updatedSupplier.getContracts());
             Collection<SupplierContract> supplierContractsToBeDeleted = supplierContractCollectionDataService.getToBeDeleted(supplier.getContracts(), updatedSupplier.getContracts());
