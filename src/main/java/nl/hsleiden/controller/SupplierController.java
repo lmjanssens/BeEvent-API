@@ -162,6 +162,17 @@ public class SupplierController {
         }).orElseThrow(() -> new ResourceNotFoundException("Employee not found with id: " + supplierId));
     }
 
+
+    @DeleteMapping("/api/suppliers/{supplierId}/{contractId}")
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    public ResponseEntity<?> deleteContract(@PathVariable Long contractId) {
+        LOGGER.info("Deleting contract with id: " + contractId);
+        return supplierContractRepository.findById(contractId).map(contract -> {
+            supplierContractRepository.delete(contract);
+            return ResponseEntity.ok().build();
+        }).orElseThrow(() -> new ResourceNotFoundException("Contract not found with id: " + contractId));
+    }
+
     private void saveContracts(Supplier supplier, Collection<SupplierContract> toBeSaved) {
         try {
             for (SupplierContract supplierContract : toBeSaved) {
