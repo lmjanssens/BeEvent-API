@@ -47,7 +47,6 @@ public class Employee {
     @JsonView(View.Public.class)
     private String lastName;
 
-    @NotNull
     @Length(max = 250)
     @Column(name = "note")
     @JsonProperty("note")

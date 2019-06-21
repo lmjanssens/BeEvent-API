@@ -65,7 +65,6 @@ public class Instructor {
     @JsonView(View.Public.class)
     private String email;
 
-    @NotNull
     @Length(max = 250)
     @Column(name = "note")
     @JsonProperty("note")

@@ -79,7 +79,6 @@ public class Customer {
     @JsonView(View.Public.class)
     private String city;
 
-    @NotNull
     @Length(max = 250)
     @Column(name = "note")
     @JsonProperty("note")
