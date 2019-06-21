@@ -23,14 +23,6 @@ public class SupplierContract {
     @JsonView(View.Public.class)
     private Long id;
 
-    public Set<SupplierContractOption> getOptions() {
-        return options;
-    }
-
-    public void setOptions(Set<SupplierContractOption> options) {
-        this.options = options;
-    }
-
     @OneToMany(mappedBy = "contract")
     @JsonProperty("options")
     @JsonView(View.Public.class)
@@ -116,6 +108,14 @@ public class SupplierContract {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Set<SupplierContractOption> getOptions() {
+        return options;
+    }
+
+    public void setOptions(Set<SupplierContractOption> options) {
+        this.options = options;
     }
 
     public String getTypeContract() {
