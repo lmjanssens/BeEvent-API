@@ -34,6 +34,7 @@ public class SupplierContract {
     @OneToMany(mappedBy = "contract")
     @JsonProperty("options")
     @JsonView(View.Public.class)
+    @JsonBackReference("contractSupplierOptionRef")
     private Set<SupplierContractOption> options;
 
     @ManyToOne
