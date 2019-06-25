@@ -46,6 +46,12 @@ public class Employee {
     @JsonView(View.Public.class)
     private String lastName;
 
+    @Length(max = 250)
+    @Column(name = "note")
+    @JsonProperty("note")
+    @JsonView(View.Public.class)
+    private String note;
+
     @OneToMany(mappedBy = "employee", fetch = FetchType.LAZY)
     @JsonProperty("email_addresses")
     @JsonView(View.Public.class)
@@ -95,6 +101,10 @@ public class Employee {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
+    public String getNote() { return note; }
+
+    public void setNote(String note) { this.note = note; }
 
     public Set<EmployeeEmail> getEmails() {
         return emails;

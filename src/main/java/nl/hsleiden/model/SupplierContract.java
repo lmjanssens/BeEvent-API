@@ -23,6 +23,12 @@ public class SupplierContract {
     @JsonView(View.Public.class)
     private Long id;
 
+    @OneToMany(mappedBy = "contract")
+    @JsonProperty("options")
+    @JsonView(View.Public.class)
+    @JsonBackReference("contractSupplierOptionRef")
+    private Set<SupplierContractOption> options;
+
     @ManyToOne
     @JoinColumn(name = "supplierid", nullable = false)
     @JsonBackReference("contractSupplierRef")
@@ -49,18 +55,21 @@ public class SupplierContract {
 
     @NotNull
     @Column(name = "contract_inclu_btw")
-    @JsonProperty("incluBtw")
-    private double incluBtw;
+    @JsonProperty("inclubtw")
+    @JsonView(View.Public.class)
+    private double inclubtw;
 
     @NotNull
     @Column(name = "contract_excl")
-    @JsonProperty("excluBtw")
-    private double excluBtw;
+    @JsonProperty("exclubtw")
+    @JsonView(View.Public.class)
+    private double exclubtw;
 
     @Max(100)
     @Column(name = "contract_btw_percentage")
     @JsonProperty("btw_percentage")
-    private double percentage;
+    @JsonView(View.Public.class)
+    private double btw_percentage;
 
     @Column(name = "contract_preconditions")
     @JsonProperty("pre_conditions")
@@ -83,11 +92,13 @@ public class SupplierContract {
     private String extras;
 
     @Column(name = "contract_start")
-    @JsonProperty("startdate")
+    @JsonProperty("startDate")
+    @JsonView(View.Public.class)
     private Date startDate;
 
     @Column(name = "contract_end")
-    @JsonProperty("enddate")
+    @JsonProperty("endDate")
+    @JsonView(View.Public.class)
     private Date endDate;
 
 
@@ -97,6 +108,14 @@ public class SupplierContract {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Set<SupplierContractOption> getOptions() {
+        return options;
+    }
+
+    public void setOptions(Set<SupplierContractOption> options) {
+        this.options = options;
     }
 
     public String getTypeContract() {
@@ -157,27 +176,27 @@ public class SupplierContract {
     }
 
     public double getIncluBtw() {
-        return incluBtw;
+        return inclubtw;
     }
 
     public void setIncluBtw(double incluBtw) {
-        this.incluBtw = incluBtw;
+        this.inclubtw = incluBtw;
     }
 
     public double getExcluBtw() {
-        return excluBtw;
+        return exclubtw;
     }
 
     public void setExcluBtw(double excluBtw) {
-        this.excluBtw = excluBtw;
+        this.exclubtw = excluBtw;
     }
 
     public double getPercentage() {
-        return percentage;
+        return btw_percentage;
     }
 
     public void setPercentage(double percentage) {
-        this.percentage = percentage;
+        this.btw_percentage = percentage;
     }
 
     public String getPreconditions() {
@@ -219,14 +238,15 @@ public class SupplierContract {
                 this.typeContract == supplierContract.isTypeContract() &&
                         this.title.equals(supplierContract.getTitle()) &&
                         this.description.equals(supplierContract.getDescription()) &&
-                        this.incluBtw == supplierContract.getIncluBtw() &&
-                        this.percentage == supplierContract.getPercentage() &&
+                        this.inclubtw == supplierContract.getIncluBtw() &&
+                        this.exclubtw == supplierContract.getExcluBtw() &&
+                        this.btw_percentage == supplierContract.getPercentage() &&
                         this.preconditions.equals(supplierContract.getPreconditions()) &&
                         this.insurance.equals(supplierContract.getInsurance()) &&
                         this.responsibility.equals(supplierContract.getResponsibility()) &&
                         this.extras.equals(supplierContract.getExtras()) &&
-                        this.endDate.equals(supplierContract.getEndDate()) &&
-                        this.startDate.equals(supplierContract.getStartDate()) &&
+                        this.endDate == supplierContract.getEndDate() &&
+                        this.startDate == supplierContract.getStartDate() &&
                         this.id.equals(supplierContract.getId()) &&
                         this.typeContract.equals(supplierContract.getTypeContract())
         );

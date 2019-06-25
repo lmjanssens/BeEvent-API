@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-
+import java.util.Set;
 import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
 import java.util.Collection;
@@ -38,10 +38,14 @@ public class SupplierController {
     @Autowired
     private SupplierAddressRepository supplierAddressRepo;
 
+    @Autowired
+    private SupplierContractOptionRepository supplierContractOptionRepo;
+
     private CollectionDataService<SupplierContract> supplierContractCollectionDataService = new CollectionDataService<>();
     private CollectionDataService<SupplierEmail> supplierEmailCollectionDataService = new CollectionDataService<>();
     private CollectionDataService<SupplierPhone> supplierPhoneCollectionDataService = new CollectionDataService<>();
     private CollectionDataService<SupplierAddress> supplierAddressCollectionDataService = new CollectionDataService<>();
+    private CollectionDataService<SupplierContractOption> supplierContractOptionCollectionDataService = new CollectionDataService<>();
 
     @GetMapping("/api/suppliers")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "') or hasAuthority('" + Role.INSTRUCTOR + "')")
@@ -64,7 +68,11 @@ public class SupplierController {
     public Supplier createSupplier(@Valid @RequestBody Supplier supplier) {
         LOGGER.info("Creating supplier.");
         Supplier savedSupplier = supplierRepository.save(supplier);
-
+        Set<SupplierContract> contracts;
+        contracts = supplier.getContracts();
+        for (SupplierContract contract : contracts) {
+            saveContractOptions(contract, contract.getOptions());
+        }
         saveContracts(savedSupplier, supplier.getContracts());
         saveEmails(savedSupplier, supplier.getEmails());
         savePhones(savedSupplier, supplier.getPhones());
@@ -93,6 +101,25 @@ public class SupplierController {
             supplier.setSupervisor(updatedSupplier.getSupervisor());
 
             supplier.setNote(updatedSupplier.getNote());
+//            Set<SupplierContract> contracts;
+//            contracts = updatedSupplier.getContracts();
+//            Collection<SupplierContractOption> supplierContractOptionsToBeSaved = null;
+//            for (SupplierContract contract : contracts) {
+//                Set<SupplierContractOption> options = contract.getOptions();
+//                for (SupplierContractOption option : options) {
+//                    supplierContractOptionsToBeSaved.add(option);
+//                }
+//                saveContractOptions(contract, supplierContractOptionsToBeSaved);
+//            }
+//
+//            Collection<SupplierContractOption> supplierContractOptionsToBeDeleted = null;
+//            for (SupplierContract contract : contracts) {
+//                Set<SupplierContractOption> options = contract.getOptions();
+//                for (SupplierContractOption option : options) {
+//                    supplierContractOptionsToBeDeleted.add(option);
+//                }
+//                deleteContractOptions(supplierContractOptionsToBeSaved);
+//            }
 
             Collection<SupplierContract> supplierContractsToBeSaved = supplierContractCollectionDataService.getToBeSaved(supplier.getContracts(), updatedSupplier.getContracts());
             Collection<SupplierContract> supplierContractsToBeDeleted = supplierContractCollectionDataService.getToBeDeleted(supplier.getContracts(), updatedSupplier.getContracts());
@@ -135,6 +162,17 @@ public class SupplierController {
             supplierRepository.delete(supplier);
             return ResponseEntity.ok().build();
         }).orElseThrow(() -> new ResourceNotFoundException("Employee not found with id: " + supplierId));
+    }
+
+
+    @DeleteMapping("/api/suppliers/{supplierId}/{contractId}")
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    public ResponseEntity<?> deleteContract(@PathVariable Long contractId) {
+        LOGGER.info("Deleting contract with id: " + contractId);
+        return supplierContractRepository.findById(contractId).map(contract -> {
+            supplierContractRepository.delete(contract);
+            return ResponseEntity.ok().build();
+        }).orElseThrow(() -> new ResourceNotFoundException("Contract not found with id: " + contractId));
     }
 
     private void saveContracts(Supplier supplier, Collection<SupplierContract> toBeSaved) {
@@ -220,6 +258,26 @@ public class SupplierController {
     private void deleteAddresses(Collection<SupplierAddress> toBeDeleted) {
         try {
             supplierAddressRepo.deleteAll(toBeDeleted);
+        } catch (NullPointerException e){
+            LOGGER.info("Unable to delete addresses");
+        }
+    }
+
+    private void saveContractOptions(SupplierContract supplierContract, Collection<SupplierContractOption> toBeSaved) {
+        try {
+            for (SupplierContractOption supplierContractOption : toBeSaved) {
+                supplierContractOption.setContract(supplierContract);
+            }
+            supplierContractOptionRepo.saveAll(toBeSaved);
+
+        } catch (NullPointerException exception) {
+            LOGGER.info("Unable to save contractsoptions");
+        }
+    }
+
+    private void deleteContractOptions(Collection<SupplierContractOption> toBeDeleted) {
+        try {
+            supplierContractOptionRepo.deleteAll(toBeDeleted);
         } catch (NullPointerException e){
             LOGGER.info("Unable to delete addresses");
         }

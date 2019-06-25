@@ -86,8 +86,6 @@ public class OrderController {
             order.setPersons(updatedOrder.getPersons());
             order.setNote(updatedOrder.getNote());
             order.setStartTime(updatedOrder.getStartTime());
-            order.setPersons(updatedOrder.getPersons());
-
 
             Collection<CateringOrder> cateringOrdersToBeSaved = cateringOrderCollectionDataService.getToBeSaved(order.getCateringOrders(), updatedOrder.getCateringOrders());
             Collection<CateringOrder> cateringOrdersToBeDeleted = cateringOrderCollectionDataService.getToBeDeleted(order.getCateringOrders(), updatedOrder.getCateringOrders());

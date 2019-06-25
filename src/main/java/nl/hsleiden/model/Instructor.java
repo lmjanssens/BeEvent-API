@@ -65,9 +65,13 @@ public class Instructor {
     @JsonView(View.Public.class)
     private String email;
 
-    public Long getId() {
-        return id;
-    }
+    @Length(max = 250)
+    @Column(name = "note")
+    @JsonProperty("note")
+    @JsonView(View.Public.class)
+    private String note;
+
+    public Long getId() { return id; }
 
     public void setId(Long id) {
         this.id = id;
@@ -120,4 +124,8 @@ public class Instructor {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public String getNote() { return note; }
+
+    public void setNote(String note) { this.note = note; }
 }

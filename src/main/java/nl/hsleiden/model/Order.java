@@ -87,6 +87,9 @@ public class Order {
         this.orderId = orderId;
     }
 
+    public void setPersons(long persons) {
+        this.persons = persons;
+    }
     public Date getDateOrder() {
         return dateOrder;
     }

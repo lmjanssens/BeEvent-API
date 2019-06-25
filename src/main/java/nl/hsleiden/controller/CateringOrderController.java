@@ -5,6 +5,8 @@ import nl.hsleiden.View;
 import nl.hsleiden.auth.Role;
 import nl.hsleiden.exception.ResourceNotFoundException;
 import nl.hsleiden.model.CateringOrder;
+import nl.hsleiden.model.CateringOrderOption;
+import nl.hsleiden.repository.CateringOrderOptionRepository;
 import nl.hsleiden.repository.CateringOrderRepository;
 import nl.hsleiden.repository.CateringRepository;
 import nl.hsleiden.repository.OrderRepository;
@@ -34,6 +36,9 @@ public class CateringOrderController {
     @Autowired
     private CateringRepository cateringRepo;
 
+    @Autowired
+    private CateringOrderOptionRepository cateringOrderOptionRepo;
+
     @GetMapping("/api/cateringorder")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "') or hasAuthority('" + Role.INSTRUCTOR + "')")
     @JsonView(View.Public.class)
@@ -58,6 +63,7 @@ public class CateringOrderController {
             return cateringRepo.findById(cateringId).map(catering -> {
                 cateringOrder.setOrder(order);
                 cateringOrder.setCatering(catering);
+                saveOrderOptions(cateringOrder, cateringOrder.getOptions());
                 return cateringOrderRepo.save(cateringOrder);
             }).orElseThrow(() -> new ResourceNotFoundException("No catering object found of id " + cateringId));
         }).orElseThrow(() -> new ResourceNotFoundException("No order object found of id " + orderId));
@@ -72,6 +78,7 @@ public class CateringOrderController {
         LOGGER.info("Updating catering order object of id " + id);
         return cateringOrderRepo.findById(id).map(cateringOrder -> {
 
+            cateringOrder.setOptions(updatedCateringOrder.getOptions());
             cateringOrder.setDateCateringOptions(updatedCateringOrder.getDateCateringOptions());
             cateringOrder.setDateCateringDefinite(updatedCateringOrder.getDateCateringDefinite());
             cateringOrder.setDateCateringSend(updatedCateringOrder.getDateCateringSend());
@@ -92,6 +99,27 @@ public class CateringOrderController {
             cateringOrderRepo.delete(cateringOrder);
             return ResponseEntity.ok().build();
         }).orElseThrow(() -> new ResourceNotFoundException("No catering order object found of id " + id));
+    }
+
+    @PutMapping("/api/cateringorder/{orderId}/{cateringId}")
+    private void saveOrderOptions(CateringOrder cateringOrder, Collection<CateringOrderOption> toBeSaved) {
+        try {
+            for (CateringOrderOption cateringOrderOption : toBeSaved) {
+                cateringOrderOption.setCateringorder(cateringOrderOption.getCateringorder());
+            }
+            cateringOrderOptionRepo.saveAll(toBeSaved);
+
+        } catch (NullPointerException exception) {
+            LOGGER.info("Unable to save contractsoptions");
+        }
+    }
+
+    private void deleteContractOptions(Collection<CateringOrderOption> toBeDeleted) {
+        try {
+            cateringOrderOptionRepo.deleteAll(toBeDeleted);
+        } catch (NullPointerException e){
+            LOGGER.info("Unable to delete addresses");
+        }
     }
 
 }
