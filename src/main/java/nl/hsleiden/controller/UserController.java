@@ -1,7 +1,6 @@
 package nl.hsleiden.controller;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
 import nl.hsleiden.View;
 import nl.hsleiden.auth.Role;
 import nl.hsleiden.exception.ResourceNotFoundException;
@@ -23,7 +22,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
 import java.util.Collection;
 import java.util.Optional;

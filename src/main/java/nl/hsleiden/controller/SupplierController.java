@@ -70,7 +70,12 @@ public class SupplierController {
         savePhones(savedSupplier, supplier.getPhones());
         saveAddresses(savedSupplier, supplier.getAddresses());
 
-        return supplierRepository.save(supplier);
+        savedSupplier.setContracts(supplier.getContracts());
+        savedSupplier.setEmails(supplier.getEmails());
+        savedSupplier.setPhones(supplier.getPhones());
+        savedSupplier.setAddresses(supplier.getAddresses());
+
+        return supplierRepository.save(savedSupplier);
     }
 
     @PutMapping("/api/suppliers/{supplierId}")
@@ -103,9 +108,6 @@ public class SupplierController {
 
             saveContracts(supplier, supplierContractsToBeSaved);
             deleteContracts(supplierContractsToBeDeleted);
-
-            System.out.println(supplierContractsToBeDeleted.size());
-            System.out.println(supplierContractsToBeSaved.size());
 
             saveEmails(supplier, supplierEmailsToBeSaved);
             deleteEmails(supplierEmailsToBeDeleted);

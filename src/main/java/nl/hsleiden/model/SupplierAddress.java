@@ -103,7 +103,6 @@ public class SupplierAddress {
         return
                 this.address.equals(supplierAddress.getAddress()) &&
                         this.zipcode.equals(supplierAddress.getZipcode()) &&
-                        this.city.equals(supplierAddress.getCity()) &&
-                        this.supplier.getId() == supplierAddress.getSupplier().getId();
+                        this.city.equals(supplierAddress.getCity());
     }
 }

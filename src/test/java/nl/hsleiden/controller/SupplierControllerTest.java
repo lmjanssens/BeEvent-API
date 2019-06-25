@@ -1,8 +1,8 @@
 package nl.hsleiden.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import nl.hsleiden.mock.MockCustomer;
-import nl.hsleiden.model.Customer;
+import nl.hsleiden.mock.MockSupplier;
+import nl.hsleiden.model.Supplier;
 import nl.hsleiden.util.AuthenticationUtil;
 import nl.hsleiden.util.DatabaseTestService;
 import org.junit.jupiter.api.*;
@@ -17,7 +17,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.notNullValue;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -27,7 +28,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class CustomerControllerTest {
+public class SupplierControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -43,83 +44,81 @@ public class CustomerControllerTest {
         databaseTestService.setupUsers();
     }
 
-    public CustomerControllerTest() {
+    public SupplierControllerTest() {
     }
 
     @Test
     @Order(1)
-    void createCustomer() throws Exception {
-        mockMvc.perform(post("/api/customers")
+    void createSupplier() throws Exception {
+        mockMvc.perform(post("/api/suppliers")
                 .header("Authorization", AuthenticationUtil.getAdministratorAuthentication())
                 .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON)
                 .content(
-                        objectMapper.writeValueAsString(new MockCustomer())
-                )
+                        objectMapper.writeValueAsString(new MockSupplier())
+                ).accept(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk())
-                .andExpect(jsonPath("$.customerId").value(1));
+                .andExpect(jsonPath("$.supplierid").value(1));
     }
 
     @Test
     @Order(2)
-    void getCustomers() throws Exception {
-        mockMvc.perform(get("/api/customers")
+    void getSuppliers() throws Exception {
+        mockMvc.perform(get("/api/suppliers")
                 .header("Authorization", AuthenticationUtil.getAdministratorAuthentication())
                 .accept(MediaType.APPLICATION_JSON)
-        ).andExpect(jsonPath("$", is(notNullValue())));
+        ).andExpect(jsonPath("$").value(notNullValue()));
     }
 
     @Test
     @Order(3)
-    void getSpecifiedCustomer() throws Exception {
-        MockCustomer customer = new MockCustomer();
+    void getSupplier() throws Exception {
+        MockSupplier supplier = new MockSupplier();
 
-        mockMvc.perform(get("/api/customers/1")
-                .contentType(MediaType.APPLICATION_JSON)
+        mockMvc.perform(get("/api/suppliers/1")
                 .header("Authorization", AuthenticationUtil.getAdministratorAuthentication())
-                .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.customerId").value(1))
-                .andExpect(jsonPath("$.gender").value(Character.toString(customer.getGender())))
-                .andExpect(jsonPath("$.first_name").value(customer.getFirstName()))
-                .andExpect(jsonPath("$.infix").value(customer.getInfix()))
-                .andExpect(jsonPath("$.last_name").value(customer.getLastName()))
-                .andExpect(jsonPath("$.address").value(customer.getAddress()))
-                .andExpect(jsonPath("$.zipcode").value(customer.getZipcode()))
-                .andExpect(jsonPath("$.country").value(customer.getCountry()))
-                .andExpect(jsonPath("$.city").value(customer.getCity()))
-                .andExpect(jsonPath("$.title").value(customer.getTitle()));
+                .accept(MediaType.APPLICATION_JSON)
+        ).andExpect(status().isOk())
+                .andExpect(jsonPath("$.supplierid").value(1))
+                .andExpect(jsonPath("$.name").value(supplier.getName()))
+                .andExpect(jsonPath("$.website").value(supplier.getWebsite()))
+                .andExpect(jsonPath("$.note").value(supplier.getNote()))
+                .andExpect(jsonPath("$.contact_person").value(supplier.getContactPerson()))
+                .andExpect(jsonPath("$.supervisor").value(supplier.getSupervisor()))
+                .andExpect(jsonPath("$.image").value(supplier.getImage()))
+                .andExpect(jsonPath("$.email_addresses[0]").value(notNullValue()))
+                .andExpect(jsonPath("$.phone_numbers[0]").value(notNullValue()))
+                .andExpect(jsonPath("$.addresses[0]").value(notNullValue()));
     }
 
     @Test
     @Order(4)
-    void updateCustomer() throws Exception {
-        MvcResult result = mockMvc.perform(get("/api/customers/1")
+    void updateSupplier() throws Exception {
+        MvcResult result = mockMvc.perform(get("/api/suppliers/1")
                 .header("Authorization", AuthenticationUtil.getAdministratorAuthentication())
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andReturn();
 
-        Customer customer = objectMapper.readValue(result.getResponse().getContentAsString(), Customer.class);
-        customer.setTitle("mevrouw");
+        Supplier supplier = objectMapper.readValue(result.getResponse().getContentAsString(), Supplier.class);
+        supplier.setName("Bakker Jan");
 
-        mockMvc.perform(put("/api/customers/1")
+        mockMvc.perform(put("/api/suppliers/1")
                 .header("Authorization", AuthenticationUtil.getAdministratorAuthentication())
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(customer))
+                .content(objectMapper.writeValueAsString(supplier))
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.title").value(customer.getTitle()));
+                .andExpect(jsonPath("$.name").value(supplier.getName()));
     }
 
     @Test
     @Order(5)
-    void deleteCustomer() throws Exception {
-//        mockMvc.perform(delete("/api/customers/1")
+    void deleteSupplier() {
+//        mockMvc.perform(delete("/api/suppliers/1")
 //                .header("Authorization", AuthenticationUtil.getAdministratorAuthentication()))
 //                .andExpect(status().isOk());
 
-//        mockMvc.perform(get("/api/customers/1")
+//        mockMvc.perform(get("/api/suppliers/1")
 //                .header("Authorization", AuthenticationUtil.getAdministratorAuthentication()))
 //                .andExpect(status().isNotFound());
     }

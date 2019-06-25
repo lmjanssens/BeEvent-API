@@ -47,8 +47,6 @@ public class DatabaseTestService {
     private Instructor instructor = new MockInstructor();
 
     public void setupUsers() {
-        userRepository.saveAll(users);
-
         setupEmployees();
         setupInstructor();
     }
