@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.Set;
 import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
@@ -69,7 +70,7 @@ public class SupplierController {
         LOGGER.info("Creating supplier.");
         Supplier savedSupplier = supplierRepository.save(supplier);
         Set<SupplierContract> contracts;
-        contracts = supplier.getContracts();
+        contracts = savedSupplier.getContracts();
         for (SupplierContract contract : contracts) {
             saveContractOptions(contract, contract.getOptions());
         }
@@ -101,28 +102,25 @@ public class SupplierController {
             supplier.setSupervisor(updatedSupplier.getSupervisor());
 
             supplier.setNote(updatedSupplier.getNote());
-//            Set<SupplierContract> contracts;
-//            contracts = updatedSupplier.getContracts();
-//            Collection<SupplierContractOption> supplierContractOptionsToBeSaved = null;
-//            for (SupplierContract contract : contracts) {
-//                Set<SupplierContractOption> options = contract.getOptions();
-//                for (SupplierContractOption option : options) {
-//                    supplierContractOptionsToBeSaved.add(option);
-//                }
-//                saveContractOptions(contract, supplierContractOptionsToBeSaved);
-//            }
-//
-//            Collection<SupplierContractOption> supplierContractOptionsToBeDeleted = null;
-//            for (SupplierContract contract : contracts) {
-//                Set<SupplierContractOption> options = contract.getOptions();
-//                for (SupplierContractOption option : options) {
-//                    supplierContractOptionsToBeDeleted.add(option);
-//                }
-//                deleteContractOptions(supplierContractOptionsToBeSaved);
-//            }
+            Set<SupplierContract> contracts;
+            contracts = updatedSupplier.getContracts();
 
             Collection<SupplierContract> supplierContractsToBeSaved = supplierContractCollectionDataService.getToBeSaved(supplier.getContracts(), updatedSupplier.getContracts());
             Collection<SupplierContract> supplierContractsToBeDeleted = supplierContractCollectionDataService.getToBeDeleted(supplier.getContracts(), updatedSupplier.getContracts());
+
+            for (SupplierContract contract : supplierContractsToBeSaved) {
+                for (SupplierContract oldcontract : supplier.getContracts()) {
+                    Collection<SupplierContractOption> supplierContractOptionsToBeSaved = supplierContractOptionCollectionDataService.getToBeSaved(oldcontract.getOptions(), contract.getOptions());
+                    saveContractOptions(contract ,supplierContractOptionsToBeSaved);
+                }
+            }
+
+            for (SupplierContract contract : supplierContractsToBeDeleted) {
+                for (SupplierContract oldcontract : supplier.getContracts()) {
+                    Collection<SupplierContractOption> supplierContractOptionsToBeDeleted = supplierContractOptionCollectionDataService.getToBeDeleted(oldcontract.getOptions(), contract.getOptions());
+                    deleteContractOptions(supplierContractOptionsToBeDeleted);
+                }
+            }
 
             Collection<SupplierEmail> supplierEmailsToBeSaved = supplierEmailCollectionDataService.getToBeSaved(supplier.getEmails(), updatedSupplier.getEmails());
             Collection<SupplierEmail> supplierEmailsToBeDeleted = supplierEmailCollectionDataService.getToBeDeleted(supplier.getEmails(), updatedSupplier.getEmails());
@@ -236,12 +234,13 @@ public class SupplierController {
 
     /**
      * For saving multiple addresses of one supplier.
-     * @param supplier id of a supplier
+     *
+     * @param supplier  id of a supplier
      * @param toBeSaved JSON-object obtained ready to be stored in the database
      * @author Robin Silverio
      */
     private void saveAddresses(Supplier supplier, Collection<SupplierAddress> toBeSaved) {
-        try{
+        try {
             for (SupplierAddress address : toBeSaved)
                 address.setSupplier(supplier);
             supplierAddressRepo.saveAll(toBeSaved);
@@ -252,13 +251,14 @@ public class SupplierController {
 
     /**
      * For deleting set of addresses of one supplier
+     *
      * @param toBeDeleted JSON-object containing a list of addresses ready to be deleted
      * @author Robin Silverio
      */
     private void deleteAddresses(Collection<SupplierAddress> toBeDeleted) {
         try {
             supplierAddressRepo.deleteAll(toBeDeleted);
-        } catch (NullPointerException e){
+        } catch (NullPointerException e) {
             LOGGER.info("Unable to delete addresses");
         }
     }
@@ -278,7 +278,7 @@ public class SupplierController {
     private void deleteContractOptions(Collection<SupplierContractOption> toBeDeleted) {
         try {
             supplierContractOptionRepo.deleteAll(toBeDeleted);
-        } catch (NullPointerException e){
+        } catch (NullPointerException e) {
             LOGGER.info("Unable to delete addresses");
         }
     }
