@@ -5,10 +5,16 @@ import nl.hsleiden.View;
 import nl.hsleiden.auth.Role;
 import nl.hsleiden.exception.ResourceNotFoundException;
 import nl.hsleiden.model.EmailText;
+import nl.hsleiden.model.Invoice;
+import nl.hsleiden.model.Order;
 import nl.hsleiden.repository.EmailTextRepository;
+import nl.hsleiden.repository.InvoiceRepository;
+import nl.hsleiden.repository.OrderRepository;
+import nl.hsleiden.service.EmailParserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +31,12 @@ public class EmailTextController {
     @Autowired
     private EmailTextRepository emailTextRepository;
 
+    @Autowired
+    private OrderRepository orderRepository;
+
+    @Autowired
+    private EmailParserService emailParserService;
+
     @GetMapping("/api/emailtexts")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "') or hasAuthority('" + Role.INSTRUCTOR + "')")
     @JsonView(View.Public.class)
@@ -34,6 +46,16 @@ public class EmailTextController {
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
     @JsonView(View.Public.class)
     public Optional<EmailText> getSpecificEmailTexts(@PathVariable Long id) { return emailTextRepository.findById(id); }
+
+    @GetMapping(value = "/api/emailtexts/{id}/{orderId}")
+    @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")
+    @JsonView(View.Public.class)
+    public String getSpecificEmailTextWithParsedInvoice(@PathVariable Long id, @PathVariable Long orderId) {
+        EmailText emailText = emailTextRepository.getOne(id);
+        Order order = orderRepository.getOne(orderId);
+
+        return this.emailParserService.parse(emailText.getEmailText(), order);
+    }
 
     @PostMapping("/api/emailtexts")
     @PreAuthorize("hasAuthority('" + Role.EMPLOYEE + "') or hasAuthority('" + Role.ADMIN + "')")

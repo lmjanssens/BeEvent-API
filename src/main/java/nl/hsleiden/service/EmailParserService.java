@@ -8,9 +8,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class EmailParserService {
 
-    public String parse(String mail, Invoice invoice) {
+    public String parse(String mail, Order order) {
 
-        Order order = invoice.getOrder();
         Customer customer = order.getCustomer();
 
         return mail
@@ -19,7 +18,6 @@ public class EmailParserService {
                 .replace("<achternaam>", ((customer.getInfix() != null) ? customer.getInfix() + " ": "") + customer.getLastName())
                 .replace("<evenement>", order.getEvent().getName())
                 .replace("<evenementdatum>", order.getDateEvent().toString())
-                .replace("<openstaandbedrag>", Double.toString(invoice.getToBePaid()).replace('.', ','))
-                .replace("<factuurnummer>", invoice.getInvoiceNumber().toString());
+                .replace("\n", "%0D%0A");
     }
 }
