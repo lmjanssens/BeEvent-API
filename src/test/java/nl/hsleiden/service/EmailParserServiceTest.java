@@ -24,6 +24,8 @@ class EmailParserServiceTest {
         this.service = new EmailParserService();
 
         this.invoice = new MockInvoice();
+        this.invoice.setInvoiceNumber(1L);
+
         this.order = this.invoice.getOrder();
         this.event = this.order.getEvent();
         this.customer =  this.order.getCustomer();

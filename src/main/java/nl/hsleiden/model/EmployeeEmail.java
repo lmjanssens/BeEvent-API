@@ -35,6 +35,14 @@ public class EmployeeEmail {
     @JsonView(View.Public.class)
     private String email;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public Employee getEmployee() {
         return employee;
     }

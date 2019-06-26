@@ -63,12 +63,13 @@ public class OrderController {
                              @PathVariable Long eventId,
                              @PathVariable Long customerId) {
         LOGGER.info("Creating new order...");
-        Order savedOrder = orderRepository.save(order);
+
+        Order savedOrder = linkEventAndCustomerToOrder(order, eventId, customerId);
 
         this.saveCateringOrders(savedOrder, order.getCateringOrders());
         this.saveQuotations(savedOrder, order.getQuotations());
 
-        return linkEventAndCustomerToOrder(savedOrder, eventId, customerId);
+        return orderRepository.save(savedOrder);
     }
 
     @PutMapping("/api/orders/{orderId}/{customerId}/{eventId}")

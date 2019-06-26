@@ -19,7 +19,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
 import java.util.*;
 
@@ -71,7 +70,7 @@ public class EmployeeController {
         Employee savedEmployee = employeeRepository.save(employee);
 
         this.saveEmailAddresses(savedEmployee, employee.getEmails());
-        this.savePhoneNumbers(savedEmployee, employee.getPhones());
+        this.savePhoneNumbers(savedEmployee, employee.getPhoneNumbers());
 
         return savedEmployee;
     }
@@ -90,8 +89,8 @@ public class EmployeeController {
             Collection<EmployeeEmail> emailsToSaved = emailCollectionDataService.getToBeSaved(employee.getEmails(), updatedEmployee.getEmails());
             Collection<EmployeeEmail> emailsToDeletes = emailCollectionDataService.getToBeDeleted(employee.getEmails(), updatedEmployee.getEmails());
 
-            Collection<EmployeePhone> phonesToSaved = phoneCollectionDataService.getToBeSaved(employee.getPhones(), updatedEmployee.getPhones());
-            Collection<EmployeePhone> phonesToDeleted = phoneCollectionDataService.getToBeDeleted(employee.getPhones(), updatedEmployee.getPhones());
+            Collection<EmployeePhone> phonesToSaved = phoneCollectionDataService.getToBeSaved(employee.getPhoneNumbers(), updatedEmployee.getPhoneNumbers());
+            Collection<EmployeePhone> phonesToDeleted = phoneCollectionDataService.getToBeDeleted(employee.getPhoneNumbers(), updatedEmployee.getPhoneNumbers());
 
             saveEmailAddresses(employee, emailsToSaved);
             deleteEmailAddresses(emailsToDeletes);
@@ -102,8 +101,8 @@ public class EmployeeController {
             employee.setEmails(
                     emailCollectionDataService.getDefinitiveCollection(employee.getEmails(), emailsToSaved, emailsToDeletes)
             );
-            employee.setPhones(
-                    phoneCollectionDataService.getDefinitiveCollection(employee.getPhones(), phonesToSaved, phonesToDeleted)
+            employee.setPhoneNumbers(
+                    phoneCollectionDataService.getDefinitiveCollection(employee.getPhoneNumbers(), phonesToSaved, phonesToDeleted)
             );
 
             return employeeRepository.save(employee);
